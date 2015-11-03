@@ -1,0 +1,49 @@
+@media only screen and (min-width: 720px) {
+
+/*
+ * Columns for the form pages
+ * Useful: http://aaronlumsden.com/multicol/
+*/
+
+	.kino-edit-profile {
+		-webkit-column-count: 2;
+		-webkit-column-gap: 30px; 
+		-webkit-column-rule: 1px solid #e5e5e5;
+		-moz-column-count: 2;
+		-moz-column-gap: 30px;  
+		-moz-column-rule: 1px solid #e5e5e5;
+		column-count: 2;
+		column-gap: 30px; 
+		column-rule: 1px solid #e5e5e5;
+	}
+	
+	.kino-edit-profile .editfield {
+		margin: 0;
+		-webkit-column-break-inside: avoid; /* Chrome, Safari */
+		page-break-inside: avoid;           /* Theoretically FF 20+ */
+		break-inside: avoid-column;         /* IE 11 */
+		display:table;                      /* Actually FF 20+ */
+		display:inline-block;
+		
+		max-width: 100%;
+	}
+	
+	.kino-edit-profile .editfield select {
+		max-width: 100%;
+	}
+}
+
+@media only screen and (min-width: 1020px) {
+
+/*
+ * Columns for the form pages
+ * Useful: http://aaronlumsden.com/multicol/
+*/
+
+	.kino-edit-profile {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+	}
+
+}
