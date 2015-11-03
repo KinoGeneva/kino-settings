@@ -17,6 +17,7 @@
 
 
 
+
 function kino_widgets_init() {
 	register_sidebar( array(
 		'name' => 'Checkout Widget Area',
@@ -115,3 +116,16 @@ function display_user_color_pref() {
     }
      
 }*/
+
+/* admin interface
+******************************/
+
+require_once('functions/admin.php');
+
+require_once('functions/bp-group-tabs.php');
+
+/* 
+kleo-google-fonts-css
+*/
+
+

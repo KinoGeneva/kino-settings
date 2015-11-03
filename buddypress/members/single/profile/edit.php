@@ -6,20 +6,26 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
    		<?php dynamic_sidebar( 'Tab Widget Area' ); ?>
 	</div>
 
-<form action="<?php bp_the_profile_group_edit_form_action(); ?>" method="post" id="profile-edit-form" class="standard-form <?php bp_the_profile_group_slug(); ?>">
+<form action="<?php kino_the_profile_group_edit_form_action(); ?>" method="post" id="profile-edit-form" class="standard-form <?php bp_the_profile_group_slug(); ?>">
 
 	<?php do_action( 'bp_before_profile_field_content' ); ?>
 
-		<div class="hr-title hr-full hr-double"><abbr><?php printf( __( "Editing '%s' Profile Group", "buddypress" ), bp_get_the_profile_group_name() ); ?></abbr></div>
+		<div class="hr-title hr-full hr-double"><abbr><?php printf( __( "Modification de votre profil", "buddypress" ), bp_get_the_profile_group_name() ); ?></abbr></div>
 		<div class="gap-10"></div>
 
-		<ul class="button-nav">
-
-			<?php bp_profile_group_tabs(); ?>
+		<ul id="button-nav" class="button-nav clearfix">
+			
+			<?php 
+			
+			bp_profile_group_tabs(); 
+			
+			?>
 
 		</ul>
 
 		<div class="clear"></div>
+		
+		<div class="kino-edit-profile">
 
 		<?php while ( bp_profile_fields() ) : bp_the_profile_field(); ?>
 
@@ -58,6 +64,8 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 			</div>
 
 		<?php endwhile; ?>
+		
+		</div>
 
 	<?php do_action( 'bp_after_profile_field_content' ); ?>
 	
@@ -97,6 +105,19 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 	<?php wp_nonce_field( 'bp_xprofile_edit' ); ?>
 
 </form>
+
+<script>
+jQuery(document).ready(function($){	
+	
+//  $("#profile-edit-form").change(function(){
+//    var formAction = $("#button-nav li.current").next("li").find( "a" ).attr("href");
+//    $("#profile-edit-form").attr("action", formAction);
+//  }); 
+
+		$("#profile-edit-form #field_31").attr("maxlength", "500");
+  				
+});
+</script>
 
 <?php endwhile; endif; ?>
 
