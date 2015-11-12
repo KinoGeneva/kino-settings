@@ -1,4 +1,4 @@
-<div id="buddypress">
+<div id="buddypress" class="kino-register">
 
 	<?php do_action( 'bp_before_register_page' ); ?>
 
@@ -203,6 +203,22 @@
 		</form>
 
 	</div>
+	
+	<script>
+	jQuery(document).ready(function($){	
+		
+	  	// add target_blank to .kino-edit-profile 
+	  	$("#signup_form p.description a[href^=http]").attr('target', '_blank');
+	  	
+	  	// hide some fields
+//	  	$("#signup_form .field_927").hide();
+//	  	$("#signup_form .field_1079").hide();
+//	  	$("#signup_form .field_1075").hide();
+	  	
+	  	$("#signup_form .field-visibility-settings-toggle").hide();
+	  	
+	});
+	</script>
 
 	<?php do_action( 'bp_after_register_page' ); ?>
 

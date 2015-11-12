@@ -72,6 +72,19 @@ $site_style = apply_filters('kleo_site_style', $site_style);
 	
 	<?php do_action('kleo_after_body');?>
 	
+	<?php 
+	
+	// echo 'test';
+//	$user_ID = get_current_user_id();
+//	echo 'my user id: '.$user_ID;
+//	
+//	$userIDs = get_objects_in_term(71, 'user-group');
+//	echo '<pre>';
+//	var_dump($userIDs);
+//	echo '</pre>';
+	
+	 ?>
+	
 	<!-- PAGE LAYOUT
 	================================================ -->
 	<!--Attributes-->

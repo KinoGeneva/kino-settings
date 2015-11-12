@@ -1,81 +1,7 @@
 <?php  
 
 
-// ORGINAL FUNCTION, modified // not used anymore.
-
-function kino_bp_profile_group_tabs() {
-	echo kino_bp_get_profile_group_tabs();
-
-	/**
-	 * Fires at the end of the tab output for switching between profile field
-	 * groups. This action is in a strange place for legacy reasons.
-	 *
-	 * @since BuddyPress (1.0.0)
-	 */
-	do_action( 'xprofile_profile_group_tabs' );
-}
-
-function kino_bp_get_profile_group_tabs() {
-
-	// Get field group data
-	$groups     = bp_profile_get_field_groups();
-	$group_name = bp_get_profile_group_name();
-	$tabs       = array();
-	
-	$kino_role = bp_get_profile_field_data( array(
-		'field'   => '1121',
-		'user_id' => bp_loggedin_user_id()
-	) );
-	
-	// Loop through field groups and put a tab-lst together
-	for ( $i = 0, $count = count( $groups ); $i < $count; ++$i ) {
-
-		// Setup the selected class
-		$selected = '';
-		if ( $group_name === $groups[ $i ]->name ) {
-			$selected = 'current'; // = Skip rest of loop.
-		}
-
-		// Skip if group has no fields
-		if ( empty( $groups[ $i ]->fields ) ) {
-			continue;
-		}
-		
-		// Example: Skip group Nr 5:
-//		if ( 5 == $groups[ $i ]->id ) {
-//			continue;
-//		}
-
-		// Build the profile field group link
-		$link   = trailingslashit( bp_displayed_user_domain() . buddypress()->profile->slug . '/edit/group/' . $groups[ $i ]->id );
-		
-		// add group name to CSS class:
-		$selected .= ' groupnr'. $groups[ $i ]->id;
-
-		// Add tab to end of tabs array
-		$tabs[] = sprintf(
-			'<li class="%1$s"><a href="%2$s">%3$s</a></li>',
-			$selected,
-			esc_url( $link ),
-			esc_html( apply_filters( 'bp_get_the_profile_group_name', $groups[ $i ]->name ) )
-		);
-	} // end for loop.
-
-	/**
-	 * Filters the tabs to display for profile field groups.
-	 *
-	 * @since BuddyPress (1.5.0)
-	 *
-	 * @param array  $tabs       Array of tabs to display.
-	 * @param array  $groups     Array of profile groups.
-	 * @param string $group_name Name of the current group displayed.
-	 */
-	$tabs = apply_filters( 'xprofile_filter_profile_group_tabs', $tabs, $groups, $group_name );
-
-	return join( '', $tabs );
-}
-
-//** ********************** */
+/* modify form action = jump to next item in list */
 
 function kino_the_profile_group_edit_form_action() {
 	echo kino_get_the_profile_group_edit_form_action();
@@ -90,6 +16,7 @@ function kino_get_the_profile_group_edit_form_action() {
 		
 		// figure out ID of current group
 		$current_group_id = $group->id;
+		
 		// give a fallback value
 		$next_group_id = $current_group_id;
 		
@@ -114,31 +41,63 @@ function kino_get_the_profile_group_edit_form_action() {
 		 * @param string $value URL for the action attribute on the
 		 *                      profile group edit form.
 		 */
+		 
+		 $kino_form_action = bp_displayed_user_domain() . $bp->profile->slug . '/edit/group/' . $next_group_id .'/';
+		 
+		 // (could add #buddypress to jump in place)
 				 
-		return apply_filters( 'bp_get_the_profile_group_edit_form_action', trailingslashit( bp_displayed_user_domain() . $bp->profile->slug . '/edit/group/' . $next_group_id ) );
+		return apply_filters( 'bp_get_the_profile_group_edit_form_action', $kino_form_action );
 }
 
 
-function kino_hide_some_profile_fields( $retval ) {	
+function kino_user_participation() {
 	
-	// WORKS!
-	
-	if(  bp_is_profile_edit() ) {	
-		
-		// $retval['exclude_fields'] = '1,2';	//field ID's separated by comma
-		// YES = works for hiding fields
-		
-		// $retval['exclude_groups'] = '1,2,3,4,5,6,7,8,9,10,15';
-		// does not work for hiding groups
-	
-	}	
-	
-	return $retval;
+			// we want to test:
+			// is Comédien? // is Realisateur? // is Technicien?
+			
+			$kino_user_participation = array();
+			
+			$kino_particiation_boxes = bp_get_profile_field_data( array(
+					'field'   => '135',
+					'user_id' => bp_loggedin_user_id()
+			) );
+			
+			$kino_particip_kabaret = bp_get_profile_field_data( array(
+					'field'   => '100', // trouver ID du champ!
+					'user_id' => bp_loggedin_user_id()
+			) );
+			
+			
+			// test field 135 = participation en tant que
+			if ($kino_particiation_boxes) {
+				foreach ($kino_particiation_boxes as $key => $value) {
+				  if ( $value == "Réalisateur-rice" ) {
+				  	$kino_user_participation[] = "realisateur";
+				  }
+				  if ( $value == "Comédien-ne (et/ou)" ) {
+				  	$kino_user_participation[] = "comedien";
+				  }
+				  if ( $value == "Artisan-ne / technicien-ne (et/ou)" ) {
+				  	$kino_user_participation[] = "technicien";
+				  }
+				} // end foreach
+			} // end testing field #135
+			
+			if ( $kino_particip_kabaret == "oui" ) {
+						$kino_user_participation[] = "kabaret-2016";
+			} // end testing field #100
+			
+			return $kino_user_participation;
 }
-// add_filter( 'bp_after_has_profile_parse_args', 'kino_hide_some_profile_fields' );
+
+function kino_event_participation() {
+
+}
 
 
-/* Creating a custom filter */
+
+/* Decide what groups are visible, or hidden 
+****************************** */
 
 add_filter( 'bp_profile_get_field_groups', 'kino_get_field_group_conditions', 10 );
 
@@ -147,15 +106,36 @@ function kino_get_field_group_conditions( $groups ){
   // $groups = array();
   // $number_of_groups = count( $groups );
   
-  	$kino_role = bp_get_profile_field_data( array(
-  		'field'   => '1',
-  		'user_id' => bp_loggedin_user_id()
-  	) );
+//  	$kino_role = bp_get_profile_field_data( array(
+//  		'field'   => '1',
+//  		'user_id' => bp_loggedin_user_id()
+//  	) );
+		
+		$forbidden_groups = array(
+			"5.a Inscription Kabaret",
+			"5.b Kabaret suite",
+		);
   	
-  	$forbidden_groups = array(
-  		"5.a Inscription Kabaret",
-  		"5.b Kabaret suite",
-  	);
+  	// champs à tester:
+  	
+  	$kino_user_role = kino_user_participation();
+
+  	
+  	if (!in_array( "realisateur", $kino_user_role )) {
+  		$forbidden_groups[] = "Compétence Réalisateur";
+  	}
+  	
+  	if (!in_array( "comedien", $kino_user_role )) {
+  		$forbidden_groups[] = "Compétence Comédien";
+  	}
+  	
+  	if (!in_array( "technicien", $kino_user_role )) {
+  		$forbidden_groups[] = "Compétence Technicien";
+  	}
+  	
+  	if (!in_array( "kabaret-2016", $kino_user_role )) {
+  		$forbidden_groups[] = "Kino Kabaret 2016";
+  	}
   	
   	$forbidden_group_ids = array(
   		// 7, // Technicien = 7
@@ -163,10 +143,10 @@ function kino_get_field_group_conditions( $groups ){
   		// 12, // Kabaret = 12
   	);
   	
-  	if ( $kino_role === "Schmalstieg") {
-  	 	 $forbidden_groups[] = "2. Compétence Réal";
+//  	if ( $kino_role === "Schmalstieg") {
+//  	 	 $forbidden_groups[] = "2. Compétence Réal";
 //  	 	 $forbidden_groups[] = "4. Compétence Technicien";
-  	}
+//  	}
   	
   	$groups_updated = array();
   
@@ -187,3 +167,19 @@ function kino_get_field_group_conditions( $groups ){
   	
   return $groups_updated;
 }
+
+
+
+/* Prevent links on profile page
+************************************ */
+
+function remove_xprofile_links() {
+    remove_filter( 'bp_get_the_profile_field_value', 'xprofile_filter_link_profile_data', 9, 2 );
+}
+add_action( 'bp_init', 'remove_xprofile_links', 20 );
+// source: https://codex.buddypress.org/themes/bp-custom-php/
+
+
+
+
+//

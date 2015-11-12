@@ -18,7 +18,6 @@
 		//echo '<br>displayed'. $d_user;
 		 if ($l_user === $d_user) { ?>
 	
-		<li> <a href="<?php get_site_url(); ?>/membership-account/niveaux-adhesion" class="adhesion">Options d'inscription</a></li>
 	<?php } ?>
 	</ul>
 </div><!-- .item-list-tabs -->

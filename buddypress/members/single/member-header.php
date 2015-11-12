@@ -9,16 +9,31 @@
 
 ?>
 
-<?php do_action( 'bp_before_member_header' ); ?>
+<?php do_action( 'bp_before_member_header' ); 
 
-<div id="item-header-avatar" class="rounded">
-	<a href="<?php bp_displayed_user_link(); ?>">
+	// NOTE: the toggle is inserted here via Kleo function : kleo_bp_expand_profile() in: buddypress-functions.php
 
-		<?php bp_displayed_user_avatar( 'type=full' ); ?>
+	// Removed: item-header-avatar
+	
+	if ( bp_is_profile_edit() ) {
+		// we don't show the avatar
+	} else {
+		// we show the avatar
+		?>
+		
+		<div id="item-header-avatar" class="rounded">
+			<a href="<?php bp_displayed_user_link(); ?>">
+		
+				<?php bp_displayed_user_avatar( 'type=full' ); ?>
+		
+			</a>
+		  <?php do_action('bp_member_online_status', bp_displayed_user_id()); ?>
+		</div><!-- #item-header-avatar -->
+		
+		<?php 
+	}
+?>
 
-	</a>
-  <?php do_action('bp_member_online_status', bp_displayed_user_id()); ?>
-</div><!-- #item-header-avatar -->
 
 <div id="item-header-content" <?php if (isset($_COOKIE['bp-profile-header']) && $_COOKIE['bp-profile-header'] == 'small') {echo 'style="display:none;"';} ?>>
 

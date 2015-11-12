@@ -17,6 +17,18 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 			
 			<?php 
 			
+//			
+//						$kino_role = bp_get_profile_field_data( array(
+//								'field'   => '100',
+//								'user_id' => bp_loggedin_user_id()
+//							) );
+//						echo '<pre>';
+//						var_dump($kino_role);
+//						echo '</pre>';
+
+			// echo '<p>group id: '.bp_get_current_profile_group_id().'</p>';
+	
+			
 			bp_profile_group_tabs(); 
 			
 			?>
@@ -25,7 +37,7 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 
 		<div class="clear"></div>
 		
-		<div class="kino-edit-profile">
+		<div class="kino-edit-profile clearfix">
 
 		<?php while ( bp_profile_fields() ) : bp_the_profile_field(); ?>
 
@@ -71,7 +83,10 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 	
  	<?php 
  	$currenttab = bp_get_current_profile_group_id();
- 	
+ 		
+ 		if($currenttab === '1') {
+ 				 dynamic_sidebar( 'Tab Bottom Profil Kinoite' );
+ 			}
  		if($currenttab === '5') {
  			 dynamic_sidebar( 'Tab Bottom Director Widget Area' );
  		}
@@ -79,7 +94,7 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
  			 dynamic_sidebar( 'Tab Bottom Comedian Widget Area' );
  		}
  		elseif($currenttab === '10') {
- 			 dynamic_sidebar( 'Tab Bottom Comedian 2 Widget Area' );
+ 			 dynamic_sidebar( 'Tab Bottom Identity Widget Area' );
  		}
  		elseif($currenttab === '7') {
  			 dynamic_sidebar( 'Tab Bottom Technician Widget Area' );
@@ -96,7 +111,7 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
  	?>
 	
 
-	<div class="submit">
+	<div class="submit clearfix">
 		<input type="submit" name="profile-group-edit-submit" id="profile-group-edit-submit" value="<?php esc_attr_e( 'Save Changes', 'buddypress' ); ?> " />
 	</div>
 
@@ -106,18 +121,7 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 
 </form>
 
-<script>
-jQuery(document).ready(function($){	
-	
-//  $("#profile-edit-form").change(function(){
-//    var formAction = $("#button-nav li.current").next("li").find( "a" ).attr("href");
-//    $("#profile-edit-form").attr("action", formAction);
-//  }); 
-
-		$("#profile-edit-form #field_31").attr("maxlength", "500");
-  				
-});
-</script>
+<?php bp_get_template_part( 'members/single/profile/edit-jquery' ); ?>
 
 <?php endwhile; endif; ?>
 
