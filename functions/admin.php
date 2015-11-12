@@ -54,3 +54,10 @@ add_action( 'admin_menu', 'kgva_remove_menus');
 
 /// http://kinogeneva.4o4.ch/wp-admin/edit.php?post_type=kleo-testimonials
 /// http://kinogeneva.4o4.ch/wp-admin/edit.php?post_type=kleo_clients
+
+add_action('manage_users_columns','kgva_remove_users_columns');
+function kgva_remove_users_columns($column_headers) {
+    unset($column_headers['posts']);
+    unset($column_headers['backwpup_role']);
+    return $column_headers;
+}
