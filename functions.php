@@ -48,6 +48,16 @@ function kino_widgets_init() {
 	) );
 	
 	register_sidebar( array(
+		'name' => 'Tab Bottom Profil Kinoite',
+		'id' => 'sidebar-48',
+		'description' => 'Le texte en bas pour profil kinoite',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+	
+	register_sidebar( array(
 		'name' => 'Tab Bottom Director Widget Area',
 		'id' => 'sidebar-44',
 		'description' => 'Le texte en bas pour réalisateurs',
@@ -59,16 +69,16 @@ function kino_widgets_init() {
 	register_sidebar( array(
 		'name' => 'Tab Bottom Comedian Widget Area',
 		'id' => 'sidebar-45',
-		'description' => 'Le texte en bas pour comédien 1',
+		'description' => 'Le texte en bas pour Comédien',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
 	register_sidebar( array(
-		'name' => 'Tab Bottom Comedian 2 Widget Area',
+		'name' => 'Tab Bottom Identity Widget Area',
 		'id' => 'sidebar-46',
-		'description' => 'Le texte en bas pour comédien 2',
+		'description' => 'Le texte en bas pour Identité',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="widget-title">',
@@ -83,24 +93,8 @@ function kino_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
-	register_sidebar( array(
-		'name' => 'Tab Bottom Kabaret 1 Widget Area',
-		'id' => 'sidebar-48',
-		'description' => 'Le texte en bas ppur Kabaret 1',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-	register_sidebar( array(
-		'name' => 'Tab Bottom Kabaret 2 Widget Area',
-		'id' => 'sidebar-49',
-		'description' => 'Le texte en bas de Kabaret 2',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
+
+
 }
 add_action( 'widgets_init', 'kino_widgets_init' );
 
