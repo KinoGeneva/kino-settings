@@ -15,15 +15,30 @@ License URI: license.txt
 /*
 * Please add your custom styles below
 */
-.profile-edit #buddypress #item-nav, .my-profile #buddypress #item-nav {display:none;}
-.profile-edit #item-header, .profile-edit .item-list-tabs, .my-profile #item-header  {display: none;}
+.profile-edit #buddypress #item-nav, 
+.my-profile #buddypress #item-nav {
+	display:none;
+}
+.profile-edit #item-header, 
+.profile-edit .item-list-tabs, 
+.my-profile #item-header  {
+	display: none;
+}
 
 
-.pricing-table .pmpro-price .lead {font-size: 24px!important;}
-.pricing-table .list-group, .field-visibility-settings-notoggle {display: none;}
+.pricing-table .pmpro-price .lead {
+	font-size: 24px!important;
+}
+.pricing-table .list-group, 
+.field-visibility-settings-notoggle {
+	display: none;
+}
 
 .panel-info .panel-body {display: none;}
-#pmpro_account #pmpro_account-invoices {display: none;}
+
+#pmpro_account #pmpro_account-invoices {
+	display: none;
+}
 
 /*.pmpro-account #pmpro_account-links ul li:nth-child(2){ display:none;}*/
 
@@ -42,6 +57,71 @@ License URI: license.txt
 
 .my-profile #item-header-content .pmpro_label {
 	display: none;	
+}
+
+
+/* En-tête BuddyPress */
+
+.buddypress.bp-header-small #item-header .toggle-header {
+	display: none;
+}
+
+.buddypress div#item-header {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.buddypress.bp-header-small #item-header {
+    background-position: 0 40px;
+}
+
+#buddypress .standard-form input[type=color] {
+	padding: 1px 2px 0 2px;
+	width: 44px;
+	height: 44px;
+}
+
+/* Profile View */
+
+#buddypress .profile .dl-horizontal dt {
+	overflow: visible;
+	white-space: normal;
+}
+
+#buddypress .profile .dl-horizontal {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+/* Edit Profile */
+
+#buddypress div.profile,
+.profile-edit #buddypress div.profile {
+	margin-top: 10px;
+}
+.profile-edit .template-page {
+	padding-top: 0px;
+}
+
+.profile-edit div#item-header,
+.profile-edit div#item-header-content {
+	display: none;
+}
+
+#buddypress .current-visibility-level {
+	font-weight: normal;
+}
+
+.profile-edit #buddypress .members-navigation,
+body.buddypress .kleo-quick-contact-wrapper {
+	display: none;
+}
+
+/* hide rich text editor on profile */
+
+.profile-edit .editfield .wp-editor-tabs,
+.profile-edit .editfield .quicktags-toolbar {
+	display: none;
 }
 
 /* @group Formulaire Buddypress */
@@ -94,6 +174,8 @@ License URI: license.txt
 #buddypress .field-visibility-settings-notoggle {
 	padding-top: 0px;
 	margin-top: 0.5em;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
 	font-size: 85%;
 }
 
@@ -104,6 +186,10 @@ License URI: license.txt
 
 .kino-edit-profile {
 	margin-bottom: 15px;
+}
+
+#buddypress #profile-group-edit-submit {
+	float: right;
 }
 
 #buddypress #profile-group-edit-submit {
