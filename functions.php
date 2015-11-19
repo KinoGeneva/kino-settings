@@ -17,7 +17,6 @@
 
 
 
-
 function kino_widgets_init() {
 	register_sidebar( array(
 		'name' => 'Checkout Widget Area',
@@ -118,8 +117,16 @@ require_once('functions/admin.php');
 
 require_once('functions/bp-group-tabs.php');
 
+require_once('functions/bp-messages.php');
+
 /* 
 kleo-google-fonts-css
 */
+
+/* Forcer éditeur texte par défaut
+***************************************/
+
+// Set the editor to HTML ("Text")
+add_filter( 'wp_default_editor', create_function(null,'return "html";') );
 
 
