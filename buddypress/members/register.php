@@ -20,8 +20,27 @@
 
 			<?php do_action( 'template_notices' ); ?>
 
-			<p><?php _e( 'Registering for this site is easy. Just fill in the fields below, and we\'ll get a new account set up for you in no time.', 'buddypress' ); ?></p>
-
+			
+			<?php // show content of "inscription" page:
+			
+			$kino_query_args = array( 
+						'posts_per_page' => 1,
+						'post_type' => 'page',
+						'pagename' => 'inscription-membre',
+				 );
+			
+			$kino_query = new WP_Query( $kino_query_args );
+				
+				if ($kino_query->have_posts()) : 
+				while( $kino_query->have_posts() ) : $kino_query->the_post();
+									
+									the_content();
+									
+				endwhile; 
+				endif;
+				wp_reset_postdata();			
+			
+			 ?>
 			
 				<div class="row">
 					

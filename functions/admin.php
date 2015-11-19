@@ -49,8 +49,10 @@ add_filter('admin_footer_text', 'modify_footer_admin');
 function kgva_remove_menus() {
   remove_menu_page( 'edit.php?post_type=kleo-testimonials' );
   remove_menu_page( 'edit.php?post_type=kleo_clients' );
+  // remove user types from WP User Groups plugin
+  $page = remove_submenu_page( 'users.php', 'edit-tags.php?taxonomy=user-type' );
 }
-add_action( 'admin_menu', 'kgva_remove_menus');
+add_action( 'admin_menu', 'kgva_remove_menus', 999);
 
 /// http://kinogeneva.4o4.ch/wp-admin/edit.php?post_type=kleo-testimonials
 /// http://kinogeneva.4o4.ch/wp-admin/edit.php?post_type=kleo_clients
