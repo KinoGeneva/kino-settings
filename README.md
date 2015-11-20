@@ -8,6 +8,10 @@ Le thème actif est /themes/kleo-child/, qui est un thème-enfant de /themes/kle
 
 Certaines fonctionalités se trouvent dans le plugin /kinogeneva-settings/ (notamment la traduction de chaînes de langue).
 
+### Styles CSS
+
+Les styles CSS du thème kleo-child sont dans le dossier /css/dev/ (une version compilée sera générée dans /css/build/ par la suite).
+
 ## Dependencies
 
 - WordPress: CMS - https://wordpress.org
