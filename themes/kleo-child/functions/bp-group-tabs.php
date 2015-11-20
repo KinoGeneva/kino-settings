@@ -29,7 +29,12 @@ function kino_get_the_profile_group_edit_form_action() {
 					if ( $j < $count) { 
 						$next_group_id = '/edit/group/' . $groups[ $j ]->id .'/';
 					} else {
-						$next_group_id = '/change-avatar/';
+					
+					// $next_group_id = '/change-avatar/'; 
+					// NOTE = problem, submissions don't get changed!
+						
+						$next_group_id = '/edit/group/' . $next_group_id .'/';
+						
 					}
 				
 			} // end if.
@@ -101,13 +106,16 @@ function kino_user_participation() {
 			// test field 135 = participation en tant que
 			if ($kino16_particiation_boxes) {
 				foreach ($kino16_particiation_boxes as $key => $value) {
-				  if ( $value == "Réalisateur-rice" ) {
+				
+					$value = mb_substr($value, 0, 4);
+				
+				  if ( $value == "Réal" ) {
 				  	$kino_user_participation[] = "realisateur-2016";
 				  }
-				  if ( $value == "Comédien-ne (et/ou)" ) {
+				  if ( $value == "Comé" ) {
 				  	$kino_user_participation[] = "comedien-2016";
 				  }
-				  if ( $value == "Artisan-ne / technicien-ne (et/ou)" ) {
+				  if ( $value == "Arti" ) {
 				  	$kino_user_participation[] = "technicien-2016";
 				  }
 				} // end foreach
