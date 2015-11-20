@@ -1,6 +1,12 @@
 <?php 
 	
 	// some jQuery corrections for the BuddyPress Profile Edit Page
+	
+	
+	// Load User Role testing
+	
+	$kino_user_role = kino_user_participation();
+	
 
  ?>
  
@@ -18,16 +24,62 @@
  			// add target_blank to .kino-edit-profile links
  			$("#profile-edit-form p.description a[href^=http]").attr('target', '_blank');
  			
+ 			<?php
  			
+ 			// Une fois les conditions générales acceptées, on ne peut plus les modifier!
  			// make #check_acc_field_1070 read-only if checked
- 				//$('#profile-edit-form #check_acc_field_1070').prop('checked').prop('disabled', true);
+ 			//$('#profile-edit-form #check_acc_field_1070').prop('checked').prop('disabled', true);
+ 			
+ 			?>
  				
  				var kino_accept_cond = '#profile-edit-form #check_acc_field_1070';
  				if ($(kino_accept_cond).is(":checked")) {
  				        $(kino_accept_cond).prop('disabled', true);
  				}
  				
- 				
+ 			
+ 			<?php
+ 			
+ 			// On désactive l'option Réalisateur: voir https://bitbucket.org/ms-studio/kinogeneva/issues/18/inscriptions-section-r-alisateur
+ 			
+ 			if ( in_array( "realisateur", $kino_user_role ) ) {
+ 					?>
+ 					
+ 					$('#profile-edit-form #field_1297_2').prop('disabled', true);
+ 					
+ 					<?php
+ 			}
+ 			
+ 			
+ 			if ( in_array( "realisateur-2016", $kino_user_role ) ) {
+ 						?>
+ 						
+ 					$('#profile-edit-form #field_1312_2').prop('disabled', true);
+ 						
+ 						<?php
+ 				}
+ 		
+ 		// Montrer les checkbox si Realisateur est "Checked":
+ 		
+ 		?>
+ 		
+ 		$("input#field_1312_2").click(function() {
+ 		    // this function will get executed every time the #home element is clicked (or tab-spacebar changed)
+ 		    if($(this).is(":checked")) // "this" refers to the element that fired the event
+ 		    {
+ 		        // alert('home is checked');
+ 		        $('#profile-edit-form div.field_1101').show();
+ 		        $('#profile-edit-form div.field_1106').show();
+ 		        $('#profile-edit-form div.field_1116').show();
+ 		        
+ 		    } else {
+ 		    		$('#profile-edit-form div.field_1101').hide();
+ 		    		$('#profile-edit-form div.field_1106').hide();
+ 		    		$('#profile-edit-form div.field_1116').hide();
+ 		    }
+ 		});
+ 		
+ 		<?php
  		
 		// For Safari: remove aria-required attribute
 		
@@ -38,6 +90,8 @@
 		// add data-validation="required"
 		
 		// $("div.required-field select").prop('required', true); // works for chrome + FF
+		
+		?>
 		
 		$("div.required-field.field_type_textarea textarea").attr('data-validation', 'required');
 		
@@ -52,6 +106,8 @@
 			// number
 			$("div.required-field.field_type_number input").attr('data-validation', 'required');
  			
+ 			<?php
+ 			
  			// checkbox group
 // 			$("div.required-field.field_type_checkbox input").attr({
 // 				    'data-validation':'checkbox_group', 
@@ -60,6 +116,8 @@
  		
  			// image = must test by JS if empty
  				// $("div.required-field.field_type_image input").prop('required', true);
+ 				
+ 				?>
  				
  				$('div.required-field.field_type_image').each(function() {
  				    if ($(this).children('img').length) {
@@ -91,7 +149,7 @@
    		
    		// add conditional part 
    		
-   		$kino_user_role = kino_user_participation();
+   		
    		
    		if (in_array( "realisateur", $kino_user_role )) {
    		
@@ -188,15 +246,28 @@
  						
  				#buddypress #profile-edit-form div.field_1258 {
  						display: none;
- 				}
+ 						}
  						
  						<?php
- 					}
- 				}
- 				
- 			}
+ 					} // comedien
+ 				} // realisateur
+ 			} // technicien
  			
- 		}
+ 			
+ 			if (!in_array( "realisateur-2016", $kino_user_role )) {
+ 					
+ 					// issue: https://bitbucket.org/ms-studio/kinogeneva/issues/51/kino-kabaret-2016-sessions
+ 					
+ 					?>
+ 					 #buddypress #profile-edit-form div.field_1101,
+ 					 #buddypress #profile-edit-form div.field_1106,
+ 					 #buddypress #profile-edit-form div.field_1116 {
+ 					 	display:none;
+ 					 }
+ 					<?php
+ 				}
+ 			
+ 		} // end profile group #15
  
  echo '</style>';
  
