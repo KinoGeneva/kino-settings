@@ -3,13 +3,17 @@
 // On ajoute des inscrits à la Newsletter Kino, selon les User-Groups
 
 
-if ( ! wp_next_scheduled( 'kino_task_hook' ) ) {
-  wp_schedule_event( time(), 'hourly', 'kino_task_hook' );
-}
+//if ( ! wp_next_scheduled( 'kino_task_hook' ) ) {
+//  wp_schedule_event( time(), 'hourly', 'kino_task_hook' );
+//}
+//
+//add_action( 'kino_task_hook', 'kino_task_function' );
 
-add_action( 'kino_task_hook', 'kino_task_function' );
+
 
 // add_action( 'init', 'kino_task_function' );
+
+
 
 function kino_task_function() {
   

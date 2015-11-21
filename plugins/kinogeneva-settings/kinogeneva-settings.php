@@ -27,19 +27,16 @@ include_once (plugin_dir_path(__FILE__).'translation.php');
 // Cron
 include_once (plugin_dir_path(__FILE__).'cron-groups.php');
 
+// Cron
+include_once (plugin_dir_path(__FILE__).'users.php');
 
-// remove action
 
-remove_action( 'init', 'wp_register_default_user_type_taxonomy', 10 );
-
-add_action( 'plugins_loaded' , 'kino_remove_stuff' , 10 );
-function kino_remove_stuff() {
- remove_action( 'init', 'wp_register_default_user_type_taxonomy', 999 );
-}
 
 // login redirection
 
-add_filter('login_redirect','kino_login_redirection',100,3);
+// add_filter('login_redirect','kino_login_redirection',100,3);
+
+// NOTE = this overrides the redirect url string!
 
 function kino_login_redirection($redirect_url,$request_url,$user) {
 	global $bp;

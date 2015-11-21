@@ -97,18 +97,7 @@ function kino_widgets_init() {
 }
 add_action( 'widgets_init', 'kino_widgets_init' );
 
-/*add_action( 'bp_profile_header_meta', 'display_user_color_pref' );
-function display_user_color_pref() {
-    $args = array(
-        'field'   => 'Sexe', // Field name or ID.
-        );
-    $favorite_color = bp_get_profile_field_data( $args );
- 
-    if ($favorite_color) {
-        echo 'sexe: ' . $favorite_color;
-    }
-     
-}*/
+
 
 /* admin interface
 ******************************/

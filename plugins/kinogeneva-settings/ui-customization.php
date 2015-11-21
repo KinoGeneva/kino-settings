@@ -11,6 +11,40 @@
 
 
 
+// CUSTOM ADMIN DASHBOARD HEADER LOGO
+ 
+//function custom_admin_logo() {
+//    echo '<style type="text/css">#wp-admin-bar-wp-logo { display:none;  }</style>';
+//}
+//add_action('admin_head', 'custom_admin_logo');
+
+function remove_wp_logo( $wp_admin_bar ) {
+	$wp_admin_bar->remove_node( 'wp-logo' );
+}
+add_action( 'admin_bar_menu', 'remove_wp_logo', 999 );
+
+
+/**
+ * remove WordPress Howdy : http://www.redbridgenet.com/?p=653
+ */
+function goodbye_howdy ( $wp_admin_bar ) {
+    $avatar = get_avatar( get_current_user_id(), 16 );
+    if ( ! $wp_admin_bar->get_node( 'my-account' ) )
+        return;
+    $wp_admin_bar->add_node( array(
+        'id' => 'my-account',
+        'title' => sprintf( '%s', wp_get_current_user()->display_name ) . $avatar,
+    ) );
+}
+add_action( 'admin_bar_menu', 'goodbye_howdy' );
+
+
+function modify_footer_admin ()
+{
+    echo '<span id="footer-thankyou">&nbsp;</span>';
+}
+add_filter('admin_footer_text', 'modify_footer_admin');
+
 
 
 /* Allowed FileTypes
