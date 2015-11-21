@@ -21,6 +21,8 @@
 //	  $user_info = get_user_by( 'id', $id );
 //	  // echo $user_info->user_email;
 //	 }
+			
+			?><a href="<?php echo wp_login_url( site_url( '/mypage/ ' ) ); ?>" title="Login">Login</a><?php
  
  			$kino_user_role = kino_user_participation();
  			

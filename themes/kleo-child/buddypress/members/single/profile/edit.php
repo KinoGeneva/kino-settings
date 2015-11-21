@@ -23,7 +23,7 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 			
 			if( current_user_can('administrator')) {  
 				
-			// bp_get_template_part( 'members/single/profile/edit-testing' );
+			bp_get_template_part( 'members/single/profile/edit-testing' );
 				
 			}
 			
