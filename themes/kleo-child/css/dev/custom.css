@@ -257,6 +257,11 @@ body.buddypress .kleo-quick-contact-wrapper {
 	text-decoration: blink;
 }
 
+#buddypress .standard-form div.checkbox label, 
+#buddypress .standard-form div.radio label {
+	color: #777;	/* same as any other fields! */
+}
+
 /* @end */
 
 /* @end */
