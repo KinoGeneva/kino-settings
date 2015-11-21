@@ -98,7 +98,32 @@ function kino_user_participation() {
 						$kino_user_participation[] = "kabaret-2016";
 			}
 			
-			// même test, mais pour le Kabaret 2016
+			// Bénévole?
+			$kino_aide_benevole = bp_get_profile_field_data( array(
+					'field'   => '1313', 
+					'user_id' => bp_loggedin_user_id()
+			) );
+			
+			if ( ( $kino_aide_benevole == "oui" ) || ( $kino_aide_benevole == "yes" ) ) {
+						$kino_user_participation[] = "benevole";
+			}
+			
+			// Test benevole pour le Kabaret 2016
+			$kino_benevole_boxes = bp_get_profile_field_data( array(
+					'field'   => '1320',
+					'user_id' => bp_loggedin_user_id()
+			) );
+			if ($kino_benevole_boxes) {
+				foreach ($kino_benevole_boxes as $key => $value) {
+				  if ( $value == "l’organisation du Kino Kabaret" ) {
+				  	$kino_user_participation[] = "benevole-kabaret";
+				  }
+				} // end foreach
+			} //
+			
+			
+			
+			// Test des rôles pour le Kabaret 2016
 			$kino16_particiation_boxes = bp_get_profile_field_data( array(
 					'field'   => '1258',
 					'user_id' => bp_loggedin_user_id()
@@ -239,8 +264,15 @@ function kino_get_field_group_conditions( $groups ){
   		$forbidden_groups[] = "Compétence Technicien";
   	}
   	
+  	if (!in_array( "benevole", $kino_user_role )) {
+  		$forbidden_groups[] = "Aide bénévole";
+  	}
+  	
   	if (!in_array( "kabaret-2016", $kino_user_role )) {
-  		$forbidden_groups[] = "Kino Kabaret 2016";
+  		// bénévole pour kabaret ? 
+  		if (!in_array( "benevole-kabaret", $kino_user_role )) {
+  			$forbidden_groups[] = "Kino Kabaret 2016";
+  		}
   	}
   	
   	$forbidden_group_ids = array(

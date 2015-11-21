@@ -42,19 +42,23 @@
  			
  			// On désactive l'option Réalisateur: voir https://bitbucket.org/ms-studio/kinogeneva/issues/18/inscriptions-section-r-alisateur
  			
- 			if ( in_array( "realisateur", $kino_user_role ) ) {
+ 			if ( in_array( "realisateur", $kino_user_role ) && current_user_can('subscriber') ) {
  					?>
  					
- 					$('#profile-edit-form #field_1297_2').prop('disabled', true);
+ 					// $('#profile-edit-form #field_1297_2').prop('disabled', true);
+ 					// $('#profile-edit-form #field_1424_2').prop('disabled', true); // = Réalisateur-trice
  					
+ 					$('#profile-edit-form div.field_135 input[value="Réalisateur-trice"]').prop('disabled', true);
+ 					 					
  					<?php
  			}
  			
  			
- 			if ( in_array( "realisateur-2016", $kino_user_role ) ) {
+ 			if ( in_array( "realisateur-2016", $kino_user_role ) && current_user_can('subscriber') ) {
  						?>
  						
  					$('#profile-edit-form #field_1312_2').prop('disabled', true);
+ 					$('#profile-edit-form div.field_1258 input[value="Réalisateur-trice"]').prop('disabled', true);
  						
  						<?php
  				}
@@ -137,7 +141,7 @@
  					    // alert('has link');
  					    } else {
  					    	$(this).children('input[type=file]').attr({
- 					    	    'data-validation':'required mime', 
+ 					    	    'data-validation':'mime',  // required - cf http://formvalidator.net/#file-validators
  					    	    'data-validation-allowing':'jpg'
  					    	});
  					    }
@@ -158,10 +162,10 @@
    			
    			$('div.field_858.field_type_file').each(function() {
    					    if ($(this).children('a').length) {
-   					    // has link = do nothing
+   					    // has link = fule exists = do nothing
    					    } else {
    					    	// $(this).children('input[type=file]').prop('required', true);
-   					    	$("div.field_858 input[type=file]").prop('required', true);
+   					    	$("div.field_858 input[type=file]").attr('data-validation', 'required');
    					    	$("div.field_858 label[for=field_858]").text("C.V. (obligatoire)");
    					    }
    					});
