@@ -22,9 +22,9 @@
 //	  // echo $user_info->user_email;
 //	 }
 			
-			?><a href="<?php echo wp_login_url( site_url( '/mypage/ ' ) ); ?>" title="Login">Login</a><?php
+			
  
- 			$kino_user_role = kino_user_participation();
+ 			$kino_user_role = kino_user_participation( bp_loggedin_user_id() );
  			
  				// candidat cabaret 2016?
 // 				$kino_seize_particiation_roles = bp_get_profile_field_data( array(

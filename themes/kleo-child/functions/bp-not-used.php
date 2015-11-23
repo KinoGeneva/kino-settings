@@ -1,23 +1,6 @@
 <?php 
 
 
-function kino_hide_some_profile_fields( $retval ) {	
-	
-	// WORKS!
-	
-	if(  bp_is_profile_edit() ) {	
-		
-		// $retval['exclude_fields'] = '1,2';	//field ID's separated by comma
-		// YES = works for hiding fields
-		
-		// $retval['exclude_groups'] = '1,2,3,4,5,6,7,8,9,10,15';
-		// does not work for hiding groups
-	
-	}	
-	
-	return $retval;
-}
-// add_filter( 'bp_after_has_profile_parse_args', 'kino_hide_some_profile_fields' );
 
 
 

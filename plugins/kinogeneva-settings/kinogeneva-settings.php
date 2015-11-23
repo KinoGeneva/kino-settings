@@ -18,6 +18,9 @@ What this plugin does:
 
  */
  
+// Register Post Types
+include_once (plugin_dir_path(__FILE__).'content-types.php');
+ 
 // UI customisation
 include_once (plugin_dir_path(__FILE__).'ui-customization.php');
  

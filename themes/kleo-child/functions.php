@@ -104,6 +104,8 @@ add_action( 'widgets_init', 'kino_widgets_init' );
 
 require_once('functions/admin.php');
 
+require_once('functions/bp-fields.php');
+
 require_once('functions/bp-group-tabs.php');
 
 require_once('functions/bp-messages.php');
@@ -117,5 +119,73 @@ kleo-google-fonts-css
 
 // Set the editor to HTML ("Text")
 add_filter( 'wp_default_editor', create_function(null,'return "html";') );
+
+
+/* Login redirection
+ * Voir discussion: https://bitbucket.org/ms-studio/kinogeneva/issues/26/
+***************************************/
+
+add_filter('login_redirect','kino_login_redirection',10,3);
+// NOTE = this overrides the redirect url string!
+
+function kino_login_redirection( $redirect_to, $request, $user ) {
+
+		global $bp;
+		//is there a user to check?
+		global $user;
+		
+		if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+			
+			if (function_exists('kino_user_participation')) {
+				
+				$kino_user_role = kino_user_participation( $user->ID );
+				
+				// Déjà inscrit au Kabaret?
+				if ( in_array( "kabaret-2016", $kino_user_role ) ) {
+					
+					// Aller à la section identité
+					return bp_core_get_user_domain($user->ID).'/profile/edit/group/10/';
+				
+				} else 
+				
+				// Pas inscrit? 
+				// Aller à la section Profil Kinoite
+				
+				return bp_core_get_user_domain($user->ID).'/profile/edit/group/1/';
+				
+			} else {
+			
+				// Pas de test?
+				return $redirect_to;
+			}
+			
+		} else { // user not defined
+			
+			// redirect them to the default place
+			return $redirect_to;
+			
+		}
+
+}
+
+
+function my_bp_get_users_by_xprofile( $field_id, $value ) {
+ 
+    global $wpdb;
+ 
+    $user_ids = $wpdb->get_col(
+        $wpdb->prepare(
+            "
+                SELECT `user_id`
+                FROM `{$wpdb->prefix}bp_xprofile_data`
+                WHERE `field_id` = %d
+                    AND `value` = %s
+            "
+            , $field_id
+            , $value
+        )
+    );
+}
+
 
 

@@ -21,8 +21,12 @@ jQuery(document).ready(function($){
       $('#country').suggestCountry();
     },
     onError : function($form) {
-          alert('Veuillez remplir tous les champs obligatoires avant de soumettre le formulaire!');
+      alert('Veuillez remplir tous les champs obligatoires avant de soumettre le formulaire!');
+      mixpanel.track( "Form Error" );
     },
+    onSuccess : function(form) {
+      mixpanel.track( "Submitted Form" );
+    }
   });
   
   // $('#profile-edit-form').validateOnBlur();

@@ -6,9 +6,20 @@
 
 <?php if ( !(int)bp_get_option( 'bp-disable-avatar-uploads' ) ) : ?>
 
+<?php 
+			// Show notifications:
+			$kino_notifications = kino_edit_profile_notifications( bp_loggedin_user_id() );
+			
+			if ( !empty($kino_notifications) ) {
+			
+				?><figure class="callout-blockquote light big-blockquote"><blockquote><p><?php 
+					echo $kino_notifications; ?>
+				    </p></blockquote></figure>
+				<?php
+			} 
+ ?>
 
-
-<figure class="callout-blockquote light">
+<figure class="callout-blockquote light hidden">
   <blockquote>
     <p><?php _e( 'Your avatar will be used on your profile and throughout the site. If there is a <a href="http://gravatar.com">Gravatar</a> associated with your account email we will use that, or you can upload an image from your computer.', 'buddypress' ); ?></p>
   </blockquote>

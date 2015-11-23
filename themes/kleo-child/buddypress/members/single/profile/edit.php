@@ -9,23 +9,35 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 <form action="<?php kino_the_profile_group_edit_form_action(); ?>" method="post" id="profile-edit-form" class="standard-form <?php bp_the_profile_group_slug(); ?>">
 
 	<?php do_action( 'bp_before_profile_field_content' ); ?>
+	
+		<?php 
+					// Show notifications:
+					$kino_notifications = kino_edit_profile_notifications( bp_loggedin_user_id() );
+					
+					if ( !empty($kino_notifications) ) {
+					
+						?><figure class="callout-blockquote light big-blockquote"><blockquote><p><?php 
+							echo $kino_notifications; ?>
+						    </p></blockquote></figure>
+						<?php
+					} 
+		 ?>
 
 		<div class="hr-title hr-full hr-double"><abbr><?php printf( __( "Modification de votre profil", "buddypress" ), bp_get_the_profile_group_name() ); ?></abbr></div>
 		<div class="gap-10"></div>
-
+		
 		<ul id="button-nav" class="button-nav clearfix">
 			
 			<?php 
 			
 //			If Admin, Show Test Area
-
-		
 			
 			if( current_user_can('administrator')) {  
 				
-			bp_get_template_part( 'members/single/profile/edit-testing' );
+				// bp_get_template_part( 'members/single/profile/edit-testing' );
 				
 			}
+			
 			
 			bp_profile_group_tabs(); 
 			

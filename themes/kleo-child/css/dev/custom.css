@@ -27,7 +27,21 @@
 
 /*.pmpro-account #pmpro_account-links ul li:nth-child(2){ display:none;}*/
 
+/* @group Style Blockquote */
 
+#profile-edit-form .callout-blockquote blockquote p,
+.big-blockquote p {
+	font-size: 120%;
+	font-weight: bold;
+}
+
+#profile-edit-form  .callout-blockquote,
+#profile-edit-form blockquote {
+	margin-top: 0;
+	width: 100%;
+}
+
+/* @end */
 
 /* @group En-tete BuddyPress */
 
@@ -59,13 +73,10 @@
 
 /* @end */
 
-#buddypress .standard-form input[type=color] {
-	padding: 1px 2px 0 2px;
-	width: 44px;
-	height: 44px;
-}
 
-/* Profile View */
+/* @group Profile View */
+
+/* Correctifs pour la vue du profil */
 
 #buddypress .profile .dl-horizontal dt {
 	overflow: visible;
@@ -77,7 +88,11 @@
 	margin-bottom: 0px;
 }
 
-/* Edit Profile */
+/* @end */
+
+/* @group Edit Profile */
+
+/* Ajustements et espacements */
 
 #buddypress div.profile,
 .profile-edit #buddypress div.profile {
@@ -102,6 +117,7 @@ body.buddypress .kleo-quick-contact-wrapper {
 	display: none;
 }
 
+/* @end */
 
 /* @group Visibility Options */
 
@@ -145,8 +161,57 @@ body.buddypress .kleo-quick-contact-wrapper {
 
 /* @group Formulaire Buddypress */
 
+/* Menu: Afficher - Modifier - Photo du profil */
+
 #buddypress .item-list-tabs li {
 	font-weight: bold;
+	font-size: 140%;
+}
+
+#buddypress div.item-list-tabs#subnav ul li a {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#buddypress #subnav  li a:hover {
+	background: #e5e5e5;
+}
+
+#buddypress div.item-list-tabs#subnav {
+	margin-top: 10px;
+}
+
+/* Menu: Groupes de Champs du profil */
+
+#buddypress #profile-edit-form ul.button-nav {
+	font-size: 120%;
+	font-weight: bold;
+}
+
+#buddypress #profile-edit-form ul.button-nav a {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	border-radius: 0px;
+}
+
+#buddypress #profile-edit-form ul.button-nav a:hover {
+	background: #e5e5e5;
+}
+
+#buddypress #profile-edit-form ul.button-nav li.current a {
+	font-weight: bold;
+	background: #fff;
+	border-bottom-width: 2px;
+}
+
+
+#buddypress #profile-edit-form ul.button-nav {
+	margin-bottom: 25px;
+	padding-bottom: 15px;
+	border-bottom: 4px solid #e5e5e5;
+	border-bottom-style: double;
 }
 
 
@@ -180,13 +245,17 @@ body.buddypress .kleo-quick-contact-wrapper {
 	margin-bottom: 2px;
 }
 
-#buddypress .standard-form label, #buddypress .standard-form span.label {
+#buddypress .standard-form input[type=color] {
+	padding: 1px 2px 0 2px;
+	width: 44px;
+	height: 44px;
+}
+
+#buddypress .standard-form label, 
+#buddypress .standard-form span.label {
 	margin-top: 2px;
 }
 
-#buddypress #profile-edit-form ul.button-nav {
-	margin-bottom: 25px;
-}
 
 #buddypress .field-visibility-settings, 
 #buddypress .field-visibility-settings-toggle, 
@@ -224,6 +293,11 @@ body.buddypress .kleo-quick-contact-wrapper {
 /*	font-weight: 700;*/
 }
 
+#buddypress .standard-form div.checkbox label, 
+#buddypress .standard-form div.radio label {
+	color: #777;	/* same as any other fields! */
+}
+
 /*
  * Hide only visually, but have it available for screen readers:
  * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
@@ -238,6 +312,8 @@ body.buddypress .kleo-quick-contact-wrapper {
 	position: absolute;
 	width: 1px;
 }
+
+/* @end */
 
 /* @group Validation des champs */
 
@@ -257,11 +333,6 @@ body.buddypress .kleo-quick-contact-wrapper {
 	text-decoration: blink;
 }
 
-#buddypress .standard-form div.checkbox label, 
-#buddypress .standard-form div.radio label {
-	color: #777;	/* same as any other fields! */
-}
 
 /* @end */
 
-/* @end */
