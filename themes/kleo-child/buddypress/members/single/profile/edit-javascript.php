@@ -5,7 +5,7 @@
 	
 	// Load User Role testing
 	
-	$kino_user_role = kino_user_participation();
+	$kino_user_role = kino_user_participation( bp_loggedin_user_id() );
 	
 
  ?>
@@ -198,7 +198,21 @@
    		}
    		
    		
+   		// Some Mixpanel Tracking Code:
+   		
+   		// https://mixpanel.com/help/reference/javascript
+   		
+   		// https://mixpanel.com/help/reference/javascript-full-api-reference#mixpanel.track_forms
+   		
+   		
    		 ?>
+   		 
+   		 // mixpanel.track_links("#button-nav", "Clicked Edit Profile");
+   		 // doit cibler le <a>, sinon, BUG= ajoute "undefined" après l'URL!
+   		 
+   		 mixpanel.track_links('#button-nav li a', 'Clicked Edit Profile');
+   		 
+   		 mixpanel.track_forms("#profile-edit-form", "Submitted Profile Form");
    	
  });
  </script>

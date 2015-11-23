@@ -24,23 +24,15 @@ include_once (plugin_dir_path(__FILE__).'ui-customization.php');
 // Translations
 include_once (plugin_dir_path(__FILE__).'translation.php');
 
-// Cron
+// Cron operations
 include_once (plugin_dir_path(__FILE__).'cron-groups.php');
 
-// Cron
+// User settings
 include_once (plugin_dir_path(__FILE__).'users.php');
 
+// Stats
+include_once (plugin_dir_path(__FILE__).'statistics.php');
 
 
-// login redirection
-
-// add_filter('login_redirect','kino_login_redirection',100,3);
-
-// NOTE = this overrides the redirect url string!
-
-function kino_login_redirection($redirect_url,$request_url,$user) {
-	global $bp;
-	return bp_core_get_user_domain($user->ID).'/profile/edit/group/10/'; // returns url to user account
-}
 
 //
