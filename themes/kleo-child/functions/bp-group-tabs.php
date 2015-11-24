@@ -14,7 +14,9 @@ function kino_hide_some_profile_fields( $retval ) {
 		$kino_fields = kino_test_fields();
 		
 		if ( current_user_can( 'publish_pages' ) ) {
-			// show everything for Admin and Editor
+		
+			// we show everything for: Admin and Editor roles
+		
 		} else {
 			
 			// exclude Session Attribuée (admin only)
@@ -27,7 +29,7 @@ function kino_hide_some_profile_fields( $retval ) {
 			
 			if ( !in_array( "realisateur", $kino_user_role ) && !in_array( "comedien", $kino_user_role ) && !in_array( "technicien", $kino_user_role ) ) {
 			
-				// Don't show role options for Kino Kabaret
+				// Don't show role options for Kino Kabaret!
 				
 				$kino_excluded_id[] = $kino_fields['role-kabaret'];
 			
@@ -42,10 +44,10 @@ function kino_hide_some_profile_fields( $retval ) {
 				$kino_excluded_id[] = $kino_fields['session-trois'];
 				
 				
-				// in addition to that...
+				// And in addition to that...
 				if ( !in_array( "comedien", $kino_user_role ) && !in_array( "technicien", $kino_user_role ) ) {
 				
-					// Don't show role options for Kino Kabaret
+					// Don't show ANY role options for Kino Kabaret
 					
 					$kino_excluded_id[] = $kino_fields['role-kabaret'];
 				
