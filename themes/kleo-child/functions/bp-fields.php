@@ -33,15 +33,28 @@ function kino_test_fields() {
 	
 	$kino_fields['session-attribuee'] = 1461;// Only visible for Admin 
 	
-	// Group IDs
+	// Group IDs - 
+	// voir https://bitbucket.org/ms-studio/kinogeneva/wiki/WordPress-User-Groups
 	
-	$kino_fields['group-real-valid-kabaret'] = 65 ; // Validés: Réalisateurs Kino Kabaret
-	$kino_fields['group-real-valid-platform'] = 66 ; // Validés: Réalisateurs Plateforme
-	$kino_fields['group-benevolve-kabaret'] = 67 ; // Validés: Bénévoles Cabaret
+	// En attente
+	$kino_fields['group-real-kabaret-pending'] = 74 ; // En attente: Réalisateurs Kino Kabaret 2016
+	$kino_fields['group-real-platform-pending'] = 77 ; // En attente: Réalisateurs Plateforme
 	
-	$kino_fields['group-kino-incomplete'] = 72 ; // Validés: Bénévoles Cabaret
-	$kino_fields['group-kino-complete'] = 71 ; // Validés: Bénévoles Cabaret
-	$kino_fields['group-kino-approved'] = 73 ; // Validés: Bénévoles Cabaret
+	// Validés
+	$kino_fields['group-real-kabaret'] = 65 ; // Validés: Réalisateurs Kino Kabaret
+	$kino_fields['group-real-platform'] = 66 ; // Validés: Réalisateurs Plateforme
+	$kino_fields['group-benevoles-kabaret'] = 67 ; // Bénévoles Kabaret
+	
+	// Refusés
+	$kino_fields['group-real-kabaret-rejected'] = 69 ; // Refusés: Réalisateurs Kino Kabaret 2016
+	$kino_fields['group-real-platform-rejected'] = 70 ; // Refusés: Réalisateurs Plateforme
+	
+	// Profil Kino
+	$kino_fields['group-kino-incomplete'] = 72 ; // Participants Kino 2016 : profil incomplet
+	$kino_fields['group-kino-complete'] = 71 ; // Participants Kino 2016 : profil complet
+	$kino_fields['group-kino-approved'] = 73 ; // Participants Kino 2016 : validés
+	
+	
 	
 	return $kino_fields;
 }

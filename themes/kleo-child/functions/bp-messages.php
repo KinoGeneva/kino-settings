@@ -75,6 +75,78 @@ $activate_url
 // 		var_dump($kino_dispo_kab);
 // 		echo '</pre>';
  	
+
+ 	
+ 	
+ 	/*
+ 		 * Before performing tests, organise groups for Réalisateurs
+ 		 *
+ 		 * - real-platform-pending
+ 		 * - real-kabaret-pending
+ 		***/
+ 			
+ 			if ( in_array( "realisateur", $kino_user_role ) ) {
+ 				
+ 				 		if( has_term( 
+ 				 				$kino_fields['group-real-platform'], 
+ 				 				'user-group', 
+ 				 				$userid ) ) {
+ 				 				// do nothing
+ 				 		} else if( has_term( 
+ 							$kino_fields['group-real-platform-pending'], 
+ 							'user-group', 
+ 							$userid ) ) {
+ 								// do nothing
+ 				 		} else if( has_term( 
+ 				 			$kino_fields['group-real-platform-rejected'], 
+ 				 			'user-group', 
+ 				 			$userid ) ) {
+ 				 				// do nothing
+ 				 		} else {
+ 				 				// move to group: real-platform-pending
+ 				 				wp_set_object_terms( 
+ 				 					$userid, // $object_id, 
+ 				 					$kino_fields['group-real-platform-pending'], // $terms, 
+ 				 					'user-group', // $taxonomy, 
+ 				 					true // $append 
+ 				 				);
+ 				 		}
+ 				
+ 		} // end testing "realisateur"
+ 		
+ 		if ( in_array( "realisateur-2016", $kino_user_role ) ) {
+ 					
+ 					 		if( has_term( 
+ 					 				$kino_fields['group-real-kabaret'], 
+ 					 				'user-group', 
+ 					 				$userid ) ) {
+ 					 				// do nothing
+ 					 		} else if( has_term( 
+ 								$kino_fields['group-real-kabaret-pending'], 
+ 								'user-group', 
+ 								$userid ) ) {
+ 									// do nothing
+ 					 		} else if( has_term( 
+ 					 			$kino_fields['group-real-kabaret-rejected'], 
+ 					 			'user-group', 
+ 					 			$userid ) ) {
+ 					 				// do nothing
+ 					 		} else {
+ 					 				// move to group: real-kabaret-pending
+ 					 				wp_set_object_terms( 
+ 					 					$userid, // $object_id, 
+ 					 					$kino_fields['group-real-kabaret-pending'], // $terms, 
+ 					 					'user-group', // $taxonomy, 
+ 					 					true // $append 
+ 					 				);
+ 					 		}
+ 					
+ 			} // end testing "realisateur-2016"
+ 		
+ 	
+ 	
+ 	// Massive Conditional Testing
+ 	
  	// DO WHILE structure
  	// src: http://stackoverflow.com/questions/7468836/any-way-to-break-if-statement-in-php
  	
@@ -92,7 +164,6 @@ $activate_url
  			break;
  		}
  		
- 		
  		/*Q0 : taking part in Kino 2016? */
  		
  	  if( !in_array( "kabaret-2016", $kino_user_role ) ) { 
@@ -103,6 +174,8 @@ $activate_url
  	    break; }
  		
  		// if we continue = the user joins the Kabaret 2016
+ 		
+ 		
  		$kino_notification_email .= "Votre inscription au Kino Kabaret est bien prise en compte. Quant au paiement des frais de participation, il s’effectue en liquide et sur place, au lieu central.";
  			
  	  /* Q1 : is the ID part complete? */

@@ -7,9 +7,11 @@
 	
 	$kino_fields = kino_test_fields();
 	
+	$userid = bp_loggedin_user_id();
+	
 	// Load User Role testing
 	
-	$kino_user_role = kino_user_participation( bp_loggedin_user_id() );
+	$kino_user_role = kino_user_participation( $userid );
 	
 
  ?>
@@ -44,32 +46,118 @@
  			
  			<?php
  			
+ 			// for Profile Group 1 (= Profil Kinoïte)
+ 			
  			// Une fois coché, on désactive l'option Réalisateur: 
- 			// voir https://bitbucket.org/ms-studio/kinogeneva/issues/18/inscriptions-section-r-alisateur
+ 				// voir https://bitbucket.org/ms-studio/kinogeneva/issues/18/inscriptions-section-r-alisateur
  			
- 			if ( in_array( "realisateur", $kino_user_role ) && current_user_can('subscriber') ) {
- 					?>
- 					
- 					// $('#profile-edit-form #field_1297_2').prop('disabled', true);
- 					// $('#profile-edit-form #field_1424_2').prop('disabled', true); // = Réalisateur-trice
- 					
- 					// Dans "Profil Kinoïte", option Réalisateur-trice:
- 					
- 					$('#profile-edit-form div.field_<?php echo $kino_fields['profile-role']; ?> input[value="Réalisateur-trice"]').prop('disabled', true);
- 					 					
- 					<?php
- 			}
+ 			if ( bp_get_current_profile_group_id() == 1 ) {
+ 				if ( current_user_can('subscriber') ) {
+				 			
+				 			$kino_disable_real_checkbox = false;
+				 			
+				 			if ( in_array( "realisateur", $kino_user_role ) ) {
+				 					
+				 					$kino_disable_real_checkbox = true;
+				 					
+				 			} else {
+				 			
+				 				/* test for Groups: 
+				 				 * group-real-platform-pending? 
+				 				 * group-real-platform?
+				 				 * group-real-platform-rejected
+				 				*/
+				 				
+				 				if ( has_term( 
+				 					$kino_fields['group-real-platform'], 
+				 					'user-group', 
+				 					$userid ) ) {
+				 							$kino_disable_real_checkbox = true;
+				 				} else if ( has_term( 
+			 						$kino_fields['group-real-platform-pending'], 
+			 						'user-group', 
+			 						$userid ) ) {
+				 							$kino_disable_real_checkbox = true;
+				 				} else if ( has_term( 
+			 						$kino_fields['group-real-platform-rejected'], 
+			 						'user-group', 
+			 						$userid ) ){
+				 							$kino_disable_real_checkbox = true;
+				 				}
+				 			
+				 			}
+				 			
+				 			if ( $kino_disable_real_checkbox == true ) {
+				 				
+				 				?>
+				 					// Dans "Profil Kinoïte", option Réalisateur-trice:
+				 					
+				 					$('#profile-edit-form div.field_<?php echo $kino_fields['profile-role']; ?> input[value="Réalisateur-trice"]').prop('disabled', true);
+				 					
+				 					// on pourrait ajouter une notification...
+				 					
+				 					<?php
+				 			} 
+		 			} // if subscriber
+		 	} // if edit group id = 1
  			
  			
- 			if ( in_array( "realisateur-2016", $kino_user_role ) && current_user_can('subscriber') ) {
- 						?>
- 						
- 					$('#profile-edit-form #field_<?php echo $kino_fields['role-kabaret-real']; ?>').prop('disabled', true);
- 					$('#profile-edit-form div.field_<?php echo $kino_fields['role-kabaret']; ?> input[value="Réalisateur-trice"]').prop('disabled', true);
- 						
- 						
- 						<?php
- 				}
+ 			// for Profile Group 15 (= Kino Kabaret 2016)
+ 			
+ 			if ( bp_get_current_profile_group_id() == 15 ) {
+ 				
+ 				if ( current_user_can('subscriber') ) {
+ 							
+ 							
+ 							// Désactiver l'option "Réalisateur", une fois la demande soumise
+ 							
+ 							$kabaret_disable_real_checkbox = false;
+ 							
+				 			if ( in_array( "realisateur-2016", $kino_user_role ) ) {
+				 			
+				 					$kabaret_disable_real_checkbox = true;
+				 			
+				 			} else {
+				 				
+				 					/* test for Groups: 
+				 					 * group-real-platform-pending? 
+				 					 * group-real-platform?
+				 					 * group-real-platform-rejected
+				 					*/
+				 					
+				 					if ( has_term( 
+				 						$kino_fields['group-real-kabaret'], 
+				 						'user-group', 
+				 						$userid ) ) {
+				 								$kabaret_disable_real_checkbox = true;
+				 					} else if ( has_term( 
+				 						$kino_fields['group-real-kabaret-pending'], 
+				 						'user-group', 
+				 						$userid ) ) {
+				 								$kabaret_disable_real_checkbox = true;
+				 					} else if ( has_term( 
+				 						$kino_fields['group-real-kabaret-rejected'], 
+				 						'user-group', 
+				 						$userid ) ){
+				 								$kabaret_disable_real_checkbox = true;
+				 					}
+				 				
+				 				}
+				 				
+				 			if ( $kabaret_disable_real_checkbox == true ) {
+				 			
+				 				?>
+				 						
+				 					$('#profile-edit-form #field_<?php echo $kino_fields['role-kabaret-real']; ?>').prop('disabled', true);
+				 					$('#profile-edit-form div.field_<?php echo $kino_fields['role-kabaret']; ?> input[value="Réalisateur-trice"]').prop('disabled', true);
+				 						
+				 				<?php
+				 						
+				 			}	
+				 				
+				} // if user = subscriber
+				
+ 		} // if edit group id = 15
  		
  		// Montrer les Checkbox si Realisateur est "Checked":
  		
@@ -194,10 +282,10 @@
    		
    		$kino_fullname = bp_get_profile_field_data( array(
    				'field'   => '1',
-   				'user_id' => bp_loggedin_user_id()
+   				'user_id' => $userid
    		) );
    		
-   		$kino_user_info = get_userdata( bp_loggedin_user_id() );
+   		$kino_user_info = get_userdata( $userid );
    		$kino_wp_login = $kino_user_info->user_login;
    		
    		// echo "// $kino_fullname = ". $kino_fullname . " -  $kino_wp_login = " . $kino_wp_login ;
