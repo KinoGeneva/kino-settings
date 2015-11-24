@@ -39,6 +39,7 @@ msgstr ""
 "\n"
 "%1$s\n"
 "\n"
+"Après l’activation, vous pouvez à tout moment vous connecter au site par le lien http://kinogeneva.ch/wp-login.php"
 
 # 4: Ecran de validation d’activation :
 #: bp-templates/bp-legacy/buddypress/members/activate.php:43

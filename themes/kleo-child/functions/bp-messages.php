@@ -176,7 +176,9 @@ $activate_url
  		// if we continue = the user joins the Kabaret 2016
  		
  		
- 		$kino_notification_email .= "Votre inscription au Kino Kabaret est bien prise en compte. Quant au paiement des frais de participation, il s’effectue en liquide et sur place, au lieu central.";
+ 		$kino_notification_email .= "Votre inscription au Kino Kabaret est bien prise en compte. Quant au paiement des frais de participation, il s’effectue en liquide et sur place, au lieu central.
+ 		
+Pour toutes les informations pratiques et le programme du Kino Kabaret, voir: http://kinogeneva.ch/informations-pratiques/ ";
  			
  	  /* Q1 : is the ID part complete? */
  	
