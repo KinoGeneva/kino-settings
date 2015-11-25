@@ -121,6 +121,16 @@ kleo-google-fonts-css
 add_filter( 'wp_default_editor', create_function(null,'return "html";') );
 
 
+/* Custom Login Screen
+***************************************/
+
+function kino_login_screen() {
+	echo '<link rel="stylesheet" type="text/css" href="' . get_stylesheet_directory_uri() . '/login/login.css" />';
+}
+add_action( 'login_head', 'kino_login_screen' );
+
+
+
 /* Login redirection
  * Voir discussion: https://bitbucket.org/ms-studio/kinogeneva/issues/26/
 ***************************************/
@@ -166,6 +176,15 @@ function kino_login_redirection( $redirect_to, $request, $user ) {
 			
 		}
 
+}
+
+
+/* ACF options pages */
+
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page();
+	
 }
 
 
