@@ -114,6 +114,7 @@ $activate_url
  				
  		} // end testing "realisateur"
  		
+ 		
  		if ( in_array( "realisateur-2016", $kino_user_role ) ) {
  					
  					 		if( has_term( 
@@ -169,7 +170,7 @@ $activate_url
  	  if( !in_array( "kabaret-2016", $kino_user_role ) ) { 
  	    
  	    // un peu de pub...
- 	    $kino_notification = 'Le prochain Kino Kabaret se déroule du 18 au 28 janvier 2016! N’oubliez pas <a href="'.bp_core_get_user_domain( $userid ).'profile/edit/group/1/">de vous inscrire par ici</a>!';
+ 	    $kino_notification = 'Le prochain Kino Kabaret se déroule du 18 au 28 janvier 2016! N’oubliez pas <a href="'.bp_core_get_user_domain( $userid ).'profile/edit/group/1/">de vous inscrire par ici</a>, et d’enregistrer tous les onglets jusqu’à celui du Kino Kabaret.';
  	    
  	    break; }
  		
@@ -187,31 +188,29 @@ Pour toutes les informations pratiques et le programme du Kino Kabaret, voir: ht
  	  		// user subscribed but:
  	  		// id section = incomplete
  	  		
- 	  		$kino_notification = 'Merci de vous être inscrit au Kino Kabaret :) Il vous reste encore à <a href="'.bp_core_get_user_domain( $userid ).'profile/edit/group/10/">compléter votre profil (identité)</a>!';
+ 	  		$kino_notification = 'Complétez votre profil (identité)';
  	  		break; }
  	
  	  /* Q2 : is "Compétence Comédien" complete? */
  	  
  	  if( in_array( "comedien", $kino_user_role ) && !in_array( "comedien-complete", $kino_user_role ) ) { 
- 	   		$kino_notification = 'Merci de vous être inscrit au Kino Kabaret :) Il vous reste encore à <a href="'.bp_core_get_user_domain( $userid ).'profile/edit/group/6/">compléter votre Compétence Comédien</a>.';
+ 	   		$kino_notification = 'Complétez votre profil (Compétence Comédien).';
  	   		break; }
  	   		
  		
  		// Q3 : is "Compétence Tech" complete?
  		
  		if( in_array( "technicien", $kino_user_role ) && !in_array( "technicien-complete", $kino_user_role ) ) { 
- 		  		$kino_notification = 'Merci de vous être inscrit au Kino Kabaret :) Il vous reste encore à <a href="'.bp_core_get_user_domain( $userid ).'profile/edit/group/7/">compléter votre Compétence Technicien</a>.';
+ 		  		$kino_notification = 'Complétez votre profil (Compétence Technicien).';
  		  		break; }
  	  		
 		// Q4 : is "Compétence Réal" complete?
 		
-		if( in_array( "realisateur", $kino_user_role ) && !in_array( "realisateur-complete", $kino_user_role ) ) { 
-		 		$kino_notification = 'Merci de vous être inscrit au Kino Kabaret :) Il vous reste encore à <a href="'.bp_core_get_user_domain( $userid ).'profile/edit/group/5/">compléter votre Compétence Réalisateur</a>.';
-		 		break; }
-		 		
 		if ( in_array( "realisateur", $kino_user_role ) ) {
 		
 			if ( in_array( "realisateur-complete", $kino_user_role ) ) {
+				
+				// Cette personne vient de compléter la section "Compétence Réalisateur"!
 				
 				$kino_notification_email .= "
 				
@@ -219,7 +218,7 @@ PS: Votre candidature en tant que réalisateur-trice est soumise au comité de s
 			
 			} else {
 				
-				$kino_notification = 'Merci de vous être inscrit au Kino Kabaret :) Il vous reste encore à <a href="'.bp_core_get_user_domain( $userid ).'profile/edit/group/5/">compléter votre Compétence Réalisateur</a>.';
+				$kino_notification = 'Complétez votre profil (Compétence Réalisateur).';
 					break;
 			}
 		}  
@@ -227,16 +226,15 @@ PS: Votre candidature en tant que réalisateur-trice est soumise au comité de s
 		
 		// Q5 : is "Aide Bénévole" complete?
 		
-		if( in_array( "benevole", $kino_user_role ) && !in_array( "benevole-complete", $kino_user_role ) ) { 
-		 		$kino_notification = 'Merci de vous proposer comme bénévole. Il vous reste encore à <a href="'.bp_core_get_user_domain( $userid ).'profile/edit/group/16/">compléter votre profil Aide bénévole</a>.';
+		if( in_array( "benevole", $kino_user_role ) && !in_array( "benevole-complete", $kino_user_role ) ) {
+		 
+		 		$kino_notification = 'Merci de vous proposer comme bénévole. Complétez votre profil d’aide bénévole.';
 		 		break; }
-		
-		// TODO: test si un role est choisi, sinon... problème!
 		
 		
 		// Q6 : is "Kino Kabaret 2016" complete?
 		if( in_array( "kabaret-2016", $kino_user_role ) && !in_array( "kabaret-complete", $kino_user_role ) ) { 
-		 		$kino_notification = 'Merci de vous être inscrit au Kino Kabaret! Il vous reste encore à <a href="'.bp_core_get_user_domain( $userid ).'profile/edit/group/15/">compléter votre profil Kino Kabaret 2016</a>.';
+		 		$kino_notification = 'Complétez les informations relatives à votre participation au Kino Kabaret.';
 		 		break; }
 		
 		
@@ -277,50 +275,33 @@ PS: Votre candidature en tant que réalisateur-trice est soumise au comité de s
 				);
 				
 				// action 2 = send email notification!
-				// wp_mail( $to, $subject, $message );
 				// wp_mail( $to, $subject, $message, $headers, $attachments ); 
 				
-				$headers[] = 'From: Kino Geneva <onvafairedesfilms@kinogeneva.com>';
+				$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.com>';
 				$headers[] = 'Bcc: Manu <ms@ms-studio.net>';
 				
 				// load user info
 				$user = get_user_by( 'id', $userid );
 				
-				 wp_mail( $user->user_email, 'Kino Geneva: Confirmation', $kino_notification_email, $headers );
+				$kino_notification_email .= '
+
+(Debug: message envoyé depuis la page '.$_SERVER[REQUEST_URI].' à '. date( 'H:i:s', time() ) .')';
+				
+				
+				 wp_mail( 
+				 	$user->user_email, 
+				 	'KinoGeneva: Confirmation', 
+				 	$kino_notification_email, 
+				 	$headers 
+				 );
 				
 				break;
 		
 		}
 		
-		// $kino_fields['group-kino-complete']
 		
-		/*
-					// au final, les valeurs retournées:
-		
-					- realisateur
-					- technicien
-					- comedien
-					- benevole
-					
-					- realisateur-2016
-					- technicien-2016
-					- comedien-2016
-					- kabaret-2016
-					
-					- id-complete
-					- realisateur-complete
-					- comedien-complete
-					- technicien-complete
-					- avatar-complete
-					
-					*/
- 	
- 	  /* do a lot of other things */
- 	  /* SUCCESS */
- 	
  	} while (0);
  	
- 	// $kino_notification = 'TEST';
  	
  	return $kino_notification;
  	

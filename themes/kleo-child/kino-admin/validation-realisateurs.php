@@ -104,7 +104,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 						} else {
 						
 							// else :
-							// is Pending Réal for Kabaret 2016?
+							// is "Pending Réal" for Kabaret 2016?
 							// ********************************
 							// method = test xprofile field
 							

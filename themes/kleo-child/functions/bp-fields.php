@@ -31,8 +31,8 @@ function kino_test_fields() {
 	$kino_fields['profil-tech-complete'] = 1075;// Profil Technicien complet? 
 	$kino_fields['profil-kabaret-complete'] = 1122;// test = Disponibilités cabaret 
 	
-	$kino_fields['session-attribuee'] = 1461;// Only visible for Admin 
-	
+	$kino_fields['session-attribuee'] = 1461; // Only visible for Admin 
+		
 	// Group IDs - 
 	// voir https://bitbucket.org/ms-studio/kinogeneva/wiki/WordPress-User-Groups
 	

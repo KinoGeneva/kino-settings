@@ -167,6 +167,41 @@
 				 			} 
 		 			} // if subscriber
 		 	} // if edit group id = 1
+		 	
+		 	
+		 	/*************************************
+		 			 * CONDITIONAL CODE 
+		 			 * for Profile Group 16 (= Aide Bénévole)
+		 		******************************
+		 			*/
+		 			
+		 if ( bp_get_current_profile_group_id() == 16 ) {
+		 		
+		 		// rendre obligatoire les cases "Aide Bénévole: activités Kinogeneva"
+		 		// $kino_fields['benevole-kabaret']
+		 		
+		 		// http://formvalidator.net/#default-validators_checkboxgroup
+		 		
+		 		?>
+		 		
+//		 			$("#profile-edit-form div.field_<?php echo $kino_fields['benevole-kabaret']; ?> input").attr({
+//		 				    'data-validation':'checkbox_group', 
+//		 				    'data-validation-qty':'min 1'
+//		 			});
+//		 			
+		 			$("[name='field_<?php echo $kino_fields['benevole-kabaret']; ?>[]']:eq(0)")
+		 			  .valAttr('','validate_checkbox_group')
+		 			  .valAttr('qty','min 1')
+		 			  .valAttr('error-msg','Veuillez choisir au moins un élément');
+		 		
+		 		<?php
+		 		
+		 		// 			$("div.required-field.field_type_checkbox input").attr({
+		 			// 				    'data-validation':'checkbox_group', 
+		 			// 				    'data-validation-qty':'min 1'
+		 			// 				});;
+		 
+		 }
  			
  			
  			/*************************************
