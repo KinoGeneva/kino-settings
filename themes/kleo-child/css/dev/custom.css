@@ -88,6 +88,15 @@
 	margin-bottom: 0px;
 }
 
+#buddypress div.\000035-a-inscription-kabaret,
+#buddypress div.\000035-b-kabaret-suite {
+	/* probleme: une classe avec chiffres au début est non-valide 
+	* Solution: http://stackoverflow.com/questions/21227702/is-there-a-workaround-to-make-css-classes-with-names-that-start-with-numbers-val
+	
+	*/
+	display: none;
+}
+
 /* @end */
 
 /* @group Edit Profile */
@@ -330,9 +339,11 @@ body.buddypress .kleo-quick-contact-wrapper {
 
 #profile-edit-form .has-error .form-error {
 	font-weight: bold;
-	text-decoration: blink;
 }
 
+#profile-edit-form .field_type_checkbox .form-error {
+	color: #c11119;
+}
 
 /* @end */
 
