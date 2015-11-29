@@ -37,9 +37,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
          * 
          * @return int[] The IDs of the users matching the search.
          */
- 
-        
-        // $user_ids = my_bp_get_users_by_xprofile( 1313, 'oui' );
+ 				
+ 				$kino_debug_mode = 'off';
         
         $user_fields = array( 
         	'user_login', 
@@ -68,7 +67,33 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				
 				// Réalisateur-trice validé : Plateforme
 				$kino_valid_real_platform = array();
+				
+				$kino_fields = kino_test_fields();
+				
+//				echo '<pre>';
+//				echo 'array of kino_test_fields()';
+//				var_dump($kino_fields);
+//				echo '</pre>';
 
+				// START DEBUGGING
+				// *******************
+				
+				// ['group-real-kabaret']
+				
+				// test also: real-kabaret-pending = ['group-real-kabaret-pending']
+				
+				echo '<p>for debugging, show list of IDs in term '.$kino_fields['group-real-kabaret-pending'].':</p>';
+				
+				$ids_of_real_valid_kab = get_objects_in_term( $kino_fields['group-real-kabaret'] , 'user-group' );
+				
+				echo '<pre>';
+				echo 'list of IDs in "group-real-kabaret"';
+					var_dump($ids_of_real_valid_kab);
+				echo '</pre>';
+				
+				// END DEBUGGING
+				// *******************
+								
 				// User Loop
 				if ( ! empty( $user_query->results ) ) {
 					foreach ( $user_query->results as $user ) {
@@ -76,8 +101,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 						// infos about WP_user object
 						
 						$kino_userid = $user->ID ;
-						
-						$kino_fields = kino_test_fields();
+						echo ' '.$kino_userid.' ';
 						
 						// $kino_user_facts = kino_user_participation( $user->ID );
 						// = très lourd à faire sur l'ensemble des utilisateurs... environ 5000 queries!
@@ -85,12 +109,34 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 						// is Valid Réal for Kabaret 2016?
 						// ********************************
 						// method = test user-group
+						
+						// START DEBUGGING
+						// *******************
+	
+						// test if $kino_userid is in $ids_of_real_valid_kab
+						
+						if ( in_array( $kino_userid, $ids_of_real_valid_kab ) ) {
+						    // echo '<p>with in_array(), user '.$user->user_login.' / '.$kino_userid.' is <b>approved</b> : Réalisateurs Kino 2016</p>';
+						    echo '<p>according to in_array(), user '.$user->ID.' belongs to group X.</p>';
+						}
+						
+						// END DEBUGGING
+						// *******************
+						
 						if( has_term( 
-							$kino_fields['group-real-valid-kabaret'], 
-							'user-group', 
-							$kino_userid ) 
+							$kino_fields['group-real-kabaret'],  // term ID to check for !!
+							'user-group', // taxonomy name
+							$kino_userid ) // post to check
 						) {
-						    // echo '<p>user '.$user->user_login.' is <b>approved</b> : Réalisateurs Kino 2016</p>';
+						    
+						    // START DEBUGGING
+						    // *******************
+						    
+						    // echo '<p>with has_term(), user '.$user->user_login.' / '.$kino_userid.' is <b>approved</b> : Réalisateurs Kino 2016</p>';
+						    echo '<p>according to has_term(), user '.$user->ID.' belongs to group X.</p>';
+						    
+						    // END DEBUGGING
+						    // *******************
 						    
 						    // Add user info to array:
 						    $kino_valid_real_kab[] = array( 
@@ -184,6 +230,23 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 									<br/><b>Présentation:</b> <?php echo $kino_pending_real_kab[$key]["user-presentation"] ?>
 								<br/>
 								
+								<p>Is user <?php echo $kino_pending_real_kab[$key]["user-id"] ?> in the group "profile-complete"? Let's test:</p>
+								
+								<?php 
+									
+									if( has_term( 
+											$kino_fields['group-real-valid-kabaret'],  // ['group-real-valid-kabaret']
+											'user-group', 
+											$kino_pending_real_kab[$key]["user-id"] ) 
+										) { 
+													echo '<p>Yes: for user Nr '.$kino_pending_real_kab[$key]["user-id"].', has_term returns TRUE</p>';
+										} else {
+										
+											echo '<p>No: for user Nr '.$kino_pending_real_kab[$key]["user-id"].', has_term returns FALSE</p>';
+										}
+								
+								?>
+								
 								<a href="//kinogeneva.ch/members/<?php echo $kino_pending_real_kab[$key]["user-slug"]; ?>/profile/" target="_blank" class="btn btn-default">Voir le profil complet</a> 
 								
 								<a href="//kinogeneva.ch/wp-admin/user-edit.php?user_id=<?php echo $kino_pending_real_kab[$key]["user-id"] ?>#user-group" target="_blank" class="btn btn-default">Modifier groupes</a>
@@ -221,6 +284,39 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 											echo $kino_valid_real_kab[$key]["user-name"];
 									?></a>
 								</p>
+								
+								<p>Is user <?php echo $kino_pending_real_kab[$key]["user-id"] ?> in the group "group-real-valid-kabaret"? Let's test:</p>
+								<?php 
+									
+									if( has_term( 
+											$kino_fields['group-real-valid-kabaret'],  // ['group-real-valid-kabaret']
+											'user-group', 
+											$kino_valid_real_kab[$key]["user-id"] ) 
+										) { 
+													echo '<p>Yes: for user Nr '.$kino_valid_real_kab[$key]["user-id"].', has_term returns TRUE</p>';
+										} else {
+										
+											echo '<p>No: for user Nr '.$kino_valid_real_kab[$key]["user-id"].', has_term returns FALSE</p>';
+										}
+								
+								?>
+								
+								<p>Is user <?php echo $kino_pending_real_kab[$key]["user-id"] ?> in the group "group-group-kino-complete"? Let's test:</p>
+								<?php 
+									
+									if( has_term( 
+											$kino_fields['group-kino-complete'],  // ['group-real-valid-kabaret']
+											'user-group', 
+											$kino_valid_real_kab[$key]["user-id"] ) 
+										) { 
+													echo '<p>Yes: for user Nr '.$kino_valid_real_kab[$key]["user-id"].', has_term returns TRUE</p>';
+										} else {
+										
+											echo '<p>No: for user Nr '.$kino_valid_real_kab[$key]["user-id"].', has_term returns FALSE</p>';
+										}
+								
+								?>
+								
 							<?php 
 						}
 						echo '</div>';
