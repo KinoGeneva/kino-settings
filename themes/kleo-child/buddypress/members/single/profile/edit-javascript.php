@@ -135,21 +135,33 @@
 				 				 * group-real-platform-rejected
 				 				*/
 				 				
-				 				if ( has_term( 
-				 					$kino_fields['group-real-platform'], 
-				 					'user-group', 
-				 					$userid ) ) {
+				 				// build ID arrays:
+				 				
+				 					$ids_group_real_platform = get_objects_in_term( 
+				 						$kino_fields['group-real-platform'], 
+				 						'user-group' 
+				 					);
+				 					$ids_group_real_platform_pending = get_objects_in_term( 
+				 						$kino_fields['group-real-platform-pending'], 
+				 						'user-group' 
+				 					);
+				 					$ids_group_real_platform_rejected = get_objects_in_term( 
+				 						$kino_fields['group-real-platform-rejected'], 
+				 						'user-group' 
+				 					);
+				 				
+				 				if ( in_array( $userid, $ids_group_real_platform ) ) {
+				 				
 				 							$kino_disable_real_checkbox = true;
-				 				} else if ( has_term( 
-			 						$kino_fields['group-real-platform-pending'], 
-			 						'user-group', 
-			 						$userid ) ) {
+				 				
+				 				} else if ( in_array( $userid, $ids_group_real_platform_pending ) ) {
+				 				
 				 							$kino_disable_real_checkbox = true;
-				 				} else if ( has_term( 
-			 						$kino_fields['group-real-platform-rejected'], 
-			 						'user-group', 
-			 						$userid ) ){
+				 				
+				 				} else if ( in_array( $userid, $ids_group_real_platform_rejected ) ) {
+				 				
 				 							$kino_disable_real_checkbox = true;
+				 				
 				 				}
 				 			
 				 			}
@@ -232,21 +244,33 @@
 				 					 * group-real-platform-rejected
 				 					*/
 				 					
-				 					if ( has_term( 
+				 					// build ID arrays:
+				 					
+				 					$ids_group_real_kabaret = get_objects_in_term( 
 				 						$kino_fields['group-real-kabaret'], 
-				 						'user-group', 
-				 						$userid ) ) {
-				 								$kabaret_disable_real_checkbox = true;
-				 					} else if ( has_term( 
+				 						'user-group' 
+				 					);
+				 					$ids_group_real_kabaret_pending = get_objects_in_term( 
 				 						$kino_fields['group-real-kabaret-pending'], 
-				 						'user-group', 
-				 						$userid ) ) {
-				 								$kabaret_disable_real_checkbox = true;
-				 					} else if ( has_term( 
+				 						'user-group' 
+				 					);
+				 					$ids_group_real_kabaret_rejected = get_objects_in_term( 
 				 						$kino_fields['group-real-kabaret-rejected'], 
-				 						'user-group', 
-				 						$userid ) ){
+				 						'user-group' 
+				 					);
+				 					
+				 					if ( in_array( $userid, $ids_group_real_kabaret ) ) {
+				 					
 				 								$kabaret_disable_real_checkbox = true;
+				 					
+				 					} else if ( in_array( $userid, $ids_group_real_kabaret_pending ) ) {
+				 					
+				 								$kabaret_disable_real_checkbox = true;
+				 					
+				 					} else if ( in_array( $userid, $ids_group_real_kabaret_rejected ) ) {
+				 					
+				 								$kabaret_disable_real_checkbox = true;
+				 					
 				 					}
 				 				
 				 				}
