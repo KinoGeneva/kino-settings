@@ -6,18 +6,6 @@
 
 <?php if ( !(int)bp_get_option( 'bp-disable-avatar-uploads' ) ) : ?>
 
-<?php 
-			// Show notifications:
-			$kino_notifications = kino_edit_profile_notifications( bp_loggedin_user_id() );
-			
-			if ( !empty($kino_notifications) ) {
-			
-				?><figure class="callout-blockquote light big-blockquote"><blockquote><p><?php 
-					echo $kino_notifications; ?>
-				    </p></blockquote></figure>
-				<?php
-			} 
- ?>
 
 <figure class="callout-blockquote light hidden">
   <blockquote>

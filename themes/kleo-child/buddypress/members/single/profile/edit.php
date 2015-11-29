@@ -10,19 +10,6 @@ if ( bp_has_profile( 'profile_group_id=' . bp_get_current_profile_group_id() ) )
 
 	<?php do_action( 'bp_before_profile_field_content' ); ?>
 	
-		<?php 
-					// Show notifications:
-					$kino_notifications = kino_edit_profile_notifications( bp_loggedin_user_id() );
-					
-					if ( !empty($kino_notifications) ) {
-					
-						?><figure class="callout-blockquote light big-blockquote"><blockquote><p><?php 
-							echo $kino_notifications; ?>
-						    </p></blockquote></figure>
-						<?php
-					} 
-		 ?>
-
 		<div class="hr-title hr-full hr-double"><abbr><?php printf( __( "Modification de votre profil", "buddypress" ), bp_get_the_profile_group_name() ); ?></abbr></div>
 		<div class="gap-10"></div>
 		
