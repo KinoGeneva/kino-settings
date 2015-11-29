@@ -54,10 +54,13 @@
 
 						<h4><?php _e( 'Account Details', 'buddypress' ); ?></h4>
 						
+						<div class="signup-username-group">
 						<label for="signup_username"><?php _e( 'Username', 'buddypress' ); ?> <?php _e( '(required)', 'buddypress' ); ?></label>
-						<p>Pas d'espace, ni de caractères spéciaux, SVP !</p>
+						<!-- <p>Pas d'espace, ni de caractères spéciaux, SVP !</p> -->
 						<?php do_action( 'bp_signup_username_errors' ); ?>
 						<input type="text" name="signup_username" id="signup_username" value="<?php bp_signup_username_value(); ?>" />
+						<div id="signup_username_error"></div>
+						</div>
 
 						<label for="signup_email"><?php _e( 'Email Address', 'buddypress' ); ?> <?php _e( '(required)', 'buddypress' ); ?></label>
 						<?php do_action( 'bp_signup_email_errors' ); ?>
@@ -236,6 +239,48 @@
 	  	
 	  	$("#signup_form .field-visibility-settings-toggle").hide();
 	  	
+	  	// https://bitbucket.org/ms-studio/kinogeneva/issues/69/identifiant
+	  	// Il semble que le champs “identifiant” accepte un espace lors de la saisie (à l’inscription) mais pas quand on se log de nouveau... Y a-t-il une façon d’éviter la saisie d’espace?
+	  	
+	  	$("input#signup_username").attr({
+	  		    'data-validation':'alphanumeric',  // required - cf http://formvalidator.net/#file-validators
+	  		    'data-validation-allowing':'-_',
+	  		    'data-validation-error-msg':'Vous ne pouvez utiliser que des caractères alphanumériques, des chiffres et -_',
+	  		});;
+	  	
+	});
+	</script>
+	<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/lib/form-validator/jquery.form-validator.min.js"></script>
+	<script>
+	
+	// info: https://github.com/victorjonsson/jQuery-Form-Validator/wiki
+	
+	jQuery(document).ready(function($){
+	
+		var $messages = $('#signup_username_error');
+	
+	  $.validate({
+	  	form : '#signup_form',
+	  	lang : 'fr',
+	  	language : {
+	  	                requiredFields: 'Veuillez remplir ce champ'
+	  	            },
+	  	validateOnBlur : true,
+	  	errorMessagePosition : $messages,
+	  	scrollToTopOnError : false,
+	    onError : function($form) {
+	      alert('Veuillez remplir tous les champs obligatoires avant de soumettre le formulaire!');
+	      // mixpanel.track( "Signup Form Error" );
+	    },
+	    onSuccess : function(form) {
+	      // mixpanel.track( "Submitted Signup Form" );
+	    }
+	  });
+	  
+	  // $('#profile-edit-form').validateOnBlur();
+	
+	  // Restrict presentation length
+	
 	});
 	</script>
 
