@@ -179,6 +179,19 @@ function kino_login_redirection( $redirect_to, $request, $user ) {
 }
 
 
+/* Redirect after Avatar Upload */
+
+// add_action( 'xprofile_avatar_uploaded', 'kino_avatar_uploaded' );
+
+// function kino_avatar_uploaded() {
+	
+//	$kino_notifications = kino_edit_profile_notifications( bp_loggedin_user_id() );
+//	
+//	bp_core_add_message( $kino_notifications );
+// 	bp_core_redirect( bp_core_get_userlink( bp_loggedin_user_id() ) ); // echo bp_core_get_userlink( bp_loggedin_user_id() );
+// }
+
+
 /* ACF options pages */
 
 if( function_exists('acf_add_options_page') ) {
@@ -187,24 +200,6 @@ if( function_exists('acf_add_options_page') ) {
 	
 }
 
-
-function my_bp_get_users_by_xprofile( $field_id, $value ) {
- 
-    global $wpdb;
- 
-    $user_ids = $wpdb->get_col(
-        $wpdb->prepare(
-            "
-                SELECT `user_id`
-                FROM `{$wpdb->prefix}bp_xprofile_data`
-                WHERE `field_id` = %d
-                    AND `value` = %s
-            "
-            , $field_id
-            , $value
-        )
-    );
-}
 
 
 

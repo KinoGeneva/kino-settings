@@ -49,7 +49,7 @@ function kino_test_fields() {
 	$kino_fields['group-real-kabaret-rejected'] = 69 ; // Refusés: Réalisateurs Kino Kabaret 2016
 	$kino_fields['group-real-platform-rejected'] = 70 ; // Refusés: Réalisateurs Plateforme
 	
-	// Profil Kino
+	// Profil Kino Kabaret 2016
 	$kino_fields['group-kino-incomplete'] = 72 ; // Participants Kino 2016 : profil incomplet
 	$kino_fields['group-kino-complete'] = 71 ; // Participants Kino 2016 : profil complet
 	$kino_fields['group-kino-approved'] = 73 ; // Participants Kino 2016 : validés

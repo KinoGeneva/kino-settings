@@ -30,13 +30,15 @@
 /* @group Style Blockquote */
 
 #profile-edit-form .callout-blockquote blockquote p,
-.big-blockquote p {
+#buddypress .big-blockquote p {
 	font-size: 120%;
 	font-weight: bold;
 }
 
+#buddypress .big-blockquote,
 #profile-edit-form  .callout-blockquote,
-#profile-edit-form blockquote {
+#profile-edit-form blockquote,
+#buddypress .big-blockquote blockquote {
 	margin-top: 0;
 	width: 100%;
 }
@@ -116,8 +118,9 @@
 	display: none;
 }
 
-
+.change-avatar #buddypress .members-navigation,
 .profile-edit #buddypress .members-navigation,
+.my-profile #buddypress .members-navigation,
 body.buddypress .kleo-quick-contact-wrapper {
 	display: none;
 }
@@ -326,23 +329,40 @@ body.buddypress .kleo-quick-contact-wrapper {
 
 /* @group Validation des champs */
 
-#profile-edit-form .editfield.has-error {
+#profile-edit-form .editfield.has-error,
+#signup_form .signup-username-group.has-error {
 	border: 1px solid #B94A48;
 	background-color: rgb(242, 137, 135);
 }
 
+#signup_form .signup-username-group.has-error {
+	padding: 10px;
+}
+
 #profile-edit-form .editfield.has-error,
 #buddypress .standard-form .has-error p.description,
-#profile-edit-form .has-error .form-error {
+#profile-edit-form .has-error .form-error,
+#signup_form .signup-username-group.has-error,
+#signup_form .has-error .form-error {
 		color: #fff;
 }
 
-#profile-edit-form .has-error .form-error {
+#profile-edit-form .has-error .form-error,
+#signup_form .has-error .form-error {
 	font-weight: bold;
 }
 
-#profile-edit-form .field_type_checkbox .form-error {
+#profile-edit-form .field_type_checkbox .form-error,
+#signup_form .field_type_checkbox .form-error {
 	color: #c11119;
+}
+
+/* @end */
+
+/* @group Frontpage Adjust */
+
+body .alignleft.wp-image-1845 {
+	margin-bottom: 20px;
 }
 
 /* @end */

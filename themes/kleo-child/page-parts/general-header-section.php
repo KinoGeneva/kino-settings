@@ -17,9 +17,11 @@ $top_bar = sq_option( 'show_top_bar', 1 );
 $top_bar = apply_filters( 'kleo_show_top_bar', $top_bar );
 
 
-
 	// Masquer les profils des autres membres si non-admin:
-	if ( current_user_can( 'publish_pages' ) ) {
+	
+	echo "<style>.top-menu .dropdown-menu li#menu-item-1797 {display:none}</style>";
+	
+//	if ( current_user_can( 'publish_pages' ) ) {
 		// show menu-item-1214
 		
 		$top_menu = wp_nav_menu( array(
@@ -34,16 +36,7 @@ $top_bar = apply_filters( 'kleo_show_top_bar', $top_bar );
 		    )
 		);
 		
-	} else {
-	
-		
-		$top_menu = '';
-		
-		echo "<style>.top-menu .dropdown-menu li#menu-item-1797 {display:none}</style>";
-	
-	}
-
-
+//	} 
 
 
 
