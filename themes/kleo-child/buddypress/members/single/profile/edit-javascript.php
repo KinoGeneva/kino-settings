@@ -70,13 +70,15 @@
  			 			<?php
  			 			
  			 			// checkbox group
- 			// 			$("div.required-field.field_type_checkbox input").attr({
- 			// 				    'data-validation':'checkbox_group', 
- 			// 				    'data-validation-qty':'min 1'
- 			// 				});;
+ 			 			// **********************************
+ 			 			
+ 			 			// Disabled, not working well with BuddyPress checkbox groups
+ 			 			// https://bitbucket.org/ms-studio/kinogeneva/issues/71/bug-aide-b-n-vole
+ 			 			
+
  			 		
  			 			// image = must test by JS if empty
- 			 			// $("div.required-field.field_type_image input").prop('required', true);
+ 			 			// **********************************
  			 				
  			 				?>
  			 				
@@ -90,7 +92,7 @@
  			 				});
  			 				
  			 				// file = must test by JS if empty
- 			 				// $("div.required-field.field_type_file input").prop('required', true);
+ 			 				// **********************************
  			 					
  			 				$('div.required-field.field_type_file').each(function() {
  			 					    if ($(this).children('a').length) {
@@ -193,25 +195,17 @@
 		 		// $kino_fields['benevole-kabaret']
 		 		
 		 		// http://formvalidator.net/#default-validators_checkboxgroup
+		 				 		
+
+//		 			$("[name='field_  ... []']:eq(0)") // echo $kino_fields['benevole-kabaret'];
+//		 			  .valAttr('','validate_checkbox_group')
+//		 			  .valAttr('qty','min 1')
+//		 			  .valAttr('error-msg','Veuillez choisir au moins un élément');
 		 		
-		 		?>
+		 		// NOTE: validation does not work, see
+		 		// https://bitbucket.org/ms-studio/kinogeneva/issues/71/bug-aide-b-n-vole
 		 		
-//		 			$("#profile-edit-form div.field_<?php echo $kino_fields['benevole-kabaret']; ?> input").attr({
-//		 				    'data-validation':'checkbox_group', 
-//		 				    'data-validation-qty':'min 1'
-//		 			});
-//		 			
-		 			$("[name='field_<?php echo $kino_fields['benevole-kabaret']; ?>[]']:eq(0)")
-		 			  .valAttr('','validate_checkbox_group')
-		 			  .valAttr('qty','min 1')
-		 			  .valAttr('error-msg','Veuillez choisir au moins un élément');
-		 		
-		 		<?php
-		 		
-		 		// 			$("div.required-field.field_type_checkbox input").attr({
-		 			// 				    'data-validation':'checkbox_group', 
-		 			// 				    'data-validation-qty':'min 1'
-		 			// 				});;
+
 		 
 		 }
  			
