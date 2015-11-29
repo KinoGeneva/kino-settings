@@ -26,6 +26,19 @@
 
 <div class="profile" role="main">
 
+	<?php 
+				// Show notifications:
+				$kino_notifications = kino_edit_profile_notifications( bp_loggedin_user_id() );
+				
+				if ( !empty($kino_notifications) ) {
+				
+					?><figure class="callout-blockquote light big-blockquote"><blockquote><p><?php 
+						echo $kino_notifications; ?>
+					    </p></blockquote></figure>
+					<?php
+				} 
+	 ?>
+
 <?php switch ( bp_current_action() ) :
 
 	// Edit
@@ -43,6 +56,8 @@
 
 		// Display XProfile
 		if ( bp_is_active( 'xprofile' ) )
+		
+		
 			bp_get_template_part( 'members/single/profile/profile-loop' );
 
 		// Display WordPress profile (fallback)
