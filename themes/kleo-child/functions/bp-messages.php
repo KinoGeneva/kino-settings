@@ -42,16 +42,17 @@ $activate_url
 add_filter('bp_core_signup_send_validation_email_message', 'kino_add_username_to_activation_email',10,3);
 
 function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
-    // $username = $_POST['signup_username'];
+
     $userinfo = get_userdata($u_id);
-    // 
-    // $user = get_user_by( 'id', $u_id );
+
     $username = $userinfo->user_login;
+    
     //$msg .= sprintf( __("After successful activation, you can log in using your username (%1\$s) along with password you choose during registration process.", 'buddypress'), $username);
     // $msg .= sprintf( __("Après l’activation, vous pouvez à tout moment vous connecter au site par le lien http://kinogeneva.ch/wp-login.php avec votre nom d'utilisateur (%1\$s) et le mot de passe que vous avez défini.", 'buddypress'), $username);
+    
     if (!empty($username)) {
     
-    	$msg .= "Pour vous connecter par la suite, utilisez le lien http://kinogeneva.ch/wp-login.php (ou le menu login) avec votre nom d'utilisateur – ".$username." – et le mot de passe que vous avez défini.";
+    	$msg .= "Pour vous connecter par la suite, utilisez le lien http://kinogeneva.ch/wp-login.php (ou le menu login) avec votre nom d'utilisateur (".$username.") et le mot de passe que vous avez défini.";
     
     } else {
     	$msg .= "Pour vous connecter par la suite, utilisez le lien http://kinogeneva.ch/wp-login.php (ou le menu login) avec votre identifiant et votre mot de passe.";
@@ -342,7 +343,7 @@ Pour toute question relative à votre inscription, n’hésitez pas à contacter
 				
 				 wp_mail( 
 				 	$user->user_email, 
-				 	'KinoGeneva: Confirmation', 
+				 	'[KinoGeneva] Confirmation', 
 				 	$kino_notification_email, 
 				 	$headers 
 				 );
