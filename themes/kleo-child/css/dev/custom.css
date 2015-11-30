@@ -59,8 +59,13 @@
 	display: none;	
 }
 
+.buddypress div#item-header .toggle-header,
+.buddypress #item-header .toggle-header {
+	display: none;
+}
 
-.buddypress.bp-header-small #item-header .toggle-header {
+/* On cache le petit appareil photo */
+.profile-cover-action {
 	display: none;
 }
 
