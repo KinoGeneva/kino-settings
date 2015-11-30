@@ -1,2 +1,3 @@
-@import '20-custom.css';
-@import '30-mediaqueries.css';
+@import '10-custom.css';
+/* @import '20-profile.css'; */
+@import '50-mediaqueries.css';

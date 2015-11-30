@@ -6,6 +6,32 @@
  * @since Kleo 1.0
  */
 
+
+/* Load Styles */
+
+function kino_register_styles() {
+
+	/**
+	 * Custom CSS
+	 */
+
+	wp_enqueue_style( 
+			'main-style', 
+			get_stylesheet_directory_uri() . '/css/dev/00-main.css', // main.css
+			false, // dependencies
+			null // version
+	); 
+		
+		/* Remove uneccessary fonts loaded by parent theme */
+		
+		wp_dequeue_style( 'kleo-style' );
+		wp_deregister_style( 'kleo-style' );
+		
+
+}
+add_action( 'wp_enqueue_scripts', 'kino_register_styles', 25 );
+
+
 /**
  * Kleo Child Theme Functions
  * Add custom code below
@@ -14,7 +40,6 @@
 /*
     Add this into a custom plugin or your active theme's functions.php
 */
-
 
 
 function kino_widgets_init() {
