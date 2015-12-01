@@ -321,10 +321,8 @@ PS: pensez à <a href="'.bp_core_get_user_domain( $userid ).'profile/change-avat
 				
 				// Action 2 = send email notification!
 				// ****************************************
-				// wp_mail( $to, $subject, $message, $headers, $attachments ); 
 				
 				$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.ch>';
-				$headers[] = 'Bcc: Manu <ms@ms-studio.net>';
 				
 				$kino_notification_email .= '
 				
@@ -337,13 +335,26 @@ Pour toute question relative à votre inscription, n’hésitez pas à contacter
 				// load user info
 				$user = get_user_by( 'id', $userid );
 				
-//				$kino_notification_email .= '
-//
-//(Debug: message envoyé depuis la page '.$_SERVER[REQUEST_URI].' à '. date( 'H:i:s', time() ) .')';
+				$host = $_SERVER['HTTP_HOST'];
+				
+				if ( $host == 'kinogeneva.ch' ) {
+				
+					$to = $user->user_email;
+					$headers[] = 'Bcc: Manu <ms@ms-studio.net>';
+				
+				} else {
+				
+					$to = 'webmaster@kinogeneva.com';
+					$headers[] = 'Bcc: Manu <ms@ms-studio.net>';
+					$kino_notification_email .= '
+					
+					(Debug: message envoyé depuis la page '.$_SERVER[REQUEST_URI].' à '. date( 'H:i:s', time() ) .')';
+				
+				}
 				
 				 wp_mail( 
-				 	$user->user_email, 
-				 	'[KinoGeneva] Confirmation', 
+				 	$to,  // $to
+				 	'[KinoGeneva] Confirmation', // $subject
 				 	$kino_notification_email, 
 				 	$headers 
 				 );
