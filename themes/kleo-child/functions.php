@@ -31,7 +31,7 @@ function kino_register_styles() {
 	if ( $host == 'kinogeneva.4o4.ch' ) {
 	    wp_enqueue_style( 
 	    		'test-style', 
-	    		get_stylesheet_directory_uri() . '/css/dev/04-testing.css', // main.css
+	    		get_stylesheet_directory_uri() . '/css/test/00-testing.css', // main.css
 	    		false, // dependencies
 	    		null // version
 	    ); 
