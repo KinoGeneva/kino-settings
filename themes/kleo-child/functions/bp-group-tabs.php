@@ -3,7 +3,7 @@
 
 function kino_hide_some_profile_fields( $retval ) {	
 		
-	if(  bp_is_profile_edit() ) {	
+	if ( bp_is_user_profile_edit() ) {	
 		
 		// Hide field for normal users
 		// see https://bitbucket.org/ms-studio/kinogeneva/issues/56/section-kabaret-3-menus-d-roulants-gestion
