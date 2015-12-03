@@ -136,7 +136,7 @@ function kino_get_the_profile_group_edit_form_action() {
 
 add_filter( 'bp_profile_get_field_groups', 'kino_get_field_group_conditions', 10 );
 
-function kino_get_field_group_conditions( $groups ){
+function kino_get_field_group_conditions( $groups ) {
 
   // $groups = array();
   // $number_of_groups = count( $groups );
@@ -153,9 +153,10 @@ function kino_get_field_group_conditions( $groups ){
   	
   	// champs à tester:
   	
-  	$kino_user_role = kino_user_participation( bp_loggedin_user_id() );
-  	// test for Displayed User:
+  	// Current User:
+  	// $kino_user_role = kino_user_participation( bp_loggedin_user_id() );
   	
+  	// Displayed User:
   	$kino_user_role = kino_user_participation( bp_displayed_user_id() );
 
   	

@@ -24,7 +24,7 @@
 
 <?php do_action( 'bp_before_profile_content' ); ?>
 
-<div class="profile" role="main">
+<div class="profile clearfix" role="main">
 
 	<?php 
 				// Show notifications:
