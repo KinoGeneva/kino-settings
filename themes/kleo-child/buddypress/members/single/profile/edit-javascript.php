@@ -7,7 +7,8 @@
 	
 	$kino_fields = kino_test_fields();
 	
-	$userid = bp_loggedin_user_id();
+	// $userid = bp_loggedin_user_id();
+	$userid = bp_displayed_user_id();
 	
 	// Load User Role testing
 	
@@ -118,10 +119,8 @@
  			if ( bp_get_current_profile_group_id() == 1 ) {
  				if ( current_user_can('subscriber') ) {
 				 			
-				 				
 				 				// Une fois coché, on désactive l'option Réalisateur: 
 				 					// voir https://bitbucket.org/ms-studio/kinogeneva/issues/18/inscriptions-section-r-alisateur
-				 				
 				 			
 				 			$kino_disable_real_checkbox = false;
 				 			
@@ -205,8 +204,6 @@
 		 		// NOTE: validation does not work, see
 		 		// https://bitbucket.org/ms-studio/kinogeneva/issues/71/bug-aide-b-n-vole
 		 		
-
-		 
 		 }
  			
  			
@@ -220,7 +217,6 @@
  			if ( bp_get_current_profile_group_id() == 15 ) {
  				
  				if ( current_user_can('subscriber') ) {
- 							
  							
  							// Désactiver l'option "Réalisateur", une fois la demande soumise
  							

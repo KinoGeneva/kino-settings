@@ -154,6 +154,9 @@ function kino_get_field_group_conditions( $groups ){
   	// champs à tester:
   	
   	$kino_user_role = kino_user_participation( bp_loggedin_user_id() );
+  	// test for Displayed User:
+  	
+  	$kino_user_role = kino_user_participation( bp_displayed_user_id() );
 
   	
   	if (!in_array( "realisateur", $kino_user_role )) {
