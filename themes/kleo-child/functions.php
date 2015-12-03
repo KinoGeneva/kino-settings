@@ -7,6 +7,24 @@
  */
 
 
+/* Add body class, depending of site */
+
+//* Add custom body class to the head
+
+add_filter( 'body_class', 'kino_body_class' );
+
+function kino_body_class( $classes ) {
+	
+	$host = $_SERVER['HTTP_HOST'];
+	if ( $host == 'kinogeneva.4o4.ch' ) {
+		$classes[] = 'test-site';
+	} else {
+		$classes[] = 'live-site';
+	}
+		
+	return $classes;
+}
+
 /* Load Styles */
 
 function kino_register_styles() {
@@ -41,6 +59,9 @@ function kino_register_styles() {
 		
 		wp_dequeue_style( 'kleo-style' );
 		wp_deregister_style( 'kleo-style' );
+		
+		wp_dequeue_style( 'kleo-colors' );
+		wp_deregister_style( 'kleo-colors' );
 		
 
 }

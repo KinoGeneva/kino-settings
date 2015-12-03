@@ -1,10 +1,12 @@
-.profile-edit #buddypress #item-nav, 
-.my-profile #buddypress #item-nav {
+/* On masque des éléments sur le site LIVE */
+
+.live-site.profile-edit #buddypress #item-nav, 
+.live-site.my-profile #buddypress #item-nav {
 	display:none;
 }
-.profile-edit #item-header, 
-.profile-edit .item-list-tabs, 
-.my-profile #item-header  {
+.live-site.profile-edit #item-header, 
+.live-site.profile-edit .item-list-tabs, 
+.live-site.my-profile #item-header  {
 	display: none;
 }
 
