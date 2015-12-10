@@ -33,6 +33,10 @@ get_header(); ?>
 						if ( $kino_page_slug == 'validation-realisateurs' ) {
 						
 							get_template_part( 'kino-admin/validation-realisateurs' );
+						
+						} else if ( $kino_page_slug == 'impression-fiches' ) {
+							
+							get_template_part( 'kino-admin/impression-fiches' );
 							
 						} else {
 								

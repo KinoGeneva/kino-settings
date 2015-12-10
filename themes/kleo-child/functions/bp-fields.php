@@ -26,14 +26,61 @@ function kino_test_fields() {
 	$kino_fields['benevole-kabaret'] = 1320; // Aide benevole pour le Kabaret 2016
 	
 	$kino_fields['id-presentation'] = 31; // is ID complete? champ: Présentation
+	$kino_fields['id-photo'] = 859; // champ: Photo
+	
 	$kino_fields['profil-real-complete'] = 545; // Profil Realisateur complet? champ: présentation
 	$kino_fields['profil-comed-complete'] = 927;// Profil Comédien complet? 
 	$kino_fields['profil-tech-complete'] = 1075;// Profil Technicien complet? 
 	$kino_fields['profil-kabaret-complete'] = 1122;// test = Disponibilités cabaret 
 	
 	$kino_fields['session-attribuee'] = 1461; // Only visible for Admin 
+	
+	
+	$kino_fields['ville'] = 11;
+	$kino_fields['pays'] = 12;
+	$kino_fields['birthday'] = 8;
+	
+	$kino_fields['dispo'] = 1122; // Disponibilités Kino
+	$kino_fields['dispo-partiel'] = 1134; // Disponibilités Partielles
+	
+	// Compétence Tech
+	
+	$kino_fields['comp-production'] = 173; // 
+	$kino_fields['comp-scenario'] = 385; // 
+	$kino_fields['comp-realisation'] = 392; // 
+	$kino_fields['comp-image'] = 170; // 
+	$kino_fields['comp-postprod-image'] = 413; // 
+	$kino_fields['comp-son'] = 400; // 
+	$kino_fields['comp-postprod-son'] = 684; // 
+	$kino_fields['comp-direction-artistique'] = 405; // 
+	$kino_fields['comp-hmc'] = 409; // 
+	$kino_fields['comp-autres-liste'] = 418; // 
+	$kino_fields['comp-autres-champ'] = 824; //
+	$kino_fields['equipement'] = 424; // 
+	$kino_fields['equipement-spec'] = 1239; // 
+	
+	// Compétence Comédien
+	
+	$kino_fields['age-camera-min'] = 34; // 
+	$kino_fields['age-camera-max'] = 35; // 
+	$kino_fields['langue-mat'] = 52; // 
+	$kino_fields['langue-mat-autre'] = 592; //
+	$kino_fields['langues-parlees'] = 58; // 
+	$kino_fields['langues-parlees-autre'] = 594; // 
+	$kino_fields['langues-jouees'] = 75; // 
+	$kino_fields['langues-parlees'] = 593; //
+	$kino_fields['poids'] = 36; // 
+	$kino_fields['taille'] = 37; // 
+	$kino_fields['yeux'] = 38; // 
+	$kino_fields['yeux-autre'] = 748; // 
+	$kino_fields['cheveux'] = 42; // 
+	$kino_fields['cheveux-autre'] = 651; // 
+	$kino_fields['talents'] = 82; // 
+	$kino_fields['talents-autre'] = 38; // 
+	
 		
-	// Group IDs - 
+	// Group IDs !
+	// ***********
 	// voir https://bitbucket.org/ms-studio/kinogeneva/wiki/WordPress-User-Groups
 	
 	// En attente
@@ -60,200 +107,3 @@ function kino_test_fields() {
 }
 
 
-
-function kino_user_participation( $userid ) {
-	
-			// 
-			
-			if ( empty( $userid ) ) {
-				$userid = bp_loggedin_user_id();
-			}
-			
-			$kino_user_participation = array();
-			
-			$kino_fields = kino_test_fields();
-			
-			// is Comédien? // is Realisateur? // is Technicien?
-			$kino_particiation_boxes = bp_get_profile_field_data( array(
-					'field'   => $kino_fields['profile-role'],
-					'user_id' => $userid
-			) );
-			if ($kino_particiation_boxes) {
-				foreach ($kino_particiation_boxes as $key => $value) {
-					
-					$value = mb_substr($value, 0, 4);
-				  
-				  if ( $value == "Réal" ) {
-				  	$kino_user_participation[] = "realisateur";
-				  	
-				  	
-				  	// Profil Realisateur complet? 
-				  	$kino_profil_real = bp_get_profile_field_data( array(
-				  			'field'   => $kino_fields['profil-real-complete'],
-				  			'user_id' => $userid
-				  	) );
-				  	if ( $kino_profil_real != "" ) {
-				  			$kino_user_participation[] = "realisateur-complete";
-				  	}
-				  	
-				  	
-				  }
-				  if ( $value == "Comé" ) {
-				  	$kino_user_participation[] = "comedien";
-				  	
-				  	// Profil Comédien complet? 
-				  	$kino_profil_comedien = bp_get_profile_field_data( array(
-				  			'field'   => $kino_fields['profil-comed-complete'],
-				  			'user_id' => $userid
-				  	) );
-				  	if ( $kino_profil_comedien ) {
-				  			$kino_user_participation[] = "comedien-complete";
-				  	}
-				  	
-				  }
-				  if ( $value == "Arti" ) {
-				  	$kino_user_participation[] = "technicien";
-				  	
-				  	// Profil Technicien complet? 
-				  	$kino_profil_tech = bp_get_profile_field_data( array(
-				  			'field'   => $kino_fields['profil-tech-complete'], // trouver ID du champ!
-				  			'user_id' => $userid
-				  	) );
-				  	if ( $kino_profil_tech ) {
-				  			$kino_user_participation[] = "technicien-complete";
-				  	}
-				  	
-				  	
-				  }
-				  
-				} // end foreach
-			} // end testing field
-			
-			
-			// Participe au cabaret 2016?
-			$kino_test = bp_get_profile_field_data( array(
-					'field'   => $kino_fields['kabaret'], 
-					'user_id' => $userid
-			) );
-			if ( ( $kino_test == "oui" ) || ( $kino_test == "yes" ) ) {
-						
-						$kino_user_participation[] = "kabaret-2016";
-						
-						// Profil Cabaret 2016 complet? 
-						
-						$kino_dispo_kab = bp_get_profile_field_data( array(
-								'field'   => $kino_fields['profil-kabaret-complete'], // trouver ID du champ!
-								'user_id' => $userid
-						) );
-						if ( $kino_dispo_kab ) {
-								$kino_user_participation[] = "kabaret-complete";
-						}
-						
-			}
-			
-			// Aide Bénévole?
-			$kino_aide_benevole = bp_get_profile_field_data( array(
-					'field'   => $kino_fields['benevole'], 
-					'user_id' => $userid
-			) );
-			if ( ( $kino_aide_benevole == "oui" ) || ( $kino_aide_benevole == "yes" ) ) {
-						$kino_user_participation[] = "benevole";
-			}
-			
-			// Aide benevole pour le Kabaret 2016
-			$kino_benevole_boxes = bp_get_profile_field_data( array(
-					'field'   => $kino_fields['benevole-kabaret'],
-					'user_id' => $userid
-			) );
-			if ($kino_benevole_boxes) {
-			
-				$kino_user_participation[] = "benevole-complete";
-				
-				foreach ($kino_benevole_boxes as $key => $value) {
-				  if ( $value == "l’organisation du Kino Kabaret" ) {
-				  	$kino_user_participation[] = "benevole-kabaret";
-				  }
-				} // end foreach
-			} //
-			
-			
-			
-			// Test des rôles pour le Kabaret 2016
-			$kino16_particiation_boxes = bp_get_profile_field_data( array(
-					'field'   => $kino_fields['role-kabaret'],
-					'user_id' => $userid
-			) );
-			// test field 135 = participation en tant que
-			if ($kino16_particiation_boxes) {
-				foreach ($kino16_particiation_boxes as $key => $value) {
-				
-					$value = mb_substr($value, 0, 4);
-				
-				  if ( $value == "Réal" ) {
-				  	$kino_user_participation[] = "realisateur-2016";
-				  }
-				  if ( $value == "Comé" ) {
-				  	$kino_user_participation[] = "comedien-2016";
-				  }
-				  if ( $value == "Arti" ) {
-				  	$kino_user_participation[] = "technicien-2016";
-				  }
-				} // end foreach
-			} //
-			
-			
-			// Is ID complete ?
-			$kino_id_field = bp_get_profile_field_data( array(
-					'field'   => $kino_fields['id-presentation'], // = Présentation
-					'user_id' => $userid
-			) );
-			if ($kino_id_field != "" ) {
-					$kino_user_participation[] = "id-complete";
-			}
-			
-			
-			
-			
-			
-			
-			// Test avatar
-			// src: https://buddypress.org/support/topic/detecting-if-user-uploaded-an-avatar/
-			
-			$kino_avatar = bp_core_fetch_avatar( array( 
-				'item_id' => $userid, 
-				'no_grav' => true, 
-				'html' => false) );
-			
-			if ( $kino_avatar == 'http://kinogeneva.ch/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg' ) {
-				// no avatar
-			} else {
-				$kino_user_participation[] = "avatar-complete";
-			}
-			
-			
-			return $kino_user_participation;
-			
-			/*
-			// au final, les valeurs retournées:
-
-			- realisateur
-			- technicien
-			- comedien
-			
-			- realisateur-2016
-			- technicien-2016
-			- comedien-2016
-			- kabaret-2016
-			
-			- id-complete
-			- realisateur-complete
-			- comedien-complete
-			- technicien-complete
-			- benevole-complete
-			- avatar-complete
-			
-			*/
-			
-}
-
- ?>
