@@ -12,9 +12,6 @@ Author URI:
 /*
  *
 
-What this plugin does:
-
-- UI customisation
 
  */
  
@@ -36,6 +33,8 @@ include_once (plugin_dir_path(__FILE__).'users.php');
 // Stats
 include_once (plugin_dir_path(__FILE__).'statistics.php');
 
+// Print
+include_once (plugin_dir_path(__FILE__).'print.php');
 
 
 //
