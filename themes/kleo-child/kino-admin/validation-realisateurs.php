@@ -1,10 +1,6 @@
 <?php
 /**
- * The template used for displaying page content
- *
- * @package WordPress
- * @subpackage Kleo
- * @since Kleo 1.0
+ * Un template pour valider les réalisateurs
  */
 ?>
 
@@ -284,4 +280,3 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
     <?php  ?>
 </article>
 <!-- End  Article -->
-
