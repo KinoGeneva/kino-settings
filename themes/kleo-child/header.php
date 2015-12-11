@@ -72,7 +72,7 @@ $site_style = sq_option('site_style', 'wide') == 'boxed' ? ' page-boxed' : '';
 $site_style = apply_filters('kleo_site_style', $site_style);
 ?>
 
-<body <?php body_class(); ?> itemscope itemtype="http://schema.org/WebPage">
+<body <?php body_class(); ?>>
 	
 	<?php do_action('kleo_after_body');?>
 	

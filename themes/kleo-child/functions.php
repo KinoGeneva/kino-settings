@@ -210,8 +210,9 @@ function kino_login_redirection( $redirect_to, $request, $user ) {
 		if ( isset( $user->roles ) && is_array( $user->roles ) ) {
 			
 			if (function_exists('kino_user_participation')) {
-				
-				$kino_user_role = kino_user_participation( $user->ID );
+
+				$kino_fields = kino_test_fields();
+				$kino_user_role = kino_user_participation( $user->ID, $kino_fields );
 				
 				// Déjà inscrit au Kabaret?
 				if ( in_array( "kabaret-2016", $kino_user_role ) ) {
