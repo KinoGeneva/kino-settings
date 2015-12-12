@@ -29,6 +29,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         ****/
  				
  				$kino_debug_mode = 'off';
+ 				
+ 				$url = site_url();
         
         $user_fields = array( 
         	'user_login', 
@@ -111,6 +113,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 						        	"user-email" => $user->user_email,
 						        	"user-profile" => "Complet",
 						        	"user-presentation" => bp_get_profile_field_data( array(
+						        			'field'   => $kino_fields['id-presentation'],
+						        			'user_id' => $kino_userid
+						        	) ),
+						        	"user-presentation-real" => bp_get_profile_field_data( array(
 						        			'field'   => $kino_fields['profil-real-complete'],
 						        			'user_id' => $kino_userid
 						        	) ),
@@ -133,6 +139,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 						        	"user-email" => $user->user_email,
 						        	"user-profile" => "Incomplet",
 						        	"user-presentation" => bp_get_profile_field_data( array(
+						        			'field'   => $kino_fields['id-presentation'],
+						        			'user_id' => $kino_userid
+						        	) ),
+						        	"user-presentation-real" => bp_get_profile_field_data( array(
 						        			'field'   => $kino_fields['profil-real-complete'],
 						        			'user_id' => $kino_userid
 						        	) ),
@@ -171,6 +181,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 								  	    	"user-email" => $user->user_email,
 								  	    	"user-profile" => "Incomplet",
 								  	    	"user-presentation" => bp_get_profile_field_data( array(
+								  	    			'field'   => $kino_fields['id-presentation'],
+								  	    			'user_id' => $kino_userid
+								  	    	) ),
+								  	    	"user-presentation-real" => bp_get_profile_field_data( array(
 								  	    			'field'   => $kino_fields['profil-real-complete'],
 								  	    			'user_id' => $kino_userid
 								  	    	) ),
@@ -206,12 +220,13 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				if (!empty($kino_pending_real_kab) ) {
 						
 						echo '<div>';
-						echo '<h2>Réalisateurs-trices en attente : Kabaret 2016</h2>';
+						echo '<h2>Réalisateurs-trices en attente : Kabaret 2016 ('.count($kino_pending_real_kab).')</h2>';
+						echo '<div class="kino-admin-view">';
 				
 						foreach ($kino_pending_real_kab as $key => $item) {
 						
 								?>
-								<div class="alert alert-warning">
+								<div class="alert alert-warning kino-admin-view-item">
 									<?php 
 											echo '<b>Nom:</b> ';
 											echo $item["user-name"];
@@ -222,10 +237,12 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 								<br/>
 								<b>Présentation:</b> <?php echo $item["user-presentation"] ?>
 								<br/>
+								<b>Motivation:</b> <?php echo $item["user-presentation-real"] ?>
+								<br/>
 								
-								<a href="//kinogeneva.ch/members/<?php echo $item["user-slug"]; ?>/profile/" target="_blank" class="btn btn-default">Voir le profil complet</a> 
+								<a href="<?php echo $url; ?>/members/<?php echo $item["user-slug"]; ?>/" target="_blank" class="btn btn-default" target="_blank">Voir le profil complet</a> 
 								
-								<a href="//kinogeneva.ch/wp-admin/user-edit.php?user_id=<?php echo $item["user-id"] ?>#user-group" target="_blank" class="btn btn-default">Modifier groupes</a>
+								<a href="<?php echo $url; ?>/wp-admin/user-edit.php?user_id=<?php echo $item["user-id"] ?>#user-group" target="_blank" class="btn btn-default" target="_blank">Modifier groupes</a>
 								<?php 
 								/*
 							*	<form id='useraction-id  echo $kino_pending_real_kab[$key]["user-id"] 
@@ -238,7 +255,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 								</div>
 							<?php 
 						}
-						echo '</div>';
+						echo '</div></div>';
 				} // end looping array
 				
 				
@@ -248,11 +265,12 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 						
 						echo '<div>';
 						echo '<h2>Réalisateurs-trices validés : Kabaret 2016</h2>';
+						echo '<div class="kino-admin-view">';
 				
 						foreach ($kino_valid_real_kab as $key => $item) {
 						
 								?>
-								<div class="alert alert-success">
+								<div class="alert alert-success kino-admin-view-item">
 									<?php 
 											echo '<b>Nom:</b> ';
 											echo $item["user-name"];
@@ -261,17 +279,19 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 									<br/>
 									<b>Présentation:</b> <?php echo $kino_pending_real_kab[$key]["user-presentation"] ?>
 									<br/>
+									<b>Motivation:</b> <?php echo $item["user-presentation-real"] ?>
+									<br/>
 									
-									<a href="//kinogeneva.ch/members/<?php echo $item["user-slug"]; ?>/profile/" target="_blank" class="btn btn-default">Voir le profil complet</a> 
+									<a href="<?php echo $url; ?>/members/<?php echo $item["user-slug"]; ?>/" target="_blank" class="btn btn-default" target="_blank">Voir le profil complet</a> 
 									
-									<a href="//kinogeneva.ch/wp-admin/user-edit.php?user_id=<?php echo $item["user-id"] ?>#user-group" target="_blank" class="btn btn-default">Modifier groupes</a>
+									<a href="<?php echo $url; ?>/wp-admin/user-edit.php?user_id=<?php echo $item["user-id"] ?>#user-group" target="_blank" class="btn btn-default" target="_blank">Modifier groupes</a>
 									
 								</div>
 								
 								
 							<?php 
 						}
-						echo '</div>';
+						echo '</div></div>';
 				} // end looping array
      ?>
         

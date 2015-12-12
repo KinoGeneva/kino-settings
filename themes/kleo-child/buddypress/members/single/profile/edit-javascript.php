@@ -12,7 +12,7 @@
 	
 	// Load User Role testing
 	
-	$kino_user_role = kino_user_participation( $userid );
+	$kino_user_role = kino_user_participation( $userid, $kino_fields );
 	
 
  ?>

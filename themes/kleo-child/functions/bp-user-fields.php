@@ -199,7 +199,7 @@ function kino_user_participation( $userid, $kino_fields ) {
 			
 }
 
-// This functions returns a very complete array of fields
+// This functions returns a very extensive array of fields, used for print-out.
 
 function kino_user_fields( $kino_userid, $kino_fields ) {
 	
@@ -344,7 +344,6 @@ function kino_user_fields( $kino_userid, $kino_fields ) {
 	      		'user_id' => $kino_userid
 	    ) );
 	 
-	
 	return $kino_userdata;
 	
 }

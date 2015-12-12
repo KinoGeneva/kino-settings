@@ -91,7 +91,7 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  	
  	// run our test battery...
  	
- 	$kino_user_role = kino_user_participation( $userid );
+ 	$kino_user_role = kino_user_participation( $userid, $kino_fields );
  	
  	// For Debugging:
  	

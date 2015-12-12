@@ -25,7 +25,7 @@ function kino_hide_some_profile_fields( $retval ) {
 			
 			// is Realisateur for 2016?
 			
-			$kino_user_role = kino_user_participation( bp_loggedin_user_id() );
+			$kino_user_role = kino_user_participation( bp_loggedin_user_id(), $kino_fields );
 			
 			if ( !in_array( "realisateur", $kino_user_role ) && !in_array( "comedien", $kino_user_role ) && !in_array( "technicien", $kino_user_role ) ) {
 			
@@ -152,12 +152,10 @@ function kino_get_field_group_conditions( $groups ) {
 		);
   	
   	// champs à tester:
-  	
-  	// Current User:
-  	// $kino_user_role = kino_user_participation( bp_loggedin_user_id() );
+  	$kino_fields = kino_test_fields();
   	
   	// Displayed User:
-  	$kino_user_role = kino_user_participation( bp_displayed_user_id() );
+  	$kino_user_role = kino_user_participation( bp_displayed_user_id(), $kino_fields );
 
   	
   	if (!in_array( "realisateur", $kino_user_role )) {

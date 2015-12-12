@@ -442,7 +442,7 @@ html #main .print-profile {
         	 
         	 // Equipement à disposition
         	
-        	if ( (!empty($kino_userdata["equipement"])) || (!empty($kino_userdata["equipement-spec"])) ) {
+        	if ( (!empty($kino_userdata["equipement"])) || (!empty($kino_userdata["equipement-spec"])) ) {
         						
         						?>
         						<div class="kp-section hr-title hr-full hr-double"><abbr>Équipement personnel à disposition</abbr></div>
