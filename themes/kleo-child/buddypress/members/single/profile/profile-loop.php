@@ -1,7 +1,8 @@
 <?php do_action( 'bp_before_profile_loop_content' ); ?>
 
 <?php if ( bp_has_profile() ) : 
-
+	
+	echo '<div class="bp-profile-loop-container">';
 	// Test what groups we need to show!
 	// liste des groupes existants
 	$groups = wp_cache_get( 'all', 'bp_xprofile_groups' );
@@ -43,8 +44,13 @@
 		
 				<div class="hr-title hr-full hr-double"><abbr><?php bp_the_profile_group_name(); ?></abbr></div>
 				<div class="gap-10"></div>
+				
+				<div class="bp-profile-loop">
+				
 					<?php while ( bp_profile_fields() ) : bp_the_profile_field(); ?>
-
+					
+					
+					
 						<?php if ( bp_field_has_data() ) : ?>
               
               <dl<?php bp_field_css_class('dl-horizontal'); ?>>
@@ -57,7 +63,8 @@
 						<?php do_action( 'bp_profile_field_item' ); ?>
 
 					<?php endwhile; ?>
-
+					
+					</div><!-- end bp-profile-loop -->
 			</div><!-- end bp-widget -->
 
 			<?php do_action( 'bp_after_profile_field_content' ); ?>
@@ -77,7 +84,7 @@
 	<?php endwhile; ?>
 
 	<?php do_action( 'bp_profile_field_buttons' ); ?>
-
+	</div>
 <?php endif; ?>
 
 <?php do_action( 'bp_after_profile_loop_content' ); ?>

@@ -5,7 +5,8 @@
  * Useful: http://aaronlumsden.com/multicol/
 */
 
-	.kino-edit-profile {
+	.kino-edit-profile,
+	.kino-admin-view  {
 		-webkit-column-count: 2;
 		-webkit-column-gap: 30px; 
 		-webkit-column-rule: 0px solid #e5e5e5;
@@ -17,8 +18,8 @@
 		column-rule: 0px solid #e5e5e5;
 	}
 	
-	.kino-edit-profile .editfield {
-		margin: 0;
+	.kino-edit-profile .editfield,
+	.kino-admin-view-item {
 		-webkit-column-break-inside: avoid; /* Chrome, Safari */
 		page-break-inside: avoid;           /* Theoretically FF 20+ */
 		break-inside: avoid-column;         /* IE 11 */
@@ -27,6 +28,10 @@
 		
 		max-width: 100%;
 		width: 100%;
+	}
+	
+	.kino-edit-profile .editfield {
+		margin: 0;
 	}
 	
 	.kino-edit-profile .editfield textarea,
@@ -56,7 +61,8 @@
  * Useful: http://aaronlumsden.com/multicol/
 */
 
-	.kino-edit-profile {
+	.kino-edit-profile,
+	.kino-admin-view {
 		-webkit-column-count: 3;
 		-moz-column-count: 3;
 		column-count: 3;
