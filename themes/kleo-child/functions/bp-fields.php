@@ -35,13 +35,20 @@ function kino_test_fields() {
 	
 	$kino_fields['session-attribuee'] = 1461; // Only visible for Admin 
 	
-	
+	$kino_fields['rue'] = 9;
+	$kino_fields['code-postal'] = 10;
 	$kino_fields['ville'] = 11;
 	$kino_fields['pays'] = 12;
+	$kino_fields['tel'] = 14;
 	$kino_fields['birthday'] = 8;
 	
 	$kino_fields['dispo'] = 1122; // Disponibilités Kino
 	$kino_fields['dispo-partiel'] = 1134; // Disponibilités Partielles
+	
+	$kino_fields['cherche-logement'] = 1143; // oui/non
+	$kino_fields['cherche-logement-remarque'] = 1146; // dates et remarques
+	$kino_fields['offre-logement'] = 1147; 
+	$kino_fields['offre-logement-remarque'] = 1150; // nombre et type de logement
 	
 	// Compétence Tech
 	
@@ -101,7 +108,9 @@ function kino_test_fields() {
 	$kino_fields['group-kino-complete'] = 71 ; // Participants Kino 2016 : profil complet
 	$kino_fields['group-kino-approved'] = 73 ; // Participants Kino 2016 : validés
 	
-	
+	// Logements
+	$kino_fields['group-cherche-logement'] = 79 ; 
+	$kino_fields['group-offre-logement'] = 80 ;
 	
 	return $kino_fields;
 }

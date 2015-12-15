@@ -46,6 +46,57 @@ function modify_footer_admin ()
 add_filter('admin_footer_text', 'modify_footer_admin');
 
 
+/*
+ * Admin CSS
+*/
+
+function kino_admin_css() {
+  echo '<style>
+    body.users-php .wp-list-table,
+    body.users-php .widefat td, 
+    body.users-php .widefat td ol, 
+    body.users-php .widefat td p, 
+    body.users-php .widefat td ul  {
+      font-size: 11px;
+    } 
+    
+    body.users-php .widefat tfoot td, 
+    body.users-php .widefat th, 
+    body.users-php .widefat thead td {
+    	font-size: 12px;
+    }
+		body.users-php td.column-user-group {
+			font-size: 1px;
+			line-height: 0px;
+		}
+    body.users-php td.column-user-group a {
+    	display: block;
+    	border: 1px solid #ddd;
+    	font-size: 11px;
+    	line-height: 1.2;
+    	background: #fff;
+    	padding: 0.2em;
+    	margin-bottom: 0.2em;
+    }
+    
+    /* Hide useless hierarchical option */
+    
+    body.taxonomy-user-logement .term-parent-wrap {
+    	display: none;
+    }
+    body.taxonomy-user-logement .term-description-wrap > p {
+    	display: none;
+    }
+    
+    .column-users,
+    .widefat th.column-users {
+    	/* font-family: dashicons;
+    	font-size: 20px; */
+    }
+  </style>';
+}
+add_action('admin_head', 'kino_admin_css');
+
 
 /* Allowed FileTypes
  ********************

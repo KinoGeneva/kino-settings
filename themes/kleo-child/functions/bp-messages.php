@@ -188,7 +188,13 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  					
  			} // end testing "realisateur-2016"
  		
- 	
+ 			// Test if user is looking for / is proposing an appartment.
+ 			
+ 			$kinoite_cherche_logement = bp_get_profile_field_data( array(
+ 					'field'   => $kino_fields["cherche-logement"],
+ 					'user_id' => $userid
+ 			) );
+ 			
  	
  	// Massive Conditional Testing
  		

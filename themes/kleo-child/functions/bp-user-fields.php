@@ -199,7 +199,48 @@ function kino_user_participation( $userid, $kino_fields ) {
 			
 }
 
-// This functions returns a very extensive array of fields, used for print-out.
+/*
+ * Kino User Fields Light
+ * This functions returns a basic array of fields, used for admin pages.
+ * Contains:
+ * Ville
+ * Pays
+*/
+
+function kino_user_fields_light( $kino_userid, $kino_fields ) {
+
+	if ( empty( $kino_userid ) ) {
+		$kino_userid = bp_loggedin_user_id();
+	}
+	
+	if ( empty( $kino_fields ) ) {
+		$kino_fields = kino_test_fields();
+	}
+	
+	$kino_userdata = array();
+	
+	$kino_userdata["ville"] = bp_get_profile_field_data( array(
+			'field'   => $kino_fields["ville"],
+			'user_id' => $kino_userid
+	) );
+	$kino_userdata["pays"] = bp_get_profile_field_data( array(
+			'field'   => $kino_fields["pays"],
+			'user_id' => $kino_userid
+	) );
+	
+	$kino_userdata["presentation"] = bp_get_profile_field_data( array(
+			'field'   => $kino_fields['id-presentation'],
+			'user_id' => $kino_userid
+	) );
+
+	return $kino_userdata;
+
+}
+
+/*
+ * Kino User Fields
+ * This functions returns a very detailed array of fields, used for print-out.
+*/
 
 function kino_user_fields( $kino_userid, $kino_fields ) {
 	

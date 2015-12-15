@@ -38,6 +38,18 @@ get_header(); ?>
 							
 							get_template_part( 'kino-admin/impression-fiches' );
 							
+						} else if ( $kino_page_slug == 'gestion-des-logements' ) {
+							
+							get_template_part( 'kino-admin/gestion-logements' );
+							
+						} else if ( $kino_page_slug == 'participants-kabaret' ) {
+							
+							get_template_part( 'kino-admin/participants-kabaret' );
+							
+						} else if ( $kino_page_slug == 'membres-hors-kabaret' ) {
+							
+							get_template_part( 'kino-admin/membres-hors-kabaret' );
+							
 						} else {
 								
 							get_template_part( 'content', 'page' );

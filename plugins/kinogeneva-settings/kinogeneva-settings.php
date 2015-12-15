@@ -30,6 +30,9 @@ include_once (plugin_dir_path(__FILE__).'cron-groups.php');
 // User settings
 include_once (plugin_dir_path(__FILE__).'users.php');
 
+// Term metadata - for logements
+include_once (plugin_dir_path(__FILE__).'term-meta.php');
+
 // Stats
 include_once (plugin_dir_path(__FILE__).'statistics.php');
 

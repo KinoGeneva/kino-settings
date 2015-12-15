@@ -154,7 +154,7 @@ html #main .print-profile {
 
 	$kinorole_var = ( get_query_var('kinorole') ) ? get_query_var('kinorole') : false;
 	
-	if ( $kinorole_var ) {
+	if ( !empty($kinorole_var) ) {
 	
 		// Method: get user IDs in that taxonomy
 		// Display specific users list
@@ -241,7 +241,23 @@ html #main .print-profile {
         	), 
         ) );
         
+        // Show some info to the Admin:
+        ?>
         
+        <p class="admin-note"><b>NOTES:</b><br/> <?php 
+        
+        if ( !empty($kinorole_var) ) {
+        	echo '<b>Filtrage par rôle:</b> '.$kinorole_var.'<br/>';
+        }
+        if ( !empty($kinodate_var) ) {
+        	echo '<b>Filtrage par fraîcheur:</b> '.$kinodate_var.' jours<br/>';
+        }
+        if ( ! empty( $user_query->results ) ) {
+        	echo '<b>Nombre de fiches: </b>'.count($user_query->results).'';
+        }
+         ?></p>
+        
+        <?php
         
         // User Loop
         if ( ! empty( $user_query->results ) ) {
@@ -351,7 +367,6 @@ html #main .print-profile {
 									echo '<span class="jour-dispo">'.substr($value, 0, 2).'</span>';
 								}
 								echo ' janvier</p>';
-								
 								
 								if ( $kino_userdata["dispo-partiel"] ) {
 									echo '<p class="kp-par">'.$kino_userdata["dispo-partiel"].'</p>';
@@ -469,27 +484,23 @@ html #main .print-profile {
         	 		
         	 		// test des champs comédien
         	 		
-        	 		if ( $kino_userdata["age-camera-min"] ) {
+        	 		if ( !empty($kino_userdata["age-camera-min"]) ) {
 	        	 		echo '<strong>Age min: </strong>';
 	        	 		echo $kino_userdata["age-camera-min"];
         	 		}
-        	 		if ( $kino_userdata["age-camera-max"] ) {
+        	 		if ( !empty($kino_userdata["age-camera-max"]) ) {
         	 				echo '<strong>Age max: </strong>';
         	 				echo $kino_userdata["age-camera-max"];
         	 		}
-        	 		if ( $kino_userdata["age-camera-min"] ) {
-        	 				echo '<strong>Age min: </strong>';
-        	 				echo $kino_userdata["age-camera-min"];
-        	 		}
         	 		
-        	 		if ( $kino_userdata["langue-mat"]) {
+        	 		if ( !empty($kino_userdata["langue-mat"]) ) {
         	 			echo '<strong>Langue maternelle: </strong>';
         	 			foreach ( $kino_userdata["langue-mat"] as $key => $value) {
         	 				echo '<span class="kp-pointlist">'.$value.'</span>';
         	 			}
         	 		}
         	 		
-        	 		if ( $kino_userdata["langues-parlees"]) {
+        	 		if ( !empty($kino_userdata["langues-parlees"]) ) {
         	 				echo '<strong>Langues parées: </strong>';
         	 				foreach ( $kino_userdata["langue-parlees"] as $key => $value) {
         	 					echo '<span class="kp-pointlist">'.$value.'</span>';
