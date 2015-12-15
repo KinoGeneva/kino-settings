@@ -368,13 +368,21 @@
    		 // NOTE: doit cibler le <a>, sinon, BUG= ajoute "undefined" après l'URL!
    		 
    		mixpanel.track_forms("#profile-edit-form", "Submitted Profile Form");
-   		 // NOTE:  fait bugger la validation!
+   		 // NOTE: cela fait bugger la validation!
    		  **********/
    		
-   		 ?>
+   		 $host = $_SERVER['HTTP_HOST'];
+   		 if ( $host == 'kinogeneva.ch' ) {
+   		 	// track via mixpanel
    		 
-   		 mixpanel.track_links('#button-nav li a', 'Clicked Edit Profile');
+   		 	?>
+   		  mixpanel.track_links('#button-nav li a', 'Clicked Edit Profile');
+   		  <?php 
    		 
+   		 }
+   		 
+   		  ?>
+
  });
  </script>
  <?php 
