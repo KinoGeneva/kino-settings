@@ -194,7 +194,29 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  					'field'   => $kino_fields["cherche-logement"],
  					'user_id' => $userid
  			) );
+ 			// if OUI = add to group! $kino_fields['group-cherche-logement']
+ 			if ( ( $kinoite_cherche_logement == "OUI" ) ) {
+ 						wp_set_object_terms( 
+ 								$userid, // $object_id, 
+ 								$kino_fields['group-cherche-logement'], // $terms, 
+ 								'user-group', // $taxonomy, 
+ 								true // $append 
+ 							);
+ 			}
  			
+ 			$kinoite_offre_logement = bp_get_profile_field_data( array(
+ 						'field'   => $kino_fields["offre-logement"],
+ 						'user_id' => $userid
+ 				) );
+ 				// if OUI = add to group! $kino_fields['group-cherche-logement']
+ 				if ( ( $kinoite_offre_logement == "OUI" ) ) {
+ 							wp_set_object_terms( 
+ 									$userid, // $object_id, 
+ 									$kino_fields['group-offre-logement'], // $terms, 
+ 									'user-group', // $taxonomy, 
+ 									true // $append 
+ 								);
+ 				}
  	
  	// Massive Conditional Testing
  		

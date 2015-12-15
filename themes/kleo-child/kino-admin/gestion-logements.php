@@ -75,8 +75,16 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         					'user_id' => $kino_userid
         			) );
         		if (	$kinoite_cherche_logement == 'OUI' ) {
+        			
         			// add info to array 
-        			// echo ' '.$kinoite_cherche_logement.' ';
+        			
+        			// ADD TO GROUP!
+        			wp_set_object_terms( 
+        						$kino_userid, // $object_id, 
+        						$kino_fields['group-cherche-logement'], // $terms, 
+        						'user-group', // $taxonomy, 
+        						true // $append 
+        			);
         			
         			$kinoites_cherchent_logement[] = array( 
         				"user-id" => $kino_userid,
@@ -110,6 +118,13 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         		if (	$kinoite_offre_logement == 'OUI' ) {
         			// add info to array 
         			// echo ' '.$kinoite_cherche_logement.' ';
+        			
+        			wp_set_object_terms( 
+        						$kino_userid, // $object_id, 
+        						$kino_fields['group-offre-logement'], // $terms, 
+        						'user-group', // $taxonomy, 
+        						true // $append 
+        			);
         			
         			$kinoites_offrent_logement[] = array( 
         				"user-id" => $kino_userid,

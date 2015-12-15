@@ -109,8 +109,14 @@ function kino_test_fields() {
 	$kino_fields['group-kino-approved'] = 73 ; // Participants Kino 2016 : validés
 	
 	// Logements
-	$kino_fields['group-cherche-logement'] = 79 ; 
-	$kino_fields['group-offre-logement'] = 80 ;
+	$host = $_SERVER['HTTP_HOST'];
+	if ( $host == 'kinogeneva.ch' ) {
+	$kino_fields['group-cherche-logement'] = 79 ;  //
+	$kino_fields['group-offre-logement'] = 80 ; //
+	} else {
+	$kino_fields['group-cherche-logement'] = 94 ;  // 79 94
+	$kino_fields['group-offre-logement'] = 95 ; // 80 95
+	}
 	
 	return $kino_fields;
 }
