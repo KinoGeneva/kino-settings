@@ -37,7 +37,7 @@ function kino_register_styles() {
 			'main-style', 
 			get_stylesheet_directory_uri() . '/css/dev/00-main.css', // main.css
 			false, // dependencies
-			null // version
+			'2015.12.12' // version
 	); 
 	
 	/*
