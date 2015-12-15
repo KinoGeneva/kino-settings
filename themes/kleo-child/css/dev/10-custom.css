@@ -106,6 +106,15 @@
 	display: none;
 }
 
+.bp-profile-loop .field_photo img {
+	max-height: 250px;
+	width: auto;
+}
+
+.bp-profile-loop .field_conditions-dutilisation-de-la-plateforme-reglement-kino-kabaret  {
+	/* montré seulement pour les admin */
+}
+
 /* @end */
 
 /* @group Edit Profile */
@@ -128,6 +137,8 @@
 .change-avatar #buddypress .members-navigation,
 .profile-edit #buddypress .members-navigation,
 .my-profile #buddypress .members-navigation,
+.single-kino-admin .kleo-quick-contact-wrapper,
+.single-kino-admin .kleo-go-top,
 body.buddypress .kleo-quick-contact-wrapper {
 	display: none;
 }
@@ -370,6 +381,17 @@ body.buddypress .kleo-quick-contact-wrapper {
 
 body .alignleft.wp-image-1845 {
 	margin-bottom: 20px;
+}
+
+/* @end */
+
+/* @group Vues Admin */
+
+.single-kino-admin .liste-occupants:after {
+	content: ", ";
+}
+.single-kino-admin .liste-occupants:last-of-type:after {
+	content: "";
 }
 
 /* @end */
