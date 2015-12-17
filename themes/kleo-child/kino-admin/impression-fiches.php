@@ -55,25 +55,8 @@ html #main .print-profile {
 	display: none;
 }
 
-.jour-dispo:after {
-	content: " / ";
-}
-.jour-dispo:last-child:after {
-	content: "";
-}
 
-.kp-pointlist:after {
-	content: " \2219 "; /* bullet */
-}
-.kp-pointlist {
-	padding-right: 0.2em;
-}
-.kp-pointlist:last-of-type:after {
-	content: "";
-}
-.kp-pointlist:last-of-type {
-	padding-right: 0;
-}
+
 
 .hr-title {
 	margin-top: 2em;

@@ -37,7 +37,7 @@ function kino_register_styles() {
 			'main-style', 
 			get_stylesheet_directory_uri() . '/css/dev/00-main.css', // main.css
 			false, // dependencies
-			'2015.12.12' // version
+			'2015.12.16' // version
 	); 
 	
 	/*
@@ -164,6 +164,10 @@ add_action( 'widgets_init', 'kino_widgets_init' );
 ******************************/
 
 require_once('functions/admin.php');
+
+/* Code fore page header */
+
+require_once('functions/header-output.php');
 
 require_once('functions/bp-fields.php');
 

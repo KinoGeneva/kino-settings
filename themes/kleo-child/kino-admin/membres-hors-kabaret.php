@@ -20,78 +20,115 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         <?php 
         
         /*
-         * Une page pour faciliter la gestion des inscriptions kino
-        ***************
-        
-        - Total of users
-        
-        - in group: Kinogeneva 2016 (pending)
-        
-        - in group: real.plateforme (pending)
-        
-        - in group: real.kino (pending)
+         Vue: tous les membres hors Kabaret
+         tous les membres ne participant pas au cabaret
+         Voir: date d'inscription.
+         = permet de vérifier qu'il n'y ait pas de manquant à l'appel
         
         ****/
         	
         $kino_debug_mode = 'off';
-        
-        $user_fields = array( 
-        	'user_login', 
-        	'user_nicename', 
-        	'display_name',
-        	'user_email', 
-        	'ID' 
-        );
-        
-        $user_query = new WP_User_Query( array( 
-        	'fields' => $user_fields 
-        ) );
-        
-        // Réalisateur-trice en attente : Kabaret 2016
-        $kino_pending_real_kab = array();
-        
-        // Réalisateur-trice en attente : Plateforme
-        $kino_pending_real_platform = array();
-        
-        // Réalisateur-trice validé : Kabaret 2016
-        $kino_valid_real_kab = array();
-        
-        // Réalisateur-trice validé : Plateforme
-        $kino_valid_real_platform = array();
-                
+        $url = site_url();
         $kino_fields = kino_test_fields();
         
+        // On enlève les membres faisant partie du groupe: 
+        // Participants Kino 2016 : profil complet
         
-        //***************************************
-        
-        // Quel est le total d'utilisateurs?
-        
-        echo '<p>Total des utilisateurs sur la plateforme: '.count( $user_query ) .'</p>';
-        
-        
-        // Combien dans le groupe : Kinogeneva 2016 (pending) : non automatique !!
-        
-        // Combien dans le groupe : Participants Kino 2016 : profil complet
-                
         $ids_of_kino_complete = get_objects_in_term( 
         	$kino_fields['group-kino-complete'] , 
         	'user-group' 
         );
         
-        // Combien dans le groupe : real.plateforme (pending)
+        echo '<h3>Total des participants au Kabaret (profil complet): '.count($ids_of_kino_complete).'</h3>';
         
-        $ids_of_real_platform_pending = get_objects_in_term( 
-        	$kino_fields['group-real-platform-pending'] , 
-        	'user-group' 
+        echo '<p><b>Voir <a href="'.$url.'/kino-admin/participants-kabaret/">Participants Kabaret</a> pour une vue plus détaillée.</b></p>';
+        
+        if ( $kino_debug_mode == 'on' ) {
+        	echo '<pre>';
+        	var_dump($ids_of_kino_complete);
+        	echo '</pre>';
+        }
+        
+        $user_fields = array( 
+        	'user_login', 
+        	'user_nicename', // = slug
+        	'display_name',
+        	'user_email', 
+        	'ID',
+        	'registered', 
         );
         
-        // Combien dans le groupe : real.kino (pending)
+        $user_query = new WP_User_Query( array( 
+        	// 'fields' => $user_fields,
+        	'exclude' => $ids_of_kino_complete,
+        	'orderby' => 'registered',
+        	'order' => 'DESC'
+        ) );
+
+        //***************************************
         
-        $ids_of_real_kabaret_pending = get_objects_in_term( 
-        	$kino_fields['group-real-kabaret-pending'] , 
-        	'user-group' 
-        );
+        // Quel est le total d'utilisateurs?
         
+        echo '<h3>Total des utilisateurs hors Kabaret: '.count($user_query->results).'</h3>';
+        
+        echo '<p><b>Note: </b> Ce tableau liste tous les utilisateurs qui ne sont PAS dans le groupe "Participants Kino 2016 : profil complet". Il inclut donc les usagers ayant coché la participation, mais dont le profil n’est pas encore complet.</p>';
+        
+        if ( ! empty( $user_query->results ) ) {
+        
+        // Contenu du tableau
+        	// Nom
+        	// email
+        	// Init:
+        	$metronom = 1;
+        	
+        	?>
+        	<table class="table table-hover table-bordered table-condensed">
+        		<thead>
+        			<tr>
+        				<th>#</th>
+        				<th>Nom</th>
+        		    <th>Email</th>
+        		    <th>Kab 2016?</th>
+        		    <th>Enregistrement</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        		<?php
+        
+        	foreach ( $user_query->results as $user ) {
+        		
+        		?>
+        		<tr>
+        			<th><?php echo $metronom++; ?></th>
+        			<?php 
+        			
+        					// $user->ID
+        					echo '<td><a href="'.$url.'/members/'.$user->user_nicename.'/" target="_blank">'.$user->user_login.'</a> ('.$user->display_name.')</td>';
+        					
+        					// Email
+        			echo '<td><a href="mailto:'. $user->user_email .'?Subject=Kino%20Kabaret" target="_top">'. $user->user_email .'</a></td>';
+        			
+		        			// Participe au Kabaret 2016?
+		        			$kino_test = bp_get_profile_field_data( array(
+		        					'field'   => $kino_fields['kabaret'], 
+		        					'user_id' => $user->ID
+		        			) );
+		        			if ( ( $kino_test == "oui" ) || ( $kino_test == "yes" ) ) {
+		        						echo '<td class="success">OUI</td>';
+		        			} else {
+		        						echo '<td>NON</td>';
+		        			}
+		        			
+		        			
+		        			// Registration date
+		        			echo '<td>'. $user->user_registered .'</td>';
+        			
+        		echo '</tr>';
+        		
+        	}
+        	
+        	echo '</tbody></table>';
+        }
         
          ?>
         

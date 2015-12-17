@@ -1,6 +1,7 @@
 <?php  
 
 
+
 function kino_hide_some_profile_fields( $retval ) {	
 		
 	if ( bp_is_user_profile_edit() ) {	

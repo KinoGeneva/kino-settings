@@ -37,147 +37,116 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         
         $url = site_url();
         
+        $kino_fields = kino_test_fields();
+        
+        // Kinoites qui cherchent un logement
+        $kinoites_cherchent_logement = array();
+        
+        $kinoites_cherchent_logement_ids = get_objects_in_term( 
+        	$kino_fields['group-cherche-logement'] , 
+        	'user-group' 
+        );
+        
+        // Kinoites qui offrent un logement
+        $kinoites_offrent_logement = array();
+        
+        $kinoites_offrent_logement_ids = get_objects_in_term( 
+        	$kino_fields['group-offre-logement'] , 
+        	'user-group' 
+        );
+        
+        // user query 1
+        //***************************************
+        
         $user_fields = array( 
         	'user_login', 
         	'user_nicename', 
         	'display_name',
         	'user_email', 
-        	'ID' 
+        	'ID',
+        	'registered', 
         );
         
-        $user_query = new WP_User_Query( array( 
-        	'fields' => $user_fields 
+        $user_query_cherche = new WP_User_Query( array( 
+        	'include' => $kinoites_cherchent_logement_ids, // IDs incluses
+        	'orderby' => 'registered',
+        	'order' => 'ASC' 
         ) );
         
-        // Kinoites qui cherchent un logement
-        $kinoites_cherchent_logement = array();
+        if ($kino_debug_mode == "on") {
+        	echo '<pre>';
+        	var_dump($user_query_cherche->results);
+        	echo '</pre>';
+        }
         
-        // Kinoites qui offrent un logement
-        $kinoites_offrent_logement = array();
+        // Function to generate users
+        // kino_user_fields_logement()
+        // in : bp-user-fields.php
         
-        $kino_fields = kino_test_fields();
-        
-        
-        //***************************************
-        
-        // Quel est le total d'utilisateurs?
-        
-        // echo '<p>Total des utilisateurs sur la plateforme: '.count($user_query->results).'</p>';
-        
-        if ( ! empty( $user_query->results ) ) {
-        	foreach ( $user_query->results as $user ) {
+        if ( ! empty( $user_query_cherche->results ) ) {
+        	foreach ( $user_query_cherche->results as $user ) {
         		
         		// infos about WP_user object
         		$kino_userid = $user->ID ;
         		
-        		$kinoite_cherche_logement = bp_get_profile_field_data( array(
-        					'field'   => $kino_fields["cherche-logement"],
-        					'user_id' => $kino_userid
-        			) );
-        		if (	$kinoite_cherche_logement == 'OUI' ) {
-        			
-        			// add info to array 
-        			
-        			// ADD TO GROUP!
-        			wp_set_object_terms( 
-        						$kino_userid, // $object_id, 
-        						$kino_fields['group-cherche-logement'], // $terms, 
-        						'user-group', // $taxonomy, 
-        						true // $append 
-        			);
-        			
-        			$kinoites_cherchent_logement[] = array( 
-        				"user-id" => $kino_userid,
-        				"user-name" => $user->display_name,
-        				"user-slug" => $user->user_nicename,
-        				"user-email" => $user->user_email,
-        				"cherche-logement-remarque" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields['cherche-logement-remarque'],
-        						'user_id' => $kino_userid
-        				) ),
-        				"ville" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields["ville"],
-        						'user_id' => $kino_userid
-        				) ),
-        				"pays" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields["pays"],
-        						'user_id' => $kino_userid
-        				) ),
-        				"tel" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields["tel"],
-        						'user_id' => $kino_userid
-        				) ),
-        			);
-        		} // end testing recherche de logement
+        		// TODO: tester si le kinoïte est déjà logé!
         		
-        		// test : offre logement
-        		$kinoite_offre_logement = bp_get_profile_field_data( array(
-        					'field'   => $kino_fields["offre-logement"],
-        					'user_id' => $kino_userid
-        			) );
-        		if (	$kinoite_offre_logement == 'OUI' ) {
-        			// add info to array 
-        			// echo ' '.$kinoite_cherche_logement.' ';
-        			
-        			wp_set_object_terms( 
-        						$kino_userid, // $object_id, 
-        						$kino_fields['group-offre-logement'], // $terms, 
-        						'user-group', // $taxonomy, 
-        						true // $append 
-        			);
-        			
-        			$kinoites_offrent_logement[] = array( 
-        				"user-id" => $kino_userid,
-        				"user-name" => $user->display_name,
-        				"user-slug" => $user->user_nicename,
-        				"user-email" => $user->user_email,
-        				"offre-logement-remarque" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields['offre-logement-remarque'],
-        						'user_id' => $kino_userid
-        				) ),
-        				"ville" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields["ville"],
-        						'user_id' => $kino_userid
-        				) ),
-        				"pays" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields["pays"],
-        						'user_id' => $kino_userid
-        				) ),
-        				"tel" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields["tel"],
-        						'user_id' => $kino_userid
-        				) ),
-        				"rue" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields["rue"],
-        						'user_id' => $kino_userid
-        				) ),
-        				"code-postal" => bp_get_profile_field_data( array(
-        						'field'   => $kino_fields["code-postal"],
-        						'user_id' => $kino_userid
-        				) ),
-        				
-        			);
-        		} // end testing: offre de logement
+        		// Add info to array 
+        		$kinoites_cherchent_logement[] = kino_user_fields_logement( $user, $kino_fields );
         		
+        		if ($kino_debug_mode == "on") {
+        		
+        			echo '<pre>';
+        			echo 'DUMP';
+        			var_dump($kinoites_cherchent_logement);
+        			echo '</pre>';
+        		}
+        	
+        	} // End foreach
+        } // End testing user_query_cherche	
+        
+        // user query 2
+        //***************************************
+        
+        $user_query_offre = new WP_User_Query( array( 
+        	'include' => $kinoites_offrent_logement_ids, // IDs incluses 
+        	'orderby' => 'registered',
+        	'order' => 'DESC' 
+        ) );
+        
+        if ( ! empty( $user_query_offre->results ) ) {
+        	foreach ( $user_query_offre->results as $user ) {
+        			
+        			// infos about WP_user object
+        			$kino_userid = $user->ID ;
+        			
+        			// Add info to array 
+        			$kinoites_offrent_logement[] = kino_user_fields_logement( $user, $kino_fields );
+        			
         	} // End foreach
         } // End testing User_Query
         	
+        //***************************************
         
+        // OUTPUT!
         
         // Kinoïtes qui cherchent un logement:
         if ( !empty($kinoites_cherchent_logement) ) {
-        	echo '<h2>Kinoïtes qui cherchent un logement ('.count($kinoites_cherchent_logement).'):</h2>';
-        	
+        	echo '<h2>Kinoïtes <a href="'.$url.'/wp-admin/users.php?user-group=cherche-logement">qui cherchent un logement</a> ('.count($kinoites_cherchent_logement).'):</h2>';
         	?>
-        	<table class="table table-hover table-bordered">
+        	<table class="table table-hover table-bordered table-condensed">
         		<thead>
         			<tr>
         				<th>#</th>
         				<th>Nom</th>
+        				<th>Enregistrement</th>
+        				<th>Real?</th>
+        				<th>Rôle</th>
         				<th>Adresse</th>
         		    <th>Email</th>
         		    <th>Tel.</th>
         		    <th>Remarque</th>
+        		    
         			</tr>
         		</thead>
         		<tbody>
@@ -188,17 +157,76 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         					?>
         					<tr>
         						<th><?php echo $metronom++; ?></th>
-        						<?php 
+        						<?php  // Nom:
         								echo '<td><a href="'.$url.'/members/'.$item["user-slug"].'/" target="_blank">'.$item["user-name"].'</a></td>';
-        								echo '<td>'.$item["ville"].', ';
-        								echo $item["pays"].'</td>';
+        								
+        								// Enregistrement
+        								echo '<td>'.$item["user-registered"].'</td>';
+        								
+        								// Real?
+        								
+        								if ( in_array( "real-2016-valid", $item["participation"] ) ) {          				            				
+			          				  echo '<td class="success">Approved</td>';
+			          				
+			          				} else if ( in_array( "real-2016-rejected", $item["participation"] ) ) {
+			          				
+			          				  echo '<td class="error">Rejected</td>';
+			          				
+			          				} else if ( in_array( "real-2016-pending", $item["participation"] ) ) {
+			          				
+			          					echo '<td class="warning">Pending</td>';
+			          				
+			          				} else {
+			
+			          					echo '<td></td>';
+        								}
+        								
+        								// Rôles
+        								echo '<td>'; 
+        								
+        									// Réalisateur ?
+        									if ( in_array( "realisateur-2016", $item["participation"] )) {
+        										echo '<span class="kp-pointlist">Réalisateur-trice</span>';
+        									}
+        									// Technicien ?
+        									if ( in_array( "technicien-2016", $item["participation"] )) {
+        										echo '<span class="kp-pointlist">Artisan-ne / technicien-ne</span>';
+        									}
+        									// Comédien ?
+        									if ( in_array( "comedien-2016", $item["participation"] )) {
+        										echo '<span class="kp-pointlist">Comédien-ne</span>';
+        									}
+        									// Bénévole? - benevole-complete
+        									if ( in_array( "benevole-complete", $item["participation"] )) {
+        										echo '<span class="kp-pointlist">Bénévole</span>';
+        									}
+        									
+        								echo '</td>';
+        								
+        								// Adresse
+        								echo '<td>'.$item["rue"].', '.$item["code-postal"].' '.$item["ville"].', '.$item["pays"].'</td>';
+        								
+        								// Email
         						?><td><a href="mailto:<?php echo $item["user-email"] ?>?Subject=Kino%20Kabaret" target="_top"><?php echo $item["user-email"] ?></a></td>
-        							<td><?php echo $item["tel"] ?></td>
         							<td><?php 
+        							
+        							// Tel
+        							echo $item["tel"] ?></td>
+        							<td><?php 
+        							
+        							// Remarque
 	        						if ( !empty($item["cherche-logement-remarque"]) ) {
-	        							echo $item["cherche-logement-remarque"];
+	        							echo $item["cherche-logement-remarque"].' &mdash; ';
+	        						}
+	        						if ( !empty($item["dispo"]) ) {
+	        							echo 'Jours: ';
+	        							foreach ( $item["dispo"] as $key => $value) {
+	        								echo '<span class="jour-dispo"> '.substr($value, 0, 2).'</span>';
+	        							}
 	        						}
 	        						echo '</td>';
+	        						
+	        						
         					echo '</tr>'; 
         			} // end foreach
         	echo '</tbody></table>';
@@ -253,12 +281,18 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 	        	   	$logement->term_id, 
 	        	   	'kino_nombre_couchages', 
 	        	   	true );
+	        	 $adresse_logement = get_metadata( 
+	        	   	'term', 
+	        	   	$logement->term_id, 
+	        	   	'kino_adresse_logement', 
+	        	   	true );
         	   
         	   // Nombre de places occupées: 
+        	   
         	   // trouver les objets liés à ce terme!
         	   $ids_occupants = get_objects_in_term( 
         	   	$logement->term_id , 
-        	   	'user-logement' 
+        	   	'user-logement' // taxonomie
         	   );
         	   
         	   if ( !empty($ids_occupants) ) {
@@ -266,36 +300,40 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 		        	   	/*
 		        	   	 * Liste des occupants */
 		        	   	
-		        	   	$user_fields = array( 
-		        	   		'user_login', 
-		        	   		'user_nicename',  // = slug
-		        	   		'display_name',
-		        	   		'user_email', 
-		        	   		'ID' 
-		        	   	);
-		        	   	
-		        	   	$user_query = new WP_User_Query( array( 
+		        	   	$occupants_query = new WP_User_Query( array( 
 		        	   		'include' => $ids_occupants, // IDs incluses
 		        	   		'meta_key'  => 'last_name',
 		        	   		'orderby'  => 'last_name',
+		        	   		'fields' => $user_fields,
 		        	   	) );
 		        	   	
-		        	   	$nombre_occupants = count($user_query->results);
+		        	   	$nombre_occupants = count($occupants_query->results);
 		        	   	$liste_occupants = array();
 		        	   	
-		        	   	if ( ! empty( $user_query->results ) ) {
-		        	   		foreach ( $user_query->results as $user ) {
+		        	   	if ( ! empty( $occupants_query->results ) ) {
+		        	   		foreach ( $occupants_query->results as $user ) {
 		        	   			// name and edit link:
 		        	   			// http://kinogeneva.4o4.ch/wp-admin/user-edit.php?user_id=243&wp_http_referer=%2Fwp-admin%2Fusers.php
 		        	   			$liste_occupants[] = '<a href="'.$url.'/wp-admin/user-edit.php?user_id='.$user->ID.'#user-logement">'.$user->display_name.'</a>';
 		        	   			
 		        	   		} // end foreach
-		        	   	} // end if empty $user_query
+		        	   	} // end if empty $occupants_query
         	   	
         	   }
         	   // end if empty $ids_occupants
         	   
         	   // Générer les données
+        	   
+        	   $kino_logement_data = array( 
+        	   		"id" => $logement->term_id,
+        	   		"name" => $logement->name,
+        	   		"remarques" => $logement->description,
+        	   		"adresse" => $adresse_logement,
+        	   		"couchages" => $nombre_couchages,
+        	   		"occupants" => $ids_occupants,
+        	   		"nombre-occupants" => $nombre_occupants,
+        	   		"liste-occupants" => $liste_occupants,
+        	   	);
         	   
         	   /* si le nombre de places occupées >= places dispo 
         	   	= ajouter aux logements occupés
@@ -304,28 +342,11 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	   
         	   if ( $nombre_occupants >= $nombre_couchages ) {
         	   	// ajouter aux logements occupés
-        	   		$kino_logements_occup[] = array( 
-        	   			"id" => $logement->term_id,
-        	   			"name" => $logement->name,
-        	   			"remarques" => $logement->description,
-        	   			"couchages" => $nombre_couchages,
-        	   			"occupants" => $ids_occupants,
-        	   			"nombre-occupants" => $nombre_occupants,
-        	   			"liste-occupants" => $liste_occupants,
-        	   		);
+        	   		$kino_logements_occup[] = $kino_logement_data;
         	   } else {
         	   	// ajouter aux logements disponibles
-        	   				$kino_logements_dispo[] = array( 
-        	   					"id" => $logement->term_id,
-        	   					"name" => $logement->name,
-        	   					"remarques" => $logement->description,
-        	   					"couchages" => $nombre_couchages,
-        	   					"occupants" => $ids_occupants,
-        	   					"nombre-occupants" => $nombre_occupants,
-        	   					"liste-occupants" => $liste_occupants,
-        	   				);
-        	   				
-        	   } // if/else
+        	   		$kino_logements_dispo[] = $kino_logement_data;
+        	   }
         	   
         	 } // foreach	
         }
@@ -337,13 +358,14 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	echo '<h2>Logements disponibles ('.count($kino_logements_dispo).' / '.$kino_logements_total.'):</h2>';
         	
         	?>
-        	<table class="table table-hover table-bordered">
+        	<table class="table table-hover table-bordered table-condensed">
         		<thead>
           		<tr>
           			<th>#</th>
           			<th>Nom</th>
           			<th>Description</th>
-        		    <th>Nombre couchages</th>
+          			<th>Adresse</th>
+        		    <th>Couchages</th>
         		    <th>Kinoïtes logés</th>
           		</tr>
           	</thead>
@@ -359,6 +381,9 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         									echo '<td><a href="'.$url.'/wp-admin/edit-tags.php?action=edit&taxonomy=user-logement&tag_ID='.$item["id"].'" target="_blank">'.$item["name"].'</a></td>';
 											// Description
         							?><td><?php echo $item["remarques"] ?></td>
+        							<?php 
+        							// Adresse
+        							 ?><td><?php echo $item["adresse"] ?></td>
         							<?php 
         							// Nombre couchages
         							 ?><td><?php echo $item["couchages"] ?></td>
@@ -385,13 +410,14 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	echo '<h2>Logements occupés ('.count($kino_logements_occup).' / '.$kino_logements_total.'):</h2>';
         	
         	?>
-        	<table class="table table-hover table-bordered">
+        	<table class="table table-hover table-bordered table-condensed">
         		<thead>
           		<tr>
           			<th>#</th>
           			<th>Nom</th>
           			<th>Description</th>
-        		    <th>Nombre couchages</th>
+          			<th>Adresse</th>
+        		    <th>Couchages</th>
         		    <th>Kinoïtes logés</th>
           		</tr>
           	</thead>
@@ -407,6 +433,9 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         									echo '<td><a href="'.$url.'/wp-admin/edit-tags.php?action=edit&taxonomy=user-logement&tag_ID='.$item["id"].'" target="_blank">'.$item["name"].'</a></td>';
         							// Description
         							?><td><?php echo $item["remarques"] ?></td>
+        							<?php 
+        							// Adresse
+        							 ?><td><?php echo $item["adresse"] ?></td>
         							<?php 
         							// Nombre couchages
         							 ?><td><?php echo $item["couchages"] ?></td>
@@ -430,10 +459,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         
         // Kinoïtes qui offrent un logement:
         if ( !empty($kinoites_offrent_logement) ) {
-        	echo '<h2>Kinoïtes qui offrent un logement ('.count($kinoites_offrent_logement).'):</h2>';
+        	echo '<h2>Kinoïtes <a href="'.$url.'/wp-admin/users.php?user-group=offre-logement">qui offrent un logement</a> ('.count($kinoites_offrent_logement).'):</h2>';
         	
         	?>
-        	<table class="table table-hover table-bordered">
+        	<table class="table table-hover table-bordered table-condensed">
         		<thead>
 	        		<tr>
 	        			<th>#</th>
@@ -454,8 +483,14 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         						<tr>
         							<th><?php echo $metronom++; ?></th>
         							<?php 
-        									echo '<td><a href="'.$url.'/members/'.$item["user-slug"].'/" target="_blank">'.$item["user-name"].'</a></td>';
-        									echo '<td>'.$item["rue"].', '.$item["code-postal"].' '.$item["ville"].', '.$item["pays"].'</td>';
+        							
+        							// Nom
+        							echo '<td><a href="'.$url.'/members/'.$item["user-slug"].'/" target="_blank">'.$item["user-name"].'</a></td>';
+        							
+        							// Adresse
+        							echo '<td>'.$item["rue"].', '.$item["code-postal"].' '.$item["ville"].', '.$item["pays"].'</td>';
+        							
+        							// Email
         							?><td><a href="mailto:<?php echo $item["user-email"] ?>?Subject=Kino%20Kabaret" target="_top"><?php echo $item["user-email"] ?></a></td>
         							<td><?php echo $item["tel"] ?></td>
         							<td><?php 
@@ -468,7 +503,20 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         		echo '</tbody></table>';
         }
         
-                
+        // Notes
+        
+        ?>
+        <h3>NOTES:</h3>
+        
+        <p>La distinction entre "logements disponibles / logements occupés" se fait en fonction du nombre de couchages indiqués, et du nombre de kinoïtes logés.</p>
+        
+        <ul>
+	        <li><a href="<?php echo $url; ?>/wp-admin/edit-tags.php?taxonomy=user-logement ">Ajouter un logement</a></li>
+	        <li><a href="<?php echo $url; ?>/wp-admin/users.php?user-group=cherche-logement">Voir la liste des demandeurs</a> - pour ajouter des Kinoïtes à un logement: cocher la personne, utiliser le menu tout en bas: "Actions pour: Logements".
+	        </li>
+        </ul>
+        </p>
+        <?php      
          ?>
         
     </div><!--end article-content-->

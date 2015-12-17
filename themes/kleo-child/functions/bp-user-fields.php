@@ -13,7 +13,9 @@ function kino_user_participation( $userid, $kino_fields ) {
 				$kino_fields = kino_test_fields();
 			}
 			
-			$kino_user_participation = array();
+			
+			// $kino_user_participation = $kup
+			$kup = array();
 			
 			
 			// is Comédien? // is Realisateur? // is Technicien?
@@ -27,7 +29,7 @@ function kino_user_participation( $userid, $kino_fields ) {
 					$value = mb_substr($value, 0, 4);
 				  
 				  if ( $value == "Réal" ) {
-				  	$kino_user_participation[] = "realisateur";
+				  	$kup[] = "realisateur";
 				  	
 				  	
 				  	// Profil Realisateur complet? 
@@ -36,13 +38,13 @@ function kino_user_participation( $userid, $kino_fields ) {
 				  			'user_id' => $userid
 				  	) );
 				  	if ( $kino_profil_real != "" ) {
-				  			$kino_user_participation[] = "realisateur-complete";
+				  			$kup[] = "realisateur-complete";
 				  	}
 				  	
 				  	
 				  }
 				  if ( $value == "Comé" ) {
-				  	$kino_user_participation[] = "comedien";
+				  	$kup[] = "comedien";
 				  	
 				  	// Profil Comédien complet? 
 				  	$kino_profil_comedien = bp_get_profile_field_data( array(
@@ -50,12 +52,12 @@ function kino_user_participation( $userid, $kino_fields ) {
 				  			'user_id' => $userid
 				  	) );
 				  	if ( $kino_profil_comedien ) {
-				  			$kino_user_participation[] = "comedien-complete";
+				  			$kup[] = "comedien-complete";
 				  	}
 				  	
 				  }
 				  if ( $value == "Arti" ) {
-				  	$kino_user_participation[] = "technicien";
+				  	$kup[] = "technicien";
 				  	
 				  	// Profil Technicien complet? 
 				  	$kino_profil_tech = bp_get_profile_field_data( array(
@@ -63,7 +65,7 @@ function kino_user_participation( $userid, $kino_fields ) {
 				  			'user_id' => $userid
 				  	) );
 				  	if ( $kino_profil_tech ) {
-				  			$kino_user_participation[] = "technicien-complete";
+				  			$kup[] = "technicien-complete";
 				  	}
 				  	
 				  	
@@ -80,7 +82,7 @@ function kino_user_participation( $userid, $kino_fields ) {
 			) );
 			if ( ( $kino_test == "oui" ) || ( $kino_test == "yes" ) ) {
 						
-						$kino_user_participation[] = "kabaret-2016";
+						$kup[] = "kabaret-2016";
 						
 						// Profil Cabaret 2016 complet? 
 						
@@ -89,7 +91,7 @@ function kino_user_participation( $userid, $kino_fields ) {
 								'user_id' => $userid
 						) );
 						if ( $kino_dispo_kab ) {
-								$kino_user_participation[] = "kabaret-complete";
+								$kup[] = "kabaret-complete";
 						}
 						
 			}
@@ -100,21 +102,21 @@ function kino_user_participation( $userid, $kino_fields ) {
 					'user_id' => $userid
 			) );
 			if ( ( $kino_aide_benevole == "oui" ) || ( $kino_aide_benevole == "yes" ) ) {
-						$kino_user_participation[] = "benevole";
+						$kup[] = "benevole";
 			}
 			
-			// Aide benevole pour le Kabaret 2016
+			// Aide benevole pour le Kabaret 2016?
 			$kino_benevole_boxes = bp_get_profile_field_data( array(
 					'field'   => $kino_fields['benevole-kabaret'],
 					'user_id' => $userid
 			) );
 			if ($kino_benevole_boxes) {
 			
-				$kino_user_participation[] = "benevole-complete";
+				$kup[] = "benevole-complete";
 				
 				foreach ($kino_benevole_boxes as $key => $value) {
 				  if ( $value == "l’organisation du Kino Kabaret" ) {
-				  	$kino_user_participation[] = "benevole-kabaret";
+				  	$kup[] = "benevole-kabaret";
 				  }
 				} // end foreach
 			} //
@@ -133,17 +135,44 @@ function kino_user_participation( $userid, $kino_fields ) {
 					$value = mb_substr($value, 0, 4);
 				
 				  if ( $value == "Réal" ) {
-				  	$kino_user_participation[] = "realisateur-2016";
+				  	$kup[] = "realisateur-2016";
 				  }
 				  if ( $value == "Comé" ) {
-				  	$kino_user_participation[] = "comedien-2016";
+				  	$kup[] = "comedien-2016";
 				  }
 				  if ( $value == "Arti" ) {
-				  	$kino_user_participation[] = "technicien-2016";
+				  	$kup[] = "technicien-2016";
 				  }
 				} // end foreach
 			} //
 			
+			
+			// Test statut réalisateur pour 2016
+			
+			if ($kino16_particiation_boxes) {
+				
+				$ids_group_real_kab_valid = get_objects_in_term( 
+						$kino_fields['group-real-kabaret'], 
+						'user-group' 
+					);
+					$ids_group_real_kab_pending = get_objects_in_term( 
+						$kino_fields['group-real-kabaret-pending'], 
+						'user-group' 
+					);
+					$ids_group_real_kab_rejected = get_objects_in_term( 
+						$kino_fields['group-real-kabaret-rejected'], 
+						'user-group' 
+					);
+					
+					if ( in_array( $userid, $ids_group_real_kab_valid ) ) {
+					  $kup[] = "real-2016-valid";
+					} else if ( in_array( $userid, $ids_group_real_kab_rejected ) ) {
+					  $kup[] = "real-2016-rejected";
+					} else if ( in_array( $userid, $ids_group_real_kab_pending ) ) {
+						$kup[] = "real-2016-pending";
+					}
+				
+			} // END if 2016 participation
 			
 			// Is ID complete ?
 			$kino_id_field = bp_get_profile_field_data( array(
@@ -151,14 +180,10 @@ function kino_user_participation( $userid, $kino_fields ) {
 					'user_id' => $userid
 			) );
 			if ($kino_id_field != "" ) {
-					$kino_user_participation[] = "id-complete";
+					$kup[] = "id-complete";
 			}
 			
-			
-			
-			
-			
-			
+
 			// Test avatar
 			// src: https://buddypress.org/support/topic/detecting-if-user-uploaded-an-avatar/
 			
@@ -170,11 +195,11 @@ function kino_user_participation( $userid, $kino_fields ) {
 			if ( $kino_avatar == 'http://kinogeneva.ch/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg' ) {
 				// no avatar
 			} else {
-				$kino_user_participation[] = "avatar-complete";
+				$kup[] = "avatar-complete";
 			}
 			
 			
-			return $kino_user_participation;
+			return $kup;
 			
 			/*
 			// au final, les valeurs retournées:
@@ -182,17 +207,23 @@ function kino_user_participation( $userid, $kino_fields ) {
 			- realisateur
 			- technicien
 			- comedien
+			- benevole
 			
 			- realisateur-2016
 			- technicien-2016
 			- comedien-2016
 			- kabaret-2016
+			- benevole-kabaret
+			
+			- real-2016-valid
+			- real-2016-rejected
+			- real-2016-pending
 			
 			- id-complete
 			- realisateur-complete
 			- comedien-complete
 			- technicien-complete
-			- benevole-complete
+			- benevole-complete = pour kabaret 2016
 			- avatar-complete
 			
 			*/
@@ -233,6 +264,69 @@ function kino_user_fields_light( $kino_userid, $kino_fields ) {
 			'user_id' => $kino_userid
 	) );
 
+	return $kino_userdata;
+
+}
+
+/*
+ * Kino User Logement
+ * Created for Gestion-Logements
+*/
+
+function kino_user_fields_logement( $user, $kino_fields ) {
+
+	$kino_userid = $user->ID ;
+
+    if ( empty( $kino_fields ) ) {
+        $kino_fields = kino_test_fields();
+    }
+    
+    $kino_user_participation = kino_user_participation( 
+    	$kino_userid, 
+    	$kino_fields
+    );
+    
+	$kino_userdata = array(
+        "user-id" => $kino_userid,
+        "user-name" => $user->display_name,
+        "user-slug" => $user->user_nicename,
+        "user-email" => $user->user_email,
+        "user-registered" => $user->user_registered,
+        "participation" => $kino_user_participation,
+        "cherche-logement-remarque" => bp_get_profile_field_data( array(
+            'field'   => $kino_fields['cherche-logement-remarque'],
+            'user_id' => $kino_userid
+        ) ),
+        "offre-logement-remarque" => bp_get_profile_field_data( array(
+            'field'   => $kino_fields['offre-logement-remarque'],
+            'user_id' => $kino_userid
+        ) ),
+        "rue" => bp_get_profile_field_data( array(
+            'field'   => $kino_fields["rue"],
+            'user_id' => $kino_userid
+        ) ),
+        "ville" => bp_get_profile_field_data( array(
+            'field'   => $kino_fields["ville"],
+            'user_id' => $kino_userid
+        ) ),
+        "code-postal" => bp_get_profile_field_data( array(
+            'field'   => $kino_fields["code-postal"],
+            'user_id' => $kino_userid
+        ) ),
+        "pays" => bp_get_profile_field_data( array(
+            'field'   => $kino_fields["pays"],
+            'user_id' => $kino_userid
+        ) ),
+        "tel" => bp_get_profile_field_data( array(
+            'field'   => $kino_fields["tel"],
+            'user_id' => $kino_userid
+        ) ),
+        "dispo" =>  bp_get_profile_field_data( array(
+            'field'   => $kino_fields["dispo"],
+            'user_id' => $kino_userid
+        ) )
+    );
+	
 	return $kino_userdata;
 
 }
