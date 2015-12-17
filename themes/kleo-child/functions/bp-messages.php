@@ -187,6 +187,27 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  					 		}
  					
  			} // end testing "realisateur-2016"
+ 			
+ 			
+ 			// test if Bénévole?
+ 			
+ 			if ( in_array( "benevole-kabaret", $kino_user_role ) ) {
+ 				// already in group?
+ 						$ids_group_benevoles = get_objects_in_term( 
+ 							$kino_fields['group-benevoles-kabaret'], 
+ 							'user-group' 
+ 						);
+ 						if ( !in_array( $userid, $ids_group_benevoles ) ) { 
+ 							// add to group!
+ 								wp_set_object_terms( 
+ 									$userid, // $object_id, 
+ 									$kino_fields['group-benevoles-kabaret'], // $terms, 
+ 									'user-group', // $taxonomy, 
+ 									true // $append 
+ 								);
+ 						}
+ 			}
+ 			
  		
  			// Test if user is looking for / is proposing an appartment.
  			

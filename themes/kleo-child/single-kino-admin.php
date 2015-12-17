@@ -42,6 +42,10 @@ get_header(); ?>
 							
 							get_template_part( 'kino-admin/gestion-logements' );
 							
+						} else if ( $kino_page_slug == 'gestion-des-benevoles' ) {
+							
+							get_template_part( 'kino-admin/gestion-benevoles' );
+							
 						} else if ( $kino_page_slug == 'participants-kabaret' ) {
 							
 							get_template_part( 'kino-admin/participants-kabaret' );
