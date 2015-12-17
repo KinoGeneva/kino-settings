@@ -20,8 +20,47 @@ function kino_redirect_admin(){
 		exit;		
 	}
 }
-add_action( 'admin_init', 'kino_redirect_admin' );
+// add_action( 'admin_init', 'kino_redirect_admin' );
+// NOTE: cela empêche de changer l'adresse email!
 
+// Dashboard: remove Visual composer for subscribers
+function kino_remove_menus() {
+  if ( current_user_can( 'subscriber' ) ) {
+		  remove_menu_page( 'index.php' );
+		  remove_menu_page( 'admin.php?page=vc-welcome' );
+		  
+		  remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
+  }
+}
+add_action( 'admin_menu', 'kino_remove_menus', 999);
+
+add_action( 'init', 'kino_subscriber_hide_groups', 0 );
+function kino_subscriber_hide_groups() {
+    if ( current_user_can( 'subscriber' ) ) {
+    	remove_action( 'show_user_profile', 'edit_user_relationships', 999 );
+    	remove_action( 'edit_user_profile', 'edit_user_relationships', 999 );
+    }
+}
+
+// remove Visual Composer Menu
+function kino_vc_admin_css() {
+  if ( current_user_can( 'subscriber' ) ) {
+		  echo '<style>
+		 #toplevel_page_vc-welcome,
+		 tr.user-admin-bar-front-wrap,
+		 tr.user-url-wrap,
+		 tr.user-description-wrap,
+		 #profile-nav 
+		 {
+		 	display: none;
+		 }
+		 div#profile-page.wrap form#your-profile {
+		 	padding-top: 0px;
+		 }
+		  </style>';
+	}
+}
+add_action('admin_head', 'kino_vc_admin_css');
 
 // WP User Groups 
 
@@ -44,6 +83,14 @@ function kino_register_logement_taxonomy() {
 	// add_term_meta();	
 }
 add_action( 'init', 'kino_register_logement_taxonomy' );
+
+function kino_limit_group_access() {
+	global $wp_taxonomies;
+	$wp_taxonomies['user-group']->cap->assign_terms = 'list_users';
+	$wp_taxonomies['user-logement']->cap->assign_terms = 'list_users';
+}
+add_action('init','kino_limit_group_access', 11);
+
 
 // Ajouter deux TERM_META pour les logements:
 /*
