@@ -54,6 +54,10 @@ get_header(); ?>
 							
 							get_template_part( 'kino-admin/membres-hors-kabaret' );
 							
+						} else if ( $kino_page_slug == 'motivation-realisateurs' ) {
+							
+							get_template_part( 'kino-admin/motivation-realisateurs' );
+							
 						} else {
 								
 							get_template_part( 'content', 'page' );

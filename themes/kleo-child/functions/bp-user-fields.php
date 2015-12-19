@@ -41,6 +41,28 @@ function kino_user_participation( $userid, $kino_fields ) {
 				  			$kup[] = "realisateur-complete";
 				  	}
 				  	
+				  	// Test statut réalisateur plateforme
+				  	
+				  	$ids_group_real_plaform_valid = get_objects_in_term( 
+				  			$kino_fields['group-real-platform'], 
+				  			'user-group' 
+				  		);
+				  		$ids_group_real_plaform_pending = get_objects_in_term( 
+				  			$kino_fields['group-real-platform-pending'], 
+				  			'user-group' 
+				  		);
+				  		$ids_group_real_plaform_rejected = get_objects_in_term( 
+				  			$kino_fields['group-real-platform-rejected'], 
+				  			'user-group' 
+				  		);
+				  		
+				  		if ( in_array( $userid, $ids_group_real_plaform_valid ) ) {
+				  		  $kup[] = "real-platform-valid";
+				  		} else if ( in_array( $userid, $ids_group_real_plaform_rejected ) ) {
+				  		  $kup[] = "real-platform-rejected";
+				  		} else if ( in_array( $userid, $ids_group_real_plaform_pending ) ) {
+				  			$kup[] = "real-platform-pending";
+				  		}
 				  	
 				  }
 				  if ( $value == "Comé" ) {
@@ -324,12 +346,29 @@ function kino_user_fields_logement( $user, $kino_fields ) {
         "dispo" =>  bp_get_profile_field_data( array(
             'field'   => $kino_fields["dispo"],
             'user_id' => $kino_userid
-        ) )
+        ) ),
+        "benevole-fonction" =>  bp_get_profile_field_data( array(
+            'field'   => $kino_fields["benevole-fonction"],
+            'user_id' => $kino_userid
+        ) ),
+        "benevole-charge-admin" =>  bp_get_profile_field_data( array(
+            'field'   => $kino_fields["benevole-charge-admin"],
+            'user_id' => $kino_userid
+        ) ),
     );
 	
 	return $kino_userdata;
 
 }
+
+
+// Generate table with user information
+function kino_generate_real_table ( $user, $kino_fields) {
+
+}
+
+
+
 
 /*
  * Kino User Fields

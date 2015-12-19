@@ -403,6 +403,10 @@ body .alignleft.wp-image-1845 {
 	content: "";
 }
 
+.kino-admin-view .btn {
+	margin-left: 0;
+}
+
 
 .kp-pointlist:after {
 	content: " \2219 "; /* bullet */

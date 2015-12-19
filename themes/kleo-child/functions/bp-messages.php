@@ -83,6 +83,8 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  		$userid = bp_loggedin_user_id();
  	}
  	
+ 	$userdata = get_userdata($userid);
+ 	
  	$kino_notification = '';
  	
  	$kino_notification_email = '';
@@ -135,9 +137,32 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  						
  				 		// test:
  				 		if ( in_array( $userid, $ids_group_real_platform ) ) {
- 				 		  // do nothing
+ 				 		  // accepted: do nothing
  				 		} else if ( in_array( $userid, $ids_group_real_platform_pending ) ) {
  				 		  // do nothing
+ 				 		  
+ 				 		  // TROUBLESHOOTING: 
+ 				 		  // test if user is also in "realisateur-2016"
+ 				 		  if ( in_array( "realisateur-2016", $kino_user_role ) ) {
+ 				 		  	// platform + kino = all OK
+ 				 		  } else {
+ 				 		  	// platform ONLY: probably mistake : add to email list!
+ 				 		  	
+ 				 		  	$mailpoet_userdata = array(
+ 				 		  	       'email' => $userdata->user_email,
+ 				 		  	       'firstname' => $userdata->user_firstname,
+ 				 		  	       'lastname' => $userdata->user_lastname);
+ 				 		  	
+ 				 		  	   $data_subscriber = array(
+ 				 		  	     'user' => $mailpoet_userdata,
+ 				 		  	     'user_list' => array('list_ids' => array($kino_fields["mailpoet-real-platform-only"]))
+ 				 		  	   );
+ 				 		  	   
+ 				 		  	   $helper_user = WYSIJA::get('user','helper');
+ 				 		  	   $helper_user->addSubscriber($data_subscriber);
+ 				 		  	
+ 				 		  } // end troubleshooting
+ 				 		  
  				 		} else if ( in_array( $userid, $ids_group_real_platform_rejected ) ) {
  				 			  // do nothing
  				 		} else {
@@ -171,7 +196,7 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  					
  					 		// test:
  					 		if ( in_array( $userid, $ids_group_real_kabaret ) ) {
- 					 			  // do nothing
+ 					 			  // accepted: do nothing
 				 			} else if ( in_array( $userid, $ids_group_real_kabaret_pending ) ) {
 				 			  // do nothing
 				 			} else if ( in_array( $userid, $ids_group_real_kabaret_rejected ) ) {

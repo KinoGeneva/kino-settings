@@ -24,6 +24,11 @@ function kino_hide_some_profile_fields( $retval ) {
 			
 			$kino_excluded_id[] = $kino_fields['session-attribuee'];
 			
+			// exclude Champs bénévoles Admin
+			
+			$kino_excluded_id[] = $kino_fields['benevole-activite-admin'];
+			$kino_excluded_id[] = $kino_fields['benevole-charge-admin'];
+			
 			// is Realisateur for 2016?
 			
 			$kino_user_role = kino_user_participation( bp_loggedin_user_id(), $kino_fields );

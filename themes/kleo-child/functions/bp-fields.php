@@ -22,8 +22,13 @@ function kino_test_fields() {
 	$kino_fields['session-deux'] = 1106;
 	$kino_fields['session-trois'] = 1116;
 	
+	// Bénévoles
 	$kino_fields['benevole'] = 1313; // Aide Bénévole?
-	$kino_fields['benevole-kabaret'] = 1320; // Aide benevole pour le Kabaret 2016
+	$kino_fields['benevole-kabaret'] = 1320; // Pour quelles activités
+	$kino_fields['benevole-fonction'] = 1327; // Pour quelles charges
+	$kino_fields['benevole-activite-admin'] = 1512; // Pour quelles activités - vue admin
+	$kino_fields['benevole-charge-admin'] = 1514; // Pour quelles charges - vue admin
+	
 	
 	$kino_fields['id-presentation'] = 31; // is ID complete? champ: Présentation
 	$kino_fields['id-photo'] = 859; // champ: Photo
@@ -117,6 +122,11 @@ function kino_test_fields() {
 	$kino_fields['group-cherche-logement'] = 94 ;  // 79 94
 	$kino_fields['group-offre-logement'] = 95 ; // 80 95
 	}
+	
+	// MailPoet List ID:
+	// ***********
+	$kino_fields['mailpoet-benevoles'] = 6 ;
+	$kino_fields['mailpoet-real-platform-only'] = 7 ;
 	
 	return $kino_fields;
 }

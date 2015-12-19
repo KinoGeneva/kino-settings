@@ -69,6 +69,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         			// add to array
         			$kinoites_benevoles[] = kino_user_fields_logement( $user, $kino_fields );
         			
+        			
+        				    
+        			// 	    
+        			
         		if ($kino_debug_mode == "on") {
         		
         			echo '<pre>';
@@ -95,10 +99,11 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
           			<th>#</th>
           			<th>Nom</th>
           			<th>Real?</th>
-          			<th>Rôle</th>
+          			<th>Rôle Kino</th>
+          			<th>Fonction?</th>
+          			<th>Choix admin</th>
           			<th>Adresse</th>
-        		    <th>Email</th>
-        		    <th>Tel.</th>
+        		    <th>Email / Tel.</th>
           		</tr>
           	</thead>
           	<tbody>
@@ -116,25 +121,28 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         							echo '<td><a href="'.$url.'/members/'.$item["user-slug"].'/" target="_blank">'.$item["user-name"].'</a></td>';
         							
         							// Real?
-        							  								
-			  								if ( in_array( "real-2016-valid", $item["participation"] ) ) {          				            				
-			          				  echo '<td class="success">Approved</td>';
-			          				
-			          				} else if ( in_array( "real-2016-rejected", $item["participation"] ) ) {
-			          				
-			          				  echo '<td class="error">Rejected</td>';
-			          				
-			          				} else if ( in_array( "real-2016-pending", $item["participation"] ) ) {
-			          				
-			          					echo '<td class="warning">Pending</td>';
-			          				
-			          				} else {
-			
-			          					echo '<td></td>';
-			  								}
+        							// ******************
+        							  							  								
+				  								if ( in_array( "real-2016-valid", $item["participation"] ) ) {          				            				
+				          				  echo '<td class="success">Approved</td>';
+				          				
+				          				} else if ( in_array( "real-2016-rejected", $item["participation"] ) ) {
+				          				
+				          				  echo '<td class="error">Rejected</td>';
+				          				
+				          				} else if ( in_array( "real-2016-pending", $item["participation"] ) ) {
+				          				
+				          					echo '<td class="warning">Pending</td>';
+				          				
+				          				} else {
+				
+				          					echo '<td></td>';
+				  								}
         							
         							
-        							// Rôles
+        							// Rôles Kino
+        							// ******************
+        							
         							echo '<td>'; 
         							
         								// Réalisateur ?
@@ -152,20 +160,40 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         								
         							echo '</td>';
         							
+        							// ******************
+        							
+        							// Fonction
+        							echo '<td>';
+        							if ( $item["benevole-fonction"] ) {
+        										foreach ( $item["benevole-fonction"] as $key => $value) {
+        											echo '<span class="kp-pointlist">'.$value.'</span>';
+        										}
+        							}
+        							echo '</td>';
+        							
+        							// Fonction
+        							echo '<td>';
+        							if ( $item["benevole-charge-admin"] ) {
+        										foreach ( $item["benevole-charge-admin"] as $key => $value) {
+        											echo '<span class="kp-pointlist">'.$value.'</span>';
+        										}
+        							}
+        							echo '</td>';
+        							
+        							// ******************
+        							
         							// Adresse
         							echo '<td>'.$item["rue"].', '.$item["code-postal"].' '.$item["ville"].', '.$item["pays"].'</td>';
         							
         							// Email
-        							?><td><a href="mailto:<?php echo $item["user-email"] ?>?Subject=Kino%20Kabaret" target="_top"><?php echo $item["user-email"] ?></a></td>
-        							<?php
-        							 // Tel ?>
-        							<td><?php echo $item["tel"] ?></td>
+        							?><td><a href="mailto:<?php echo $item["user-email"] ?>?Subject=Kino%20Kabaret" target="_top"><?php echo $item["user-email"] ?></a> - <?php echo $item["tel"] ?></td>
         					<?php		
         					echo '</tr>';
+        					
         				} // end foreach
         		echo '</tbody></table>';
         }
-        
+
         
         ?>
         
