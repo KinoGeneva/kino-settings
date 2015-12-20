@@ -191,29 +191,33 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				  								
 				  // 4) “En attente: Réalisateurs Kino Kabaret 2016”
 				  
+				  if (!empty($ids_kabaret_only)) {
 				  
-				  $user_query = new WP_User_Query( array( 
-				  				  	// 'fields' => $user_fields
-				  	'include' => $ids_kabaret_only, 
-				  	'orderby' => 'registered',
-				  	'order' => 'DESC'
-				  ) );
+					  $user_query = new WP_User_Query( array( 
+					  				  	// 'fields' => $user_fields
+					  	'include' => $ids_kabaret_only, 
+					  	'orderby' => 'registered',
+					  	'order' => 'DESC'
+					  ) );
+					
 				  
-				  // User Loop
-				if ( ! empty( $user_query->results ) ) {
-
-				        	$metronom = 1;
-				        	
-				        	echo '<h2>En attente: Réalisateurs Kino Kabaret ONLY ('.count($user_query->results).')</h2>';
-				        	
-				        	echo $kino_table_header;
-				        
-				        	foreach ( $user_query->results as $user ) {
-				        		
-				        		include('validation-real-loop.php');
-				        		
-				        	}
-				        	echo '</tbody></table>';
+						  // User Loop
+						if ( ! empty( $user_query->results ) ) {
+		
+						        	$metronom = 1;
+						        	
+						        	echo '<h2>En attente: Réalisateurs Kino Kabaret ONLY ('.count($user_query->results).')</h2>';
+						        	
+						        	echo $kino_table_header;
+						        
+						        	foreach ( $user_query->results as $user ) {
+						        		
+						        		include('validation-real-loop.php');
+						        		
+						        	}
+						        	echo '</tbody></table>';
+						  }
+				  
 				  }
 				  
 				
