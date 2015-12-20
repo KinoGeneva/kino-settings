@@ -9,6 +9,7 @@ function kino_test_fields() {
 	
 	
 	$kino_fields['profile-role'] = 135; // Profil Kinoite Role
+	$kino_fields['conditions-generales'] = 1070; // Profil Kinoite Role
 	$kino_fields['kabaret'] = 100; // Participe au cabaret 2016?
 	$kino_fields['role-kabaret'] = 1258; // Test des rôles pour le Kabaret 2016
 	
@@ -28,7 +29,7 @@ function kino_test_fields() {
 	$kino_fields['benevole-fonction'] = 1327; // Pour quelles charges
 	$kino_fields['benevole-activite-admin'] = 1512; // Pour quelles activités - vue admin
 	$kino_fields['benevole-charge-admin'] = 1514; // Pour quelles charges - vue admin
-	
+	$kino_fields['benevole-charge-admin-test'] = 1516;
 	
 	$kino_fields['id-presentation'] = 31; // is ID complete? champ: Présentation
 	$kino_fields['id-photo'] = 859; // champ: Photo

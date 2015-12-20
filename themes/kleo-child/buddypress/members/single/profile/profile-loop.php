@@ -3,13 +3,19 @@
 <?php if ( bp_has_profile() ) : 
 	
 	echo '<div class="bp-profile-loop-container">';
-	// Test what groups we need to show!
-	// liste des groupes existants
+
+	// NOTE: 
+	// Ici, nous empêchons les utilisateurs de voir certains groupes de champs:
+	
+	// 1) Liste des groupes existants
+	
 	$groups = wp_cache_get( 'all', 'bp_xprofile_groups' );
 	if ( false === $groups ) {
 		$groups = bp_xprofile_get_groups( array( 'fetch_fields' => true ) );
 		wp_cache_set( 'all', $groups, 'bp_xprofile' );
 	}
+	
+	// 2) Liste des groupes autorisés (filtrés)
 	
 	$kino_allowed_groups = kino_get_field_group_conditions( $groups );
 	$kino_allowed_group_ids = array();
@@ -18,6 +24,11 @@
 	  $kino_allowed_group_ids[] = $item->id;
 	   			//echo $item->name;
 	}
+	
+	
+	// 3) Liste de champs autorisés:
+	
+	$kino_excluded_fields = kino_list_of_excluded_profile_fields();
 	
 //	echo '<pre>Allowed ids:';
 //	var_dump($kino_allowed_group_ids);
@@ -29,6 +40,7 @@
 	
 			// test if group ID... bp_the_profile_group_id() 
 			
+			// Affichage conditionnel: on n'affiche que si le groupe est autorisé
 			// echo '<p>group id:'.bp_get_the_profile_group_id() .'</p>';
 			
 			if ( in_array( bp_get_the_profile_group_id(), $kino_allowed_group_ids ) ) :
@@ -47,22 +59,25 @@
 				
 				<div class="bp-profile-loop">
 				
-					<?php while ( bp_profile_fields() ) : bp_the_profile_field(); ?>
+					<?php while ( bp_profile_fields() ) : bp_the_profile_field(); 
 					
-					
-					
-						<?php if ( bp_field_has_data() ) : ?>
+						if ( bp_field_has_data() ) : 
+						
+								if ( !in_array( bp_get_the_profile_field_id(), $kino_excluded_fields ) ) :
+						?>
               
               <dl<?php bp_field_css_class('dl-horizontal'); ?>>
                 <dt><?php bp_the_profile_field_name(); ?></dt>
                 <dd><?php bp_the_profile_field_value(); ?></dd>
               </dl>
 
-						<?php endif;  // bp_field_has_data()  ?>
+						<?php endif;  // field is allowed
+						
+						endif;  // bp_field_has_data()
 
-						<?php do_action( 'bp_profile_field_item' ); ?>
+								do_action( 'bp_profile_field_item' );
 
-					<?php endwhile; ?>
+						endwhile; ?>
 					
 					</div><!-- end bp-profile-loop -->
 			</div><!-- end bp-widget -->

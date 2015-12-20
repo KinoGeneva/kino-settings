@@ -1,5 +1,52 @@
 <?php  
 
+// kino_list_of_excluded_profile_fields()
+// A function to list the excluded profile fields: 
+// Fields that should not be shown on a user profile, only for admins!
+
+// Must be used both on Edit profile and View profile!
+
+function kino_list_of_excluded_profile_fields() {	
+	
+	$kino_excluded_id = array();
+	
+	$kino_fields = kino_test_fields();
+	
+	if ( current_user_can( 'publish_pages' ) ) {
+	
+		// we show everything for: Admin and Editor roles
+	
+	} else {
+		
+		
+		// exclude Session Attribuée (admin only)
+		
+		$kino_excluded_id[] = $kino_fields['session-attribuee'];
+		
+		// exclude Champs bénévoles Admin
+		
+		$kino_excluded_id[] = $kino_fields['benevole-activite-admin'];
+		$kino_excluded_id[] = $kino_fields['benevole-charge-admin'];
+		$kino_excluded_id[] = $kino_fields['benevole-charge-admin-test'];
+		
+		// Cacher uniquement sur la page Edition du profil: 
+		// Définis dans la fonction ci-dessous
+		
+		if ( bp_is_user_profile_edit() ) {
+		
+		} else {
+		
+			// Cacher uniquement sur la page Vue du profil: 
+		
+			// conditions d'utilisation:
+			$kino_excluded_id[] = $kino_fields['conditions-generales'];
+		}
+		
+	}
+	
+	return $kino_excluded_id;
+	
+}
 
 
 function kino_hide_some_profile_fields( $retval ) {	
@@ -20,14 +67,7 @@ function kino_hide_some_profile_fields( $retval ) {
 		
 		} else {
 			
-			// exclude Session Attribuée (admin only)
-			
-			$kino_excluded_id[] = $kino_fields['session-attribuee'];
-			
-			// exclude Champs bénévoles Admin
-			
-			$kino_excluded_id[] = $kino_fields['benevole-activite-admin'];
-			$kino_excluded_id[] = $kino_fields['benevole-charge-admin'];
+			$kino_excluded_id = kino_list_of_excluded_profile_fields();
 			
 			// is Realisateur for 2016?
 			
