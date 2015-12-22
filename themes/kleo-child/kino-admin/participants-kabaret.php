@@ -38,6 +38,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         );
         
         echo '<h3>Total des participants au profil complet: '.count( $ids_of_kino_complete ) .'</h3>';
+        
+        echo '<p><b>Note: </b> Ce tableau liste tous les utilisateurs qui sont dans le groupe "Participants Kino 2016 : profil complet". Il n’inclut donc PAS les usagers ayant coché la participation, mais dont le profil n’est pas encore complet.</p>';
         	
         echo '<p><b>Voir aussi les <a href="'.$url.'/kino-admin/membres-hors-kabaret/">membres hors-Kabaret</a>.</b></p>';
         // Voir Participants Kabaret pour une vue plus détaillée	
@@ -73,10 +75,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         		<thead>
         			<tr>
         				<th>#</th>
-        				<th>Nom</th>
-        		    <th>Email</th>
+        				<th>Nom/Email</th>
+        		    <th>Rôle Kabaret</th>
         		    <th>Réal?</th>
-        		    <th>Enregistrement</th>
+        		    <th>Inscription</th>
         			</tr>
         		</thead>
         		<tbody>
@@ -89,32 +91,60 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         			<th><?php echo $metronom++; ?></th>
         			<?php 
         			
-        					// $kino_user_role = kino_user_participation( $user->ID, $kino_fields );
-        			
-        					// $user->ID
-        					echo '<td><a href="'.$url.'/members/'.$user->user_nicename.'/" target="_blank">'.$user->user_login.'</a> ('.$user->display_name.')</td>';
+        					$kino_user_role = kino_user_participation( 
+        						$user->ID, 
+        						$kino_fields
+        					);
+        					
+        					// Name
+        					echo '<td>';
+        					echo '<a href="'.$url.'/members/'.$user->user_nicename.'/" target="_blank">';
+		        					if ( empty($user->display_name) ) {
+		        						echo $user->user_nicename;
+		        					} else {
+		        						echo $user->display_name;
+		        					}
+        					echo '</a>';
         					
         					// Email
-        			echo '<td><a href="mailto:'. $user->user_email .'?Subject=Kino%20Kabaret" target="_top">'. $user->user_email .'</a></td>';
-        			
+        			echo ' – <a href="mailto:'. $user->user_email .'?Subject=Kino%20Kabaret" target="_top">'. $user->user_email .'</a></td>';
+        					
+        					// Rôle Kino?
+        					
+        					// Rôles Kino
+        					// ******************
+        					
+        					echo '<td>'; 
+        					
+        						// Réalisateur ?
+        						if ( in_array( "realisateur-2016", $kino_user_role )) {
+        							echo '<span class="kp-pointlist">Réalisateur-trice</span>';
+        						}
+        						// Technicien ?
+        						if ( in_array( "technicien-2016", $kino_user_role )) {
+        							echo '<span class="kp-pointlist">Artisan-ne / technicien-ne</span>';
+        						}
+        						// Comédien ?
+        						if ( in_array( "comedien-2016", $kino_user_role )) {
+        							echo '<span class="kp-pointlist">Comédien-ne</span>';
+        						}
+        						
+        					echo '</td>';
+        					
             			            			
             			// Participe commme Réal ?
-            			
-            			$kino_user_role = kino_user_participation( 
-            				$user->ID, 
-            				$kino_fields
-            			);
+            			// ******************
             			
             			// Test if : 
             				
-          				if ( in_array( "real-2016-valid", $kino_user_role ) ) {          				            				
+          				if ( in_array( "real-kab-valid", $kino_user_role ) ) {          				            				
           				  echo '<td class="success">Approved</td>';
           				
-          				} else if ( in_array( "real-2016-rejected", $kino_user_role ) ) {
+          				} else if ( in_array( "real-kab-rejected", $kino_user_role ) ) {
           				
           				  echo '<td class="error">Rejected</td>';
           				
-          				} else if ( in_array( "real-2016-pending", $kino_user_role ) ) {
+          				} else if ( in_array( "real-kab-pending", $kino_user_role ) ) {
           				
           					echo '<td class="warning">Pending</td>';
           				
@@ -126,7 +156,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
             			
             			
             			// Registration date
-            			echo '<td>'. $user->user_registered .'</td>';
+            			$shortdate = substr( $user->user_registered, 0, 10 );
+            			echo '<td>'. $shortdate .'</td>';
         			
         		echo '</tr>';
         		
@@ -138,7 +169,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
          ?>
         
     </div><!--end article-content-->
-
+  
     <?php  ?>
 </article>
 <!-- End  Article -->

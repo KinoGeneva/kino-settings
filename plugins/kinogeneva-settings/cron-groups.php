@@ -18,7 +18,11 @@
 function kino_task_function() {
   
   // check for users in group "Kino 2016":
-  $userIDs = get_objects_in_term( 65, 'user-group');
+  // $userIDs = get_objects_in_term( 65, 'user-group');
+  
+  $userIDs = array();
+  
+  $userIDs[] = '203'; // Manuel
   
   // Add them to the newsletters
   foreach ($userIDs as $k => $id) {
@@ -32,11 +36,15 @@ function kino_task_function() {
     
     $data_subscriber = array(
           'user' => $user_data,
-          'user_list' => array('list_ids' => array(4,5))
+          'listid' => array('list_ids' => array(4,5))
         );
      
     $helper_user = WYSIJA::get('user','helper');
-    $helper_user->addSubscriber($data_subscriber);
+    // $helper_user->addSubscriber($data_subscriber);
+    $helper_user->addToList(
+        $data_subscriber['listid'],
+        $userIDs, 
+        true);
     
    }
   

@@ -30,30 +30,50 @@ get_header(); ?>
 		
 						$kino_page_slug = $post->post_name;
 						
+						// Validation des Réalisateurs Kabaret
+						
 						if ( $kino_page_slug == 'validation-realisateurs' ) {
 						
 							get_template_part( 'kino-admin/validation-realisateurs' );
 						
+						// Impression des fiches
+						
+						} else if ( $kino_page_slug == 'validation-realisateurs-plateforme' ) {
+						
+							get_template_part( 'kino-admin/validation-realisateurs-plateforme' );
+						
+						// Impression des fiches
+						
 						} else if ( $kino_page_slug == 'impression-fiches' ) {
 							
 							get_template_part( 'kino-admin/impression-fiches' );
+						
+						// Gestion des Logements
 							
 						} else if ( $kino_page_slug == 'gestion-des-logements' ) {
 							
 							get_template_part( 'kino-admin/gestion-logements' );
+						
+						// Gestion des Bénévoles
 							
 						} else if ( $kino_page_slug == 'gestion-des-benevoles' ) {
 							
 							get_template_part( 'kino-admin/gestion-benevoles' );
 							
+						// Participants au Kabaret	
+							
 						} else if ( $kino_page_slug == 'participants-kabaret' ) {
 							
 							get_template_part( 'kino-admin/participants-kabaret' );
+						
+						// Membres hors-Kabaret	
 							
 						} else if ( $kino_page_slug == 'membres-hors-kabaret' ) {
 							
 							get_template_part( 'kino-admin/membres-hors-kabaret' );
-							
+						
+						// Motivation Réalisateurs 
+													
 						} else if ( $kino_page_slug == 'motivation-realisateurs' ) {
 							
 							get_template_part( 'kino-admin/motivation-realisateurs' );

@@ -73,6 +73,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         
         echo '<p><b>Note: </b> Ce tableau liste tous les utilisateurs qui ne sont PAS dans le groupe "Participants Kino 2016 : profil complet". Il inclut donc les usagers ayant coché la participation, mais dont le profil n’est pas encore complet.</p>';
         
+        echo '<p><b>Voir aussi la <a href="'.$url.'/kino-admin/participants-kabaret/">liste des participants au Kabaret</a>.</b></p>';
+        
         if ( ! empty( $user_query->results ) ) {
         
         // Contenu du tableau
@@ -89,7 +91,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         				<th>Nom</th>
         		    <th>Email</th>
         		    <th>Kab 2016?</th>
-        		    <th>Enregistrement</th>
+        		    <th>Inscription</th>
         			</tr>
         		</thead>
         		<tbody>

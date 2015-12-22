@@ -93,6 +93,12 @@ function kino_admin_css() {
     	/* font-family: dashicons;
     	font-size: 20px; */
     }
+    
+    .users_page_bp-profile-edit img {
+    	max-width: 100%;
+    	height: auto;
+    }
+    
   </style>';
 }
 add_action('admin_head', 'kino_admin_css');

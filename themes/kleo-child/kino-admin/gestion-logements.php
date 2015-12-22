@@ -165,14 +165,14 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         								
         								// Real?
         								
-        								if ( in_array( "real-2016-valid", $item["participation"] ) ) {          				            				
+        								if ( in_array( "real-kab-valid", $item["participation"] ) ) {          				            				
 			          				  echo '<td class="success">Approved</td>';
 			          				
-			          				} else if ( in_array( "real-2016-rejected", $item["participation"] ) ) {
+			          				} else if ( in_array( "real-kab-rejected", $item["participation"] ) ) {
 			          				
 			          				  echo '<td class="error">Rejected</td>';
 			          				
-			          				} else if ( in_array( "real-2016-pending", $item["participation"] ) ) {
+			          				} else if ( in_array( "real-kab-pending", $item["participation"] ) ) {
 			          				
 			          					echo '<td class="warning">Pending</td>';
 			          				

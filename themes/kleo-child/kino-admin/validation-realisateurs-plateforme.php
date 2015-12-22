@@ -78,57 +78,31 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 //        	'user-group' 
 //        );
  				
- 				$ids_real_both = array_intersect( $ids_real_platform_pending, $ids_real_kabaret_pending );
  				
  				$ids_platform_only = array_diff( $ids_real_platform_pending, $ids_real_kabaret_pending );
  					
- 				$ids_kabaret_only = array_diff( $ids_real_kabaret_pending, $ids_real_platform_pending );
  				
  				echo '<p>Réalisateurs en attente <b>Plateforme</b>: '.count($ids_real_platform_pending).'</p>';
- 				echo '<p>Réalisateurs en attente <b>Kabaret</b>: '.count($ids_real_kabaret_pending).'</p>';
- 				echo '<p>Réalisateurs en attente <b>pour les deux</b>: '.count($ids_real_both).'</p>';
+ 				// echo '<p>Réalisateurs en attente <b>Kabaret</b>: '.count($ids_real_kabaret_pending).'</p>';
+
  				echo '<p>Réalisateurs en attente <b>Plateforme uniquement</b>: '.count($ids_platform_only).'</p>';
- 				echo '<p>Réalisateurs en attente <b>Kabaret uniquement</b>: '.count($ids_kabaret_only).'</p>';
  				
- 				// http://kinogeneva.ch/kino-admin/validation-realisateurs-plateforme/
+ 				echo '<p><b>Voir aussi: <a href="'.$url.'/kino-admin/validation-realisateurs/">Validation réalisateurs Kabaret</a>.</b></p>';
  				
- 				echo '<p><b>Voir aussi: <a href="'.$url.'/kino-admin/validation-realisateurs-plateforme/">Validation Réalisateurs Plateforme</a>.</b></p>';
- 				
- 				// **************
- 				
- 				// “En attente: Réalisateurs Kabaret only”
- 				
- 				if (!empty($ids_kabaret_only)) {
- 				  $user_query = new WP_User_Query( array( 
- 				  	'include' => $ids_kabaret_only, 
- 				  	'orderby' => 'registered',
- 				  	'order' => 'DESC'
- 				  ) );
- 					if ( ! empty( $user_query->results ) ) {
- 				    	$metronom = 1;
- 				    	$kino_show_validation = 'kabaret';
- 				    	echo '<h2>En attente: Réalisateurs Kino Kabaret ONLY ('.count($user_query->results).')</h2>';
- 				    	echo kino_table_header($kino_show_validation);
- 				      	foreach ( $user_query->results as $user ) {
- 				      		include('validation-real-loop.php');
- 				      	}
- 				    	echo '</tbody></table>';
- 					  }
- 				}
- 				
+
  				//***************************************
  				
- 				// “En attente: Réalisateurs Kino Kabaret 2016”
- 				if (!empty($ids_real_kabaret_pending)) {
+ 				// “En attente: Réalisateurs Plateforme”
+ 				if (!empty($ids_real_platform_pending)) {
 	 				$user_query = new WP_User_Query( array( 
-	 					'include' => $ids_real_kabaret_pending, 
+	 					'include' => $ids_real_platform_pending, 
 	 					'orderby' => 'registered',
 	 					'order' => 'DESC'
 	 				) );
 	 				if ( ! empty( $user_query->results ) ) {
 	 					$metronom = 1;
-	 					$kino_show_validation = 'kabaret';
-	 					echo '<h2>En attente: Réalisateurs Kino Kabaret 2016 ('.count($user_query->results).')</h2>';
+	 					$kino_show_validation = 'plateforme';
+	 					echo '<h2>En attente: Réalisateurs Plateforme ('.count($user_query->results).')</h2>';
 	 					echo kino_table_header($kino_show_validation);
 	 					foreach ( $user_query->results as $user ) {
 	 						include('validation-real-loop.php');
@@ -137,62 +111,22 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 	 				}
  				}
         
-        //***************************************
-        
-        // “En attente: Réalisateurs Plateforme”
-//        if (!empty($ids_real_platform_pending)) {
-//	        $user_query = new WP_User_Query( array( 
-//	        	'include' => $ids_real_platform_pending, 
-//	        	'orderby' => 'registered',
-//	        	'order' => 'DESC'
-//	        ) );
-//					if ( ! empty( $user_query->results ) ) {
-//	        	$metronom = 1;
-//	        	echo '<h2>En attente: Réalisateurs Plateforme ('.count($user_query->results).')</h2>';
-//	        	echo $kino_table_header;
-//	        	foreach ( $user_query->results as $user ) {
-//	        		include('validation-real-loop.php');
-//	        		}
-//	        	echo '</tbody></table>';
-//					}
-//				}
-				        
-				//***************************************
-				// “En attente: Réalisateurs Plateforme ONLY”
-				
-				if (!empty($ids_platform_only)) {
-					$user_query = new WP_User_Query( array( 
-						'include' => $ids_platform_only, 
-						'orderby' => 'registered',
-						'order' => 'DESC'
-					) );
-					if ( ! empty( $user_query->results ) ) {
-	        	$metronom = 1;
-	        	$kino_show_validation = 'false';
-	        	echo '<h2>En attente: Réalisateurs Plateforme ONLY ('.count($user_query->results).')</h2>';
-	        	echo kino_table_header($kino_show_validation);
-	        	foreach ( $user_query->results as $user ) {
-	        		include('validation-real-loop.php');
-	        	}
-					  echo '</tbody></table>';
-					}
-				}
 				  
 				 //***************************************
-				 // “Acceptés: Réalisateurs Kabaret ”
+				 // “Acceptés: Réalisateurs Plateforme ”
 				 
-				 if (!empty($ids_real_kabaret_accepted)) {
+				 if (!empty($ids_real_platform_accepted)) {
 				 	$user_query = new WP_User_Query( array( 
-				 		'include' => $ids_real_kabaret_accepted, 
+				 		'include' => $ids_real_platform_accepted, 
 				 		'orderby' => 'registered',
 				 		'order' => 'DESC'
 				 	) );
 				 	if ( ! empty( $user_query->results ) ) {
 				   	$metronom = 1;
 				   	$kino_show_validation = 'false';
-				   	echo '<h2>Réalisateurs Kino Kabaret 2016: Acceptés ('.count($user_query->results).')</h2>';
-				   	echo '<div id="real-kabaret-accepted">';
-				   	echo kino_table_header($kino_show_validation);
+				   	echo '<h2>Réalisateurs Plateforme: Acceptés ('.count($user_query->results).')</h2>';
+				   	echo '<div id="real-platform-accepted">';
+				   		echo kino_table_header($kino_show_validation);
 				   	foreach ( $user_query->results as $user ) {
 				   		include('validation-real-loop.php');
 				   	}
@@ -201,19 +135,19 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				 }
 				 
 				 //***************************************
-				 // “Refusés: Réalisateurs Kabaret ”
+				 // “Refusés: Réalisateurs Plateforme ”
 				 
-				 if (!empty($ids_real_kabaret_rejected)) {
+				 if (!empty($ids_real_platform_rejected)) {
 				 	$user_query = new WP_User_Query( array( 
-				 		'include' => $ids_real_kabaret_rejected, 
+				 		'include' => $ids_real_platform_rejected, 
 				 		'orderby' => 'registered',
 				 		'order' => 'DESC'
 				 	) );
 				 	if ( ! empty( $user_query->results ) ) {
 				   	$metronom = 1;
 				   	$kino_show_validation = 'false';
-				   	echo '<h2>Réalisateurs Kino Kabaret 2016: Refusés ('.count($user_query->results).')</h2>';
-				   	echo '<div id="real-kabaret-rejected">';
+				   	echo '<h2>Réalisateurs Plateforme: Refusés ('.count($user_query->results).')</h2>';
+				   	echo '<div id="real-platform-rejected">';
 				   	echo kino_table_header($kino_show_validation);
 				   	foreach ( $user_query->results as $user ) {
 				   		include('validation-real-loop.php');
@@ -243,7 +177,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
     
                     // item clicked
                     var $item = $('.pending-candidate[data-id="' + id + '"]'),
-    
+                    
                     // gather data
                         data = {
                             action: 'set_kino_state',
@@ -265,14 +199,18 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
                               // update the UI to reflect the response
                               $item.attr ('data-state', state);
                               
-                              if ( state == 'kabaret-accept' ) {  
+                              if ( state == 'accepted' ) {  
                               
-                              	$item.detach();
+                              	$item.detach().appendTo('#real-kabaret-accepted tbody');
                               
-                              } else if ( state == 'kabaret-reject' ) {
+                              } else if ( state == 'rejected' ) {
                               
-                              	$item.detach();
+                              	$item.detach().appendTo('#real-kabaret-rejected tbody');
                               
+                              } else if ( state == 'platform-accept' ) {
+                              	 $item.detach();
+                              } else if ( state == 'platform-reject' ) {
+                              	 $item.detach();
                               }
     
                                 // succcess data
@@ -289,20 +227,20 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
     
                 // setup the items
                 $item.each (function (inx, item){
-                   
-                   var $item = jQuery(item),
-                       $actionBtn = $item.find ('.admin-action');
-
-                   // setup the button click handlers
-                   
-                   $actionBtn.on ('click', function(){
-                       var id = $item.attr ('data-id');
-                       var kinoaction = $(this).attr ('data-action');
-                       // alert ('id='+id+' action='+kinoaction);
-                       setState( id, kinoaction);
-                   });
-   
-               });
+    
+                    var $item = jQuery(item),
+                        $actionBtn = $item.find ('.admin-action');
+ 
+                    // setup the button click handlers
+                    
+                    $actionBtn.on ('click', function(){
+                        var id = $item.attr ('data-id');
+                        var kinoaction = $(this).attr ('data-action');
+                        // alert ('id='+id+' action='+kinoaction);
+                        setState( id, kinoaction);
+                    });
+    
+                });
     
             })(jQuery);
             

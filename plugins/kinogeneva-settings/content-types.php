@@ -16,7 +16,7 @@ function kino_register_post_types() {
 					'public' => true,
 					'show_ui' => true,
 					'show_in_menu' => true,
-					 'menu_icon' => 'dashicons-analytics', // src: https://developer.wordpress.org/resource/dashicons/
+					 'menu_icon' => 'dashicons-businessman', // src: https://developer.wordpress.org/resource/dashicons/
 					// dashicons-admin-post
 					'capability_type' => 'post',
 					'map_meta_cap' => true,

@@ -421,5 +421,52 @@ body .alignleft.wp-image-1845 {
 	padding-right: 0;
 }
 
+.table .validation {
+	width: 12em;
+}
+
+.admin-action {
+	display: block;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	float: left;
+	clear: none;
+	width: auto;
+	text-align: center;
+	padding: 0.2em 0.5em 0.3em 0.5em;
+	margin: 0.3em;
+	cursor: pointer;
+}
+
+a.admin-action,
+a.admin-action:hover {
+	color: #555;
+}
+
+.pending-accept {
+    color:green;
+}
+.pending-reject {
+    color:red;
+}
+
+.pending-accept {
+	border-color: #00c42a;
+	background: #d1ffe2;
+}
+
+.pending-accept:hover {
+	background-color: #66ff9e;
+}
+
+.pending-reject {
+	border-color: #fb3b1e;
+	background: #fedbd1;
+}
+
+.pending-reject:hover {
+	background-color: #feb59f;
+}
+
 /* @end */
 

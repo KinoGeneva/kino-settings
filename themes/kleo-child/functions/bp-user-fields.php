@@ -41,29 +41,6 @@ function kino_user_participation( $userid, $kino_fields ) {
 				  			$kup[] = "realisateur-complete";
 				  	}
 				  	
-				  	// Test statut réalisateur plateforme
-				  	
-				  	$ids_group_real_plaform_valid = get_objects_in_term( 
-				  			$kino_fields['group-real-platform'], 
-				  			'user-group' 
-				  		);
-				  		$ids_group_real_plaform_pending = get_objects_in_term( 
-				  			$kino_fields['group-real-platform-pending'], 
-				  			'user-group' 
-				  		);
-				  		$ids_group_real_plaform_rejected = get_objects_in_term( 
-				  			$kino_fields['group-real-platform-rejected'], 
-				  			'user-group' 
-				  		);
-				  		
-				  		if ( in_array( $userid, $ids_group_real_plaform_valid ) ) {
-				  		  $kup[] = "real-platform-valid";
-				  		} else if ( in_array( $userid, $ids_group_real_plaform_rejected ) ) {
-				  		  $kup[] = "real-platform-rejected";
-				  		} else if ( in_array( $userid, $ids_group_real_plaform_pending ) ) {
-				  			$kup[] = "real-platform-pending";
-				  		}
-				  	
 				  }
 				  if ( $value == "Comé" ) {
 				  	$kup[] = "comedien";
@@ -90,12 +67,38 @@ function kino_user_participation( $userid, $kino_fields ) {
 				  			$kup[] = "technicien-complete";
 				  	}
 				  	
-				  	
 				  }
 				  
 				} // end foreach
-			} // end testing field
+			} // end testing field kino_participation
 			
+			// ***************
+			
+			// Test statut réalisateur plateforme
+			// NOTE: if rejected = the real_participation checkbox will be unchecked.
+			
+			$ids_group_real_plaform_valid = get_objects_in_term( 
+					$kino_fields['group-real-platform'], 
+					'user-group' 
+				);
+				$ids_group_real_plaform_pending = get_objects_in_term( 
+					$kino_fields['group-real-platform-pending'], 
+					'user-group' 
+				);
+				$ids_group_real_plaform_rejected = get_objects_in_term( 
+					$kino_fields['group-real-platform-rejected'], 
+					'user-group' 
+				);
+				
+				if ( in_array( $userid, $ids_group_real_plaform_valid ) ) {
+				  $kup[] = "real-platform-valid";
+				} else if ( in_array( $userid, $ids_group_real_plaform_rejected ) ) {
+				  $kup[] = "real-platform-rejected";
+				} else if ( in_array( $userid, $ids_group_real_plaform_pending ) ) {
+					$kup[] = "real-platform-pending";
+				}
+			
+			// ***************
 			
 			// Participe au cabaret 2016?
 			$kino_test = bp_get_profile_field_data( array(
@@ -117,6 +120,8 @@ function kino_user_participation( $userid, $kino_fields ) {
 						}
 						
 			}
+			
+			// ***************
 			
 			// Aide Bénévole?
 			$kino_aide_benevole = bp_get_profile_field_data( array(
@@ -143,7 +148,7 @@ function kino_user_participation( $userid, $kino_fields ) {
 				} // end foreach
 			} //
 			
-			
+			// ***************
 			
 			// Test des rôles pour le Kabaret 2016
 			$kino16_particiation_boxes = bp_get_profile_field_data( array(
@@ -168,33 +173,37 @@ function kino_user_participation( $userid, $kino_fields ) {
 				} // end foreach
 			} //
 			
+			// ***************
 			
 			// Test statut réalisateur pour 2016
 			
-			if ($kino16_particiation_boxes) {
+			// if ($kino16_particiation_boxes) {
+			// NOTE: box could be disabled - if real has been rejected
 				
 				$ids_group_real_kab_valid = get_objects_in_term( 
 						$kino_fields['group-real-kabaret'], 
 						'user-group' 
 					);
-					$ids_group_real_kab_pending = get_objects_in_term( 
+				$ids_group_real_kab_pending = get_objects_in_term( 
 						$kino_fields['group-real-kabaret-pending'], 
 						'user-group' 
 					);
-					$ids_group_real_kab_rejected = get_objects_in_term( 
+				$ids_group_real_kab_rejected = get_objects_in_term( 
 						$kino_fields['group-real-kabaret-rejected'], 
 						'user-group' 
 					);
 					
 					if ( in_array( $userid, $ids_group_real_kab_valid ) ) {
-					  $kup[] = "real-2016-valid";
+					  $kup[] = "real-kab-valid";
 					} else if ( in_array( $userid, $ids_group_real_kab_rejected ) ) {
-					  $kup[] = "real-2016-rejected";
+					  $kup[] = "real-kab-rejected";
 					} else if ( in_array( $userid, $ids_group_real_kab_pending ) ) {
-						$kup[] = "real-2016-pending";
+						$kup[] = "real-kab-pending";
 					}
 				
-			} // END if 2016 participation
+			// } // END if 2016 participation
+			
+			// ***************
 			
 			// Is ID complete ?
 			$kino_id_field = bp_get_profile_field_data( array(
@@ -237,9 +246,9 @@ function kino_user_participation( $userid, $kino_fields ) {
 			- kabaret-2016
 			- benevole-kabaret
 			
-			- real-2016-valid
-			- real-2016-rejected
-			- real-2016-pending
+			- real-kab-valid
+			- real-kab-rejected
+			- real-kab-pending
 			
 			- id-complete
 			- realisateur-complete
