@@ -37,6 +37,9 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	'user-group' 
         );
         
+        $ids_of_kino_complete = array_filter($ids_of_kino_complete);
+        
+        
         echo '<h3>Total des participants au profil complet: '.count( $ids_of_kino_complete ) .'</h3>';
         
         echo '<p><b>Note: </b> Ce tableau liste tous les utilisateurs qui sont dans le groupe "Participants Kino 2016 : profil complet". Il n’inclut donc PAS les usagers ayant coché la participation, mais dont le profil n’est pas encore complet.</p>';
@@ -158,13 +161,26 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
             			// Registration date
             			$shortdate = substr( $user->user_registered, 0, 10 );
             			echo '<td>'. $shortdate .'</td>';
+            			
+            			// Ajouter à Mailpoet: Participants Kabaret
+            			kino_add_to_mailpoet_list( 
+  			        	 	$user->ID, 
+  			        	 	$kino_fields['mailpoet-participant-kabaret'] 
+  			        	);
         			
         		echo '</tr>';
         		
         	}
         	
         	echo '</tbody></table>';
-        }
+        
+        	// Ajouter à Mailpoet: Participants Kabaret
+//        	kino_add_to_mailpoet_list( 
+//        	 	$ids_of_kino_complete, 
+//        	 	$kino_fields['mailpoet-participant-kabaret'] 
+//        	 	);
+        
+        } // test !empty
         
          ?>
         

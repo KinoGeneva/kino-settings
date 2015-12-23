@@ -261,6 +261,47 @@ function kino_user_participation( $userid, $kino_fields ) {
 			
 }
 
+
+// Same as above, but Kino 2016 role only
+
+function kino_user_participation_role( $userid, $kino_fields ) {
+	
+	if ( empty( $userid ) ) {
+		$userid = bp_loggedin_user_id();
+	}
+	if ( empty( $kino_fields ) ) {
+		$kino_fields = kino_test_fields();
+	}
+	$kup = array();
+	
+	// Test des rôles pour le Kabaret 2016
+	$kino16_particiation_boxes = bp_get_profile_field_data( array(
+			'field'   => $kino_fields['role-kabaret'],
+			'user_id' => $userid
+	) );
+	// test field 135 = participation en tant que
+	if ($kino16_particiation_boxes) {
+		foreach ($kino16_particiation_boxes as $key => $value) {
+		
+			$value = mb_substr($value, 0, 4);
+		
+		  if ( $value == "Réal" ) {
+		  	$kup[] = "realisateur-2016";
+		  }
+		  if ( $value == "Comé" ) {
+		  	$kup[] = "comedien-2016";
+		  }
+		  if ( $value == "Arti" ) {
+		  	$kup[] = "technicien-2016";
+		  }
+		} // end foreach
+	} //
+	
+	return $kup;
+	
+}
+
+
 /*
  * Kino User Fields Light
  * This functions returns a basic array of fields, used for admin pages.

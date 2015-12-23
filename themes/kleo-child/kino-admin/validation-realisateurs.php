@@ -71,6 +71,12 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         $ids_real_platform_pending = array_filter($ids_real_platform_pending);
         $ids_real_kabaret_pending = array_filter($ids_real_kabaret_pending);
         
+        $ids_real_platform_accepted = array_filter($ids_real_platform_accepted);
+        $ids_real_kabaret_accepted = array_filter($ids_real_kabaret_accepted);
+        
+        $ids_real_platform_rejected = array_filter($ids_real_platform_rejected);
+        $ids_real_kabaret_rejected = array_filter($ids_real_kabaret_rejected);
+        
         // remove user 0
 //        wp_remove_object_terms( 
 //        	0, 
@@ -173,6 +179,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 	        	echo kino_table_header($kino_show_validation);
 	        	foreach ( $user_query->results as $user ) {
 	        		include('validation-real-loop.php');
+	        		// add users to mailpoet list:
+	        		kino_add_to_mailpoet_list( $user->ID, 
+	        				$kino_fields['mailpoet-real-platform-only'] 
+	        			);
 	        	}
 					  echo '</tbody></table>';
 					}
@@ -217,10 +227,20 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				   	echo kino_table_header($kino_show_validation);
 				   	foreach ( $user_query->results as $user ) {
 				   		include('validation-real-loop.php');
+				   		// add users to mailpoet list:
+				   		kino_add_to_mailpoet_list( $user->ID, 
+				   				$kino_fields['mailpoet-real-kabaret-rejected'] 
+				   			);
 				   	}
 				 	  echo '</tbody></table></div>';
 				 	}
-				 }
+				 	
+				 	// add users to mailpoet list:
+//				 	 	kino_add_to_mailpoet_list_array( $ids_real_kabaret_rejected, 
+//				 	 		$kino_fields['mailpoet-real-kabaret-rejected'] 
+//				 	 	);
+				 	
+				 } // test !empty
 
 				
      ?>

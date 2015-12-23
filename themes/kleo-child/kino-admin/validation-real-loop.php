@@ -49,13 +49,33 @@
       					echo '<span class="kp-pointlist">Comédien-ne</span>';
       				}
       				
-//      				if ( $user->ID == 231 ) {
-//      				
+      				if ( $user->ID == 231 ) {
+      				
 //      				echo '<pre>';
 //      				var_dump($kino_user_role);
 //      				echo '</pre>';
-//      					
-//      				}
+
+//									kino_add_to_mailpoet_list( 
+//										$id, 
+//										$kino_fields['mailpoet-real-kabaret'] 
+//									);
+									
+//									$helper_user = WYSIJA::get('user','helper');
+//									
+//									$mail_lists = array($kino_fields['mailpoet-real-kabaret']);
+									
+//									$kino_user_subscribe = $helper_user->addToLists(
+//									    $mail_lists,
+//									    $user->ID
+//									 );
+
+//									$helper_user->addToList(
+//									    $kino_fields['mailpoet-real-kabaret'],
+//									    array($user->ID)
+//									 );
+									 
+									 // echo "subscribed = " . ( $kino_user_subscribe ? "true" : "false" );      					
+      				}
       				
       			echo '</td>';
       				
@@ -69,6 +89,11 @@
     				} else if ( in_array( "real-platform-rejected", $kino_user_role ) ) {
     				
     				  echo '<td class="danger">Refusé</td>';
+    				  
+    				  // add users to mailpoet list:
+//    				   	kino_add_to_mailpoet_list( $user->ID, 
+//    				   		$kino_fields['mailpoet-real-platform-rejected'] 
+//    				   	);
     				
     				} else if ( in_array( "real-platform-pending", $kino_user_role ) ) {
     				

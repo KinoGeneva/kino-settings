@@ -154,7 +154,12 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				   	}
 				 	  echo '</tbody></table></div>';
 				 	}
-				 }
+				 	
+				 	// add users to mailpoet list:
+					 	kino_add_to_mailpoet_list( $ids_real_platform_rejected, 
+					 		$kino_fields['mailpoet-real-platform-rejected'] 
+					 	);
+				 } // test !empty
 
 				
      ?>

@@ -80,6 +80,44 @@
     background-position: 0 40px;
 }
 
+/* bp icon colors */
+
+#buddypress #item-nav #object-nav a {
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: none;
+}
+
+#buddypress #item-nav #object-nav a,
+.main-color #buddypress ul.button-nav li a {
+	color: #bbbbbb;
+}
+
+#buddypress #item-nav #object-nav .current a,
+#buddypress div#item-nav #object-nav .current a:before,
+.main-color #buddypress div.item-list-tabs li.selected a,
+#main-container #buddypress div#subnav li.selected a,
+.main-color #buddypress .item-list-tabs#subnav li.selected a {
+	color: #c11119;
+}
+
+#buddypress #item-nav #object-nav a:hover,
+#buddypress div#item-nav #object-nav .current:hover a:before
+#main-container #buddypress div#subnav li a:hover {
+	color: #777777;
+}
+
+#buddypress div#item-nav #object-nav a:before {
+	font-size: 48px;
+}
+
+#buddypress div#item-nav #object-nav .dropdown-menu li a:before {
+	font-size: 22px;
+}
+
+
+/* 48px */
+
 /* @end */
 
 
@@ -113,6 +151,17 @@
 
 .bp-profile-loop .field_conditions-dutilisation-de-la-plateforme-reglement-kino-kabaret  {
 	/* montré seulement pour les admin */
+}
+
+.bp-user h1.page-title {
+	width: 100%;
+}
+
+.kino-title-avatar img.kleo-rounded {
+	float: left;
+	height: 36px;
+	width: 36px;
+	margin: -1px 10px 0 0;
 }
 
 /* @end */
@@ -466,6 +515,14 @@ a.admin-action:hover {
 
 .pending-reject:hover {
 	background-color: #feb59f;
+}
+
+/* @end */
+
+/* @group Search Widget */
+
+.widget_search .input-group {
+	background: #fff;
 }
 
 /* @end */

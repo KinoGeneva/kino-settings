@@ -37,21 +37,37 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 					$kino_fields['group-benevoles-kabaret'] , 
 					'user-group' 
 				);
+				
+				// enlever les champs zéro: 
+				$ids_of_benevoles = array_filter($ids_of_benevoles);
         
+        echo '<p>Nombre de bénévoles: '.count($ids_of_benevoles).'</p>';
         
         // user query 1
         //***************************************
         
-        $user_query = new WP_User_Query( array( 
-        	'include' => $ids_of_benevoles, // IDs incluses
-        	'orderby' => 'name',
-        	'order' => 'ASC' 
-        ) );
+        if ( !empty($ids_of_benevoles) ) {
         
-        if ($kino_debug_mode == "on") {
-        	echo '<pre>';
-        	var_dump($user_query->results);
-        	echo '</pre>';
+	        $user_query = new WP_User_Query( array( 
+	        	'include' => $ids_of_benevoles, // IDs incluses
+	        	'orderby' => 'name',
+	        	'order' => 'ASC' 
+	        ) );
+	        
+	        if ($kino_debug_mode == "on") {
+	        	echo '<pre>';
+	        	var_dump($user_query->results);
+	        	echo '</pre>';
+	        }
+        
+        	// add to mailpoet
+        	
+        	// Add to Mailpoet List
+//        	kino_add_to_mailpoet_list_array( 
+//        		$ids_of_benevoles, 
+//        		$kino_fields['mailpoet-benevoles'] 
+//        	);
+        
         }
         
         // Function to generate users
@@ -112,6 +128,13 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         				$metronom = 1;
         		
         				foreach ($kinoites_benevoles as $key => $item) {
+        				
+//        							 Add to Mailpoet List
+        							kino_add_to_mailpoet_list( 
+        								$item["user-id"], 
+        								$kino_fields['mailpoet-benevoles'] 
+        							);
+        							
         						?>
         						<tr>
         							<th><?php echo $metronom++; ?></th>

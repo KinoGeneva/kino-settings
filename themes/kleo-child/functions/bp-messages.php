@@ -148,24 +148,16 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  				 		  } else {
  				 		  	// platform ONLY: probably mistake : add to email list!
  				 		  	
- 				 		  	$mailpoet_userdata = array(
- 				 		  	       'email' => $userdata->user_email,
- 				 		  	       'firstname' => $userdata->user_firstname,
- 				 		  	       'lastname' => $userdata->user_lastname);
- 				 		  	
- 				 		  	   $data_subscriber = array(
- 				 		  	     'user' => $mailpoet_userdata,
- 				 		  	     'user_list' => array('list_ids' => array($kino_fields["mailpoet-real-platform-only"]))
+ 				 		  	   kino_add_to_mailpoet_list( $userid, 
+ 				 		  	   	$kino_fields['mailpoet-real-platform-only'] 
  				 		  	   );
- 				 		  	   
- 				 		  	   $helper_user = WYSIJA::get('user','helper');
- 				 		  	   $helper_user->addSubscriber($data_subscriber);
  				 		  	
  				 		  } // end troubleshooting
  				 		  
  				 		} else if ( in_array( $userid, $ids_group_real_platform_rejected ) ) {
  				 			  // do nothing
  				 		} else {
+ 				 				// New candidate!
  				 				// move to group: real-platform-pending
  				 				wp_set_object_terms( 
  				 					$userid, // $object_id, 
@@ -202,6 +194,7 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
 				 			} else if ( in_array( $userid, $ids_group_real_kabaret_rejected ) ) {
 				 				  // do nothing
 				 			} else {
+				 				// New candidate!
 				 				// move to group: real-kabaret-pending
 				 				wp_set_object_terms( 
 				 					$userid, // $object_id, 
@@ -230,6 +223,10 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  									'user-group', // $taxonomy, 
  									true // $append 
  								);
+ 							// add to mailing list!
+ 							kino_add_to_mailpoet_list( $userid, 
+ 							  	$kino_fields['mailpoet-benevoles'] 
+ 							  );
  						}
  			}
  			
@@ -432,7 +429,14 @@ Pour toute question relative à votre inscription, n’hésitez pas à contacter
 				 	$kino_notification_email, 
 				 	$headers 
 				 );
-				
+				 
+				 // Add user to Mailpoet list: 
+				 kino_add_to_mailpoet_list( $userid, 
+				   $kino_fields['mailpoet-participant-kabaret']);
+				 // Remove from incomplete list:
+				 kino_remove_from_mailpoet_list( $userid, 
+				   $kino_fields['mailpoet-participant-kabaret-incomplet'] );
+				 
 				break;
 		
 		

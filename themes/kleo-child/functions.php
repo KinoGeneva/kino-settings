@@ -37,7 +37,7 @@ function kino_register_styles() {
 			'main-style', 
 			get_stylesheet_directory_uri() . '/css/dev/00-main.css', // main.css
 			false, // dependencies
-			'2015.12.16' // version
+			'2015.12.23' // version
 	); 
 	
 	/*
@@ -247,6 +247,35 @@ function kino_login_redirection( $redirect_to, $request, $user ) {
 		}
 
 }
+
+
+
+// Filter for kleo_title_section
+// $args = apply_filters('kleo_title_args', $args);
+
+add_filter('kleo_title_args', 'kino_title_filter',10,1);
+
+/**
+ * Filter to replace the [caption] shortcode text with HTML5 compliant code
+ *
+ * @return text HTML content describing embedded figure
+ **/
+function kino_title_filter( $args ) {
+	
+	if ( bp_is_member() ) {
+	
+		$title_content = $args['title'];
+		
+		$member_avatar = '<div class="item-avatar rounded kino-title-avatar">'. bp_get_member_avatar( array("class"  => "avatar kleo-rounded", "alt" => "") ) .'</div>';
+		
+		$args['title'] = $member_avatar . $title_content ;
+		
+	}
+	
+	return $args;
+	
+}
+
 
 
 /* Redirect after Avatar Upload */

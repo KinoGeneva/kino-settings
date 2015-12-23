@@ -15,7 +15,7 @@
 
 	// Removed: item-header-avatar
 	
-	if ( bp_is_user_profile_edit() ) {
+	if ( ( bp_is_user_profile_edit() ) || ( bp_is_member() ) ) {
 		// we don't show the avatar
 		// NOTE: bp_is_profile_edit() is deprecated 
 	} else {

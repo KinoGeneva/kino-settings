@@ -127,7 +127,15 @@ function kino_test_fields() {
 	// MailPoet List ID:
 	// ***********
 	$kino_fields['mailpoet-benevoles'] = 6 ;
-	$kino_fields['mailpoet-real-platform-only'] = 7 ;
+	$kino_fields['mailpoet-participant-kabaret'] = 4 ;
+	$kino_fields['mailpoet-participant-kabaret-incomplet'] = 11 ;
+	
+	// Validation réalisateurs
+	$kino_fields['mailpoet-real-kabaret'] = 5 ; // Acceptés
+	$kino_fields['mailpoet-real-platform-only'] = 7 ; // Pending
+	$kino_fields['mailpoet-real-platform'] = 8 ; // Acceptés
+	$kino_fields['mailpoet-real-kabaret-rejected'] = 9 ;
+	$kino_fields['mailpoet-real-platform-rejected'] = 10 ;
 	
 	return $kino_fields;
 }

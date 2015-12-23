@@ -38,6 +38,13 @@ add_action('init', function () {
         				$kino_fields['group-real-platform-pending'], 
         				'user-group'
         			);
+        			
+        			// remove from mailpoet list:
+        			
+        			kino_remove_from_mailpoet_list(
+        				$id,
+        				$kino_fields['mailpoet-real-platform-only']
+        			);
         		
         		}
         		
@@ -51,6 +58,11 @@ add_action('init', function () {
         					'user-group', // $taxonomy, 
         					true // $append 
         				);
+        				
+        			// Add to Mailpoet List
+        			kino_add_to_mailpoet_list( $id, 
+        				$kino_fields['mailpoet-real-platform'] 
+        			);
         		
         		}
         		
@@ -64,6 +76,11 @@ add_action('init', function () {
         					'user-group', // $taxonomy, 
         					true // $append 
         				);
+        			
+        			// Add to Mailpoet List
+        			kino_add_to_mailpoet_list( $id, 
+        				$kino_fields['mailpoet-real-platform-rejected'] 
+        			);
         			
         			// remove checkbox!
         			
@@ -81,10 +98,17 @@ add_action('init', function () {
         				$kino_fields['group-real-kabaret-pending'], 
         				'user-group'
         			);
+        			
+        			kino_remove_from_mailpoet_list(
+        				$id,
+        				$kino_fields['mailpoet-real-platform-only']
+        			);
         		
         		}
         		
         		if ( $state == 'kabaret-accept' ) {
+        			
+        			// Add to Group
         			
         			wp_set_object_terms( 
         					$id, // $object_id, 
@@ -92,6 +116,12 @@ add_action('init', function () {
         					'user-group', // $taxonomy, 
         					true // $append 
         				);
+        				
+        			// Add to Mailpoet List
+        			kino_add_to_mailpoet_list( $id, 
+        				$kino_fields['mailpoet-real-kabaret'] 
+        			);
+
         		
         		} else if ( $state == 'kabaret-reject') {
         		
@@ -100,6 +130,11 @@ add_action('init', function () {
         					$kino_fields['group-real-kabaret-rejected'], // $terms, 
         					'user-group', // $taxonomy, 
         					true // $append 
+        				);
+        				
+        				// Add to Mailpoet List
+        				kino_add_to_mailpoet_list( $id, 
+        					$kino_fields['mailpoet-real-kabaret-rejected'] 
         				);
         				
         			// décocher le champ Réalisateur Kabaret!
@@ -120,6 +155,49 @@ add_action('init', function () {
     
 });
 
+function kino_add_to_mailpoet_list( $user, $list ) {
+	
+	/**
+	 * addToList()
+	 * in: helpers/user.php
+	 * add many subscribers to one list
+	 * @param int $list_id
+	 * @param int $user_ids
+	 * @return boolean
+	 */
+	 
+	$helper_user = WYSIJA::get('user','helper');
+	
+	if ( !is_array($user) ) {
+		$user = array($user);
+	}
+	
+	$helper_user->addToList(
+	    $list,
+	    $user
+	 );
+
+}
+
+function kino_add_to_mailpoet_list_array( $user, $list ) {
+	 
+	$helper_user = WYSIJA::get('user','helper');
+	$helper_user->addToList(
+	    $list,
+	    $user
+	 );
+
+}
+
+function kino_remove_from_mailpoet_list( $user, $list ) {
+	
+	$helper_user = WYSIJA::get('user','helper');
+	$helper_user->removeFromLists(
+	    array($list),
+	    array($user)
+	 );
+
+}
 
 function kino_remove_real_platform_checkbox( $id, $kino_fields ) {
 
@@ -187,7 +265,7 @@ function kino_table_header( $validation ) {
 						<th>Nom/Email</th>
 						<th>Rôle Kabaret</th>
 				    <th>Réal Plateforme</th>
-				    <th>Réal Kab</th>
+				    <th>Réal Kabaret</th>
 				    <th>Profil</th>
 				    <th>Enregistrement</th>';
 		

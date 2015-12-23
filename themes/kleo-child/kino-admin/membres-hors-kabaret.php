@@ -39,6 +39,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	'user-group' 
         );
         
+        $ids_of_kino_complete = array_filter($ids_of_kino_complete);
+        
         echo '<h3>Total des participants au Kabaret (profil complet): '.count($ids_of_kino_complete).'</h3>';
         
         echo '<p><b>Voir <a href="'.$url.'/kino-admin/participants-kabaret/">Participants Kabaret</a> pour une vue plus détaillée.</b></p>';
@@ -117,6 +119,11 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 		        			) );
 		        			if ( ( $kino_test == "oui" ) || ( $kino_test == "yes" ) ) {
 		        						echo '<td class="success">OUI</td>';
+		        						// Ajouter à Mailpoet: profil incomplet
+		        						kino_add_to_mailpoet_list( 
+		        						 	$user->ID, 
+		        						 	$kino_fields['mailpoet-participant-kabaret-incomplet'] 
+		        						 	);
 		        			} else {
 		        						echo '<td>NON</td>';
 		        			}
