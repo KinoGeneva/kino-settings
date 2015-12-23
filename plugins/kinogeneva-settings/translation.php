@@ -22,6 +22,23 @@ function kino_load_textdomain() {
 				false, 
 				'kinogeneva-settings/languages/' // relative to WP_PLUGIN_DIR
 			);
+			
+			// BP group announcements
+			load_plugin_textdomain( 
+				'bpga',
+				false, 
+				'kinogeneva-settings/languages/' // relative to WP_PLUGIN_DIR
+			);
+			
+			// BP group calendar
+			load_plugin_textdomain( 
+				'groupcalendar',
+				false, 
+				'kinogeneva-settings/languages/' // relative to WP_PLUGIN_DIR
+			);
+			
+			// ( 'Announcements', 'bpga' );
+			// __('Calendar', 'groupcalendar');
 }
 
 
