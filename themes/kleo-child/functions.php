@@ -68,6 +68,23 @@ function kino_register_styles() {
 add_action( 'wp_enqueue_scripts', 'kino_register_styles', 25 );
 
 
+function kino_register_scripts() {
+
+	if ( is_single() ) { 
+		if ( 'kino-admin' == get_post_type() ) {
+					
+					wp_enqueue_script( 'kino-admin-ajax', get_stylesheet_directory_uri() . '/js/kino-admin.js', array('jquery') );
+					
+					wp_localize_script( 'kino-admin-ajax', 'kino_ajax_object',
+						array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+					
+					
+		}
+	}
+
+}
+add_action( 'wp_enqueue_scripts', 'kino_register_scripts', 25 );
+
 /**
  * Kleo Child Theme Functions
  * Add custom code below
