@@ -51,39 +51,22 @@ add_action('init', function () {
         		if ( $state == 'platform-accept' ) {
         		
         			// add to group
-        		
-        			wp_set_object_terms( 
-        					$id, // $object_id, 
-        					$kino_fields['group-real-platform'], // $terms, 
-        					'user-group', // $taxonomy, 
-        					true // $append 
-        				);
+        			kino_add_to_usergroup( $id, $kino_fields['group-real-platform'] );
         				
         			// Add to Mailpoet List
-        			kino_add_to_mailpoet_list( $id, 
-        				$kino_fields['mailpoet-real-platform'] 
-        			);
+        			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-real-platform'] );
         		
         		}
         		
         		if ( $state == 'platform-reject' ) {
         			
         			// add to group
-        			
-        			wp_set_object_terms( 
-        					$id, // $object_id, 
-        					$kino_fields['group-real-platform-rejected'], // $terms, 
-        					'user-group', // $taxonomy, 
-        					true // $append 
-        				);
+        			kino_add_to_usergroup( $id, $kino_fields['group-real-platform-rejected'] );
         			
         			// Add to Mailpoet List
-        			kino_add_to_mailpoet_list( $id, 
-        				$kino_fields['mailpoet-real-platform-rejected'] 
-        			);
+        			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-real-platform-rejected'] );
         			
         			// remove checkbox!
-        			
         			kino_remove_real_platform_checkbox( $id, $kino_fields );
         			
         		}
@@ -109,33 +92,18 @@ add_action('init', function () {
         		if ( $state == 'kabaret-accept' ) {
         			
         			// Add to Group
-        			
-        			wp_set_object_terms( 
-        					$id, // $object_id, 
-        					$kino_fields['group-real-kabaret'], // $terms, 
-        					'user-group', // $taxonomy, 
-        					true // $append 
-        				);
+        			kino_add_to_usergroup( $id, $kino_fields['group-real-kabaret'] );
         				
         			// Add to Mailpoet List
-        			kino_add_to_mailpoet_list( $id, 
-        				$kino_fields['mailpoet-real-kabaret'] 
-        			);
+        			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-real-kabaret'] );
 
         		
         		} else if ( $state == 'kabaret-reject') {
         		
-        			wp_set_object_terms( 
-        					$id, // $object_id, 
-        					$kino_fields['group-real-kabaret-rejected'], // $terms, 
-        					'user-group', // $taxonomy, 
-        					true // $append 
-        				);
+        			kino_add_to_usergroup( $id, $kino_fields['group-real-kabaret-rejected'] );
         				
         				// Add to Mailpoet List
-        				kino_add_to_mailpoet_list( $id, 
-        					$kino_fields['mailpoet-real-kabaret-rejected'] 
-        				);
+        				kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-real-kabaret-rejected'] );
         				
         			// décocher le champ Réalisateur Kabaret!
         			

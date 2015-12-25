@@ -1,6 +1,18 @@
 <?php 
 
 
+function kino_add_to_usergroup( $id, $group ) {
+	
+	wp_set_object_terms( 
+			$id, // $object_id, 
+			$group, // $terms, 
+			'user-group', // $taxonomy, 
+			true // $append 
+	);
+
+}
+
+
 function kino_user_participation( $userid, $kino_fields ) {
 	
 			// 

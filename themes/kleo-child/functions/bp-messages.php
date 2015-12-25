@@ -159,12 +159,7 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  				 		} else {
  				 				// New candidate!
  				 				// move to group: real-platform-pending
- 				 				wp_set_object_terms( 
- 				 					$userid, // $object_id, 
- 				 					$kino_fields['group-real-platform-pending'], // $terms, 
- 				 					'user-group', // $taxonomy, 
- 				 					true // $append 
- 				 				);
+ 				 				kino_add_to_usergroup( $userid, $kino_fields['group-real-platform-pending'] );
  				 		}
  				
  		} // end testing "realisateur"
@@ -196,12 +191,7 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
 				 			} else {
 				 				// New candidate!
 				 				// move to group: real-kabaret-pending
-				 				wp_set_object_terms( 
-				 					$userid, // $object_id, 
-				 					$kino_fields['group-real-kabaret-pending'], // $terms, 
-				 					'user-group', // $taxonomy, 
-				 					true // $append 
-				 				);
+				 				kino_add_to_usergroup( $userid, $kino_fields['group-real-kabaret-pending'] );
  					 		}
  					
  			} // end testing "realisateur-2016"
@@ -217,16 +207,9 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  						);
  						if ( !in_array( $userid, $ids_group_benevoles ) ) { 
  							// add to group!
- 								wp_set_object_terms( 
- 									$userid, // $object_id, 
- 									$kino_fields['group-benevoles-kabaret'], // $terms, 
- 									'user-group', // $taxonomy, 
- 									true // $append 
- 								);
+ 							kino_add_to_usergroup( $userid, $kino_fields['group-benevoles-kabaret'] );
  							// add to mailing list!
- 							kino_add_to_mailpoet_list( $userid, 
- 							  	$kino_fields['mailpoet-benevoles'] 
- 							  );
+ 							kino_add_to_mailpoet_list( $userid, $kino_fields['mailpoet-benevoles'] );
  						}
  			}
  			
@@ -239,12 +222,7 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  			) );
  			// if OUI = add to group! $kino_fields['group-cherche-logement']
  			if ( ( $kinoite_cherche_logement == "OUI" ) ) {
- 						wp_set_object_terms( 
- 								$userid, // $object_id, 
- 								$kino_fields['group-cherche-logement'], // $terms, 
- 								'user-group', // $taxonomy, 
- 								true // $append 
- 							);
+ 						kino_add_to_usergroup( $userid, $kino_fields['group-cherche-logement'] );
  			}
  			
  			$kinoite_offre_logement = bp_get_profile_field_data( array(
@@ -253,12 +231,7 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  				) );
  				// if OUI = add to group! $kino_fields['group-cherche-logement']
  				if ( ( $kinoite_offre_logement == "OUI" ) ) {
- 							wp_set_object_terms( 
- 									$userid, // $object_id, 
- 									$kino_fields['group-offre-logement'], // $terms, 
- 									'user-group', // $taxonomy, 
- 									true // $append 
- 								);
+ 							kino_add_to_usergroup( $userid, $kino_fields['group-offre-logement'] );
  				}
  	
  	// Massive Conditional Testing
@@ -383,12 +356,7 @@ PS: pensez à <a href="'.bp_core_get_user_domain( $userid ).'profile/change-avat
 				// Action 1 = add user to group Kino Complete
 				// ****************************************
 				
-				wp_set_object_terms( 
-					$userid, // $object_id, 
-					$kino_fields['group-kino-complete'], // $terms, 
-					'user-group', // $taxonomy, 
-					true // $append 
-				);
+				kino_add_to_usergroup( $userid, $kino_fields['group-kino-complete'] );
 				
 				// Action 2 = send email notification!
 				// ****************************************
