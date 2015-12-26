@@ -414,5 +414,3 @@ Pour toute question relative à votre inscription, n’hésitez pas à contacter
  	return $kino_notification;
  	
  }
-
- ?>

@@ -272,14 +272,9 @@ function kino_login_redirection( $redirect_to, $request, $user ) {
 
 add_filter('kleo_title_args', 'kino_title_filter',10,1);
 
-/**
- * Filter to replace the [caption] shortcode text with HTML5 compliant code
- *
- * @return text HTML content describing embedded figure
- **/
 function kino_title_filter( $args ) {
 	
-	if ( bp_is_member() ) {
+	if ( bp_is_user() ) {
 	
 		$title_content = $args['title'];
 		
