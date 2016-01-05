@@ -9,6 +9,7 @@ function kino_test_fields() {
 	
 	
 	$kino_fields['profile-role'] = 135; // Profil Kinoite Role
+	$kino_fields['profile-role-real'] = '1424_2'; // Profil Kinoite Role
 	$kino_fields['conditions-generales'] = 1070; // Profil Kinoite Role
 	$kino_fields['kabaret'] = 100; // Participe au cabaret 2016?
 	$kino_fields['role-kabaret'] = 1258; // Test des rôles pour le Kabaret 2016
@@ -33,6 +34,7 @@ function kino_test_fields() {
 	
 	$kino_fields['id-presentation'] = 31; // is ID complete? champ: Présentation
 	$kino_fields['id-photo'] = 859; // champ: Photo
+	$kino_fields['id-cv'] = 858; // champ: CV
 	
 	$kino_fields['profil-real-complete'] = 545; // Profil Realisateur complet? champ: présentation
 	$kino_fields['profil-comed-complete'] = 927;// Profil Comédien complet? 
@@ -110,9 +112,13 @@ function kino_test_fields() {
 	$kino_fields['group-real-platform-rejected'] = 70 ; // Refusés: Réalisateurs Plateforme
 	
 	// Profil Kino Kabaret 2016
+	$kino_fields['group-kino-pending'] = 101 ;
 	$kino_fields['group-kino-incomplete'] = 72 ; // Participants Kino 2016 : profil incomplet
 	$kino_fields['group-kino-complete'] = 71 ; // Participants Kino 2016 : profil complet
 	$kino_fields['group-kino-approved'] = 73 ; // Participants Kino 2016 : validés
+	
+	$kino_fields['group-candidats-vus-moyens'] = 100 ; //
+	$kino_fields['group-candidats-vus-biens'] = 99 ; //
 	
 	// Logements
 	$host = $_SERVER['HTTP_HOST'];
@@ -124,7 +130,7 @@ function kino_test_fields() {
 	$kino_fields['group-offre-logement'] = 95 ; // 80 95
 	}
 	
-	// MailPoet List ID:
+	// MailPoet List IDs:
 	// ***********
 	$kino_fields['mailpoet-benevoles'] = 6 ;
 	$kino_fields['mailpoet-participant-kabaret'] = 4 ;

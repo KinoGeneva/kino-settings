@@ -12,6 +12,16 @@ function kino_add_to_usergroup( $id, $group ) {
 
 }
 
+function kino_remove_from_usergroup( $id, $group ) {
+	
+	wp_remove_object_terms( 
+			$id, // $object_id, 
+			$group, // $terms, 
+			'user-group' // $taxonomy, 
+	);
+
+}
+
 
 function kino_user_participation( $userid, $kino_fields ) {
 	
@@ -417,6 +427,37 @@ function kino_user_fields_logement( $user, $kino_fields ) {
             'field'   => $kino_fields["benevole-charge-admin"],
             'user_id' => $kino_userid
         ) ),
+    );
+	
+	return $kino_userdata;
+
+}
+
+/*
+ * Kino User Kabaret
+ * Created for Gestion-Kabaret
+*/
+
+function kino_user_fields_kabaret( $user, $kino_fields ) {
+
+	$kino_userid = $user->ID ;
+
+    if ( empty( $kino_fields ) ) {
+        $kino_fields = kino_test_fields();
+    }
+    
+    $kino_user_participation_role = kino_user_participation( 
+    	$kino_userid, 
+    	$kino_fields
+    );
+    
+	$kino_userdata = array(
+        "user-id" => $kino_userid,
+        "user-name" => $user->display_name,
+        "user-slug" => $user->user_nicename,
+        "user-email" => $user->user_email,
+        "user-registered" => $user->user_registered,
+        "participation" => $kino_user_participation_role
     );
 	
 	return $kino_userdata;

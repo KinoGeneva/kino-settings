@@ -99,6 +99,12 @@ function kino_admin_css() {
     	height: auto;
     }
     
+    /* Hide Wp-User-Groups dropdown */
+    
+    form.user-tax-form {
+    	display: none;
+    }
+    
   </style>';
 }
 add_action('admin_head', 'kino_admin_css');

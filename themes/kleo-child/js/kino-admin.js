@@ -43,6 +43,10 @@ jQuery(document).ready(function($){
                              	 $item.detach();
                              } else if ( state == 'platform-reject' ) {
                              	 $item.detach();
+                             } else if ( state == 'kabaret-moyen' ) {
+                             	 $item.detach();
+                             } else if ( state == 'kabaret-bien' ) {
+                             	 $item.detach();
                              }
    
                                // succcess data

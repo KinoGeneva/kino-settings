@@ -49,11 +49,25 @@
       					echo '<span class="kp-pointlist">Comédien-ne</span>';
       				}
       				
-      				if ( $user->ID == 231 ) {
+      				if ( $user->ID == 420 ) {
       				
-//      				echo '<pre>';
-//      				var_dump($kino_user_role);
-//      				echo '</pre>';
+//		      				$kino_participation_xfield = bp_get_profile_field_data( array(
+//		      					'field'   => $kino_fields['profile-role'],
+//		      					'user_id' => $user->ID
+//		      				) );
+//      				
+//		      				echo 'Role Plateforme:<pre>';
+//		      				var_dump($kino_participation_xfield);
+//		      				echo '</pre>';
+//		      				
+//		      				$kino_participation_xfield = bp_get_profile_field_data( array(
+//		      							'field'   => $kino_fields['role-kabaret'],
+//		      							'user_id' => $user->ID
+//		      						) );
+//		      				
+//      						echo 'Role Kabaret:<pre>';
+//      						var_dump($kino_participation_xfield);
+//      						echo '</pre>';
 
 //									kino_add_to_mailpoet_list( 
 //										$id, 
@@ -85,6 +99,9 @@
       			
       			if ( in_array( "real-platform-valid", $kino_user_role ) ) {          				            				
     				  echo '<td class="success">Accepté</td>';
+    				  
+    				  // add checkbox!
+    				  // kino_check_real_platform_checkbox( $user->ID, $kino_fields );
     				
     				} else if ( in_array( "real-platform-rejected", $kino_user_role ) ) {
     				
@@ -98,6 +115,8 @@
     				} else if ( in_array( "real-platform-pending", $kino_user_role ) ) {
     				
     					echo '<td class="warning">En attente</td>';
+    					// add checkbox!
+    					 // kino_check_real_platform_checkbox( $user->ID, $kino_fields );
     				
     				} else {
 
@@ -115,10 +134,16 @@
     				} else if ( in_array( "real-kab-rejected", $kino_user_role ) ) {
     				
     				  echo '<td class="danger">Refusé</td>';
+    				  
+    				  // remove checkbox!
+    				  // kino_remove_real_kabaret_checkbox( $user->ID, $kino_fields );
     				
     				} else if ( in_array( "real-kab-pending", $kino_user_role ) ) {
     				
     					echo '<td class="warning">En attente</td>';
+    					
+      				//	kino_remove_from_mailpoet_list( $user->ID,
+      				//	$kino_fields['mailpoet-real-platform-only'] );
     				
     				} else {
 
@@ -148,16 +173,24 @@
       				if ( $kino_show_validation == 'kabaret' ) {
       			 
       			 		echo '<td>';
-      			 		echo '<a class="admin-action pending-accept kino-accept" data-action="kabaret-accept">accepter</a>';
-      			 		echo '<a class="admin-action pending-reject kino-accept" data-action="kabaret-reject">refuser</a>'; 
+      			 			echo '<a class="admin-action pending-accept" data-action="kabaret-accept">accepter</a>';
+      			 			echo '<a class="admin-action pending-reject" data-action="kabaret-reject">refuser</a>'; 
+      			 		echo '</td>'; 
+      			 		
+      			 } else if ( $kino_show_validation == 'kabaret-plus' ) {
+      			 
+      			 		echo '<td>';
+      			 			echo '<a class="admin-action pending-other" data-action="kabaret-moyen">moyen</a>';
+      			 			echo '<a class="admin-action pending-other" data-action="kabaret-bien">bien</a>';
+      			 			echo '<a class="admin-action pending-accept" data-action="kabaret-accept">accepter</a>';
+      			 			echo '<a class="admin-action pending-reject" data-action="kabaret-reject">refuser</a>'; 
       			 		echo '</td>'; 
       			 		
       			 } else if ( $kino_show_validation == 'plateforme' ) {
       			 
       			 		echo '<td>';
-      			 		echo '<a class="admin-action pending-accept kino-accept" data-action="platform-accept">accepter</a>';
-      			 		
-      			 		echo '<a class="admin-action pending-reject kino-reject" data-action="platform-reject">refuser</a>';
+      			 			echo '<a class="admin-action pending-accept" data-action="platform-accept">accepter</a>';
+      			 			echo '<a class="admin-action pending-reject" data-action="platform-reject">refuser</a>';
       			 		echo '</td>'; 
       			 
       			 }

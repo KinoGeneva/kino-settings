@@ -100,10 +100,10 @@
  			 					    // has link = do nothing
  			 					    // alert('has link');
  			 					    } else {
- 			 					    	$(this).children('input[type=file]').attr({
- 			 					    	    'data-validation':'mime',  // required - cf http://formvalidator.net/#file-validators
- 			 					    	    'data-validation-allowing':'jpg'
- 			 					    	});
+// 			 					    	$(this).children('input[type=file]').attr({
+// 			 					    	    'data-validation':'mime',  // required - cf http://formvalidator.net/#file-validators
+// 			 					    	    'data-validation-allowing':'jpg' // rather PDF etc!!
+// 			 					    	});
  			 					    }
  			 					});
  			 				
@@ -124,13 +124,7 @@
 				 			
 				 			$kino_disable_real_checkbox = false;
 				 			
-				 			if ( in_array( "realisateur", $kino_user_role ) ) {
-				 					
-				 					$kino_disable_real_checkbox = true;
-				 					
-				 			} else {
-				 			
-				 				/* test for Groups: 
+				 				/* Test for Groups: 
 				 				 * group-real-platform-pending? 
 				 				 * group-real-platform?
 				 				 * group-real-platform-rejected
@@ -154,30 +148,41 @@
 				 				if ( in_array( $userid, $ids_group_real_platform ) ) {
 				 				
 				 							$kino_disable_real_checkbox = true;
+				 							
+				 							$kino_real_notification = 'Votre statut de réalisateur-trice <b>sur la plateforme</b> est validé.';
 				 				
 				 				} else if ( in_array( $userid, $ids_group_real_platform_pending ) ) {
 				 				
-				 							$kino_disable_real_checkbox = true;
+				 							// $kino_disable_real_checkbox = true;
+				 							
+				 							$kino_real_notification = 'Votre statut de réalisateur-trice <b>sur la plateforme</b> est <b>en attente de validation</b>.';
 				 				
 				 				} else if ( in_array( $userid, $ids_group_real_platform_rejected ) ) {
 				 				
 				 							$kino_disable_real_checkbox = true;
+				 							
+				 							$kino_real_notification = '&nbsp;';
 				 				
 				 				}
 				 			
-				 			}
 				 			
 				 			if ( $kino_disable_real_checkbox == true ) {
 				 				
 				 				?>
 				 					// Dans "Profil Kinoïte", option Réalisateur-trice:
-				 					
-				 					$('#profile-edit-form div.field_<?php echo $kino_fields['profile-role']; ?> input[value="Réalisateur-trice"]').prop('disabled', true);
-				 					
-				 					// on pourrait ajouter une notification...
+				 					//$('#profile-edit-form div.field_<?php echo $kino_fields['profile-role']; ?> input[value="Réalisateur-trice"]').prop('disabled', true);
+				 					$('#profile-edit-form div.field_<?php echo $kino_fields['profile-role']; ?> label[for="field_<?php echo $kino_fields['profile-role-real']; ?>"]').hide();
 				 					
 				 					<?php
+				 			}
+				 			
+				 			if ( !empty($kino_real_notification) ) {
+				 					
+				 					?>
+				 						$('#profile-edit-form div.field_<?php echo $kino_fields['profile-role']; ?> p.description').html('<?php echo $kino_real_notification; ?>');
+				 						<?php
 				 			} 
+				 			
 		 			} // if subscriber
 		 	} // if edit group id = 1
 		 	
@@ -222,16 +227,10 @@
  							
  							$kabaret_disable_real_checkbox = false;
  							
-				 			if ( in_array( "realisateur-2016", $kino_user_role ) ) {
-				 			
-				 					$kabaret_disable_real_checkbox = true;
-				 			
-				 			} else {
-				 				
 				 					/* test for Groups: 
-				 					 * group-real-platform-pending? 
-				 					 * group-real-platform?
-				 					 * group-real-platform-rejected
+				 					 * group-real-kabaret-pending? 
+				 					 * group-real-kabaret?
+				 					 * group-real-kabaret-rejected
 				 					*/
 				 					
 				 					// build ID arrays:
@@ -252,29 +251,43 @@
 				 					if ( in_array( $userid, $ids_group_real_kabaret ) ) {
 				 					
 				 								$kabaret_disable_real_checkbox = true;
+				 								
+				 								$kino_real_kab_notification = 'Vous êtes réalisateur-trice <b>pour le Kino Kabaret</b>.<br/><br/>';
 				 					
 				 					} else if ( in_array( $userid, $ids_group_real_kabaret_pending ) ) {
 				 					
-				 								$kabaret_disable_real_checkbox = true;
+				 								// $kabaret_disable_real_checkbox = true;
+				 								
+				 								$kino_real_kab_notification = 'Votre statut de réalisateur-trice <b>pour le Kino Kabaret</b> est <b>en attente de validation</b>.<br/><br/>';
 				 					
 				 					} else if ( in_array( $userid, $ids_group_real_kabaret_rejected ) ) {
 				 					
 				 								$kabaret_disable_real_checkbox = true;
+				 								
+				 								$kino_real_kab_notification = '&nbsp;';
 				 					
 				 					}
 				 				
-				 				}
 				 				
 				 			if ( $kabaret_disable_real_checkbox == true ) {
 				 			
 				 				?>
 				 						
-				 					$('#profile-edit-form #field_<?php echo $kino_fields['role-kabaret-real']; ?>').prop('disabled', true);
-				 					$('#profile-edit-form div.field_<?php echo $kino_fields['role-kabaret']; ?> input[value="Réalisateur-trice"]').prop('disabled', true);
-				 						
+				 					// $('#profile-edit-form #field_<?php echo $kino_fields['role-kabaret-real']; ?>').prop('disabled', true);
+				 					
+				 					// $('#profile-edit-form div.field_<?php echo $kino_fields['role-kabaret']; ?> input[value="Réalisateur-trice"]').prop('disabled', true);
+				 					
+				 					$('#profile-edit-form div.field_<?php echo $kino_fields['role-kabaret']; ?> label[for="field_<?php echo $kino_fields['role-kabaret-real']; ?>"]').hide();
+				 					
 				 				<?php
+				 			}
+				 			
+				 			if ( !empty($kino_real_kab_notification) ) {
 				 						
-				 			}	
+				 						?>
+				 							 $('#profile-edit-form div.field_<?php echo $kino_fields['role-kabaret']; ?> p.description').prepend('<?php echo $kino_real_kab_notification; ?>');
+				 							<?php
+				 			} 	
 				 				
 				} // if user = subscriber
 				

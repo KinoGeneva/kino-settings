@@ -67,6 +67,21 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	'user-group' 
         );
         
+        // Additional sorting
+        
+        // $kino_fields['group-candidats-vus-moyens'] = 100 ; //
+        // $kino_fields['group-candidats-vus-biens'] = 99 ; //
+        
+        $ids_candidats_moyens = get_objects_in_term( 
+        	$kino_fields['group-candidats-vus-moyens'] , 
+        	'user-group' 
+        );
+        
+        $ids_candidats_biens = get_objects_in_term( 
+        	$kino_fields['group-candidats-vus-biens'] , 
+        	'user-group' 
+        );
+        
         // enlever les champs zéro: 
         $ids_real_platform_pending = array_filter($ids_real_platform_pending);
         $ids_real_kabaret_pending = array_filter($ids_real_kabaret_pending);
@@ -76,6 +91,9 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         
         $ids_real_platform_rejected = array_filter($ids_real_platform_rejected);
         $ids_real_kabaret_rejected = array_filter($ids_real_kabaret_rejected);
+        
+        $ids_candidats_moyens = array_filter($ids_candidats_moyens);
+        $ids_candidats_biens = array_filter($ids_candidats_biens);
         
         // remove user 0
 //        wp_remove_object_terms( 
@@ -95,6 +113,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
  				echo '<p>Réalisateurs en attente <b>pour les deux</b>: '.count($ids_real_both).'</p>';
  				echo '<p>Réalisateurs en attente <b>Plateforme uniquement</b>: '.count($ids_platform_only).'</p>';
  				echo '<p>Réalisateurs en attente <b>Kabaret uniquement</b>: '.count($ids_kabaret_only).'</p>';
+ 				echo '<p>Sélection <b><a href="#candid-moyen">Candidats Moyens</a></b>: '.count($ids_candidats_moyens).'</p>';
+ 				echo '<p>Sélection <b><a href="#candid-bien">Candidats Bien</a></b>: '.count($ids_candidats_biens).'</p>';
  				
  				// http://kinogeneva.ch/kino-admin/validation-realisateurs-plateforme/
  				
@@ -133,7 +153,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 	 				) );
 	 				if ( ! empty( $user_query->results ) ) {
 	 					$metronom = 1;
-	 					$kino_show_validation = 'kabaret';
+	 					$kino_show_validation = 'kabaret-plus';
 	 					echo '<h2>En attente: Réalisateurs Kino Kabaret 2016 ('.count($user_query->results).')</h2>';
 	 					echo kino_table_header($kino_show_validation);
 	 					foreach ( $user_query->results as $user ) {
@@ -142,6 +162,46 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 	 					echo '</tbody></table>';
 	 				}
  				}
+ 				
+ 				//******* Candidats Moyens ****
+ 					
+ 					if (!empty($ids_candidats_moyens)) {
+ 						$user_query = new WP_User_Query( array( 
+ 							'include' => $ids_candidats_moyens, 
+ 							'orderby' => 'registered',
+ 							'order' => 'DESC'
+ 						) );
+ 						if ( ! empty( $user_query->results ) ) {
+ 							$metronom = 1;
+ 							$kino_show_validation = 'kabaret';
+ 							echo '<h2 id="candid-moyen">En attente: Candidats Moyens ('.count($user_query->results).')</h2>';
+ 							echo kino_table_header($kino_show_validation);
+ 							foreach ( $user_query->results as $user ) {
+ 								include('validation-real-loop.php');
+ 							}
+ 							echo '</tbody></table>';
+ 						}
+ 					}
+ 					
+ 				//******* Candidats Bien ****
+ 						
+ 						if (!empty($ids_candidats_biens)) {
+ 							$user_query = new WP_User_Query( array( 
+ 								'include' => $ids_candidats_biens, 
+ 								'orderby' => 'registered',
+ 								'order' => 'DESC'
+ 							) );
+ 							if ( ! empty( $user_query->results ) ) {
+ 								$metronom = 1;
+ 								$kino_show_validation = 'kabaret';
+ 								echo '<h2 id="candid-bien">En attente: Candidats Bien ('.count($user_query->results).')</h2>';
+ 								echo kino_table_header($kino_show_validation);
+ 								foreach ( $user_query->results as $user ) {
+ 									include('validation-real-loop.php');
+ 								}
+ 								echo '</tbody></table>';
+ 							}
+ 						}
         
         //***************************************
         
@@ -166,27 +226,27 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				//***************************************
 				// “En attente: Réalisateurs Plateforme ONLY”
 				
-				if (!empty($ids_platform_only)) {
-					$user_query = new WP_User_Query( array( 
-						'include' => $ids_platform_only, 
-						'orderby' => 'registered',
-						'order' => 'DESC'
-					) );
-					if ( ! empty( $user_query->results ) ) {
-	        	$metronom = 1;
-	        	$kino_show_validation = 'false';
-	        	echo '<h2>En attente: Réalisateurs Plateforme ONLY ('.count($user_query->results).')</h2>';
-	        	echo kino_table_header($kino_show_validation);
-	        	foreach ( $user_query->results as $user ) {
-	        		include('validation-real-loop.php');
-	        		// add users to mailpoet list:
-	        		kino_add_to_mailpoet_list( $user->ID, 
-	        				$kino_fields['mailpoet-real-platform-only'] 
-	        			);
-	        	}
-					  echo '</tbody></table>';
-					}
-				}
+//				if (!empty($ids_platform_only)) {
+//					$user_query = new WP_User_Query( array( 
+//						'include' => $ids_platform_only, 
+//						'orderby' => 'registered',
+//						'order' => 'DESC'
+//					) );
+//					if ( ! empty( $user_query->results ) ) {
+//	        	$metronom = 1;
+//	        	$kino_show_validation = 'false';
+//	        	echo '<h2>En attente: Réalisateurs Plateforme ONLY ('.count($user_query->results).')</h2>';
+//	        	echo kino_table_header($kino_show_validation);
+//	        	foreach ( $user_query->results as $user ) {
+//	        		include('validation-real-loop.php');
+//	        		// add users to mailpoet list:
+//	        		kino_add_to_mailpoet_list( $user->ID, 
+//	        				$kino_fields['mailpoet-real-platform-only'] 
+//	        			);
+//	        	}
+//					  echo '</tbody></table>';
+//					}
+//				}
 				  
 				 //***************************************
 				 // “Acceptés: Réalisateurs Kabaret ”

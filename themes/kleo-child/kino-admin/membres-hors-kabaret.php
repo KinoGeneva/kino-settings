@@ -85,6 +85,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	// Init:
         	$metronom = 1;
         	
+        	$count_participants_kabaret = 0;
+        	
         	?>
         	<table class="table table-hover table-bordered table-condensed">
         		<thead>
@@ -124,6 +126,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 		        						 	$user->ID, 
 		        						 	$kino_fields['mailpoet-participant-kabaret-incomplet'] 
 		        						 	);
+		        						// increment counter:
+		        						$count_participants_kabaret++;
 		        			} else {
 		        						echo '<td>NON</td>';
 		        			}
@@ -138,6 +142,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	
         	echo '</tbody></table>';
         }
+        
+        echo '<p>Nombre de participants incomplets inscrits au Kabaret 2016: <b>'.$count_participants_kabaret.'</b></p>';
         
          ?>
         

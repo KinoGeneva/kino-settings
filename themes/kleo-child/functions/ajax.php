@@ -15,7 +15,7 @@ add_action('init', function () {
 
     function set_kino_state()
     {
-        if( empty ($_POST['action']) || $_POST['action'] !== 'set_pending_item_state') {
+        if( empty ($_POST['action']) || $_POST['action'] !== 'set_kino_state') {
             if (!empty ($fail_message)) {
                 wp_send_json_error(array(
                     'message' => "Sorry!"
@@ -33,38 +33,40 @@ add_action('init', function () {
         		
         			// remove from : platform pending
         			
-        			wp_remove_object_terms( 
-        				$id, 
-        				$kino_fields['group-real-platform-pending'], 
-        				'user-group'
-        			);
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-real-platform-pending'] );
         			
         			// remove from mailpoet list:
         			
-        			kino_remove_from_mailpoet_list(
-        				$id,
-        				$kino_fields['mailpoet-real-platform-only']
-        			);
+        			kino_remove_from_mailpoet_list( $id,
+        				$kino_fields['mailpoet-real-platform-only'] );
         		
         		}
         		
         		if ( $state == 'platform-accept' ) {
         		
         			// add to group
-        			kino_add_to_usergroup( $id, $kino_fields['group-real-platform'] );
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-real-platform'] );
         				
         			// Add to Mailpoet List
-        			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-real-platform'] );
-        		
+        			kino_add_to_mailpoet_list( $id, 
+        				$kino_fields['mailpoet-real-platform'] );
+        			
+        			// add checkbox!
+        			kino_check_real_platform_checkbox( $id, $kino_fields );
+        			
         		}
         		
         		if ( $state == 'platform-reject' ) {
         			
         			// add to group
-        			kino_add_to_usergroup( $id, $kino_fields['group-real-platform-rejected'] );
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-real-platform-rejected'] );
         			
         			// Add to Mailpoet List
-        			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-real-platform-rejected'] );
+        			kino_add_to_mailpoet_list( $id, 
+        				$kino_fields['mailpoet-real-platform-rejected'] );
         			
         			// remove checkbox!
         			kino_remove_real_platform_checkbox( $id, $kino_fields );
@@ -73,43 +75,64 @@ add_action('init', function () {
         		
         		// ******************
         		
-        		if ( ( $state == 'kabaret-accept' ) || ( $state == 'kabaret-reject' ) ) {
+        		if ( ( $state == 'kabaret-accept' ) || ( $state == 'kabaret-reject' ) || ( $state == 'kabaret-moyen') || ( $state == 'kabaret-bien') ) {
         		
         			// remove from pending
-        			wp_remove_object_terms( 
-        				$id, 
-        				$kino_fields['group-real-kabaret-pending'], 
-        				'user-group'
-        			);
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-real-kabaret-pending'] );
         			
-        			kino_remove_from_mailpoet_list(
-        				$id,
-        				$kino_fields['mailpoet-real-platform-only']
-        			);
+        			kino_remove_from_mailpoet_list( $id,
+        				$kino_fields['mailpoet-real-platform-only'] );
         		
+        		}
+        		
+        		if ( ( $state == 'kabaret-accept' ) || ( $state == 'kabaret-reject' ) ) {
+        		
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-candidats-vus-moyens'] );
+        				
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-candidats-vus-biens'] );
+        				
         		}
         		
         		if ( $state == 'kabaret-accept' ) {
         			
-        			// Add to Group
-        			kino_add_to_usergroup( $id, $kino_fields['group-real-kabaret'] );
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-real-kabaret'] );
         				
-        			// Add to Mailpoet List
-        			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-real-kabaret'] );
-
-        		
+        			kino_add_to_mailpoet_list( $id, 
+        				$kino_fields['mailpoet-real-kabaret'] );
+        				
+        			// s'assurer que le champ Réalisateur Kabaret est coché
+        			kino_check_real_kabaret_checkbox( $id, $kino_fields );
+        				
         		} else if ( $state == 'kabaret-reject') {
         		
-        			kino_add_to_usergroup( $id, $kino_fields['group-real-kabaret-rejected'] );
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-real-kabaret-rejected'] );
         				
-        				// Add to Mailpoet List
-        				kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-real-kabaret-rejected'] );
+        			kino_add_to_mailpoet_list( $id, 
+        				$kino_fields['mailpoet-real-kabaret-rejected'] );
         				
         			// décocher le champ Réalisateur Kabaret!
-        			
         			kino_remove_real_kabaret_checkbox( $id, $kino_fields );
         			
         		} // end else/if
+        		
+        		if ( $state == 'kabaret-moyen' ) {
+        		        			
+	        			kino_add_to_usergroup( $id, 
+	        				$kino_fields['group-candidats-vus-moyens'] );
+
+        		}
+        		
+        		if ( $state == 'kabaret-bien' ) {
+        		        			
+        				kino_add_to_usergroup( $id, 
+        					$kino_fields['group-candidats-vus-biens'] );
+   		
+        		}
         		
         } // end !empty($state)
 
@@ -167,7 +190,7 @@ function kino_remove_from_mailpoet_list( $user, $list ) {
 
 }
 
-function kino_remove_real_platform_checkbox( $id, $kino_fields ) {
+function kino_remove_real_kabaret_checkbox( $id, $kino_fields ) {
 
 		// A: get the field
 		$kino_participation_xfield = bp_get_profile_field_data( array(
@@ -194,7 +217,7 @@ function kino_remove_real_platform_checkbox( $id, $kino_fields ) {
 	
 }
 
-function kino_remove_real_kabaret_checkbox( $id, $kino_fields ) {
+function kino_remove_real_platform_checkbox( $id, $kino_fields ) {
 
 		// A: get the field
 		$kino_participation_xfield = bp_get_profile_field_data( array(
@@ -206,7 +229,7 @@ function kino_remove_real_kabaret_checkbox( $id, $kino_fields ) {
 		
 				// B: remove 'Réalisateur-trice' from array	      						
 				$del_val = 'Réalisateur-trice';
-				if(($key = array_search($del_val, $kino_participation_xfield)) !== false) {
+				if ( ($key = array_search($del_val, $kino_participation_xfield) ) !== false) {
 				    unset($kino_participation_xfield[$key]);
 				}
 				
@@ -218,6 +241,48 @@ function kino_remove_real_kabaret_checkbox( $id, $kino_fields ) {
 					);
 		
 		} // test if !empty $kino_participation_xfield
+	
+}
+
+function kino_check_real_platform_checkbox( $id, $kino_fields ) {
+
+		// A: get the field
+		$kino_participation_xfield = bp_get_profile_field_data( array(
+			'field'   => $kino_fields['profile-role'],
+			'user_id' => $id
+		) );
+
+				// B: add 'Réalisateur-trice' to array	      						
+				$del_val = 'Réalisateur-trice';
+				if ( !in_array( $del_val, $kino_participation_xfield )) {
+				    $kino_participation_xfield[] = $del_val;
+				}
+				
+				// C: save the user data
+				xprofile_set_field_data(  
+					$kino_fields['profile-role'],  
+					$id, $kino_participation_xfield );
+	
+}
+
+function kino_check_real_kabaret_checkbox( $id, $kino_fields ) {
+
+		// A: get the field
+		$kino_participation_xfield = bp_get_profile_field_data( array(
+			'field'   => $kino_fields['role-kabaret'],
+			'user_id' => $id
+		) );
+
+				// B: add 'Réalisateur-trice' to array	      						
+				$del_val = 'Réalisateur-trice';
+				if ( !in_array( $del_val, $kino_participation_xfield )) {
+				    $kino_participation_xfield[] = $del_val;
+				}
+				
+				// C: save the user data
+				xprofile_set_field_data(  
+					$kino_fields['role-kabaret'],  
+					$id, $kino_participation_xfield );
 	
 }
 
@@ -245,7 +310,7 @@ function kino_table_header( $validation ) {
 		
 			$kino_table_header .= '<th class="validation">Validation Plateforme</th>';
 		
-		} else if ( $validation == 'kabaret' ) {
+		} else if ( $validation == 'kabaret' || $validation == 'kabaret-plus' ) {
 		
 			$kino_table_header .= '<th class="validation">Validation Kabaret</th>';
 		

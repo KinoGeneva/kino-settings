@@ -78,6 +78,10 @@ get_header(); ?>
 							
 							get_template_part( 'kino-admin/motivation-realisateurs' );
 							
+						} else if ( $kino_page_slug == 'debug' ) {
+							
+							get_template_part( 'kino-admin/debug' );
+							
 						} else {
 								
 							get_template_part( 'content', 'page' );

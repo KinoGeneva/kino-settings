@@ -205,7 +205,9 @@ function kino_get_field_group_conditions( $groups ) {
 
   	
   	if (!in_array( "realisateur", $kino_user_role )) {
-  		$forbidden_groups[] = "Compétence Réalisateur";
+  		if (!in_array( "realisateur-2016", $kino_user_role )) {
+  			$forbidden_groups[] = "Compétence Réalisateur";
+  		}
   	}
   	
   	if (!in_array( "comedien", $kino_user_role )) {

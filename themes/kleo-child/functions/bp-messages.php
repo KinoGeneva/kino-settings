@@ -266,6 +266,8 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  		
  		// if we continue = the user joins the Kabaret 2016
  		
+ 		kino_add_to_usergroup( $userid, $kino_fields['group-kino-pending'] );
+ 		
  		$kino_notification_email .= "Votre inscription au Kino Kabaret est bien prise en compte.";
  			
  	  /* Q1 : is the ID part complete? */
@@ -275,9 +277,32 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  	  		// user subscribed but:
  	  		// id section = incomplete
  	  		
- 	  		$kino_notification = 'Complétez votre profil (identité)';
+ 	  		$kino_notification = 'Complétez votre profil (identité).';
  	  		break; }
- 	
+ 		
+ 		/* Q1b : is the Photo uploaded? */
+ 		
+ 		$kinoite_id_photo = bp_get_profile_field_data( array(
+ 					'field'   => $kino_fields["id-photo"],
+ 					'user_id' => $userid ) );
+ 		if ( empty($kinoite_id_photo) ) {
+ 			// photo is missing!
+ 			$kino_notification = 'Complétez votre profil (identité) en ajoutant votre photo.';
+ 			break; }
+ 			
+ 		/* Q1b : is the CV uploaded? */
+ 		
+ 		if ( in_array( "realisateur", $kino_user_role ) ) {
+ 		
+ 			$kinoite_id_cv = bp_get_profile_field_data( array(
+ 						'field'   => $kino_fields["id-cv"],
+ 						'user_id' => $userid ) );
+ 			if ( empty($kinoite_id_cv) ) {
+ 				// CV is missing!
+ 				$kino_notification = 'Complétez votre profil (identité) en ajoutant votre CV.';
+ 				break; }
+ 		}
+ 		
  	  /* Q2 : is "Compétence Comédien" complete? */
  	  
  	  if( in_array( "comedien", $kino_user_role ) && !in_array( "comedien-complete", $kino_user_role ) ) { 

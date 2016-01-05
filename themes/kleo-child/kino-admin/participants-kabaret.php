@@ -32,17 +32,29 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         // On montre les membres faisant partie du groupe: 
         // Participants Kino 2016 : profil complet
         
+        $ids_of_kino_participants = get_objects_in_term( 
+        	$kino_fields['group-kino-pending'] , 
+        	'user-group' 
+        );
+        
         $ids_of_kino_complete = get_objects_in_term( 
         	$kino_fields['group-kino-complete'] , 
         	'user-group' 
         );
         
+//        $ids_of_kino_participants = get_objects_in_term( 
+//        	$kino_fields['group-kino-complete'] , 
+//        	'user-group' 
+//        );
+        
+        $ids_of_kino_participants = array_filter($ids_of_kino_participants);
         $ids_of_kino_complete = array_filter($ids_of_kino_complete);
         
+        echo '<h3>Total des participants: '.count( $ids_of_kino_participants ) .'</h3>';
         
-        echo '<h3>Total des participants au profil complet: '.count( $ids_of_kino_complete ) .'</h3>';
+        echo '<p>Total des participants au profil complet: '.count( $ids_of_kino_complete ) .'</p>';
         
-        echo '<p><b>Note: </b> Ce tableau liste tous les utilisateurs qui sont dans le groupe "Participants Kino 2016 : profil complet". Il n’inclut donc PAS les usagers ayant coché la participation, mais dont le profil n’est pas encore complet.</p>';
+        echo '<p><b>Note: </b> Ce tableau liste tous les '.count( $ids_of_kino_participants ) .' utilisateurs qui ont coché la participation au Kabaret 2016.</p>';
         	
         echo '<p><b>Voir aussi les <a href="'.$url.'/kino-admin/membres-hors-kabaret/">membres hors-Kabaret</a>.</b></p>';
         // Voir Participants Kabaret pour une vue plus détaillée	
@@ -58,7 +70,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         
         $user_query = new WP_User_Query( array( 
         	// 'fields' => $user_fields,
-        	'include' => $ids_of_kino_complete,
+        	'include' => $ids_of_kino_participants,
         	'orderby' => 'registered',
         	'order' => 'DESC'
         ) );
@@ -81,6 +93,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         				<th>Nom/Email</th>
         		    <th>Rôle Kabaret</th>
         		    <th>Réal?</th>
+        		    <th>Profil complet?</th>
         		    <th>Inscription</th>
         			</tr>
         		</thead>
@@ -156,6 +169,16 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
           					echo '<td></td>';
           				}
             			
+            			// Profil complet ?
+            			// ******************
+            			
+            			// Test if : 
+            			
+            			if ( in_array( $user->ID, $ids_of_kino_complete ) ) {          				            				
+            			  echo '<td class="success">Complet</td>';
+            			} else {
+            				echo '<td></td>';	
+            			}
             			
             			
             			// Registration date
@@ -163,10 +186,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
             			echo '<td>'. $shortdate .'</td>';
             			
             			// Ajouter à Mailpoet: Participants Kabaret
-            			kino_add_to_mailpoet_list( 
-  			        	 	$user->ID, 
-  			        	 	$kino_fields['mailpoet-participant-kabaret'] 
-  			        	);
+//            			kino_add_to_mailpoet_list( 
+//  			        	 	$user->ID, 
+//  			        	 	$kino_fields['mailpoet-participant-kabaret'] 
+//  			        	);
         			
         		echo '</tr>';
         		
