@@ -86,7 +86,7 @@ add_action('init', function () {
         		
         		}
         		
-        		if ( ( $state == 'kabaret-accept' ) || ( $state == 'kabaret-reject' ) ) {
+        		if ( ( $state == 'kabaret-accept' ) ) {
         		
         			kino_remove_from_usergroup( $id, 
         				$kino_fields['group-candidats-vus-moyens'] );

@@ -113,8 +113,12 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
  				echo '<p>Réalisateurs en attente <b>pour les deux</b>: '.count($ids_real_both).'</p>';
  				echo '<p>Réalisateurs en attente <b>Plateforme uniquement</b>: '.count($ids_platform_only).'</p>';
  				echo '<p>Réalisateurs en attente <b>Kabaret uniquement</b>: '.count($ids_kabaret_only).'</p>';
+ 				
  				echo '<p>Sélection <b><a href="#candid-moyen">Candidats Moyens</a></b>: '.count($ids_candidats_moyens).'</p>';
  				echo '<p>Sélection <b><a href="#candid-bien">Candidats Bien</a></b>: '.count($ids_candidats_biens).'</p>';
+ 				
+ 				echo '<p>Réalisateurs validés pour <b><a href="#real-kabaret-accepted-h2">Kabaret</a></b>: '.count($ids_real_kabaret_accepted).'</p>';
+ 				echo '<p>Réalisateurs validés pour <b>Plateforme</b>: '.count($ids_real_platform_accepted).'</p>';
  				
  				// http://kinogeneva.ch/kino-admin/validation-realisateurs-plateforme/
  				
@@ -260,7 +264,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				 	if ( ! empty( $user_query->results ) ) {
 				   	$metronom = 1;
 				   	$kino_show_validation = 'false';
-				   	echo '<h2>Réalisateurs Kino Kabaret 2016: Acceptés ('.count($user_query->results).')</h2>';
+				   	echo '<h2 id="real-kabaret-accepted-h2">Réalisateurs Kino Kabaret 2016: Acceptés ('.count($user_query->results).')</h2>';
 				   	echo '<div id="real-kabaret-accepted">';
 				   	echo kino_table_header($kino_show_validation);
 				   	foreach ( $user_query->results as $user ) {

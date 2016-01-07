@@ -99,16 +99,29 @@ function kino_admin_css() {
     	height: auto;
     }
     
-    /* Hide Wp-User-Groups dropdown */
-    
-    form.user-tax-form {
-    	display: none;
-    }
-    
   </style>';
 }
 add_action('admin_head', 'kino_admin_css');
 
+function kino_admin_production_css() {
+	$host = $_SERVER['HTTP_HOST'];
+	if ( $host == 'kinogeneva.4o4.ch' ) {
+		// admin styles for test site
+	} else {
+		// admin styles for live site
+		echo '<style>
+			
+			/* Hide Wp-User-Groups dropdown */
+			
+			form.user-tax-form {
+				display: none;
+			}
+		
+		</style>';
+		
+	}
+}
+add_action('admin_head', 'kino_admin_production_css');
 
 /* Allowed FileTypes
  ********************

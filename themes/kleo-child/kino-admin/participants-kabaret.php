@@ -52,7 +52,11 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         
         echo '<h3>Total des participants: '.count( $ids_of_kino_participants ) .'</h3>';
         
-        echo '<p>Total des participants au profil complet: '.count( $ids_of_kino_complete ) .'</p>';
+        echo '<p>Total des participants au profil complet: '.count( $ids_of_kino_complete );
+        
+        $kino_complete_percentage = round( ( count( $ids_of_kino_complete ) / count( $ids_of_kino_participants ) ) * 100 );
+        
+        echo ' ('.$kino_complete_percentage.'%)</p>';
         
         echo '<p><b>Note: </b> Ce tableau liste tous les '.count( $ids_of_kino_participants ) .' utilisateurs qui ont coché la participation au Kabaret 2016.</p>';
         	
