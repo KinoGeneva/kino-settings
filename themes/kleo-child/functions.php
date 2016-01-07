@@ -186,7 +186,7 @@ require_once('functions/admin.php');
 
 require_once('functions/header-output.php');
 
-require_once('functions/bp-fields.php');
+// require_once('functions/bp-fields.php');
 
 require_once('functions/bp-user-fields.php');
 
@@ -194,7 +194,7 @@ require_once('functions/bp-group-tabs.php');
 
 require_once('functions/bp-messages.php');
 
-require_once('functions/ajax.php');
+// require_once('functions/ajax.php');
 
 /* 
 kleo-google-fonts-css

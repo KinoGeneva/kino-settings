@@ -11,8 +11,6 @@ Author URI:
 
 /*
  *
-
-
  */
  
 // Register Post Types
@@ -23,9 +21,6 @@ include_once (plugin_dir_path(__FILE__).'ui-customization.php');
  
 // Translations
 include_once (plugin_dir_path(__FILE__).'translation.php');
-
-// Cron operations
-include_once (plugin_dir_path(__FILE__).'cron-groups.php');
 
 // User settings
 include_once (plugin_dir_path(__FILE__).'users.php');
@@ -39,5 +34,12 @@ include_once (plugin_dir_path(__FILE__).'statistics.php');
 // Print
 include_once (plugin_dir_path(__FILE__).'print.php');
 
+// Cron operations
+include_once (plugin_dir_path(__FILE__).'moulinette.php');
 
-//
+// Ajax
+include_once (plugin_dir_path(__FILE__).'ajax.php');
+
+// BuddyPress Settings
+
+include_once (plugin_dir_path(__FILE__).'buddypress/bp-fields.php');

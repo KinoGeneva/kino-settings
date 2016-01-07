@@ -50,12 +50,11 @@ html #main .print-profile {
 	color: #000;
 } 
 
+
 .kleo-go-top,
 .kleo-quick-contact-wrapper {
 	display: none;
 }
-
-
 
 
 .hr-title {
@@ -87,6 +86,10 @@ html #main .print-profile {
 	
 	@page {
 	  size: A4 portrait;
+	}
+	
+	.no-print {
+		display: none;
 	}
 	
 }
@@ -236,7 +239,7 @@ html #main .print-profile {
         // Show some info to the Admin:
         ?>
         
-        <p class="admin-note"><b>NOTES:</b><br/> <?php 
+        <p class="admin-note no-print"><b>NOTES:</b><br/> <?php 
         
         if ( !empty($kinorole_var) ) {
         	echo '<b>Filtrage par rôle:</b> '.$kinorole_var.'<br/>';

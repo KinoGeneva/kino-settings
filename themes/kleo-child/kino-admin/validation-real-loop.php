@@ -49,6 +49,18 @@
       					echo '<span class="kp-pointlist">Comédien-ne</span>';
       				}
       				
+      				// Afficher la session!
+      				// ['session-attribuee']
+      				if ( in_array( "realisateur-2016", $kino_user_role )) {
+	      				$kino_session_attrib = bp_get_profile_field_data( array(
+	      						'field'   => $kino_fields['session-attribuee'],
+	      						'user_id' => $user->ID
+	      				) );
+	      				if (!empty($kino_session_attrib) ) {
+	      					echo '<span class="kp-pointlist"><b>Session: '.$kino_session_attrib.'</b></span>';
+	      				}
+	      			}	
+      				
       				if ( $user->ID == 420 ) {
       				
 //		      				$kino_participation_xfield = bp_get_profile_field_data( array(
@@ -152,11 +164,6 @@
       			
       			// Profil complet ?	
       			// ********************
-      			
-      			$ids_of_kino_complete = get_objects_in_term( 
-      				$kino_fields['group-kino-complete'] , 
-      				'user-group' 
-      			);
       			
       			if ( in_array( $user->ID, $ids_of_kino_complete ) ) {          				            				
       			  echo '<td class="success">Complet</td>';

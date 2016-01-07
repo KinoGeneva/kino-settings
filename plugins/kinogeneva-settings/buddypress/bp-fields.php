@@ -24,6 +24,8 @@ function kino_test_fields() {
 	$kino_fields['session-deux'] = 1106;
 	$kino_fields['session-trois'] = 1116;
 	
+	$kino_fields['session-attribuee'] = 1461; // Only visible for Admin 
+	
 	// Bénévoles
 	$kino_fields['benevole'] = 1313; // Aide Bénévole?
 	$kino_fields['benevole-kabaret'] = 1320; // Pour quelles activités
@@ -41,7 +43,6 @@ function kino_test_fields() {
 	$kino_fields['profil-tech-complete'] = 1075;// Profil Technicien complet? 
 	$kino_fields['profil-kabaret-complete'] = 1122;// test = Disponibilités cabaret 
 	
-	$kino_fields['session-attribuee'] = 1461; // Only visible for Admin 
 	
 	$kino_fields['rue'] = 9;
 	$kino_fields['code-postal'] = 10;
@@ -138,10 +139,18 @@ function kino_test_fields() {
 	
 	// Validation réalisateurs
 	$kino_fields['mailpoet-real-kabaret'] = 5 ; // Acceptés
-	$kino_fields['mailpoet-real-platform-only'] = 7 ; // Pending
+	$kino_fields['mailpoet-real-kabaret-pending'] = 16 ; // En Attente
+	
+	$kino_fields['mailpoet-real-platform-only'] = 7 ; // 
 	$kino_fields['mailpoet-real-platform'] = 8 ; // Acceptés
 	$kino_fields['mailpoet-real-kabaret-rejected'] = 9 ;
 	$kino_fields['mailpoet-real-platform-rejected'] = 10 ;
+	
+	// Sessions
+	$kino_fields['mailpoet-session-un'] = 12 ;
+	$kino_fields['mailpoet-session-deux'] = 13 ;
+	$kino_fields['mailpoet-session-trois'] = 14 ;
+	$kino_fields['mailpoet-session-superhuit'] =15 ;
 	
 	return $kino_fields;
 }

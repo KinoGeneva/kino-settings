@@ -80,23 +80,26 @@ add_action('init', function () {
         			// remove from pending
         			kino_remove_from_usergroup( $id, 
         				$kino_fields['group-real-kabaret-pending'] );
-        			
+        				
         			kino_remove_from_mailpoet_list( $id,
         				$kino_fields['mailpoet-real-platform-only'] );
         		
         		}
         		
         		if ( ( $state == 'kabaret-accept' ) ) {
-        		
+        			
+        			// remove from groups
+        			
         			kino_remove_from_usergroup( $id, 
         				$kino_fields['group-candidats-vus-moyens'] );
         				
         			kino_remove_from_usergroup( $id, 
         				$kino_fields['group-candidats-vus-biens'] );
         				
-        		}
-        		
-        		if ( $state == 'kabaret-accept' ) {
+        			kino_remove_from_mailpoet_list( $id,
+        				$kino_fields['mailpoet-real-kabaret-pending'] );
+        				
+        			// add to groups
         			
         			kino_add_to_usergroup( $id, 
         				$kino_fields['group-real-kabaret'] );
@@ -114,16 +117,21 @@ add_action('init', function () {
         				
         			kino_add_to_mailpoet_list( $id, 
         				$kino_fields['mailpoet-real-kabaret-rejected'] );
-        				
+        			
+        			kino_remove_from_mailpoet_list( $id,
+        				$kino_fields['mailpoet-real-kabaret-pending'] );
+        			
         			// décocher le champ Réalisateur Kabaret!
         			kino_remove_real_kabaret_checkbox( $id, $kino_fields );
         			
-        		} // end else/if
+        		} // END else/if
         		
         		if ( $state == 'kabaret-moyen' ) {
         		        			
 	        			kino_add_to_usergroup( $id, 
 	        				$kino_fields['group-candidats-vus-moyens'] );
+	        			// s'assurer que le champ Réalisateur Kabaret est coché
+	        			kino_check_real_kabaret_checkbox( $id, $kino_fields );
 
         		}
         		
@@ -131,6 +139,9 @@ add_action('init', function () {
         		        			
         				kino_add_to_usergroup( $id, 
         					$kino_fields['group-candidats-vus-biens'] );
+        					
+        				// s'assurer que le champ Réalisateur Kabaret est coché
+        				kino_check_real_kabaret_checkbox( $id, $kino_fields );
    		
         		}
         		

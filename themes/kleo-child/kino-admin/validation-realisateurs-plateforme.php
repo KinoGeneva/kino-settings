@@ -67,6 +67,11 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	'user-group' 
         );
         
+        $ids_of_kino_complete = get_objects_in_term( 
+        	$kino_fields['group-kino-complete'] , 
+        	'user-group' 
+        );
+        
         // enlever les champs zéro: 
         $ids_real_platform_pending = array_filter($ids_real_platform_pending);
         $ids_real_kabaret_pending = array_filter($ids_real_kabaret_pending);

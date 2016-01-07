@@ -191,7 +191,10 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
 				 			} else {
 				 				// New candidate!
 				 				// move to group: real-kabaret-pending
-				 				kino_add_to_usergroup( $userid, $kino_fields['group-real-kabaret-pending'] );
+				 				kino_add_to_usergroup( $userid, 
+				 						$kino_fields['group-real-kabaret-pending'] );
+				 				kino_add_to_mailpoet_list( $userid, 
+				 				  	$kino_fields['mailpoet-real-kabaret-pending'] );
  					 		}
  					
  			} // end testing "realisateur-2016"
