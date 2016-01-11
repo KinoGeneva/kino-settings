@@ -362,6 +362,20 @@ function kino_user_fields_light( $kino_userid, $kino_fields ) {
 
 }
 
+function kino_user_fields_superlight( $user, $kino_fields ) {
+	
+	$kino_userdata = array(
+	      "user-id" => $kino_userid,
+	      "user-name" => $user->display_name,
+	      "user-slug" => $user->user_nicename,
+	      "user-email" => $user->user_email,
+	      "user-registered" => $user->user_registered
+	  );
+
+	return $kino_userdata;
+
+}
+
 /*
  * Kino User Logement
  * Created for Gestion-Logements
@@ -463,13 +477,6 @@ function kino_user_fields_kabaret( $user, $kino_fields ) {
 	return $kino_userdata;
 
 }
-
-
-// Generate table with user information
-function kino_generate_real_table ( $user, $kino_fields) {
-
-}
-
 
 
 

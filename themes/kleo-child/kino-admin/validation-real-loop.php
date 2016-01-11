@@ -56,8 +56,9 @@
 	      						'field'   => $kino_fields['session-attribuee'],
 	      						'user_id' => $user->ID
 	      				) );
+	      				$kino_session_attrib = mb_substr($kino_session_attrib, 0, 9);
 	      				if (!empty($kino_session_attrib) ) {
-	      					echo '<span class="kp-pointlist"><b>Session: '.$kino_session_attrib.'</b></span>';
+	      					echo '<span class="kp-pointlist"><b>'.ucfirst($kino_session_attrib).'</b></span>';
 	      				}
 	      			}	
       				

@@ -82,6 +82,10 @@ get_header(); ?>
 							
 							get_template_part( 'kino-admin/debug' );
 							
+						} else if ( $kino_page_slug == 'sessions' ) {
+							
+							get_template_part( 'kino-admin/sessions' );
+							
 						} else {
 								
 							get_template_part( 'content', 'page' );

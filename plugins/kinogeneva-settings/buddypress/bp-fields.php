@@ -150,7 +150,10 @@ function kino_test_fields() {
 	$kino_fields['mailpoet-session-un'] = 12 ;
 	$kino_fields['mailpoet-session-deux'] = 13 ;
 	$kino_fields['mailpoet-session-trois'] = 14 ;
-	$kino_fields['mailpoet-session-superhuit'] =15 ;
+	$kino_fields['mailpoet-session-superhuit'] = 15 ;
+	
+	$kino_fields['mailpoet-kabaret-technicien'] = 18 ;
+	$kino_fields['mailpoet-kabaret-comedien'] = 19 ;
 	
 	return $kino_fields;
 }

@@ -333,5 +333,5 @@ function kino_table_header( $validation ) {
 		
 		return $kino_table_header;
 		
-	}
+}
 
