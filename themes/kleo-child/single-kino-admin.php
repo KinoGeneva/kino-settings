@@ -86,6 +86,10 @@ get_header(); ?>
 							
 							get_template_part( 'kino-admin/sessions' );
 							
+						} else if ( $kino_page_slug == 'vehicules-logements' ) {
+							
+							get_template_part( 'kino-admin/vehicules-logements' );
+							
 						} else {
 								
 							get_template_part( 'content', 'page' );

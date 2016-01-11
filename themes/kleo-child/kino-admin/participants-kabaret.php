@@ -75,8 +75,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         $user_query = new WP_User_Query( array( 
         	// 'fields' => $user_fields,
         	'include' => $ids_of_kino_participants,
-        	'orderby' => 'registered',
-        	'order' => 'DESC'
+        	'orderby' => 'nicename',
+        	'order' => 'ASC'
         ) );
         
         //***************************************
@@ -94,6 +94,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         		<thead>
         			<tr>
         				<th>#</th>
+        				<th>ID</th>
         				<th>Nom/Email</th>
         		    <th>Rôle Kabaret</th>
         		    <th>Réal?</th>
@@ -116,14 +117,18 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         						$kino_fields
         					);
         					
+        					// ID
+        					echo '<td>'.$user->ID.'</td>';
+        					
         					// Name
         					echo '<td>';
+        					
+        					if ( !empty($user->display_name) ) {
+        						echo '('.$user->display_name .') ';
+        					}
+        					
         					echo '<a href="'.$url.'/members/'.$user->user_nicename.'/" target="_blank">';
-		        					if ( empty($user->display_name) ) {
-		        						echo $user->user_nicename;
-		        					} else {
-		        						echo $user->display_name;
-		        					}
+		        					echo $user->user_nicename;
         					echo '</a>';
         					
         					// Email

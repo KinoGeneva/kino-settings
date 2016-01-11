@@ -59,6 +59,12 @@ function kino_test_fields() {
 	$kino_fields['offre-logement'] = 1147; 
 	$kino_fields['offre-logement-remarque'] = 1150; // nombre et type de logement
 	
+	$kino_fields['possible-tournage'] = 1151;
+	$kino_fields['possible-tournage-remarque'] = 1154;
+	$kino_fields['vehicule'] = 1155;
+	$kino_fields['vehicule-remarque'] = 1160;
+	
+	
 	// Compétence Tech
 	
 	$kino_fields['comp-production'] = 173; // 
