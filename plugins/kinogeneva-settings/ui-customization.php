@@ -113,7 +113,7 @@ function kino_admin_production_css() {
 			
 			/* Hide Wp-User-Groups dropdown */
 			
-			form.user-tax-form {
+			form.user-tax-form-user-group {
 				display: none;
 			}
 		

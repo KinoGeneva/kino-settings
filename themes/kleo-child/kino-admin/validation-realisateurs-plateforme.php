@@ -141,9 +141,9 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				   	foreach ( $user_query->results as $user ) {
 				   		include('validation-real-loop.php');
 				   		// Add to list
-				   		kino_add_to_mailpoet_list( $user->ID, 
-					   		$kino_fields['mailpoet-real-platform'] 
-					   	);
+//				   		kino_add_to_mailpoet_list( $user->ID, 
+//					   		$kino_fields['mailpoet-real-platform'] 
+//					   	);
 				   	}
 				 	  echo '</tbody></table></div>';
 				 	}
@@ -171,9 +171,9 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 				 	}
 				 	
 				 	// add users to mailpoet list:
-					 	kino_add_to_mailpoet_list( $ids_real_platform_rejected, 
-					 		$kino_fields['mailpoet-real-platform-rejected'] 
-					 	);
+//					 	kino_add_to_mailpoet_list( $ids_real_platform_rejected, 
+//					 		$kino_fields['mailpoet-real-platform-rejected'] 
+//					 	);
 				 } // test !empty
 
 				

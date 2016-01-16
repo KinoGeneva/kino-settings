@@ -52,10 +52,10 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
     
     if (!empty($username)) {
     
-    	$msg .= "Pour vous connecter par la suite, utilisez le lien http://kinogeneva.ch/wp-login.php (ou le menu login) avec votre nom d'utilisateur (".$username.") et le mot de passe que vous avez défini.";
+    	$msg .= "Pour vous connecter par la suite, utilisez le lien https://kinogeneva.ch/wp-login.php (ou le menu login) avec votre nom d'utilisateur (".$username.") et le mot de passe que vous avez défini.";
     
     } else {
-    	$msg .= "Pour vous connecter par la suite, utilisez le lien http://kinogeneva.ch/wp-login.php (ou le menu login) avec votre identifiant et votre mot de passe.";
+    	$msg .= "Pour vous connecter par la suite, utilisez le lien https://kinogeneva.ch/wp-login.php (ou le menu login) avec votre identifiant et votre mot de passe.";
     }
     // Pour vous connecter par la suite, utilisez le menu login avec votre identifiant et votre mot de passe.
     // Voir https://bitbucket.org/ms-studio/kinogeneva/issues/70/message-lien-d-activation
@@ -148,9 +148,9 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  				 		  } else {
  				 		  	// platform ONLY: probably mistake : add to email list!
  				 		  	
- 				 		  	   kino_add_to_mailpoet_list( $userid, 
- 				 		  	   	$kino_fields['mailpoet-real-platform-only'] 
- 				 		  	   );
+// 				 		  	   kino_add_to_mailpoet_list( $userid, 
+// 				 		  	   	$kino_fields['mailpoet-real-platform-only'] 
+// 				 		  	   );
  				 		  	
  				 		  } // end troubleshooting
  				 		  
@@ -193,8 +193,8 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
 				 				// move to group: real-kabaret-pending
 				 				kino_add_to_usergroup( $userid, 
 				 						$kino_fields['group-real-kabaret-pending'] );
-				 				kino_add_to_mailpoet_list( $userid, 
-				 				  	$kino_fields['mailpoet-real-kabaret-pending'] );
+//				 				kino_add_to_mailpoet_list( $userid, 
+//				 				  	$kino_fields['mailpoet-real-kabaret-pending'] );
  					 		}
  					
  			} // end testing "realisateur-2016"
@@ -212,7 +212,7 @@ function kino_add_username_to_activation_email($msg, $u_id, $activation_url) {
  							// add to group!
  							kino_add_to_usergroup( $userid, $kino_fields['group-benevoles-kabaret'] );
  							// add to mailing list!
- 							kino_add_to_mailpoet_list( $userid, $kino_fields['mailpoet-benevoles'] );
+// 							kino_add_to_mailpoet_list( $userid, $kino_fields['mailpoet-benevoles'] );
  						}
  			}
  			
@@ -395,7 +395,7 @@ PS: pensez à <a href="'.bp_core_get_user_domain( $userid ).'profile/change-avat
 				
 Le paiement des frais de participation s’effectue en liquide et sur place, au lieu central.
 
-Pour toutes les informations pratiques et le programme du Kino Kabaret, voir: <a href="http://kinogeneva.ch/informations-pratiques/" style="color:#c11119;">http://kinogeneva.ch/informations-pratiques/</a>
+Pour toutes les informations pratiques et le programme du Kino Kabaret, voir: <a href="https://kinogeneva.ch/informations-pratiques/" style="color:#c11119;">https://kinogeneva.ch/informations-pratiques/</a>
 
 Pour toute question relative à votre inscription, n’hésitez pas à contacter Alex à l’adresse <a href="mailto:onvafairedesfilms@kinogeneva.ch?subject=Kino%20Geneva" style="color:#c11119;">onvafairedesfilms@kinogeneva.ch</a>';
 				
@@ -427,11 +427,11 @@ Pour toute question relative à votre inscription, n’hésitez pas à contacter
 				 );
 				 
 				 // Add user to Mailpoet list: 
-				 kino_add_to_mailpoet_list( $userid, 
-				   $kino_fields['mailpoet-participant-kabaret']);
+//				 kino_add_to_mailpoet_list( $userid, 
+//				   $kino_fields['mailpoet-participant-kabaret']);
 				 // Remove from incomplete list:
-				 kino_remove_from_mailpoet_list( $userid, 
-				   $kino_fields['mailpoet-participant-kabaret-incomplet'] );
+//				 kino_remove_from_mailpoet_list( $userid, 
+//				   $kino_fields['mailpoet-participant-kabaret-incomplet'] );
 				 
 				break;
 		

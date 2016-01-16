@@ -122,10 +122,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 		        			if ( ( $kino_test == "oui" ) || ( $kino_test == "yes" ) ) {
 		        						echo '<td class="success">OUI</td>';
 		        						// Ajouter à Mailpoet: profil incomplet
-		        						kino_add_to_mailpoet_list( 
-		        						 	$user->ID, 
-		        						 	$kino_fields['mailpoet-participant-kabaret-incomplet'] 
-		        						 	);
+//		        						kino_add_to_mailpoet_list( 
+//		        						 	$user->ID, 
+//		        						 	$kino_fields['mailpoet-participant-kabaret-incomplet'] 
+//		        						 	);
 		        						// increment counter:
 		        						$count_participants_kabaret++;
 		        			} else {

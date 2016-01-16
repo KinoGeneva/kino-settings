@@ -60,39 +60,39 @@ function kino_hourly_task() {
 	  		$value = mb_substr($kino_session_attrib, 0, 9);
 	  		if ( $value == 'session 1' ) {
 	  			
-	  			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-session-un'] );
+//	  			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-session-un'] );
 	  			
 	  			// kino_remove_from_mailpoet_list( $id, $kino_fields['mailpoet-session-trois']);
 						
-						kino_remove_from_mailpoet_list( $id, 
-							array( $kino_fields['mailpoet-session-deux'],
-										 $kino_fields['mailpoet-session-trois']) );
+//						kino_remove_from_mailpoet_list( $id, 
+//							array( $kino_fields['mailpoet-session-deux'],
+//										 $kino_fields['mailpoet-session-trois']) );
 	  			
 	  			$message .= ' / Action : moved user '.$id.' to:  '.$kino_session_attrib.' ';
 	  			
 	  		} else if ( $value == 'session 2' ) {
 	  		
-	  			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-session-deux'] );
-	  			
-	  			kino_remove_from_mailpoet_list( $id, 
-	  				array( $kino_fields['mailpoet-session-un'],
-	  							 $kino_fields['mailpoet-session-trois']) );
+//	  			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-session-deux'] );
+//	  			
+//	  			kino_remove_from_mailpoet_list( $id, 
+//	  				array( $kino_fields['mailpoet-session-un'],
+//	  							 $kino_fields['mailpoet-session-trois']) );
 	  			
 	  			$message .= ' / Action : moved user '.$id.' to session-deux.';
 	  			
 	  		} else if ( $value == 'session 3' ) {
 	  		
-	  			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-session-trois'] );
-	  			
-	  			kino_remove_from_mailpoet_list( $id, 
-	  				array( $kino_fields['mailpoet-session-un'],
-	  							 $kino_fields['mailpoet-session-deux']) );
+//	  			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-session-trois'] );
+//	  			
+//	  			kino_remove_from_mailpoet_list( $id, 
+//	  				array( $kino_fields['mailpoet-session-un'],
+//	  							 $kino_fields['mailpoet-session-deux']) );
 	  			
 	  			$message .= ' / Action : moved user '.$id.' to session-trois.';
 	  			
 	  		} else if ( $value == 'session 4' ) {
 	  		
-	  			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-session-superhuit'] );
+//	  			kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-session-superhuit'] );
 	  			
 	  			$message .= ' / Action : moved user '.$id.' to session-super8.';
 	  		
@@ -187,20 +187,24 @@ function kino_moulinette_competences_kab() {
 	  			  }
 	  			  if ( $value == "Comé" ) {
 	  			  	// $kup[] = "comedien-2016";
-	  			  	kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-kabaret-comedien'] );
+//	  			  	kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-kabaret-comedien'] );
 	  			  	
 	  			  	$message .= ' / Added user '.$username.' ('.$id.') to list Comédiens.';
 	  			  	
 	  			  }
 	  			  if ( $value == "Arti" ) {
 	  			  	// $kup[] = "technicien-2016";
-	  			  	kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-kabaret-technicien'] );
+//	  			  	kino_add_to_mailpoet_list( $id, $kino_fields['mailpoet-kabaret-technicien'] );
 	  			  	
 	  			  	$message .= ' / Added user '.$username.' ('.$id.') to list Techniciens.';
 	  			  	
 	  			  }
 	  			} // end foreach
 	  		} // end testing kino16_particiation_boxes
+	  		
+	  		// Test if name field is complete!
+	  		
+	  		
 	  		
 	  	} // end foreach $user
 		} // 

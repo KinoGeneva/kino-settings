@@ -245,7 +245,7 @@ function kino_user_participation( $userid, $kino_fields ) {
 				'no_grav' => true, 
 				'html' => false) );
 			
-			if ( $kino_avatar == 'http://kinogeneva.ch/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg' ) {
+			if ( $kino_avatar == 'https://kinogeneva.ch/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg' ) {
 				// no avatar
 			} else {
 				$kup[] = "avatar-complete";

@@ -85,8 +85,6 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         			// add to array
         			$kinoites_benevoles[] = kino_user_fields_logement( $user, $kino_fields );
         			
-        			
-        				    
         			// 	    
         			
         		if ($kino_debug_mode == "on") {
@@ -102,7 +100,6 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         
         // ***********************************
         
-        // Kinoïtes qui offrent un logement:
         if ( !empty($kinoites_benevoles) ) {
         	echo '<h2>Kinoïtes <a href="'.$url.'/wp-admin/users.php?user-group=benevoles-kabaret">Bénévoles</a> ('.count($kinoites_benevoles).'):</h2>';
         	
@@ -130,10 +127,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         				foreach ($kinoites_benevoles as $key => $item) {
         				
 //        							 Add to Mailpoet List
-        							kino_add_to_mailpoet_list( 
-        								$item["user-id"], 
-        								$kino_fields['mailpoet-benevoles'] 
-        							);
+//        							kino_add_to_mailpoet_list( 
+//        								$item["user-id"], 
+//        								$kino_fields['mailpoet-benevoles'] 
+//        							);
         							
         						?>
         						<tr>

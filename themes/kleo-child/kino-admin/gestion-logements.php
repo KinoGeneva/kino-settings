@@ -73,6 +73,11 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	'order' => 'ASC' 
         ) );
         
+        
+//        echo '<pre> $user_query_cherche :';
+//        			var_dump($user_query_cherche);
+//        			echo '</pre>';
+        
         if ($kino_debug_mode == "on") {
         	echo '<pre>';
         	var_dump($user_query_cherche->results);
@@ -138,6 +143,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         		<thead>
         			<tr>
         				<th>#</th>
+        				<th>ID</th>
         				<th>Nom</th>
         				<th>Enregistrement</th>
         				<th>Real?</th>
@@ -157,8 +163,16 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         					?>
         					<tr>
         						<th><?php echo $metronom++; ?></th>
-        						<?php  // Nom:
-        								echo '<td><a href="'.$url.'/members/'.$item["user-slug"].'/" target="_blank">'.$item["user-name"].'</a></td>';
+        						<?php  
+        						
+        						// ID
+        						echo '<td>'.$item["user-id"].'</td>';
+        						
+        						// Nom:
+        								// echo '<td><a href="'.$url.'/members/'.$item["user-slug"].'/" target="_blank">'.$item["user-name"].'</a></td>';
+        								// link to groups!
+        								echo '<td><a href="'.$url.'/wp-admin/user-edit.php?user_id='.$item["user-id"].'#user-logement" target="_blank">'.$item["user-name"].'</a></td>';
+        								
         								
         								// Enregistrement
         								echo '<td>'.$item["user-registered"].'</td>';
@@ -253,6 +267,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         if ( !empty($kino_logements) && !is_wp_error( $kino_logements ) ) {
         		
         		$kino_logements_total = count($kino_logements);
+        		
 //        	echo '<pre>';
 //        	var_dump($kino_logements);
 //        	echo '</pre>';
@@ -268,6 +283,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	
         	foreach ( $kino_logements as $logement ) {
         	   
+        	   // on a : ["term_id"]
+        	   
         	   // Init
         	   $nombre_couchages = 0;
         	   $nombre_occupants = 0;
@@ -281,6 +298,9 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 	        	   	$logement->term_id, 
 	        	   	'kino_nombre_couchages', 
 	        	   	true );
+	        	   	
+//	        	 echo '<p>nombre de couchages: '.$nombre_couchages.'</p>';
+	        	   	
 	        	 $adresse_logement = get_metadata( 
 	        	   	'term', 
 	        	   	$logement->term_id, 
@@ -295,6 +315,10 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	   	'user-logement' // taxonomie
         	   );
         	   
+//	           	echo '<pre> IDs occupants: ';
+//	           	var_dump($ids_occupants);
+//	           	echo '</pre>';
+        	   
         	   if ( !empty($ids_occupants) ) {
         	   	
 		        	   	/*
@@ -304,21 +328,45 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 		        	   		'include' => $ids_occupants, // IDs incluses
 		        	   		'meta_key'  => 'last_name',
 		        	   		'orderby'  => 'last_name',
-		        	   		'fields' => $user_fields,
+		        	   		// 'fields' => $user_fields,
 		        	   	) );
+		        	   	
+//		        	   	echo '<pre> $occupants_query :';
+//		        	   	var_dump($occupants_query);
+//		        	   	echo '</pre>';
+		        	   	
+		        	   	$occupants = $occupants_query->get_results();
+		        	   	
+//		        	   	echo '<pre> $occupants :';
+//		        	   			var_dump($occupants);
+//		        	   			echo '</pre>';
 		        	   	
 		        	   	$nombre_occupants = count($occupants_query->results);
 		        	   	$liste_occupants = array();
 		        	   	
-		        	   	if ( ! empty( $occupants_query->results ) ) {
-		        	   		foreach ( $occupants_query->results as $user ) {
+		        	   	if ( ! empty( $occupants ) ) {
+		        	   		foreach ( $occupants as $user ) {
+		        	   			
+//		        	   			echo '<pre> processing user :';
+//		        	   					var_dump($user);
+//		        	   					echo '</pre>';
 		        	   			// name and edit link:
 		        	   			// http://kinogeneva.4o4.ch/wp-admin/user-edit.php?user_id=243&wp_http_referer=%2Fwp-admin%2Fusers.php
 		        	   			$liste_occupants[] = '<a href="'.$url.'/wp-admin/user-edit.php?user_id='.$user->ID.'#user-logement">'.$user->display_name.'</a>';
 		        	   			
 		        	   		} // end foreach
-		        	   	} // end if empty $occupants_query
-        	   	
+		        	   		
+//		        	   		echo '<pre> occupants :';
+//		        	   			var_dump($liste_occupants);
+//		        	   			echo '</pre>';
+		        	   		
+		        	   	} else {
+		        	   	
+//		        	   	echo '<pre> $occupants_query->results is empty </pre>';
+		        	   	}
+		        	   	
+		        	   	// end if empty $occupants_query
+        	   			
         	   }
         	   // end if empty $ids_occupants
         	   
@@ -466,6 +514,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         		<thead>
 	        		<tr>
 	        			<th>#</th>
+	        			<th>ID</th>
 	        			<th>Nom</th>
 	        			<th>Adresse</th>
 	    			    <th>Email</th>
@@ -483,6 +532,9 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         						<tr>
         							<th><?php echo $metronom++; ?></th>
         							<?php 
+        							
+        							// ID
+        							echo '<td>'.$item["user-id"].'</td>';
         							
         							// Nom
         							echo '<td><a href="'.$url.'/members/'.$item["user-slug"].'/" target="_blank">'.$item["user-name"].'</a></td>';

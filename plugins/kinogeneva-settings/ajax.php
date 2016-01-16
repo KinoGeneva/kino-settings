@@ -38,8 +38,8 @@ add_action('init', function () {
         			
         			// remove from mailpoet list:
         			
-        			kino_remove_from_mailpoet_list( $id,
-        				$kino_fields['mailpoet-real-platform-only'] );
+//        			kino_remove_from_mailpoet_list( $id,
+//        				$kino_fields['mailpoet-real-platform-only'] );
         		
         		}
         		
@@ -50,8 +50,8 @@ add_action('init', function () {
         				$kino_fields['group-real-platform'] );
         				
         			// Add to Mailpoet List
-        			kino_add_to_mailpoet_list( $id, 
-        				$kino_fields['mailpoet-real-platform'] );
+//        			kino_add_to_mailpoet_list( $id, 
+//        				$kino_fields['mailpoet-real-platform'] );
         			
         			// add checkbox!
         			kino_check_real_platform_checkbox( $id, $kino_fields );
@@ -65,8 +65,8 @@ add_action('init', function () {
         				$kino_fields['group-real-platform-rejected'] );
         			
         			// Add to Mailpoet List
-        			kino_add_to_mailpoet_list( $id, 
-        				$kino_fields['mailpoet-real-platform-rejected'] );
+//        			kino_add_to_mailpoet_list( $id, 
+//        				$kino_fields['mailpoet-real-platform-rejected'] );
         			
         			// remove checkbox!
         			kino_remove_real_platform_checkbox( $id, $kino_fields );
@@ -81,8 +81,8 @@ add_action('init', function () {
         			kino_remove_from_usergroup( $id, 
         				$kino_fields['group-real-kabaret-pending'] );
         				
-        			kino_remove_from_mailpoet_list( $id,
-        				$kino_fields['mailpoet-real-platform-only'] );
+//        			kino_remove_from_mailpoet_list( $id,
+//        				$kino_fields['mailpoet-real-platform-only'] );
         		
         		}
         		
@@ -96,16 +96,16 @@ add_action('init', function () {
         			kino_remove_from_usergroup( $id, 
         				$kino_fields['group-candidats-vus-biens'] );
         				
-        			kino_remove_from_mailpoet_list( $id,
-        				$kino_fields['mailpoet-real-kabaret-pending'] );
+//        			kino_remove_from_mailpoet_list( $id,
+//        				$kino_fields['mailpoet-real-kabaret-pending'] );
         				
         			// add to groups
         			
         			kino_add_to_usergroup( $id, 
         				$kino_fields['group-real-kabaret'] );
         				
-        			kino_add_to_mailpoet_list( $id, 
-        				$kino_fields['mailpoet-real-kabaret'] );
+//        			kino_add_to_mailpoet_list( $id, 
+//        				$kino_fields['mailpoet-real-kabaret'] );
         				
         			// s'assurer que le champ Réalisateur Kabaret est coché
         			kino_check_real_kabaret_checkbox( $id, $kino_fields );
@@ -115,11 +115,11 @@ add_action('init', function () {
         			kino_add_to_usergroup( $id, 
         				$kino_fields['group-real-kabaret-rejected'] );
         				
-        			kino_add_to_mailpoet_list( $id, 
-        				$kino_fields['mailpoet-real-kabaret-rejected'] );
+//        			kino_add_to_mailpoet_list( $id, 
+//        				$kino_fields['mailpoet-real-kabaret-rejected'] );
         			
-        			kino_remove_from_mailpoet_list( $id,
-        				$kino_fields['mailpoet-real-kabaret-pending'] );
+//        			kino_remove_from_mailpoet_list( $id,
+//        				$kino_fields['mailpoet-real-kabaret-pending'] );
         			
         			// décocher le champ Réalisateur Kabaret!
         			kino_remove_real_kabaret_checkbox( $id, $kino_fields );
