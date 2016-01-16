@@ -59,8 +59,8 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         
         $user_query = new WP_User_Query( array( 
         	'include' => $ids_of_kino_participants, // IDs incluses
-        	'orderby' => 'registered',
-        	'order' => 'ASC' 
+        	'orderby' => 'nicename',
+        	'order' => 'ASC'
         ) );
         
         // Function to generate users
@@ -174,6 +174,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         		<thead>
         			<tr>
         				<th>#</th>
+        				<th>ID</th>
         				<th>Nom</th>
         				<th>Remarque</th>
         				<th>Disponibilité</th>
@@ -190,7 +191,12 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         					?>
         					<tr>
         						<th><?php echo $metronom++; ?></th>
-        						<?php  // Nom:
+        						<?php  
+        									
+        								// ID
+        								echo '<td>'.$item["user-id"].'</td>';	
+        									
+        								// Nom:
         								echo '<td><a href="'.$url.'/members/'.$item["user-slug"].'/" target="_blank">'.$item["user-name"].'</a></td>';
         								
         								// Remarque
@@ -232,6 +238,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         		<thead>
           		<tr>
           			<th>#</th>
+          			<th>ID</th>
           			<th>Nom</th>
           			<th>Adresse</th>
           			<th>Remarques</th>
@@ -248,6 +255,9 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         						<tr>
         							<th><?php echo $metronom++; ?></th>
         							<?php 
+        							
+        							// ID
+        							echo '<td>'.$item["user-id"].'</td>';	
         							
         							// Nom
         							echo '<td><a href="'.$url.'/members/'.$item["user-slug"].'/" target="_blank">'.$item["user-name"].'</a></td>';
