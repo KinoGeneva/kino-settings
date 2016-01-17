@@ -145,6 +145,42 @@ add_action('init', function () {
    		
         		}
         		
+        		// ACTIONS Payment
+        		
+        		if ( $state == 'payment-25' ) {
+        			kino_add_to_compta( $id, 
+        				$kino_fields['compta-paid-25'] );
+        		}
+        		
+        		if ( $state == 'payment-100' ) {
+        			kino_add_to_compta( $id, 
+        				$kino_fields['compta-paid-100'] );
+        		}
+        		
+        		if ( $state == 'payment-reset' ) {
+        			kino_remove_from_compta( $id, 
+        				$kino_fields['compta-paid-25'] );
+        			kino_remove_from_compta( $id, 
+        				$kino_fields['compta-paid-100'] );
+        		}
+        		
+        		if ( $state == 'repas-60' ) {
+        			kino_add_to_compta( $id, 
+        				$kino_fields['compta-repas-60'] );
+        		}
+        		
+        		if ( $state == 'repas-100' ) {
+        			kino_add_to_compta( $id, 
+        				$kino_fields['compta-repas-100'] );
+        		}
+        		
+        		if ( $state == 'repas-reset' ) {
+        			kino_remove_from_compta( $id, 
+        				$kino_fields['compta-repas-60'] );
+        			kino_remove_from_compta( $id, 
+        				$kino_fields['compta-repas-100'] );
+        		}
+        		
         } // end !empty($state)
 
         wp_send_json_success(array(

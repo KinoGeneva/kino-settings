@@ -47,6 +47,19 @@ jQuery(document).ready(function($){
                              	 $item.detach();
                              } else if ( state == 'kabaret-bien' ) {
                              	 $item.detach();
+                             } else if ( state == 'payment-25' ) {
+                             	 location.reload(true);
+                             } else if ( state == 'payment-100' ) {
+                             	 location.reload(true);
+                             } else if ( state == 'payment-reset' ) {
+                             	 location.reload(true);
+                             } else if ( state == 'repas-60' ) {
+                             	 location.reload(true);
+                             } else if ( state == 'repas-100' ) {
+                             	 location.reload(true);
+                             } else if ( state == 'repas-reset' ) {
+                             	 location.reload(true);
+                             	 // $("#table-container").load("/kino-admin/inscriptions/ #inscription-table");
                              }
    
                                // succcess data

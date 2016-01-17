@@ -36,11 +36,17 @@ get_header(); ?>
 						
 							get_template_part( 'kino-admin/validation-realisateurs' );
 						
-						// Impression des fiches
+						// Validation Réalisateurs Palteforme
 						
 						} else if ( $kino_page_slug == 'validation-realisateurs-plateforme' ) {
 						
 							get_template_part( 'kino-admin/validation-realisateurs-plateforme' );
+						
+						// Inscription Au Kabaret
+							
+						} else if ( $kino_page_slug == 'inscriptions' ) {
+						
+							get_template_part( 'kino-admin/inscriptions' );
 						
 						// Gestion des Logements
 							
