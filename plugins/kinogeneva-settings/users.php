@@ -74,15 +74,27 @@ add_action( 'init' , 'kino_remove_stuff' , 0 );
 // ajouter taxonomie "Logements"
 
 function kino_register_logement_taxonomy() {
-
+	
+	// Logements
 	new WP_User_Taxonomy( 'user-logement', 'users/logement', array(
 		'singular' => 'Logement',
 		'plural'   => 'Logements'
 	) );
 	
-	// add_term_meta();	
+	// Competences
+	new WP_User_Taxonomy( 'user-competences', 'users/competences', array(
+		'singular' => 'Compétence',
+		'plural'   => 'Compétences'
+	) );
+	
+	// Comptabilité
+	new WP_User_Taxonomy( 'user-compta', 'users/compta', array(
+		'singular' => 'Compta',
+		'plural'   => 'Compta'
+	) );
+	
 }
-add_action( 'init', 'kino_register_logement_taxonomy' );
+add_action( 'init', 'kino_register_logement_taxonomy', 20 );
 
 function kino_limit_group_access() {
 	global $wp_taxonomies;
@@ -92,6 +104,3 @@ function kino_limit_group_access() {
 add_action('init','kino_limit_group_access', 11);
 
 
-
-
-?>

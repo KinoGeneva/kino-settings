@@ -271,7 +271,7 @@ html #main .print-profile {
     		    // It wasn't there, so regenerate the data and save the transient
     		     $kino_userdata = kino_user_fields($kino_userid , $kino_fields );
     		     
-    		     set_transient( $transientname, $kino_userdata, 10 );
+    		     set_transient( $transientname, $kino_userdata, 60 );
     		     //  * HOUR_IN_SECONDS
     		     
 //    		     echo '<p>we just defined transient '.$transientname.'</p>';

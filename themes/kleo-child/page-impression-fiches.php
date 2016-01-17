@@ -47,7 +47,8 @@ body {
 }
 
 .kp-photo img {
-	max-height: 90mm;
+	height: 90mm;
+	width: auto;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 0mm;
@@ -96,7 +97,7 @@ body {
 	word-break: keep-all;
 }
 
-.role-staff .kp-commalist {
+.kabaret-role .kp-commalist {
 	color: #000 !important;
 	text-transform: lowercase;
 	font-size: 10pt;
@@ -130,6 +131,10 @@ body {
 	
 	text-align: justify;
 	text-justify: inter-word;
+}
+
+.superlongtext {
+	font-size: 8pt;
 }
 
 .paragraphe strong, .paragraphe b {
@@ -292,13 +297,11 @@ body {
 	
 	$kino_debug_mode = ( get_query_var('kinodebug') ) ? get_query_var('kinodebug') : false;
 
-	// First: filter participant IDs = 
-	
+	// Default group:  
 	$ids_of_kino_participants = get_objects_in_term( 
 		$kino_fields['group-kino-complete'], 
 		'user-group' 
 	);
-
 
 	$kinorole_var = ( get_query_var('kinorole') ) ? get_query_var('kinorole') : false;
 	
@@ -323,15 +326,102 @@ body {
 			
 		} // end 'realisateur'
 		
-		// pour comedien, technicien = voir si on créé des groupes.
+		// Comédiens
+		if ( $kinorole_var == 'comedien' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-comp-comedien'] , 
+				'user-competences'  
+			);
+		}
 		
+		// Image
+		if ( $kinorole_var == 'image' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-comp-image'] , 
+				'user-competences'  
+			);
+		}
+		
+		// Postprod Image
+		if ( $kinorole_var == 'postprod' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-comp-postprod-image'] , 
+				'user-competences'  
+			);
+		}
+		
+		// Postprod Son
+		if ( $kinorole_var == 'son' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-comp-postprod-son'] , 
+				'user-competences'  
+			);
+		}
+		
+		// Production & Scénario
+		if ( $kinorole_var == 'production' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-comp-prod-scenar'] , 
+				'user-competences'  
+			);
+		}
+		
+		// Direction artistique & HMC
+		if ( $kinorole_var == 'dirart' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-comp-da-hmc'] , 
+				'user-competences'  
+			);
+		}
+		
+		// Autres talents
+		if ( $kinorole_var == 'autres' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-comp-autres'] , 
+				'user-competences'  
+			);
+		}
+		
+		// Staff
+		if ( $kinorole_var == 'staff' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-comp-staff'] , 
+				'user-competences'  
+			);
+		}
+		
+		// Sessions
+		if ( $kinorole_var == 'session1' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-session-un'] , 
+				'user-group'  
+			);
+		}
+		if ( $kinorole_var == 'session2' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-session-deux'] , 
+				'user-group'  
+			);
+		}
+		if ( $kinorole_var == 'session3' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-session-trois'] , 
+				'user-group'  
+			);
+		}
+		if ( $kinorole_var == 'session4' ) {
+			$ids_of_kino_participants = get_objects_in_term( 
+				$kino_fields['group-session-superhuit'] , 
+				'user-group'  
+			);
+		}
+		
+		// Pending
 		if ( $kinorole_var == 'pending' ) {
 			$ids_of_kino_participants = get_objects_in_term( 
-				$kino_fields['group-kino-complete'], 
+				$kino_fields['group-kino-pending'], 
 				'user-group' 
 			);
-
-			
 		} // end 'pending'
 		
 	} // end $kinorole_var testing
@@ -405,8 +495,39 @@ body {
         	echo '<b>Filtrage par fraîcheur:</b> '.$kinodate_var.' jours<br/>';
         }
         if ( ! empty( $user_query->results ) ) {
-        	echo '<b>Nombre de fiches: </b>'.count($user_query->results).'';
+        	echo '<b>Nombre de fiches: </b>'.count($user_query->results).'<br/>';
         }
+        
+        echo '<b>Filtres par groupe:</b> ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=realisateur">Réalisateurs</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=comedien">Comédiens</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=image">Image</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=postprod">Postproduction Image</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=son">Son & Postproduction son</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=production">Production & Scénario</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=dirart">Direction artistique & HMC</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=autres">Autres talents</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=staff">Staff</a> </br>';
+        
+        echo '<b>Sessions:</b> ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=session1">Session #1</a> / ';
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=session2">Session #2</a> / ';
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=session3">Session #3</a> / ';
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=session4">Session #4</a> </br>';
+        
+        
+        // https://kinogeneva.ch/impression-fiches/?kinorole=dirart
+        
          ?></p>
         
         <?php
@@ -461,6 +582,16 @@ body {
         	 	echo '<div class="kp-par kp-photo photo">';
         	 	echo $kino_userdata["photo"];
         	 	echo '</div>';
+        	 } else {
+        	 	// utiliser photo profil: 
+        	 		$kino_img_url = bp_core_fetch_avatar( array( 
+        	 			'item_id' => $kino_userid, 
+        	 			// 'no_grav' => true,
+        	 			'type' => 'full', 
+        	 			'html' => true) );
+        	 			echo '<div class="kp-par kp-photo photo">';
+        	 			echo $kino_img_url;
+        	 			echo '</div>';
         	 }
         	 
         	 // Identité 
@@ -483,13 +614,13 @@ body {
         	 	echo '<h3 class="kabaret-role">';
         	 		
         	 		if ( !empty($kino_userdata["fonctions-staff"]) ) {
-        	 				echo '<span class="role-staff">Staff</span>';
+        	 				echo '<span class="kp-pointlist role-staff">Staff';
         	 				
         	 					foreach ( $kino_userdata["fonctions-staff"] as $key => $value) {
         	 							echo '<span class="kp-commalist"> '.$value.'</span>';
         	 						}
         	 						
-        	 				echo '';
+        	 				echo '</span>';
         	 			}
         	 		
         	 		if ( in_array( "realisateur-2016", $kino_userdata["participation"] )) {
@@ -646,7 +777,11 @@ body {
         	 $kino_present_css = '';
         	 
         	 if ( strlen($kino_userdata["presentation"]) > 500 ) {
-        	 	$kino_present_css = ' longtext';
+        	 	$kino_present_css .= ' longtext';
+        	 }
+        	 
+        	 if ( strlen($kino_userdata["presentation"]) > 900 ) {
+        	 	$kino_present_css .= ' superlongtext';
         	 }
         	 
         	 echo '<div class="paragraphe'. $kino_present_css .'">';

@@ -140,6 +140,31 @@ function kino_test_fields() {
 	$kino_fields['group-offre-logement'] = 95 ; // 80 95
 	}
 	
+	// Compétences
+	
+	$kino_fields['group-comp-comedien'] = 108 ; //
+	$kino_fields['group-comp-technicien'] = 124 ; //
+	$kino_fields['group-comp-image'] = 109 ; //
+	$kino_fields['group-comp-postprod-image'] = 110 ; //
+	$kino_fields['group-comp-postprod-son'] = 111 ; //
+	$kino_fields['group-comp-prod-scenar'] = 112 ; //
+	$kino_fields['group-comp-da-hmc'] = 113 ; //
+	$kino_fields['group-comp-autres'] = 114 ; //
+	$kino_fields['group-comp-staff'] = 115 ; //
+	
+	// Compta
+	$kino_fields['compta-paid-25'] = 116 ; //
+	$kino_fields['compta-paid-100'] = 117 ; //
+	$kino_fields['compta-repas-60'] = 118 ; //
+	$kino_fields['compta-repas-100'] = 119 ; //
+	
+	// Sessions
+	$kino_fields['group-session-un'] = 120 ;
+	$kino_fields['group-session-deux'] = 121 ;
+	$kino_fields['group-session-trois'] = 122 ;
+	$kino_fields['group-session-superhuit'] = 123 ;
+	
+	
 	// MailPoet List IDs:
 	// ***********
 	$kino_fields['mailpoet-benevoles'] = 6 ;

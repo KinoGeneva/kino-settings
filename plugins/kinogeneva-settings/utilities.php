@@ -22,3 +22,30 @@ function kino_process_niveau( $kino_niveau ) {
 		
 }
 
+function kino_add_to_comp( $id, $group ) {
+	
+	wp_set_object_terms( 
+			$id, // $object_id, 
+			$group, // $terms, 
+			'user-competences', // $taxonomy, 
+			true // $append 
+	);
+
+}
+
+function kino_add_to_compta( $id, $group ) {
+	wp_set_object_terms( 
+			$id, // $object_id, 
+			$group, // $terms, 
+			'user-compta', // $taxonomy, 
+			true // $append 
+	);
+}
+
+function kino_remove_from_compta( $id, $group ) {
+	wp_remove_object_terms( 
+			$id, // $object_id, 
+			$group, // $terms, 
+			'user-compta' // $taxonomy, 
+	);
+}

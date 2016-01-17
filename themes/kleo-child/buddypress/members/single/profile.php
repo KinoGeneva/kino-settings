@@ -23,7 +23,7 @@
 		
 		// pour tout le monde: lien vers modif Mdp
 		
-		echo '<li id="edit-password"><a href="'.site_url().'/wp-admin/profile.php">Email & Mot de passe</a></li>';
+		// echo '<li id="edit-password"><a href="'.site_url().'/wp-admin/profile.php">Email & Mot de passe</a></li>';
 		
 		// pour les admin: lien vers le backend
 		if( current_user_can('administrator')) {
