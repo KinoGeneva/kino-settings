@@ -43,3 +43,9 @@ include_once (plugin_dir_path(__FILE__).'ajax.php');
 // BuddyPress Settings
 
 include_once (plugin_dir_path(__FILE__).'buddypress/bp-fields.php');
+
+// Utilities
+
+include_once (plugin_dir_path(__FILE__).'utilities.php');
+
+// end file

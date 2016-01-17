@@ -33,6 +33,9 @@ function kino_test_fields() {
 	$kino_fields['benevole-activite-admin'] = 1512; // Pour quelles activités - vue admin
 	$kino_fields['benevole-charge-admin'] = 1514; // Pour quelles charges - vue admin
 	$kino_fields['benevole-charge-admin-test'] = 1516;
+	$kino_fields['fonctions-staff'] = 1582;
+	
+	
 	
 	$kino_fields['id-presentation'] = 31; // is ID complete? champ: Présentation
 	$kino_fields['id-photo'] = 859; // champ: Photo
@@ -90,7 +93,7 @@ function kino_test_fields() {
 	$kino_fields['langues-parlees'] = 58; // 
 	$kino_fields['langues-parlees-autre'] = 594; // 
 	$kino_fields['langues-jouees'] = 75; // 
-	$kino_fields['langues-parlees'] = 593; //
+	$kino_fields['langues-jouees-autre'] = 593; //
 	$kino_fields['poids'] = 36; // 
 	$kino_fields['taille'] = 37; // 
 	$kino_fields['yeux'] = 38; // 
@@ -98,7 +101,7 @@ function kino_test_fields() {
 	$kino_fields['cheveux'] = 42; // 
 	$kino_fields['cheveux-autre'] = 651; // 
 	$kino_fields['talents'] = 82; // 
-	$kino_fields['talents-autre'] = 38; // 
+	$kino_fields['talents-autre'] = 99; // 
 	
 		
 	// Group IDs !

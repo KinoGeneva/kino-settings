@@ -28,6 +28,7 @@ function kino_list_of_excluded_profile_fields() {
 		$kino_excluded_id[] = $kino_fields['benevole-activite-admin'];
 		$kino_excluded_id[] = $kino_fields['benevole-charge-admin'];
 		$kino_excluded_id[] = $kino_fields['benevole-charge-admin-test'];
+		$kino_excluded_id[] = $kino_fields['fonctions-staff'];
 		
 		// Cacher uniquement sur la page Edition du profil: 
 		// Définis dans la fonction ci-dessous
@@ -36,7 +37,7 @@ function kino_list_of_excluded_profile_fields() {
 		
 		} else {
 		
-			// Cacher uniquement sur la page Vue du profil: 
+			// Cacher uniquement sur la page "Vue du profil": 
 		
 			// conditions d'utilisation:
 			$kino_excluded_id[] = $kino_fields['conditions-generales'];

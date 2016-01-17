@@ -8,7 +8,7 @@
  * @subpackage Kleo
  * @since Kleo 1.0
  */
-
+ 
 get_header(); ?>
 
 <?php get_template_part('page-parts/general-title-section'); ?>
@@ -41,12 +41,6 @@ get_header(); ?>
 						} else if ( $kino_page_slug == 'validation-realisateurs-plateforme' ) {
 						
 							get_template_part( 'kino-admin/validation-realisateurs-plateforme' );
-						
-						// Impression des fiches
-						
-						} else if ( $kino_page_slug == 'impression-fiches' ) {
-							
-							get_template_part( 'kino-admin/impression-fiches' );
 						
 						// Gestion des Logements
 							
@@ -110,4 +104,4 @@ get_header(); ?>
         
 <?php get_template_part('page-parts/general-after-wrap'); ?>
 
-<?php get_footer(); ?>
+<?php get_footer();

@@ -517,6 +517,10 @@ function kino_user_fields( $kino_userid, $kino_fields ) {
 			'field'   => $kino_fields["birthday"],
 			'user_id' => $kino_userid
 	) );
+	$kino_userdata["tel"] = bp_get_profile_field_data( array(
+			'field'   => $kino_fields["tel"],
+			'user_id' => $kino_userid
+	) );
 	
 	// Method to find age in years...
 	 // Simple method:
@@ -555,76 +559,138 @@ function kino_user_fields( $kino_userid, $kino_fields ) {
 	   ) );
 	  
 	  // Role Technicien ??
+	  if ( in_array( "technicien-2016", $kino_userdata["participation"] )) {
 	  
-	  $kino_userdata["role-tech"] = bp_get_profile_field_data( array(
-	   		'field'   => $kino_fields['role-kabaret-tech'],
-	   		'user_id' => $kino_userid
-	   ) );
-	   
-	   $kino_userdata["comp-production"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-production'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-scenario"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-scenario'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-realisation"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-realisation'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-image"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-image'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-postprod-image"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-postprod-image'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-son"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-son'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-postprod-son"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-postprod-son'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-direction-artistique"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-direction-artistique'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-hmc"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-hmc'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-autres-liste"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-autres-liste'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["comp-autres-champ"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['comp-autres-champ'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["equipement"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['equipement'],
-	    		'user_id' => $kino_userid
-	    ) );
-	   $kino_userdata["equipement-spec"] = bp_get_profile_field_data( array(
-	    		'field'   => $kino_fields['equipement-spec'],
-	    		'user_id' => $kino_userid
-	    ) );
+						  $kino_userdata["role-tech"] = bp_get_profile_field_data( array(
+						   		'field'   => $kino_fields['role-kabaret-tech'],
+						   		'user_id' => $kino_userid
+						   ) );
+						   
+						   $kino_userdata["comp-production"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-production'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-scenario"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-scenario'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-realisation"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-realisation'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-image"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-image'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-postprod-image"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-postprod-image'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-son"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-son'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-postprod-son"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-postprod-son'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-direction-artistique"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-direction-artistique'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-hmc"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-hmc'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-autres-liste"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-autres-liste'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["comp-autres-champ"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['comp-autres-champ'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["equipement"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['equipement'],
+						    		'user_id' => $kino_userid
+						    ) );
+						   $kino_userdata["equipement-spec"] = bp_get_profile_field_data( array(
+						    		'field'   => $kino_fields['equipement-spec'],
+						    		'user_id' => $kino_userid
+						    ) );
+	   }
 	   
 	  // Role Comédien ??
+	  if ( in_array( "comedien-2016", $kino_userdata["participation"] )) {
 	  
-	  $kino_userdata["role-comed"] = bp_get_profile_field_data( array(
-	     		'field'   => $kino_fields['role-kabaret-comed'],
-	     		'user_id' => $kino_userid
-	   ) );
+				  $kino_userdata["role-comed"] = bp_get_profile_field_data( array(
+				     		'field'   => $kino_fields['role-kabaret-comed'],
+				     		'user_id' => $kino_userid
+				   ) );
+				   $kino_userdata["age-camera-min"] = bp_get_profile_field_data( array(
+				      		'field'   => $kino_fields['age-camera-min'],
+				      		'user_id' => $kino_userid
+				    ) );
+				    $kino_userdata["age-camera-max"] = bp_get_profile_field_data( array(
+				       		'field'   => $kino_fields['age-camera-max'],
+				       		'user_id' => $kino_userid
+				     ) );
+				    $kino_userdata["langue-mat"] = bp_get_profile_field_data( array(
+				        		'field'   => $kino_fields['langue-mat'],
+				        		'user_id' => $kino_userid
+				    ) );
+				    $kino_userdata["langue-mat-autre"] = bp_get_profile_field_data( array(
+				        		'field'   => $kino_fields['langue-mat-autre'],
+				        		'user_id' => $kino_userid
+				    ) );
+				    $kino_userdata["langues-parlees"] = bp_get_profile_field_data( array(
+				       		'field'   => $kino_fields['langues-parlees'],
+				       		'user_id' => $kino_userid
+				     ) );
+				     $kino_userdata["langues-parlees-autre"] = bp_get_profile_field_data( array(
+				        		'field'   => $kino_fields['langues-parlees-autre'],
+				        		'user_id' => $kino_userid
+				      ) );
+				    $kino_userdata["langues-jouees"] = bp_get_profile_field_data( array(
+				        		'field'   => $kino_fields['langues-jouees'],
+				        		'user_id' => $kino_userid
+				    ) );
+				    $kino_userdata["langues-jouees-autre"] = bp_get_profile_field_data( array(
+				        		'field'   => $kino_fields['langues-jouees-autre'],
+				        		'user_id' => $kino_userid
+				    ) );
+				    $kino_userdata["talents"] = bp_get_profile_field_data( array(
+				       		'field'   => $kino_fields['talents'],
+				       		'user_id' => $kino_userid
+				     ) );
+				    $kino_userdata["talents-autre"] = bp_get_profile_field_data( array(
+				       		'field'   => $kino_fields['talents-autre'],
+				       		'user_id' => $kino_userid
+				     ) );
+				    
+		}
 	   
 	  // Role Réalisateur ??
 	   
 	   $kino_userdata["role-real"] = bp_get_profile_field_data( array(
 	      		'field'   => $kino_fields['role-kabaret-real'],
+	      		'user_id' => $kino_userid
+	    ) );
+	   
+	  // Is Staff ?? 
+	  $kino_userdata["fonctions-staff"] = bp_get_profile_field_data( array(
+	     		'field'   => $kino_fields['fonctions-staff'],
+	     		'user_id' => $kino_userid
+	   ) );
+	    
+	  // Véhicule
+	  
+	  $kino_userdata["vehicule"] = bp_get_profile_field_data( array(
+	     		'field'   => $kino_fields['vehicule'],
+	     		'user_id' => $kino_userid
+	   ) );
+	   $kino_userdata["vehicule-remarque"] = bp_get_profile_field_data( array(
+	      		'field'   => $kino_fields['vehicule-remarque'],
 	      		'user_id' => $kino_userid
 	    ) );
 	 
