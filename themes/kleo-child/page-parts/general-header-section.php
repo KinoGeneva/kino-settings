@@ -19,7 +19,7 @@ $top_bar = apply_filters( 'kleo_show_top_bar', $top_bar );
 
 	// Masquer les profils des autres membres si non-admin:
 	
-	echo "<style>.top-menu .dropdown-menu li#menu-item-1797 {display:none}</style>";
+	// echo "<style>.top-menu .dropdown-menu li#menu-item-1797 {display:none}</style>";
 	
 //	if ( current_user_can( 'publish_pages' ) ) {
 		// show menu-item-1214

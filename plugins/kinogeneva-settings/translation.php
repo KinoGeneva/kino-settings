@@ -20,21 +20,35 @@ function kino_load_textdomain() {
 			load_plugin_textdomain( 
 				'wp-user-groups',
 				false, 
-				'kinogeneva-settings/languages/' // relative to WP_PLUGIN_DIR
+				'kinogeneva-settings/languages/'
 			);
 			
 			// BP group announcements
 			load_plugin_textdomain( 
 				'bpga',
 				false, 
-				'kinogeneva-settings/languages/' // relative to WP_PLUGIN_DIR
+				'kinogeneva-settings/languages/'
 			);
 			
 			// BP group calendar
 			load_plugin_textdomain( 
 				'groupcalendar',
 				false, 
-				'kinogeneva-settings/languages/' // relative to WP_PLUGIN_DIR
+				'kinogeneva-settings/languages/'
+			);
+			
+			// BuddyPress Group Email Subscription
+			load_plugin_textdomain( 
+				'bp-ass',
+				false, 
+				'kinogeneva-settings/languages/'
+			);
+			
+			// BuddyPress Group Taxo
+			load_plugin_textdomain( 
+				'bp-groups-taxo',
+				false, 
+				'kinogeneva-settings/languages/'
 			);
 			
 			// ( 'Announcements', 'bpga' );

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-01-06 08:36+0100\n"
+"PO-Revision-Date: 2016-01-19 23:17+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -133,6 +133,10 @@ msgstr "Projets"
 
 #: bp-groups/bp-groups-loader.php:82
 msgctxt "Group screen page <title>"
+msgid "User Groups"
+msgstr "Projets de film"
+
+#: bp-core/admin/bp-core-admin-components.php:398
 msgid "User Groups"
 msgstr "Projets de film"
 
@@ -316,11 +320,11 @@ msgstr "Ce projet est masqué. Seuls des utilisateurs invités peuvent y partici
 
 #: bp-groups/bp-groups-template.php:3507
 msgid "This is a private group. Your membership request is awaiting approval from the group administrator."
-msgstr "Ce projet est privé. Votre demande d'inscription est en attente de validation par l'administrateur du groupe."
+msgstr "Ce projet est privé. Votre demande d'inscription est en attente de validation par l'administrateur du projet."
 
 #: bp-groups/bp-groups-template.php:3504
 msgid "This is a private group. To join you must be a registered site member and request group membership."
-msgstr "Ce projet est privé ! Vous devez être membre du site, puis faire une demande d'adhésion au groupe."
+msgstr "Ce projet est privé ! Vous devez être membre du site, puis faire une demande d'adhésion au projet."
 
 #: bp-groups/bp-groups-template.php:3501
 msgid "This is a private group and you must request group membership in order to join."
@@ -768,7 +772,7 @@ msgstr ""
 
 #: bp-groups/bp-groups-notifications.php:556
 msgid "You have an invitation to the group: \"%s\""
-msgstr "Vous êtes invité par le groupe \"%s\""
+msgstr "Vous êtes invité par le projet \"%s\""
 
 #: bp-groups/bp-groups-notifications.php:445
 msgid ""
@@ -812,7 +816,7 @@ msgstr ""
 
 #: bp-groups/bp-groups-notifications.php:337
 msgid "Membership request for group \"%s\" rejected"
-msgstr "Demande d&#39;adhésion au groupe \"%s\" rejetée"
+msgstr "Demande d'adhésion au projet \"%s\" rejetée"
 
 #: bp-groups/bp-groups-notifications.php:328
 msgid ""
@@ -830,7 +834,7 @@ msgstr ""
 
 #: bp-groups/bp-groups-notifications.php:327
 msgid "Membership request for group \"%s\" accepted"
-msgstr "Demande d&#39;adhésion au groupe  \"%s\" acceptée"
+msgstr "Demande d'adhésion au projet  \"%s\" acceptée"
 
 #: bp-groups/bp-groups-notifications.php:214
 msgid ""
@@ -886,7 +890,7 @@ msgstr ""
 
 #: bp-groups/bp-groups-notifications.php:194
 msgid "Membership request for group: %s"
-msgstr "Demande d&#39;adhésion au groupe %s"
+msgstr "Demande d'adhésion au projet %s"
 
 #: bp-groups/bp-groups-notifications.php:83
 msgid ""
@@ -922,6 +926,10 @@ msgstr "Ce projet n'a pas de logo"
 
 #: bp-groups/bp-groups-loader.php:699
 msgctxt "My Groups page <title>"
+msgid "Memberships"
+msgstr "Mes projets"
+
+#: bp-groups/bp-groups-loader.php:457 bp-groups/bp-groups-loader.php:487
 msgid "Memberships"
 msgstr "Mes projets"
 
@@ -1000,10 +1008,6 @@ msgstr "Accueil"
 #: bp-groups/bp-groups-loader.php:438
 msgid "Invitations"
 msgstr "Invitations"
-
-#: bp-groups/bp-groups-loader.php:427 bp-groups/bp-groups-loader.php:457
-msgid "Memberships"
-msgstr "Mes projets"
 
 #: bp-groups/bp-groups-loader.php:398
 msgctxt "Group screen nav with counter"
@@ -1130,3 +1134,202 @@ msgstr "Aucun projet trouvé."
 #: bp-groups/bp-groups-admin.php:1114
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:105
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:104
+#: bp-themes/bp-default/groups/create.php:62
+#: bp-themes/bp-default/groups/single/admin.php:61
+msgid "This is a public group"
+msgstr "Ce projet est public"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:108
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:107
+#: bp-themes/bp-default/groups/create.php:64
+#: bp-themes/bp-default/groups/single/admin.php:63
+msgid "Any site member can join this group."
+msgstr "Tous les membres du site peuvent adhérer à ce projet."
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:71
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:42
+#: bp-themes/bp-default/groups/create.php:42
+#: bp-themes/bp-default/groups/single/admin.php:19
+msgid "Group Description (required)"
+msgstr "Synopsis du projet de film"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:66
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:39
+#: bp-themes/bp-default/groups/create.php:39
+#: bp-themes/bp-default/groups/single/admin.php:16
+msgid "Group Name (required)"
+msgstr "Titre du projet de film"
+
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:56
+#: bp-themes/bp-default/groups/single/admin.php:26
+msgid "Notify group members of these changes via email"
+msgstr "Signaler par mail les changements aux membres du projet"
+
+#: bp-themes/bp-default/groups/index.php:35
+msgid "All Groups <span>%s</span>"
+msgstr "Tous les projets <span>%s</span>"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:410
+#: bp-themes/bp-default/groups/create.php:282
+msgid "Create Group and Continue"
+msgstr "Créer le projet et poursuivre"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:351
+#: bp-themes/bp-default/groups/create.php:246
+#: bp-themes/bp-default/groups/single/send-invites.php:73
+msgid "Once you have built up friend connections you will be able to invite others to your group."
+msgstr "Une fois que vous aurez noué des contacts avec d'autres membres du site, vous pourrez les inviter à rejoindre votre projet. "
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:229
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:203
+#: bp-templates/bp-legacy/buddypress/members/single/profile/change-avatar.php:54
+msgid "Profile photo preview"
+msgstr "Prévisualisation du logo du projet"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:224
+msgid "Crop Group Profile Photo"
+msgstr "Retailler le logo du projet"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:200
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:167
+msgid "Upload an image to use as a profile photo for this group. The image will be shown on the main group page, and in search results."
+msgstr "Téléchargez une image qui représentera le logo du projet. L'image apparaîtra sur la page principale du projet et dans les résultats de recherche."
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:160
+#: bp-themes/bp-default/groups/create.php:123
+msgid "<strong>Attention Site Admin:</strong> Group forums require the <a href=\"%s\">correct setup and configuration</a> of a bbPress installation."
+msgstr "<strong>Administrateur, attention: </strong>Les forums de projets requièrent  <a href=\"%s\">une installation correctement configurée</a> de bbPress."
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:153
+#: bp-themes/bp-default/groups/create.php:116
+msgid "Should this group have a forum?"
+msgstr "Faut-il installer un forum pour ce projet ?"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:135
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:134
+#: bp-themes/bp-default/groups/create.php:91
+#: bp-themes/bp-default/groups/single/admin.php:94
+msgid "Which members of this group are allowed to invite others?"
+msgstr "Quels membres de ce projet sont autorisés à inviter d'autres membres à les rejoindre ?"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:133
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:132
+#: bp-themes/bp-default/groups/create.php:89
+#: bp-themes/bp-default/groups/single/admin.php:92
+msgid "Group Invitations"
+msgstr "Invitations à rejoindre le projet"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:127
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:124
+#: bp-themes/bp-default/groups/create.php:83
+#: bp-themes/bp-default/groups/single/admin.php:84
+msgid "This group will not be listed in the groups directory or search results."
+msgstr "Le projet n'apparaîtra pas dans l'annuaire des projets, ni dans les résultats de recherche"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:126
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:123
+#: bp-themes/bp-default/groups/create.php:82
+#: bp-themes/bp-default/groups/single/admin.php:83
+msgid "Only users who are invited can join the group."
+msgstr "Seuls des utilisateurs invités peuvent adhérer au projet"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:123
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:120
+#: bp-themes/bp-default/groups/create.php:80
+#: bp-themes/bp-default/groups/single/admin.php:81
+msgid "This is a hidden group"
+msgstr "Ce projet est masqué."
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:119
+#: bp-templates/bp-legacy/buddypress/groups/create.php:128
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:117
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:125
+#: bp-themes/bp-default/groups/create.php:75
+#: bp-themes/bp-default/groups/create.php:84
+#: bp-themes/bp-default/groups/single/admin.php:75
+#: bp-themes/bp-default/groups/single/admin.php:85
+msgid "Group content and activity will only be visible to members of the group."
+msgstr "Le contenu et les activités du projet seront uniquement visibles par les membres du projet"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:117
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:115
+#: bp-themes/bp-default/groups/create.php:73
+#: bp-themes/bp-default/groups/single/admin.php:73
+msgid "Only users who request membership and are accepted can join the group."
+msgstr "Seuls les membres ayant obtenu l'autorisation de joindre le projet pourront y adhérer"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:114
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:112
+#: bp-themes/bp-default/groups/create.php:71
+#: bp-themes/bp-default/groups/single/admin.php:71
+msgid "This is a private group"
+msgstr "Ce projet est visible."
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:110
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:109
+#: bp-themes/bp-default/groups/create.php:66
+#: bp-themes/bp-default/groups/single/admin.php:65
+msgid "Group content and activity will be visible to any site member."
+msgstr "Le contenu et les activités du projet seront visibles de tous les membres du site"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:109
+#: bp-templates/bp-legacy/buddypress/groups/create.php:118
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:108
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:116
+#: bp-themes/bp-default/groups/create.php:65
+#: bp-themes/bp-default/groups/create.php:74
+#: bp-themes/bp-default/groups/single/admin.php:64
+#: bp-themes/bp-default/groups/single/admin.php:74
+msgid "This group will be listed in the groups directory and in search results."
+msgstr "Le projet apparaîtra dans l'annuaire des projets et dans les résultats de recherche"
+
+#: bp-groups/bp-groups-admin.php:790
+#: bp-templates/bp-legacy/buddypress/groups/create.php:143
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:142
+#: bp-themes/bp-default/groups/create.php:106
+#: bp-themes/bp-default/groups/single/admin.php:109
+msgid "Group admins only"
+msgstr "Uniquement les admins du projet"
+
+#: bp-groups/bp-groups-admin.php:789
+#: bp-templates/bp-legacy/buddypress/groups/create.php:141
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:140
+#: bp-themes/bp-default/groups/create.php:101
+#: bp-themes/bp-default/groups/single/admin.php:104
+msgid "Group admins and mods only"
+msgstr "Uniquement les aministrateurs du projet et les producteurs "
+
+#: bp-groups/bp-groups-admin.php:788
+#: bp-templates/bp-legacy/buddypress/groups/create.php:139
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:138
+#: bp-themes/bp-default/groups/create.php:96
+#: bp-themes/bp-default/groups/single/admin.php:99
+msgid "All group members"
+msgstr "Tous les membres du projet"
+
+#: bp-templates/bp-legacy/buddypress/groups/create.php:101
+#: bp-templates/bp-legacy/buddypress/groups/single/admin.php:100
+#: bp-themes/bp-default/groups/create.php:58
+#: bp-themes/bp-default/groups/single/admin.php:56
+msgid "Privacy Options"
+msgstr "Options de participation"
+
+#: bp-core/bp-core-filters.php:765 bp-groups/bp-groups-template.php:3482
+#: bp-groups/bp-groups-template.php:3483
+#: bp-themes/bp-default/groups/create.php:18
+#: bp-themes/bp-default/groups/index.php:21
+msgid "Create a Group"
+msgstr "Créer un projet de film"
+
+#: bp-templates/bp-legacy/buddypress/activity/index.php:91
+#: bp-templates/bp-legacy/buddypress/groups/index.php:52
+msgid "My Groups %s"
+msgstr "Mes projets %s"
+
+#: bp-themes/bp-default/activity/index.php:61
+#: bp-themes/bp-default/groups/index.php:39
+msgid "My Groups <span>%s</span>"
+msgstr "Mes projets <span>%s</span>"

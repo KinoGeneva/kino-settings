@@ -15,66 +15,26 @@
 
 	// Removed: item-header-avatar
 	
-	if ( ( bp_is_user_profile_edit() ) || ( bp_is_member() ) ) {
-		// we don't show the avatar
-		// NOTE: bp_is_profile_edit() is deprecated 
-	} else {
-		// we show the avatar
-		?>
-		
-		<div id="item-header-avatar" class="rounded">
-			<a href="<?php bp_displayed_user_link(); ?>">
-		
-				<?php bp_displayed_user_avatar( 'type=full' ); ?>
-		
-			</a>
-		  <?php do_action('bp_member_online_status', bp_displayed_user_id()); ?>
-		</div><!-- #item-header-avatar -->
-		
-		<?php 
-	}
 ?>
-
 
 <div id="item-header-content" <?php if (isset($_COOKIE['bp-profile-header']) && $_COOKIE['bp-profile-header'] == 'small') {echo 'style="display:none;"';} ?>>
 
-	<?php if ( bp_is_active( 'activity' ) && bp_activity_do_mentions() ) : ?>
-		<h4 class="user-nicename">@<?php bp_displayed_user_mentionname(); ?></h4>
-	<?php endif; ?>
+<?php 
 
-	<span class="activity"><?php bp_last_activity( bp_displayed_user_id() ); ?></span>
+	/*
+	
+	 NOTE: 
+	 do_action( 'bp_member_header_actions' );
+	 
+	 has been moved into kino_title_filter() !!!
+	 
+	*/
+
+ ?>
 
 	<?php do_action( 'bp_before_member_header_meta' ); ?>
 
-	<div id="item-meta">
-
-		<?php if ( bp_is_active( 'activity' ) ) : ?>
-
-			<div id="latest-update">
-
-				<?php bp_activity_latest_update( bp_displayed_user_id() ); ?>
-
-			</div>
-
-		<?php endif; ?>
-
-		<div id="item-buttons">
-
-			<?php do_action( 'bp_member_header_actions' ); ?>
-
-		</div><!-- #item-buttons -->
-
-		<?php
-		/***
-		 * If you'd like to show specific profile fields here use:
-		 * bp_member_profile_data( 'field=About Me' ); -- Pass the name of the field
-		 */
-		 do_action( 'bp_profile_header_meta' );
-
-		 ?>
-
-	</div><!-- #item-meta -->
-
+	
 </div><!-- #item-header-content -->
 
 <?php do_action( 'bp_after_member_header' ); ?>

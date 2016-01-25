@@ -117,11 +117,11 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
     		     $user_query = new WP_User_Query( array( 
     		     	// 'fields' => $user_fields,
     		     	'include' => $ids_of_kino_participants,
-    		     	'orderby' => 'nicename',
+    		     	'orderby' => 'display_name', // nicename
     		     	'order' => 'ASC'
     		     ) );
     		     
-    		     set_transient( $transientname, $user_query, 180 );
+    		     set_transient( $transientname, $user_query, 60 );
     		     //  * HOUR_IN_SECONDS
     		     
     		     echo '<p>we just defined transient '.$transientname.'</p>';
@@ -136,6 +136,13 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	// email
         	// Init:
         	$metronom = 1;
+        	
+        	$somme_paiements = 0;
+        	$somme_repas = 0;
+        	$nombre_entrees_25 = 0;
+        	$nombre_entrees_100 = 0;
+        	$nombre_repas_60 = 0;
+        	$nombre_repas_100 = 0;
         	
         	?>
         	<div id="table-container">
@@ -179,7 +186,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         						echo '('.$user->display_name .') ';
         					}
         					
-        					echo '<a href="'.$url.'/members/'.$user->user_nicename.'/" target="_blank">';
+        					echo '<a href="'.$url.'/members/'.$user->user_nicename.'/profile/" target="_blank">';
 		        					echo $user->user_nicename;
         					echo '</a>';
         					
@@ -231,21 +238,21 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
           					echo '<td></td>';
           				}
             			
-            			
             			// Actions Inscription!!!
             			// ***********************
 
             			echo '<td>';
-            			
-            			// tester le statut du kinoïte!
-            			// payer 100 / 25 / reset
-//	            			
+
 	            			if ( in_array( $id, $ids_of_paid_25 ) ) {
 	            				echo '<span class="has-paid">Payé: 25.-</span>';
+	            				$somme_paiements = ( $somme_paiements + 25) ;
+	            				$nombre_entrees_25++;
 	            			}
 	            			
 	            			if ( in_array( $id, $ids_of_paid_100 ) ) {
 	            				echo '<span class="has-paid">Payé: 100.-</span>';
+	            				$somme_paiements = ( $somme_paiements + 100) ;
+	            				$nombre_entrees_100++;
 	            			}	
 	            			
 	            			if ( ( in_array( $id, $ids_of_paid_25 ) ) || ( in_array( $id, $ids_of_paid_100 ) ) ) {
@@ -263,17 +270,17 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
             			// ***********************
             				
             			echo '<td>';
-            			// carte 60
-            			// carte 100
-            			// reset
-            			// tester le statut du kinoïte!
             				
             				if ( in_array( $id, $ids_of_repas_60 ) ) {
             					echo '<span class="has-paid">Payé: 60.-</span>';
+            					$somme_repas = ( $somme_repas + 60 );
+            					$nombre_repas_60++; 
             				}
             				
             				if ( in_array( $id, $ids_of_repas_100 ) ) {
             					echo '<span class="has-paid">Payé: 100.-</span>';
+            					$somme_repas = ( $somme_repas + 100 );
+            					$nombre_repas_100++; 
             				}
             				
             				if ( ( in_array( $id, $ids_of_repas_60 ) ) || ( in_array( $id, $ids_of_repas_100 ) ) ) {
@@ -287,16 +294,59 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
             				}
             				
             			echo '</td>';
-            			
-            			// Ajouter à Mailpoet: Participants Kabaret
-//            			kino_add_to_mailpoet_list( 
-//  			        	 	$user->ID, 
-//  			        	 	$kino_fields['mailpoet-participant-kabaret'] 
-//  			        	);
         			
         		echo '</tr>';
         		
         	}
+        	
+        			// Somme des Payements:
+        			
+        			?>
+        			<tr>
+        				<th></th>
+        				<th></th>
+        				<th></th>
+        				<th></th>
+        			  <th></th>
+        			  <th></th>
+        			  <th><?php 
+        			  	// Somme Inscriptions
+        			  	echo '<span class="has-paid"><b>Somme Inscriptions: '.$somme_paiements.'.-</b></span>';
+        			   ?></th>
+        			  <th><?php 
+        			  	// Somme Carte Repas 
+        			  	echo '<span class="has-paid"><b>Somme Cartes Repas: '.$somme_repas.'.-</b></span>';
+        			  	?></th>
+        			</tr>
+        			<?php
+        			
+        			// Somme finale
+        			
+        			?>
+        			<tr>
+        				<th></th>
+        				<th></th>
+        				<th></th>
+        				<th></th>
+        			  <th></th>
+        			  <th></th>
+        			  <th><?php 
+        			  
+        			  	echo '<span class="has-paid"><b>';
+        			  	echo 'Entrées à 25 : '.$nombre_entrees_25.' <br/>';
+        			  	echo 'Entrées à 100 : '.$nombre_entrees_100.' <br/>';
+        			  	echo 'Cartes Repas à 60 : '.$nombre_repas_60.' <br/>';
+        			  	echo 'Cartes Repas à 100 : '.$nombre_repas_100.' <br/>';
+        			  	echo '</b></span>';
+        			  
+        			   ?></th>
+        			  <th><?php 
+        			  	// Somme Totale 
+        			  	$somme_totale = ( $somme_paiements + $somme_repas );
+        			  	echo '<span class="has-paid"><b>Somme Totale: '.$somme_totale.'.-</b></span>';
+        			  	?></th>
+        			</tr>
+        			<?php
         	
         	echo '</tbody></table></div>';
         

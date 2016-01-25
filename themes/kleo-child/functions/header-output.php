@@ -25,10 +25,21 @@ function kino_wp_head(){
     	
     	// Hide Membres & My account
     	?>
-    	#menu-item-1795,
-    	 #menu-item-633{
+    	 #menu-item-1795,
+    	 #menu-item-633 {
     		display: none;
     	}
+    	<?php
+    	// Hide Advanced Profile Search if not logged in:
+    	?>
+    	body.members #buddypress .bps_header {
+    		display: none;
+    	}
+    	
+    	.public-menu-hidden {
+    		display: none;
+    	}
+    	
     	<?php 
     } 
     
@@ -37,11 +48,18 @@ function kino_wp_head(){
     */
     
     if ( !current_user_can( 'publish_pages' ) ) {
-    	// Hide Admin
+    	// Hide Admin , Recherche = 2011, Impression = 2012
     	?>
-    	#menu-item-2045 {
+    	#menu-item-2045,
+    	.top-menu .kino-menu-hidden
+    	 {
     		display: none;
     	}
+    	
+    	#group-create-nav {
+    	 display: none;
+    	}
+    	
     	<?php 
     }
     

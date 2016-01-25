@@ -203,13 +203,15 @@ body {
 .talents {
 	position: absolute;
 	top: 45mm;
-	left: 21mm;
-	width: 58mm;
-	min-height: 10mm;
+	/*left: 21mm;
+	width: 58mm;*/
+	height: 10mm;
 	font-size: 8pt;
 	font-family: Roboto, sans-serif;
 	font-weight: 500;
 	display: table;
+	width: 68mm;
+	left: 16mm;
 }
 
 .talents > div {
@@ -220,15 +222,18 @@ body {
 
 .stars-1 .talents {
 	top: 48mm;
-	min-height: 8mm;
+	height: 10mm;
 }
 
 .stars-2 .talents {
 	top: 46mm;
+	height: 10mm;
 }
 
 .stars-3 .talents {
-	top: 50mm;
+	top: 48mm;
+	height: 8mm;
+	
 }
 
 .kp-pointlist:after {
@@ -404,10 +409,10 @@ body {
 			
 			// 
 			if ( $kino_debug_mode == 'on' ) {
-				echo '<pre>';
-				echo 'list of IDs in "group-real-kabaret": ';
-					var_dump($ids_of_kino_participants);
-				echo '</pre>';
+//				echo '<pre>';
+//				echo 'list of IDs in "group-real-kabaret": ';
+//					var_dump($ids_of_kino_participants);
+//				echo '</pre>';
 			}
 			
 		} // end 'realisateur'
@@ -425,16 +430,28 @@ body {
 		
 	} // end $kinorole_var testing
 	
+	
+	
 	$kinodate_var = ( get_query_var('kinodate') ) ? get_query_var('kinodate') : false;
+		
+		if ( $kinodate_var ) {
+		
+			$kinodate_parameter = $kinodate_var -1;
+			
+			$kinodate_offset = date('Y-m-d\TH:i:s', strtotime('-'.$kinodate_parameter.' hours'));
+			
+		} else {
 	
-	if ( $kinodate_var ) {
+			$kinodate_offset = date('Y-m-d\TH:i:s', strtotime('-720 hours'));
+		}	
 	
+	// Test Kino-ID:
+	
+	$kino_id_var = ( get_query_var('id') ) ? get_query_var('id') : false;
+	
+	if ( $kino_id_var ) {
 		// add parameter to the users query	
-		
-		$kinodate_parameter = $kinodate_var;
-		
-	} else {
-		$kinodate_parameter = '999';
+		$ids_of_kino_participants = $kino_id_var;
 	}
 
  ?>
@@ -470,14 +487,16 @@ body {
         $user_query = new WP_User_Query( array( 
         	'include' => $ids_of_kino_participants, // IDs incluses
         	// 'number' => 36,
-        	'meta_key'  => 'last_name',
-        	'orderby'  => 'last_name',
-        	'date_query' => array( 
-        	    array( 
-        	    	'after' => $kinodate_parameter.' days ago', // filtrer par date d'adhésion
-        	    	'inclusive' => false 
-        	    )  
-        	), 
+        	// 'meta_key'  => 'last_name',
+        	'orderby'  => 'login', // was: last_name
+        	'meta_query' => array(
+  	        array(
+  	            'key' => 'kino_timestamp_complete',
+  	            'value' => $kinodate_offset,
+  	            'type' => 'CHAR',
+  	            'compare' => '>'
+  	        )
+        	 )
         ) );
         
         // Show some info to the Admin:
@@ -488,7 +507,10 @@ body {
         	echo '<b>Filtrage par rôle:</b> '.$kinorole_var.'<br/>';
         }
         if ( !empty($kinodate_var) ) {
-        	echo '<b>Filtrage par fraîcheur:</b> '.$kinodate_var.' jours<br/>';
+        	echo '<b>Filtrage par fraîcheur:</b> '.$kinodate_var.' heures<br/>';
+        }
+        if ( !empty($kino_id_var) ) {
+        	echo '<b>Filtrage par ID:</b> '.$kino_id_var.'<br/>';
         }
         if ( ! empty( $user_query->results ) ) {
         	echo '<b>Nombre de fiches: </b>'.count($user_query->results).'';
@@ -496,6 +518,14 @@ body {
          ?></p>
         
         <?php
+        
+        
+        if ( $kino_debug_mode == 'on' ) {
+        				echo '<pre>';
+        				echo 'list of IDs in "group-real-kabaret": ';
+        					var_dump($user_query->results);
+        				echo '</pre>';
+        }
         
         // User Loop
         if ( ! empty( $user_query->results ) ) {
@@ -517,21 +547,23 @@ body {
         		
         	
         		$kino_userid = $user->ID ;
+        		
+        		$kino_userdata = kino_user_fields($kino_userid , $kino_fields );
 
         		// tester si Transient, sinon charger les données.
         		
-        		$transientname = 'userdata'.$user->ID;
-        		
-    		if ( false === ( $kino_userdata = get_transient( $transientname ) ) ) {
-    		    
-    		    // It wasn't there, so regenerate the data and save the transient
-    		     $kino_userdata = kino_user_fields($kino_userid , $kino_fields );
-    		     
-    		     set_transient( $transientname, $kino_userdata, 180 );
-    		     //  * HOUR_IN_SECONDS
+//        		$transientname = 'userdata'.$user->ID;
+//        		
+//    		if ( false === ( $kino_userdata = get_transient( $transientname ) ) ) {
+//    		    
+//    		    // It wasn't there, so regenerate the data and save the transient
+//    		    $kino_userdata = kino_user_fields($kino_userid , $kino_fields ); 
+//    		     
+//    		     set_transient( $transientname, $kino_userdata, 180 );
+//    		     //  * HOUR_IN_SECONDS
 //    		     echo '<p>we just defined transient '.$transientname.'</p>';
-    		     
-    		}
+//    		     
+//    		}
     		
 //    		echo '<pre>';
 //    		var_dump($kino_userdata);
@@ -730,7 +762,8 @@ body {
 					
         	 // Talents
         	 
-        	 if ( in_array( "technicien-2016", $kino_userdata["participation"] )) {
+        	 if ( in_array( "technicien-2016", $kino_userdata["participation"] ) 
+        	 || !empty($kino_is_staff ) ) {
         	 		
         	 		echo '<div class="talents"><div>';
         	 		
@@ -780,6 +813,12 @@ body {
         	 				
         	 				if ( $kino_userdata["comp-autres-liste"] ) {
         	 						echo '<span class="kp-pointlist">Autres&nbsp;talents </span>';
+        	 				}
+        	 				
+        	 				if ( !empty($kino_userdata["fonctions-staff"]) ) {
+  	 								foreach ( $kino_userdata["fonctions-staff"] as $key => $value) {
+  	 										echo '<span class="kp-pointlist"> '.$value.'</span>';
+  	 									}
         	 				}
         	 		
         	 		echo '</div></div>';        	 		

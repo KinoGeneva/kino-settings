@@ -13,7 +13,7 @@
 
 <?php do_action( 'bp_before_members_loop' ); ?>
 
-<?php if ( bp_has_members( bp_ajax_querystring( 'members' ). '&per_page='.sq_option('bp_members_perpage', 24) ) ) : ?>
+<?php if ( bp_has_members( bp_ajax_querystring( 'members' ). '&per_page=320' ) ) : ?>
 
 	<div id="pag-top" class="pagination">
 

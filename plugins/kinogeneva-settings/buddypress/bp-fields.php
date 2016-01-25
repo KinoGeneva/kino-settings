@@ -14,6 +14,9 @@ function kino_test_fields() {
 	$kino_fields['kabaret'] = 100; // Participe au cabaret 2016?
 	$kino_fields['role-kabaret'] = 1258; // Test des rôles pour le Kabaret 2016
 	
+	$kino_fields['courriel'] = 1831;
+	
+	
 	// Les trois options des rôles pour le Kabaret 2016
 	$kino_fields['role-kabaret-comed'] = '1458_0';
 	$kino_fields['role-kabaret-tech'] = '1459_1';

@@ -237,18 +237,15 @@ function kino_login_redirection( $redirect_to, $request, $user ) {
 				$kino_fields = kino_test_fields();
 				$kino_user_role = kino_user_participation( $user->ID, $kino_fields );
 				
+				return bp_core_get_user_domain($user->ID);
+				
 				// Déjà inscrit au Kabaret?
-				if ( in_array( "kabaret-2016", $kino_user_role ) ) {
-					
-					// Aller à la section identité
-					return bp_core_get_user_domain($user->ID).'/profile/edit/group/10/';
-				
-				} else 
-				
-				// Pas inscrit? 
-				// Aller à la section Profil Kinoite
-				
-				return bp_core_get_user_domain($user->ID).'/profile/edit/group/1/';
+//				if ( in_array( "kabaret-2016", $kino_user_role ) ) {
+//					
+//					// Aller à la section identité
+//					return bp_core_get_user_domain($user->ID).'/profile/edit/group/10/';
+//				
+//				} 
 				
 			} else {
 			
@@ -281,6 +278,30 @@ function kino_title_filter( $args ) {
 		$member_avatar = '<div class="item-avatar rounded kino-title-avatar">'. bp_get_member_avatar( array("class"  => "avatar kleo-rounded", "alt" => "") ) .'</div>';
 		
 		$args['title'] = $member_avatar . $title_content ;
+		
+		// ajouter le @username...
+		
+		$title_username = ' <span class="user-nicename">@'. bp_get_displayed_user_mentionname() .'</span>';
+		
+		$args['title'] .= $title_username;
+		
+		
+		// ajouter les boutons:
+		// do_action( 'bp_member_header_actions' ); 
+		
+		// bp_send_public_message_button
+		
+		// bp_send_private_message_button = OK
+		
+		// $title_buttons = do_action( 'bp_member_header_actions' );
+		$title_buttons = bp_get_send_message_button();
+		
+		$title_buttons .= bp_get_send_public_message_button();
+		
+		$args['title'] .= $title_buttons;
+		
+		// class="user-nicename">@<?php bp_displayed_user_mentionname(); 
+		
 		
 	}
 	

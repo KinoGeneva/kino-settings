@@ -99,6 +99,10 @@ function kino_admin_css() {
     	height: auto;
     }
     
+    #wpmu-install-dashboard {
+    	display: none;
+    }
+    
   </style>';
 }
 add_action('admin_head', 'kino_admin_css');

@@ -44,6 +44,8 @@ include_once (plugin_dir_path(__FILE__).'ajax.php');
 
 include_once (plugin_dir_path(__FILE__).'buddypress/bp-fields.php');
 
+include_once (plugin_dir_path(__FILE__).'buddypress/bp-overrides.php');
+
 // Utilities
 
 include_once (plugin_dir_path(__FILE__).'utilities.php');

@@ -75,7 +75,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         $user_query = new WP_User_Query( array( 
         	// 'fields' => $user_fields,
         	'include' => $ids_of_kino_participants,
-        	'orderby' => 'nicename',
+        	'orderby' => 'display_name', // nicename
         	'order' => 'ASC'
         ) );
         
@@ -111,7 +111,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         		<tr>
         			<th><?php echo $metronom++; ?></th>
         			<?php 
-        			
+        					$kino_userid = $user->ID;
         					$kino_user_role = kino_user_participation( 
         						$user->ID, 
         						$kino_fields
@@ -127,7 +127,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         						echo '('.$user->display_name .') ';
         					}
         					
-        					echo '<a href="'.$url.'/members/'.$user->user_nicename.'/" target="_blank">';
+        					echo '<a href="'.$url.'/members/'.$user->user_nicename.'/profile/" target="_blank">';
 		        					echo $user->user_nicename;
         					echo '</a>';
         					
@@ -143,15 +143,45 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         					
         						// Réalisateur ?
         						if ( in_array( "realisateur-2016", $kino_user_role )) {
-        							echo '<span class="kp-pointlist">Réalisateur-trice</span>';
+        							echo '<span class="kp-pointlist">Réalisateur-trice';
+        								// niveau?
+        										$kino_niveau = bp_get_profile_field_data( array(
+        													'field'   => 1079,
+        													'user_id' => $kino_userid
+        											) );
+        										if (!empty($kino_niveau)) {
+        													echo ' ['.kino_process_niveau($kino_niveau).']';
+        										}
+        							echo '</span>';
+        							
         						}
         						// Technicien ?
         						if ( in_array( "technicien-2016", $kino_user_role )) {
-        							echo '<span class="kp-pointlist">Artisan-ne / technicien-ne</span>';
+        							echo '<span class="kp-pointlist">Artisan-ne / technicien-ne';
+        									$kino_niveau = bp_get_profile_field_data( array(
+        											'field'   => 1075,
+        											'user_id' => $kino_userid
+        										) );
+        										if (!empty($kino_niveau)) {
+        												echo ' ['.kino_process_niveau($kino_niveau).']';
+        										}
+        							
+        							echo '</span>';
         						}
         						// Comédien ?
         						if ( in_array( "comedien-2016", $kino_user_role )) {
-        							echo '<span class="kp-pointlist">Comédien-ne</span>';
+        							echo '<span class="kp-pointlist">Comédien-ne';
+        							
+        										// niveau?
+        											$kino_niveau = bp_get_profile_field_data( array(
+        													'field'   => 927,
+        													'user_id' => $kino_userid
+        											) );
+        											if (!empty($kino_niveau)) {
+        														echo ' ['.kino_process_niveau($kino_niveau).']';
+        												}
+        							
+        							echo '</span>';
         						}
         						
         					echo '</td>';
@@ -184,7 +214,17 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
             			// Test if : 
             			
             			if ( in_array( $user->ID, $ids_of_kino_complete ) ) {          				            				
-            			  echo '<td class="success">Complet</td>';
+            			  echo '<td class="success">Complet';
+            			  
+//            			  $user_timestamp_complete = get_user_meta( $user->ID, 'kino_timestamp_complete', true );
+//            			  
+//            			  if ($user_timestamp_complete) {
+//            			  	echo $user_timestamp_complete;
+//            			  } else {
+//            			  	echo ' timestamp missing!';
+//            			  }
+            			              			  
+            			  echo '</td>';
             			} else {
             				echo '<td></td>';	
             			}

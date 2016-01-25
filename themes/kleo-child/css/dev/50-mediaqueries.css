@@ -1,3 +1,64 @@
+/* Queries pour le formulaire de recherche avancé: */
+
+@media only screen and (min-width: 600px) { 
+	.bps-form {
+			-webkit-column-count: 2;
+			-webkit-column-gap: 30px; 
+			-webkit-column-rule: 0px solid #e5e5e5;
+			-moz-column-count: 2;
+			-moz-column-gap: 30px;  
+			-moz-column-rule: 0px solid #e5e5e5;
+			column-count: 2;
+			column-gap: 30px; 
+			column-rule: 0px solid #e5e5e5;
+			
+			width: 100%;
+	}
+	
+	.bps-form .editfield {
+		-webkit-column-break-inside: avoid; /* Chrome, Safari */
+		page-break-inside: avoid;           /* Theoretically FF 20+ */
+		break-inside: avoid-column;         /* IE 11 */
+		display:table;                      /* Actually FF 20+ */
+		display:inline-block;
+		
+		max-width: 100%;
+		width: 100%;
+	}
+	
+	.bps-form .form-submit {
+		float: right;
+		font-weight: 700;
+	}
+	
+}
+
+@media only screen and (min-width: 800px) { 
+	.bps-form {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+	}
+}
+
+@media only screen and (min-width: 992px) { 
+	.bps-form {
+		-webkit-column-count: 4;
+		-moz-column-count: 4;
+		column-count: 4;
+	}
+}
+
+@media only screen and (min-width: 1200px) { 
+	.bps-form {
+		-webkit-column-count: 5;
+		-moz-column-count: 5;
+		column-count: 5;
+	}
+}
+
+/* Queries pour le formulaire de recherche avancé: */
+
 @media only screen and (min-width: 720px) {
 
 /*

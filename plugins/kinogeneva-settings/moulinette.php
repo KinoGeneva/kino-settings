@@ -222,9 +222,131 @@ function kino_moulinette_competences_kab() {
 	
 } // end kino_moulinette_competences_kab()
 
+// *********************
 
+if ( !wp_next_scheduled( 'kino_moulinette_timestamp_hook' ) ) {
 
+  wp_schedule_event( 
+  	strtotime('00:42:00'), 
+  	'hourly', // daily hourly
+  	'kino_moulinette_timestamp_hook' 
+  );
 
+  // note: wp_schedule_event should always take GMT!
+  // donc si on veut l'envoi à 17:30, il faut mettre 16:30
+}
+
+add_action( 'kino_moulinette_timestamp_hook', 'kino_moulinette_timestamp' );
+
+function kino_moulinette_timestamp() {
+	
+	// Fonctionnement:
+	// On parcourt tous les profils 
+	
+	$kino_fields = kino_test_fields();
+	
+	$ids_participants_complets = get_objects_in_term( 
+		$kino_fields['group-kino-complete'], 
+		'user-group' 
+	);
+	
+//	$user_fields = array( 
+//		'ID',
+//		'registered', 
+//	);
+	
+	$user_query = new WP_User_Query( array( 
+		// 'fields' => $user_fields,
+		// 'include' => $ids_participants_kabaret,
+		'exclude' => array( 0 ), 
+		'orderby' => 'registered',
+		'order' => 'DESC'
+	) );
+	
+	if ( !empty( $user_query->results ) ) {
+	
+		$message = '<p>Voici les nouvelles du timestamp!</p>';
+		$message .= '<p>Nombre de participants au profil complet: '.count($user_query->results).'</p>';
+		
+		foreach ( $user_query->results as $user ) {
+				
+				$id = $user->ID;
+				
+				$user_timestamp_complete = get_user_meta( $id, 'kino_timestamp_complete', true );
+				
+				// si l'utilisateur est dans le groupe kino-complete:
+				
+				if ( in_array( $id, $ids_participants_complets ) ) {
+					
+							$message .= '<p>Utilisateur '.$id.' dans groupe kino-complete</p>';
+					
+							// si le champ meta timestamp est défini: on ne fait rien
+							// sinon = on le définit
+							
+							if ( empty($user_timestamp_complete) ) {
+								
+								// Y-m-d is the correct format
+								
+								$timestamp = date('Y-m-d\TH:i:s', strtotime('+1 hours'));
+								
+								update_user_meta( $id, 'kino_timestamp_complete', $timestamp );
+								
+								$message .= '<p>Timestamp de '.$id.' vide - on le définit: '.$timestamp.'</p>';
+								
+							} else {
+								
+//								delete_user_meta( $id, 'kino_timestamp_complete');
+//								$timestamp = date('Y-m-d\TH:i:s', strtotime('+1 hours'));
+//								update_user_meta( $id, 'kino_timestamp_complete', $timestamp );
+								
+								$message .= '<p>Timestamp de '.$id.' non vide - contenu: '.$user_timestamp_complete.'</p>';
+							}
+					
+				} else {
+					
+					// si l'utilisateur N'est PAS dans le groupe kino-complete:
+					
+					$message .= '<p>Utilisateur '.$id.' PAS dans groupe kino-complete</p>';
+					
+							// si le champ meta timestamp est défini: on l'efface!
+							// sinon = on ne fait rien
+							
+							if ( !empty($user_timestamp_complete) ) {
+								
+								delete_user_meta( $id, 'kino_timestamp_complete');
+								
+							}
+							
+				}
+				
+					// updating all email fields
+//					xprofile_set_field_data(  
+//						$kino_fields['courriel'],  
+//						$id, 
+//						$user->user_email
+//					);
+					
+				
+				
+				
+		} // foreach
+	} // if !empty
+	
+//	$to[] = 'ms@ms-studio.net';
+//	$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.ch>';
+//	$subject = '[Kino] Timestamp de '.date('H\hi');
+//	
+//	wp_mail( 
+//		$to,
+//		$subject,
+//		$message, 
+//		$headers 
+//	);
+	
+		
+} // end moulinette Timestamp
+
+// *******************
 
 
 if ( !wp_next_scheduled( 'kino_super_moulinette_hook' ) ) {
@@ -325,6 +447,24 @@ function kino_super_moulinette() {
 		'user-competences' 
 	);
 	
+	//	Sessions
+	$ids_session_un = get_objects_in_term( 
+		$kino_fields['group-session-un'], 
+		'user-group' 
+	);
+	$ids_session_deux = get_objects_in_term( 
+		$kino_fields['group-session-deux'], 
+		'user-group' 
+	);
+	$ids_session_trois = get_objects_in_term( 
+		$kino_fields['group-session-trois'], 
+		'user-group' 
+	);
+	$ids_session_superhuit = get_objects_in_term( 
+		$kino_fields['group-session-superhuit'], 
+		'user-group' 
+	);
+	
 	if (!empty($ids_participants_kabaret)) {
 		$user_query = new WP_User_Query( array( 
 			'include' => $ids_participants_kabaret, 
@@ -335,7 +475,7 @@ function kino_super_moulinette() {
 	  	
 	  	$message = '<p>Voici les nouvelles de la Super Moulinette!</p>';
 	  	
-	  	$message = '<p>Nombre de participants au profil complet: '.count($user_query->results).'</p>';
+	  	$message .= '<p>Nombre de participants au profil complet: '.count($user_query->results).'</p>';
 	  	
 	  	foreach ( $user_query->results as $user ) {
 	  		// Test Sessions
@@ -366,25 +506,25 @@ function kino_super_moulinette() {
 	  			  		
 	  			  		$value = mb_substr($kino_session_attrib, 0, 9);
 	  			  		if ( $value == 'session 1' ) {
-	  			  			
-	  			  			kino_add_to_usergroup( $id, $kino_fields['group-session-un'] );
-	  			  			$message .= ' / Action : moved user '.$id.' to:  '.$kino_session_attrib.' ';
-	  			  			  			
+	  			  			if ( !in_array( $id, $ids_session_un ) ) {
+	  			  				kino_add_to_usergroup( $id, $kino_fields['group-session-un'] );
+	  			  				$message .= ' / Action : moved user '.$id.' to:  '.$kino_session_attrib.' ';
+	  			  			}
 	  			  		} else if ( $value == 'session 2' ) {
-	  			  			  		
-		  			  		kino_add_to_usergroup( $id, $kino_fields['group-session-deux'] );
-		  			  		$message .= ' / Action : moved user '.$id.' to session-deux.';
-		  			  			
+	  			  			if ( !in_array( $id, $ids_session_deux ) ) {  		
+		  			  			kino_add_to_usergroup( $id, $kino_fields['group-session-deux'] );
+		  			  			$message .= ' / Action : moved user '.$id.' to session-deux.';
+		  			  		}
 		  			  	} else if ( $value == 'session 3' ) {
-	  			  			  		
-	  			  			kino_add_to_usergroup( $id, $kino_fields['group-session-trois'] ); 			
-	  			  			$message .= ' / Action : moved user '.$id.' to session-trois.';
-	  			  			  			
+	  			  			if ( !in_array( $id, $ids_session_trois ) ) {	
+	  			  				kino_add_to_usergroup( $id, $kino_fields['group-session-trois'] ); 			
+	  			  				$message .= ' / Action : moved user '.$id.' to session-trois.';
+	  			  			}			
 	  			  		} else if ( $value == 'session 4' ) {
-	  			  			  		
-	  			  			 kino_add_to_usergroup( $id, $kino_fields['group-session-superhuit'] );  			
-	  			  			 $message .= ' / Action : moved user '.$id.' to session-super8.';
-	  			  			  		
+	  			  			 if ( !in_array( $id, $ids_session_superhuit ) ) {	
+	  			  			 	kino_add_to_usergroup( $id, $kino_fields['group-session-superhuit'] );  			
+	  			  			 	$message .= ' / Action : moved user '.$id.' to session-super8.';
+	  			  			 }		
 	  			  		} // fin tests de session
 	  			  	
 	  			  } // fin section "Réal"
@@ -524,15 +664,23 @@ function kino_super_moulinette() {
 		} // 
 	}
 	
-	$to = 'ms@ms-studio.net';
-	$headers[] = 'From: KinoGeneva <ms@ms-studio.net>';
-	$subject = '[Kino] Debug Info';
 	
-	wp_mail( 
-		$to,
-		$subject,
-		$message, 
-		$headers 
-	);
+	$host = $_SERVER['HTTP_HOST'];
+	
+	if ( $host == 'kinogeneva.ch' ) {
+			
+			$to[] = 'ms@ms-studio.net';
+			$to[] = 'onvafairedesfilms@kinogeneva.ch';
+			$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.ch>';
+			$subject = '[Kino] SuperMoulinette de '.date('H\hi');
+			
+			wp_mail( 
+				$to,
+				$subject,
+				$message, 
+				$headers 
+			);
+	
+	}
 	
 } // end super_moulinette

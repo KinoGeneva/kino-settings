@@ -150,11 +150,15 @@ add_action('init', function () {
         		if ( $state == 'payment-25' ) {
         			kino_add_to_compta( $id, 
         				$kino_fields['compta-paid-25'] );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Paiement de 25.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         		}
         		
         		if ( $state == 'payment-100' ) {
         			kino_add_to_compta( $id, 
         				$kino_fields['compta-paid-100'] );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Paiement de 100.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         		}
         		
         		if ( $state == 'payment-reset' ) {
@@ -162,16 +166,22 @@ add_action('init', function () {
         				$kino_fields['compta-paid-25'] );
         			kino_remove_from_compta( $id, 
         				$kino_fields['compta-paid-100'] );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Paiement annulé pour '.$userdata->user_login.' (id: '.$id.').</p>';
         		}
         		
         		if ( $state == 'repas-60' ) {
         			kino_add_to_compta( $id, 
         				$kino_fields['compta-repas-60'] );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Paiement pour Carte Repas de 60.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         		}
         		
         		if ( $state == 'repas-100' ) {
         			kino_add_to_compta( $id, 
         				$kino_fields['compta-repas-100'] );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Paiement pour Carte Repas de 100.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         		}
         		
         		if ( $state == 'repas-reset' ) {
@@ -179,6 +189,26 @@ add_action('init', function () {
         				$kino_fields['compta-repas-60'] );
         			kino_remove_from_compta( $id, 
         				$kino_fields['compta-repas-100'] );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Paiement de Carte Repas annulé pour '.$userdata->user_login.' (id: '.$id.').</p>';
+        		}
+        		
+        		if (!empty($message_compta)) {
+        			
+        			// $message_compta .= '<p>Date de la transaction: '.date('H:i:s').'.</p>';
+        			
+        			$to[] = 'compta@kinogeneva.ch';
+        			// $to[] = 'ms@ms-studio.net';
+        			$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.ch>';
+        			$subject = '[KinoGeneva] transaction pour '.$userdata->user_login.' ('.$id.')';
+        			
+        				wp_mail( 
+        					$to,
+        					$subject,
+        					$message_compta, 
+        					$headers 
+        				);
+        		
         		}
         		
         } // end !empty($state)

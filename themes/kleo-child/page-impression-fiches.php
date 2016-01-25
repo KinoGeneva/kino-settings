@@ -424,18 +424,29 @@ body {
 			);
 		} // end 'pending'
 		
+
 	} // end $kinorole_var testing
 	
 	$kinodate_var = ( get_query_var('kinodate') ) ? get_query_var('kinodate') : false;
 	
 	if ( $kinodate_var ) {
 	
-		// add parameter to the users query	
+		$kinodate_parameter = $kinodate_var -1;
 		
-		$kinodate_parameter = $kinodate_var;
+		$kinodate_offset = date('Y-m-d\TH:i:s', strtotime('-'.$kinodate_parameter.' hours'));
 		
 	} else {
-		$kinodate_parameter = '999';
+
+		$kinodate_offset = date('Y-m-d\TH:i:s', strtotime('-720 hours'));
+	}
+	
+	// Test Kino-ID:
+	
+	$kino_id_var = ( get_query_var('id') ) ? get_query_var('id') : false;
+	
+	if ( $kino_id_var ) {
+		// add parameter to the users query	
+		$ids_of_kino_participants = $kino_id_var;
 	}
 
  ?>
@@ -469,18 +480,19 @@ body {
         	);
         }
         
-        
         $user_query = new WP_User_Query( array( 
         	'include' => $ids_of_kino_participants, // IDs incluses
         	// 'number' => 36,
         	'meta_key'  => 'last_name',
         	'orderby'  => 'last_name',
-        	'date_query' => array( 
-        	    array( 
-        	    	'after' => $kinodate_parameter.' days ago', // filtrer par date d'adhésion
-        	    	'inclusive' => false 
-        	    )  
-        	), 
+        	'meta_query' => array(
+        	        array(
+        	            'key' => 'kino_timestamp_complete',
+        	            'value' => $kinodate_offset,
+        	            'type' => 'CHAR',
+        	            'compare' => '>'
+        	        )
+        	    )
         ) );
         
         // Show some info to the Admin:
@@ -492,7 +504,7 @@ body {
         	echo '<b>Filtrage par rôle:</b> '.$kinorole_var.'<br/>';
         }
         if ( !empty($kinodate_var) ) {
-        	echo '<b>Filtrage par fraîcheur:</b> '.$kinodate_var.' jours<br/>';
+        	echo '<b>Filtrage par fraîcheur:</b> profils complétés dans les '.$kinodate_var.' dernières heures (limite: '.$kinodate_offset.')<br/>';
         }
         if ( ! empty( $user_query->results ) ) {
         	echo '<b>Nombre de fiches: </b>'.count($user_query->results).'<br/>';
@@ -516,7 +528,13 @@ body {
         
         echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=autres">Autres talents</a> / ';
         
-        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=staff">Staff</a> </br>';
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinorole=staff">Staff</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?id=8,203">Par identifiant (séparés par des virgules)</a> / ';
+        
+        echo '<a href="https://kinogeneva.ch/impression-fiches/?kinodate=2">Par âge du profil en heures (depuis que le profil est complet)</a> </br>';
+        
+        
         
         echo '<b>Sessions:</b> ';
         
@@ -537,18 +555,20 @@ body {
         	foreach ( $user_query->results as $user ) {
         	
         		$kino_userid = $user->ID ;
+        		
+        		$kino_userdata = kino_user_fields($kino_userid , $kino_fields );
 
         		// tester si Transient, sinon charger les données.
-        		$transientname = 'userdata'.$user->ID;
-        		
-    		if ( false === ( $kino_userdata = get_transient( $transientname ) ) ) {
-    		    // It wasn't there, so regenerate the data and save the transient
-    		     $kino_userdata = kino_user_fields($kino_userid , $kino_fields );
-    		     
-    		     set_transient( $transientname, $kino_userdata, 60 );
-    		     //  * HOUR_IN_SECONDS
+//        		$transientname = 'userdata'.$user->ID;
+//        		
+//    		if ( false === ( $kino_userdata = get_transient( $transientname ) ) ) {
+//    		    // It wasn't there, so regenerate the data and save the transient
+//    		     $kino_userdata = kino_user_fields($kino_userid , $kino_fields );
+//    		     
+//    		     set_transient( $transientname, $kino_userdata, 60 );
+//    		     //  * HOUR_IN_SECONDS
 //    		     echo '<p>we just defined transient '.$transientname.'</p>';
-    		}
+//    		}
     		
 //    		echo '<pre> Userdata: ';
 //    		var_dump($kino_userdata);
@@ -607,9 +627,16 @@ body {
         	 
         	 // Role
         	 
+        	 // test if STAFF
+        	 $kino_is_staff = bp_get_profile_field_data( array(
+        	 				'field'   => 1582,
+        	 				'user_id' => $kino_userid
+        	 ) );
+        	 
         	 if ( in_array( "realisateur-2016", $kino_userdata["participation"] )
         	 	|| in_array( "technicien-2016", $kino_userdata["participation"] )
-        	 	|| in_array( "comedien-2016", $kino_userdata["participation"] ) ) {
+        	 	|| in_array( "comedien-2016", $kino_userdata["participation"] )
+        	 	|| (!empty($kino_userdata["fonctions-staff"])) ) {
         	 
         	 	echo '<h3 class="kabaret-role">';
         	 		
@@ -688,7 +715,11 @@ body {
         	 // **************************
         	 
         	 echo '<div class="starbox">';
-        	 
+        	 		
+        	 		if (!empty($kino_userdata["fonctions-staff"]) ) {
+        	 				echo '<img class="star" src="'. $url .'/img/badges/Star_STAFF.png" />';
+        	 			}
+        	 		
         	 		if ( in_array( "realisateur-2016", $kino_userdata["participation"] )) {
         	 				echo '<img class="star" src="'. $url .'/img/badges/Star_G.png" />';
         	 			}
@@ -700,10 +731,6 @@ body {
         	 			if ( in_array( "comedien-2016", $kino_userdata["participation"] )) {
         	 				echo '<img class="star" src="'. $url .'/img/badges/Star_R.png" />';
         	 			}
-        	 			
-        	 			if (!empty($kino_is_staff ) ) {
-        	 				echo '<img class="star" src="'. $url .'/img/badges/Star_STAFF.png" />';
-        	 		}
         	 
         	 echo '</div>';
         	 

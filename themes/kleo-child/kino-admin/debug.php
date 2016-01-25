@@ -36,6 +36,11 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
 //        	$kino_fields['group-benevoles-kabaret'] , 
 //        	'user-group' 
 //        );
+
+				$ids_of_kino_participants = get_objects_in_term( 
+					$kino_fields['group-kino-pending'] , 
+					'user-group' 
+				);
         
         $ids_of_kino_complete = get_objects_in_term( 
         	$kino_fields['group-kino-complete'] , 
@@ -51,12 +56,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         	$kino_fields['group-real-kabaret'] , 
         	'user-group' 
         );
-        
-//        
-//        $ids_of_kino_participants = get_objects_in_term( 
-//        	$kino_fields['group-kino-pending'] , 
-//        	'user-group' 
-//        );
+
 //        
 //        $ids_real_kabaret_accepted = get_objects_in_term( 
 //        	$kino_fields['group-real-kabaret'] , 
@@ -72,7 +72,7 @@ if ( get_cfield( 'centered_text' ) == 1 )  {
         //***************************************
         
 	        $user_query = new WP_User_Query( array( 
-	        	 'include' => $ids_real_kabaret_accepted, // IDs incluses
+	        	 'include' => $ids_of_kino_participants, // IDs incluses
 	        	// 'include' => $ids_real_kabaret_accepted, 
 //	        	'orderby' => 'name',
 //	        	'order' => 'ASC' 

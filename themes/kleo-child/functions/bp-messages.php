@@ -415,7 +415,7 @@ Pour toute question relative à votre inscription, n’hésitez pas à contacter
 					$headers[] = 'Bcc: Manu <ms@ms-studio.net>';
 					$kino_notification_email .= '
 					
-					(Debug: message envoyé depuis la page '.$_SERVER[REQUEST_URI].' à '. date( 'H:i:s', time() ) .')';
+					(Debug: message envoyé depuis le serveur test kinogeneva.4o4.ch, page '.$_SERVER[REQUEST_URI].', à '. date( 'H:i:s', time() ) .')';
 				
 				}
 				
