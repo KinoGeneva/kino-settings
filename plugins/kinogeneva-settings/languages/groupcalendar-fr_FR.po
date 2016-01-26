@@ -125,11 +125,11 @@ msgstr "Créer événements / modifier ses événements"
 #: groupcalendar/bp-group-calendar.php:652
 #: groupcalendar/bp-group-calendar.php:664
 msgid "No capabilities"
-msgstr "sans capacité"
+msgstr "Sans capacité"
 
 #: groupcalendar/bp-group-calendar.php:656
 msgid "Member Capabilities"
-msgstr "capacité des membres"
+msgstr "Capacité des membres"
 
 #: groupcalendar/bp-group-calendar.php:668
 msgid "Enable Email Notification of New Events"
@@ -137,7 +137,7 @@ msgstr "Notification e-mail des nouveaux événements"
 
 #: groupcalendar/bp-group-calendar.php:669
 msgid "Individual users can disable notifications"
-msgstr "les utilisateurs peuvent désactiver les notifications"
+msgstr "Les utilisateurs peuvent désactiver les notifications"
 
 #: groupcalendar/bp-group-calendar.php:670
 msgid "Yes"
@@ -173,7 +173,7 @@ msgstr "Il n’y a pas d’événement à venir"
 
 #: groupcalendar/bp-group-calendar.php:795
 msgid "You have no scheduled events"
-msgstr "Vous n’avez pas d’événement agendé prévu"
+msgstr "Vous n’avez pas d’événement prévu"
 
 #: groupcalendar/bp-group-calendar.php:818
 #: groupcalendar/bp-group-calendar.php:1011
@@ -315,12 +315,12 @@ msgstr "Lieu"
 #: groupcalendar/bp-group-calendar.php:1126
 #: groupcalendar/bp-group-calendar.php:1283
 msgid "Show Map Link?"
-msgstr "Montrer lien sur plan?"
+msgstr "Situer sur plan?"
 
 #: groupcalendar/bp-group-calendar.php:1128
 #: groupcalendar/bp-group-calendar.php:1285
 msgid "(Note: Location must be an address)"
-msgstr "(Rem: Lieu doit être une adresse)"
+msgstr "(Rem: le lieu indiqué doit être une adresse)"
 
 #: groupcalendar/bp-group-calendar.php:1201
 msgid "Delete Event"
@@ -366,7 +366,7 @@ msgstr "Nombre d’événements:"
 #: groupcalendar/bp-group-calendar.php:1378
 msgid "Displays upcoming group events for a single group."
 msgstr ""
-"Affiche les événements d’un projet à venir pour un projet particulier."
+"Affiche les événements à venir d’un projet particulier."
 
 #: groupcalendar/bp-group-calendar.php:1379
 msgid "Single Group Events"
