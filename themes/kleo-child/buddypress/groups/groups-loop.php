@@ -72,19 +72,15 @@
 
 			</div>
 
-			<div class="action">
+					<?php 
+					
+					// Removed:
+					// bp_group_type(); 
+					
+					// do_action( 'bp_directory_groups_actions' ); 
+					
+					?>
 
-				
-
-				<div class="meta">
-
-					<?php bp_group_type(); ?>
-
-				</div>
-        
-        <?php do_action( 'bp_directory_groups_actions' ); ?>
-
-			</div>
 			</div><!--end group-inner-lis-->
 		</li>
 
