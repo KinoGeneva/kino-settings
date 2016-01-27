@@ -688,6 +688,12 @@ a.admin-action:hover {
 	
 }
 
+
+.group-home #item-header #item-header-content .highlight,
+.group-home #item-header-content .activity {
+	display: none;
+}
+
 /* @end */
 
 /* @group BP Docs */
