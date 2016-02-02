@@ -381,7 +381,7 @@ function kino_super_moulinette() {
 			
 	*/
 	
-	$message = '<p>Moulinette Compétences Kab: </p>';
+	$message = '';
 	
 	$kino_fields = kino_test_fields();
 	
@@ -473,9 +473,9 @@ function kino_super_moulinette() {
 		) );
 		if ( ! empty( $user_query->results ) ) {
 	  	
-	  	$message = '<p>Voici les nouvelles de la Super Moulinette!</p>';
+	  	//$message = '<p>Voici les nouvelles de la Super Moulinette!</p>';
 	  	
-	  	$message .= '<p>Nombre de participants au profil complet: '.count($user_query->results).'</p>';
+	  	//$message .= '<p>Nombre de participants au profil complet: '.count($user_query->results).'</p>';
 	  	
 	  	foreach ( $user_query->results as $user ) {
 	  		// Test Sessions
@@ -665,22 +665,26 @@ function kino_super_moulinette() {
 	}
 	
 	
-	$host = $_SERVER['HTTP_HOST'];
+	if ( !empty($message) ) {
 	
-	if ( $host == 'kinogeneva.ch' ) {
-			
-			$to[] = 'ms@ms-studio.net';
-			$to[] = 'onvafairedesfilms@kinogeneva.ch';
-			$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.ch>';
-			$subject = '[Kino] SuperMoulinette de '.date('H\hi');
-			
-			wp_mail( 
-				$to,
-				$subject,
-				$message, 
-				$headers 
-			);
+				$host = $_SERVER['HTTP_HOST'];
 	
-	}
+				if ( $host == 'kinogeneva.ch' ) {
+						
+						$to[] = 'ms@ms-studio.net';
+						$to[] = 'onvafairedesfilms@kinogeneva.ch';
+						$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.ch>';
+						$subject = '[Kino] SuperMoulinette de '.date('H\hi');
+						
+						wp_mail( 
+							$to,
+							$subject,
+							$message, 
+							$headers 
+						);
+				
+				} // end testing host
+				
+	} // end testing if $message empty
 	
 } // end super_moulinette
