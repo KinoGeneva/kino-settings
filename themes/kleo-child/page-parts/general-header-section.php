@@ -28,7 +28,7 @@ $top_bar = apply_filters( 'kleo_show_top_bar', $top_bar );
 		        'theme_location'    => 'top',
 		        'depth'             => 2,
 		        'container'         => 'div',
-		        'container_class'   => 'top-menu col-sm-12 col-md-7 no-padd',
+		        'container_class'   => 'top-menu col-sm-12 col-md-9 no-padd',
 		        'menu_class'        => '',
 		        'fallback_cb'       => '',
 		        'walker'            => new kleo_walker_nav_menu(),
@@ -67,7 +67,7 @@ $primary_menu = wp_nav_menu( array(
         <div class="container">
             <div class="top-bar">
 
-                <div id="top-social" class="col-sm-12 col-md-5 no-padd">
+                <div id="top-social" class="col-sm-12 col-md-3 no-padd">
                     <?php echo kleo_get_social_profiles(); ?>
                 </div>
 

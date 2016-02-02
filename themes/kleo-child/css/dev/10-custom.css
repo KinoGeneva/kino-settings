@@ -760,6 +760,65 @@ table.calendar th {
 
 /* @end */
 
+/* @group BP Profile Search */
+
+.bps-form .dropdown-menu {
+	display: block;
+	position: relative;
+	width: 100%;
+}
+
+.bps-form .dropdown-menu>li>a {
+	white-space: normal;
+}
+
+.post-2208 .bps-form,
+.post-2208 .form-group,
+.post-2208 .form-control {
+/*	min-height: 500px;
+	-webkit-column-count: 1;
+	-moz-column-count: 1;
+	column-count: 1;*/
+}
+
+.post-2208 .bps-form {
+/*	-webkit-column-count: 1;
+	-moz-column-count: 1;
+	column-count: 1;*/
+}
+
+.post-2208 .form-group .btn-group {
+/*	border: 1px solid #333;
+	display: block !important;
+	-webkit-column-break-inside: avoid;
+	page-break-inside: avoid;
+	break-inside: avoid-column;*/
+}
+
+.post-2208 .form-group .btn-group .dropdown-menu {
+/*	border: 1px solid blue;
+	display: block !important;
+	-webkit-column-break-inside: avoid;
+	page-break-inside: avoid;
+	break-inside: avoid-column;
+	clear: left;*/
+}
+
+.post-2208 .bps-form .editfield .dropdown-menu  {
+/*		-webkit-column-break-inside: avoid; /* Chrome, Safari *!/
+		page-break-inside: avoid;           /* Theoretically FF 20+ *!/
+		break-inside: avoid-column;         /* IE 11 *!/
+		display:table !important;                      /* Actually FF 20+ *!/
+		display:inline-block !important;
+		
+		max-width: 100%;
+		width: 100%;*/
+		
+/*		min-height: 1500px;*/
+}
+
+/* @end */
+
 .manage-members #buddypress .item-list .member-ban {
 	display: none;
 }
