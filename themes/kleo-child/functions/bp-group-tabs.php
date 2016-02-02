@@ -43,6 +43,13 @@ function kino_list_of_excluded_profile_fields() {
 			$kino_excluded_id[] = $kino_fields['conditions-generales'];
 		}
 		
+		if ( !is_user_logged_in() ) {
+		
+			// cacher le champ email:
+			$kino_excluded_id[] = $kino_fields['courriel'];
+		
+		}
+		
 	}
 	
 	return $kino_excluded_id;
