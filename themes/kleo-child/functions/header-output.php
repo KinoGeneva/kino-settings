@@ -36,7 +36,8 @@ function kino_wp_head(){
     		display: none;
     	}
     	
-    	.public-menu-hidden {
+    	.public-menu-hidden,
+    	.top-menu .public-menu-hidden {
     		display: none;
     	}
     	
