@@ -51,9 +51,3 @@ publish
 .idea
 script-ck.js
 codekit-config.json
-kleo
-kleo-v
-plugins/wp-user-groups
-plugins/buddy*
-plugins/bp*
-themes/kleo-3*

@@ -97,9 +97,16 @@ function kino_register_logement_taxonomy() {
 add_action( 'init', 'kino_register_logement_taxonomy', 20 );
 
 function kino_limit_group_access() {
+
 	global $wp_taxonomies;
+//	$wp_taxonomies['user-group'] = new StdClass;
+//	$wp_taxonomies['user-logement'] = new StdClass;
 	$wp_taxonomies['user-group']->cap->assign_terms = 'list_users';
 	$wp_taxonomies['user-logement']->cap->assign_terms = 'list_users';
+	
+	// Warning: Creating default object from empty value in /kinogeneva-settings/users.php on line 103
+	
+
 }
 add_action('init','kino_limit_group_access', 11);
 

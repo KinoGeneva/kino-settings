@@ -672,7 +672,7 @@ function kino_super_moulinette() {
 				if ( $host == 'kinogeneva.ch' ) {
 						
 						$to[] = 'ms@ms-studio.net';
-						$to[] = 'onvafairedesfilms@kinogeneva.ch';
+						// $to[] = 'onvafairedesfilms@kinogeneva.ch';
 						$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.ch>';
 						$subject = '[Kino] SuperMoulinette de '.date('H\hi');
 						
