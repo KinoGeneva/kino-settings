@@ -3,8 +3,8 @@
 Plugin Name: KinoGeneva Settings
 Plugin URI: 
 Description: Functionality for KinoGeneva
-Version: 1.0.1
-Author: Manu + Jul’
+Version: 1.0.2
+Author: Collectif WP
 Author URI: 
 */
 
@@ -33,9 +33,6 @@ include_once (plugin_dir_path(__FILE__).'statistics.php');
 
 // Print
 include_once (plugin_dir_path(__FILE__).'print.php');
-
-// Cron operations
-include_once (plugin_dir_path(__FILE__).'moulinette.php');
 
 // Ajax
 include_once (plugin_dir_path(__FILE__).'ajax.php');
