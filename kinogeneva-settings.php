@@ -5,13 +5,10 @@ Plugin URI:
 Description: Functionality for KinoGeneva
 Version: 1.0.2
 Author: Collectif WP
-Author URI: 
+Author URI: http://collectifwp.ch/
 */
 
 
-/*
- *
- */
  
 // Register Post Types
 include_once (plugin_dir_path(__FILE__).'content-types.php');
