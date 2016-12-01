@@ -147,8 +147,31 @@ function kino_test_fields() {
 	// Groupes Sélection
 	
 	// En attente
-	$kino_fields['group-real-kabaret-pending'] = 74 ; // En attente: Réalisateurs Kino Kabaret 2016
-	$kino_fields['group-real-platform-pending'] = 77 ; // En attente: Réalisateurs Plateforme
+	
+	$kino_fields['group-real-platform-pending'] = 197 ; // En attente: Réalisateurs Plateforme
+	
+	$kino_fields['group-real-kabaret-pending'] = 198 ; // En attente: Réalisateurs Kino Kabaret 2016
+	
+	// Profil Kino Kabaret
+	// **********************
+	
+	$kino_fields['group-kino-pending'] = 202 ;
+	
+	$kino_fields['group-kino-complete'] = 203 ; // Participants Kabaret : profil complet
+	
+	
+	// Bénévoles Kabaret
+	// **********************
+	
+	$kino_fields['group-benevoles-kabaret'] = 199 ; // 
+
+	
+	// Logements
+	// **********************
+	
+	$kino_fields['group-cherche-logement'] = 200 ;  //
+	$kino_fields['group-offre-logement'] = 201 ; 
+	
 	
 	// Validés
 	$kino_fields['group-real-kabaret'] = 65 ; // Validés: Réalisateurs Kino Kabaret
@@ -159,28 +182,19 @@ function kino_test_fields() {
 	$kino_fields['group-real-kabaret-rejected'] = 69 ; // Refusés: Réalisateurs Kino Kabaret 2016
 	$kino_fields['group-real-platform-rejected'] = 70 ; // Refusés: Réalisateurs Plateforme
 	
-	// Profil Kino Kabaret 2016
-	$kino_fields['group-kino-pending'] = 101 ;
+	
+	
+	
 	$kino_fields['group-kino-incomplete'] = 72 ; // Participants Kino 2016 : profil incomplet
-	$kino_fields['group-kino-complete'] = 71 ; // Participants Kino 2016 : profil complet
+	
 	$kino_fields['group-kino-approved'] = 73 ; // Participants Kino 2016 : validés
 	
 	$kino_fields['group-candidats-vus-moyens'] = 100 ; //
 	$kino_fields['group-candidats-vus-biens'] = 99 ; //
 	
 	
-	$kino_fields['group-benevoles-kabaret'] = 67 ; // Bénévoles Kabaret
 	
-	// Groupes Logements
 	
-	$host = $_SERVER['HTTP_HOST'];
-	if ( $host == 'kinogeneva.ch' ) {
-	$kino_fields['group-cherche-logement'] = 79 ;  //
-	$kino_fields['group-offre-logement'] = 80 ; //
-	} else {
-	$kino_fields['group-cherche-logement'] = 94 ;  // 79 94
-	$kino_fields['group-offre-logement'] = 95 ; // 80 95
-	}
 	
 	// Groupes Compétences
 	
