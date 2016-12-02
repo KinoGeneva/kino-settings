@@ -139,7 +139,9 @@ function kino_test_fields() {
 	$kino_fields['talents-autre'] = 99; // 
 	
 		
-	// Identifiants des Groupes (valeurs 2016)
+		
+		
+	// Identifiants des Groupes
 	// *************************
 	
 	// voir https://bitbucket.org/ms-studio/kinogeneva/wiki/WordPress-User-Groups
@@ -171,6 +173,12 @@ function kino_test_fields() {
 	
 	$kino_fields['group-cherche-logement'] = 200 ;  //
 	$kino_fields['group-offre-logement'] = 201 ; 
+	
+	
+	
+	
+	
+	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
 	
 	
 	// Validés
