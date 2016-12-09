@@ -48,6 +48,8 @@ add_filter('admin_footer_text', 'modify_footer_admin');
 
 /*
  * Admin CSS
+ *
+ * For all users accessing the admin interface
 */
 
 function kino_admin_css() {
@@ -101,6 +103,14 @@ function kino_admin_css() {
     
     #wpmu-install-dashboard {
     	display: none;
+    }
+    
+    /*
+    Hide KLEO theme notices:
+    */
+    
+    #setting-error-tgmpa {
+      display: none;
     }
     
   </style>';
