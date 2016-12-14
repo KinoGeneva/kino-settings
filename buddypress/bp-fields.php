@@ -175,6 +175,7 @@ function kino_test_fields() {
 	$kino_fields['group-offre-logement'] = 201 ; 
 	
 	
+	$kino_fields['group-kino-incomplete'] = 220 ; // Participants Kino 2016 : profil incomplet
 	
 	
 	
@@ -193,7 +194,7 @@ function kino_test_fields() {
 	
 	
 	
-	$kino_fields['group-kino-incomplete'] = 72 ; // Participants Kino 2016 : profil incomplet
+	
 	
 	$kino_fields['group-kino-approved'] = 73 ; // Participants Kino 2016 : validés
 	
