@@ -176,32 +176,23 @@ function kino_test_fields() {
 	
 	
 	
-	
-	
-	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
-	
-	
+	//mis à jour 2017
 	// Validés
-	$kino_fields['group-real-kabaret'] = 65 ; // Validés: Réalisateurs Kino Kabaret
-	$kino_fields['group-real-platform'] = 66 ; // Validés: Réalisateurs Plateforme
-	
+	$kino_fields['group-real-kabaret'] = 226 ; // Validés: Réalisateurs Kino Kabaret
+	$kino_fields['group-real-platform'] = 227 ; // Validés: Réalisateurs Plateforme
 	
 	// Refusés
-	$kino_fields['group-real-kabaret-rejected'] = 69 ; // Refusés: Réalisateurs Kino Kabaret 2016
-	$kino_fields['group-real-platform-rejected'] = 70 ; // Refusés: Réalisateurs Plateforme
-	
-	
-	
-	
-	$kino_fields['group-kino-incomplete'] = 72 ; // Participants Kino 2016 : profil incomplet
-	
-	$kino_fields['group-kino-approved'] = 73 ; // Participants Kino 2016 : validés
-	
-	$kino_fields['group-candidats-vus-moyens'] = 100 ; //
-	$kino_fields['group-candidats-vus-biens'] = 99 ; //
-	
-	
-	
+	$kino_fields['group-real-kabaret-rejected'] = 228 ; // Refusés: Réalisateurs Kino Kabaret 2017
+	$kino_fields['group-real-platform-rejected'] = 229 ; // Refusés: Réalisateurs Plateforme
+
+
+	$kino_fields['group-kino-incomplete'] = 203 ; // Participants Kino 2017 : profil incomplet
+	$kino_fields['group-kino-approved'] = 230 ; // Participants Kino 2017 : validés
+
+	$kino_fields['group-candidats-vus-moyens'] = 231 ; //
+	$kino_fields['group-candidats-vus-biens'] = 232 ; //
+
+	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
 	
 	
 	// Groupes Compétences
