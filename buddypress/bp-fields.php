@@ -194,6 +194,10 @@ function kino_test_fields() {
 	$kino_fields['group-candidats-vus-moyens'] = 231 ; //
 	$kino_fields['group-candidats-vus-biens'] = 232 ; //
 
+	//annulation
+	$kino_fields['group-real-kabaret-canceled'] = 233 ; // Annulation: Réalisateurs Kino Kabaret 2017
+	$kino_fields['group-real-platform-canceled'] = 234 ; // Annulation: Réalisateurs Plateforme 2017
+
 	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
 	
 	// Groupes Compétences
