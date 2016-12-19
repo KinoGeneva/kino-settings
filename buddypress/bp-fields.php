@@ -183,7 +183,7 @@ function kino_test_fields() {
 	$kino_fields['group-real-platform'] = 227 ; // Validés: Réalisateurs Plateforme
 	
 	// Refusés
-<<<<<<< HEAD
+
 	$kino_fields['group-real-kabaret-rejected'] = 228 ; // Refusés: Réalisateurs Kino Kabaret 2017
 	$kino_fields['group-real-platform-rejected'] = 229 ; // Refusés: Réalisateurs Plateforme
 
@@ -195,24 +195,6 @@ function kino_test_fields() {
 	$kino_fields['group-candidats-vus-biens'] = 232 ; //
 
 	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
-=======
-	$kino_fields['group-real-kabaret-rejected'] = 69 ; // Refusés: Réalisateurs Kino Kabaret 2016
-	$kino_fields['group-real-platform-rejected'] = 70 ; // Refusés: Réalisateurs Plateforme
-	
-	
-	
-	
-	
-	
-	$kino_fields['group-kino-approved'] = 73 ; // Participants Kino 2016 : validés
-	
-	$kino_fields['group-candidats-vus-moyens'] = 100 ; //
-	$kino_fields['group-candidats-vus-biens'] = 99 ; //
-	
-	
-	
->>>>>>> refs/remotes/bitbucket/master
-	
 	
 	// Groupes Compétences
 	
