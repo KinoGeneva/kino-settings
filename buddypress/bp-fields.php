@@ -197,6 +197,10 @@ function kino_test_fields() {
 	//annulation
 	$kino_fields['group-real-kabaret-canceled'] = 233 ; // Annulation: Réalisateurs Kino Kabaret 2017
 	$kino_fields['group-real-platform-canceled'] = 234 ; // Annulation: Réalisateurs Plateforme 2017
+	
+	//Participants Kino 2017 : Validés
+	$kino_fields['group-kino-approved'] = 230 ;
+
 
 	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
 	
