@@ -29,7 +29,7 @@ add_action('init', function () {
         
         if ( !empty($state) ) {
 
-        		if ( ( $state == 'platform-accept' ) || ( $state == 'platform-reject') ) {
+        		if ( ( $state == 'platform-accept' ) || ( $state == 'platform-reject') || ( $state == 'platform-cancel') ) {
         		
         			// remove from : platform pending
         			
@@ -58,6 +58,21 @@ add_action('init', function () {
         			
         		}
         		
+        		if ( $state == 'platform-cancel' ) {
+        			
+        			// add to group
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-real-platform-canceled'] );
+        			
+        			// Add to Mailpoet List
+//        			kino_add_to_mailpoet_list( $id, 
+//        				$kino_fields['mailpoet-real-platform-canceled'] );
+        			
+        			// remove checkbox!
+        			kino_remove_real_platform_checkbox( $id, $kino_fields );
+        			
+        		}
+        		
         		if ( $state == 'platform-reject' ) {
         			
         			// add to group
@@ -75,7 +90,7 @@ add_action('init', function () {
         		
         		// ******************
         		
-        		if ( ( $state == 'kabaret-accept' ) || ( $state == 'kabaret-reject' ) || ( $state == 'kabaret-moyen') || ( $state == 'kabaret-bien') ) {
+        		if ( ( $state == 'kabaret-accept' ) || ( $state == 'kabaret-reject' ) || ( $state == 'kabaret-cancel') || ( $state == 'kabaret-moyen') || ( $state == 'kabaret-bien') ) {
         		
         			// remove from pending
         			kino_remove_from_usergroup( $id, 
@@ -109,6 +124,21 @@ add_action('init', function () {
         				
         			// s'assurer que le champ Réalisateur Kabaret est coché
         			kino_check_real_kabaret_checkbox( $id, $kino_fields );
+        		
+        		} else if ( $state == 'kabaret-cancel') {
+        		
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-real-kabaret-canceled'] );
+        				
+//        			kino_add_to_mailpoet_list( $id, 
+//        				$kino_fields['mailpoet-real-kabaret-canceled'] );
+        			
+//        			kino_remove_from_mailpoet_list( $id,
+//        				$kino_fields['mailpoet-real-kabaret-pending'] );
+        			
+        			// décocher le champ Réalisateur Kabaret!
+        			kino_remove_real_kabaret_checkbox( $id, $kino_fields );
+        			
         				
         		} else if ( $state == 'kabaret-reject') {
         		
