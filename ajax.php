@@ -395,9 +395,13 @@ function kino_check_real_kabaret_checkbox( $id, $kino_fields ) {
 
 
 
-function kino_table_header( $validation ) {
+function kino_table_header( $validation, $tableid = null ) {
 	
-		$kino_table_header = '<table class="table table-hover table-bordered table-condensed pending-form">
+		if (!empty($tableid)) {
+			$tableid = 'id="'.$tableid.'"';
+		}
+	
+		$kino_table_header = '<table '.$tableid.' class="table table-hover table-bordered table-condensed pending-form">
 				<thead>
 					<tr>
 						<th>#</th>
