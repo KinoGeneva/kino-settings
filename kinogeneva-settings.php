@@ -28,6 +28,9 @@ include_once (plugin_dir_path(__FILE__).'statistics.php');
 // Print
 include_once (plugin_dir_path(__FILE__).'print.php');
 
+//mailpoet added
+include_once (plugin_dir_path(__FILE__).'mailpoet-add.php');
+
 // Ajax
 include_once (plugin_dir_path(__FILE__).'ajax.php');
 
@@ -41,8 +44,6 @@ include_once (plugin_dir_path(__FILE__).'buddypress/bp-overrides.php');
 
 include_once (plugin_dir_path(__FILE__).'utilities.php');
 
-//mailpoet added
-include_once (plugin_dir_path(__FILE__).'mailpoet-add.php');
 
 
 // end file
