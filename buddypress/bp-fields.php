@@ -217,6 +217,8 @@ function kino_test_fields() {
 	$kino_fields['mailpoet-real-kabaret'] = 4 ; // Validés: Réalisateurs Kino Kabaret 2017
 	$kino_fields['mailpoet-real-platform'] = 9 ; // Acceptés
 
+	$kino_fields['mailpoet-real-platform-only'] = 17 ;
+
 	$kino_fields['mailpoet-real-kabaret-rejected'] = 10 ; //Refusés: Réalisateurs Kino Kabaret 2017
 	$kino_fields['mailpoet-real-platform-rejected'] = 11 ; //Refusés: Réalisateurs Plateforme
 
@@ -231,7 +233,6 @@ function kino_test_fields() {
 	$kino_fields['mailpoet-session-superhuit'] = 16 ;
 	
 	//todo: Kino Kabaret (onglet KK2017 vide)
-	//todo $kino_fields['mailpoet-real-platform-only'] = 0 ; 
 
 	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
 	
