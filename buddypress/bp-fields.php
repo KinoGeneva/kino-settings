@@ -182,11 +182,16 @@ function kino_test_fields() {
 	$kino_fields['group-real-kabaret'] = 226 ; // Validés: Réalisateurs Kino Kabaret
 	$kino_fields['group-real-platform'] = 227 ; // Validés: Réalisateurs Plateforme
 	
+	// Groupes Sessions
+	$kino_fields['group-session-un'] = 235 ;
+	$kino_fields['group-session-deux'] = 236 ;
+	$kino_fields['group-session-trois'] = 237 ;
+	$kino_fields['group-session-superhuit'] = 238 ;
+	
+	
 	// Refusés
-
 	$kino_fields['group-real-kabaret-rejected'] = 228 ; // Refusés: Réalisateurs Kino Kabaret 2017
 	$kino_fields['group-real-platform-rejected'] = 229 ; // Refusés: Réalisateurs Plateforme
-
 
 	$kino_fields['group-kino-incomplete'] = 203 ; // Participants Kino 2017 : profil incomplet
 	$kino_fields['group-kino-approved'] = 230 ; // Participants Kino 2017 : validés
@@ -202,7 +207,36 @@ function kino_test_fields() {
 	$kino_fields['group-kino-approved'] = 230 ;
 
 
+	//MailPoet List IDs (valeurs 2017)
+	
+	$kino_fields['mailpoet-benevoles'] = 3;
+	
+	// Validation réalisateurs
+	$kino_fields['mailpoet-real-kabaret-pending'] = 8 ; // Réal Kabaret (En Attente)
+
+	$kino_fields['mailpoet-real-kabaret'] = 4 ; // Validés: Réalisateurs Kino Kabaret 2017
+	$kino_fields['mailpoet-real-platform'] = 9 ; // Acceptés
+
+	$kino_fields['mailpoet-real-kabaret-rejected'] = 10 ; //Refusés: Réalisateurs Kino Kabaret 2017
+	$kino_fields['mailpoet-real-platform-rejected'] = 11 ; //Refusés: Réalisateurs Plateforme
+
+	//participants
+	$kino_fields['mailpoet-participant-kabaret'] = 7 ; //Kino Kabaret (Profil Complet)
+	$kino_fields['mailpoet-participant-kabaret-incomplet'] = 5 ;
+
+	// Sessions
+	$kino_fields['mailpoet-session-un'] = 13 ;
+	$kino_fields['mailpoet-session-deux'] = 14 ;
+	$kino_fields['mailpoet-session-trois'] = 15 ;
+	$kino_fields['mailpoet-session-superhuit'] = 16 ;
+	
+	//todo: Kino Kabaret (onglet KK2017 vide)
+	//todo $kino_fields['mailpoet-real-platform-only'] = 0 ; 
+
 	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
+	
+	$kino_fields['mailpoet-kabaret-technicien'] = 18 ;
+	$kino_fields['mailpoet-kabaret-comedien'] = 19 ;
 	
 	// Groupes Compétences
 	
@@ -222,43 +256,6 @@ function kino_test_fields() {
 	$kino_fields['compta-paid-100'] = 117 ; //
 	$kino_fields['compta-repas-60'] = 118 ; //
 	$kino_fields['compta-repas-100'] = 119 ; //
-	
-	// Groupes Sessions
-	
-	$kino_fields['group-session-un'] = 120 ;
-	$kino_fields['group-session-deux'] = 121 ;
-	$kino_fields['group-session-trois'] = 122 ;
-	$kino_fields['group-session-superhuit'] = 123 ;
-	
-	
-	
-	
-	// MailPoet List IDs (valeurs 2016)
-	// ***********
-	
-	$kino_fields['mailpoet-benevoles'] = 6 ;
-	$kino_fields['mailpoet-participant-kabaret'] = 4 ;
-	$kino_fields['mailpoet-participant-kabaret-incomplet'] = 11 ;
-	
-	// Validation réalisateurs
-	$kino_fields['mailpoet-real-kabaret'] = 5 ; // Acceptés
-	$kino_fields['mailpoet-real-kabaret-pending'] = 16 ; // En Attente
-	
-	$kino_fields['mailpoet-real-platform-only'] = 7 ; // 
-	$kino_fields['mailpoet-real-platform'] = 8 ; // Acceptés
-	$kino_fields['mailpoet-real-kabaret-rejected'] = 9 ;
-	$kino_fields['mailpoet-real-platform-rejected'] = 10 ;
-	
-	// Sessions
-	$kino_fields['mailpoet-session-un'] = 12 ;
-	$kino_fields['mailpoet-session-deux'] = 13 ;
-	$kino_fields['mailpoet-session-trois'] = 14 ;
-	$kino_fields['mailpoet-session-superhuit'] = 15 ;
-	
-	$kino_fields['mailpoet-kabaret-technicien'] = 18 ;
-	$kino_fields['mailpoet-kabaret-comedien'] = 19 ;
-	
-	
 	
 	return $kino_fields;
 }
