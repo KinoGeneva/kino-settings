@@ -232,7 +232,6 @@ function kino_test_fields() {
 	$kino_fields['mailpoet-session-trois'] = 15 ;
 	$kino_fields['mailpoet-session-superhuit'] = 16 ;
 	
-	//todo: Kino Kabaret (onglet KK2017 vide)
 
 	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
 	
