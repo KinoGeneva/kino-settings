@@ -101,6 +101,28 @@ add_action('init', function () {
         		
         		}
         		
+        		if ( ( $state == 'kabaret-session1' )  ) {
+					// add to group
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-session-un'] );
+				}
+        		
+        		if ( ( $state == 'kabaret-session2' )  ) {
+					// add to group
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-session-deux'] );
+				}
+				if ( ( $state == 'kabaret-session3' )  ) {
+					// add to group
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-session-trois'] );
+				}
+				if ( ( $state == 'kabaret-sessions8' )  ) {
+					// add to group
+        			kino_add_to_usergroup( $id, 
+        				$kino_fields['group-session-superhuit'] );
+				}
+        		
         		if ( ( $state == 'kabaret-accept' ) ) {
         			
         			// remove from groups
