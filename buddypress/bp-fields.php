@@ -234,22 +234,22 @@ function kino_test_fields() {
 	
 	// Groupes Compétences
 	
-	$kino_fields['group-comp-comedien'] = 265 ; //
-	$kino_fields['group-comp-technicien'] = 266 ; //
-	$kino_fields['group-comp-image'] = 267 ; //
-	$kino_fields['group-comp-postprod-image'] = 268 ; //
-	$kino_fields['group-comp-postprod-son'] = 269 ; //
-	$kino_fields['group-comp-prod-scenar'] = 270 ; //
-	$kino_fields['group-comp-da-hmc'] = 271 ; //
-	$kino_fields['group-comp-autres'] = 272 ; //
-	$kino_fields['group-comp-staff'] = 273 ; //
+	$kino_fields['group-comp-comedien'] = 278 ; //
+	$kino_fields['group-comp-technicien'] = 279 ; //
+	$kino_fields['group-comp-image'] = 280 ; //
+	$kino_fields['group-comp-postprod-image'] = 281 ; //
+	$kino_fields['group-comp-postprod-son'] = 282 ; //
+	$kino_fields['group-comp-prod-scenar'] = 283 ; //
+	$kino_fields['group-comp-da-hmc'] = 284 ; //
+	$kino_fields['group-comp-autres'] = 285 ; //
+	$kino_fields['group-comp-staff'] = 286 ; //
 	
 	// Groupes Compta
 	
-	$kino_fields['compta-paid-25'] = 274 ; //
-	$kino_fields['compta-paid-100'] = 275 ; //
-	$kino_fields['compta-repas-60'] = 276 ; //
-	$kino_fields['compta-repas-100'] = 277 ; //
+	$kino_fields['compta-paid-25'] = 287 ; //
+	$kino_fields['compta-paid-100'] = 288 ; //
+	$kino_fields['compta-repas-60'] = 289 ; //
+	$kino_fields['compta-repas-100'] = 290 ; //
 	
 	return $kino_fields;
 }
