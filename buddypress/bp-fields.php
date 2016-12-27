@@ -231,32 +231,25 @@ function kino_test_fields() {
 	//participants
 	$kino_fields['mailpoet-participant-kabaret'] = 7 ; //Kino Kabaret (Profil Complet)
 	$kino_fields['mailpoet-participant-kabaret-incomplet'] = 5 ;
-
-
-
-	// ATTENTION, les numéros ci-dessous n'ont pas encore été mis à jour, ce sont encore les valeurs 2016 !!!
-	
-	//$kino_fields['mailpoet-kabaret-technicien'] = 18 ;
-	//$kino_fields['mailpoet-kabaret-comedien'] = 19 ;
 	
 	// Groupes Compétences
 	
-	$kino_fields['group-comp-comedien'] = 108 ; //
-	$kino_fields['group-comp-technicien'] = 124 ; //
-	$kino_fields['group-comp-image'] = 109 ; //
-	$kino_fields['group-comp-postprod-image'] = 110 ; //
-	$kino_fields['group-comp-postprod-son'] = 111 ; //
-	$kino_fields['group-comp-prod-scenar'] = 112 ; //
-	$kino_fields['group-comp-da-hmc'] = 113 ; //
-	$kino_fields['group-comp-autres'] = 114 ; //
-	$kino_fields['group-comp-staff'] = 115 ; //
+	$kino_fields['group-comp-comedien'] = 265 ; //
+	$kino_fields['group-comp-technicien'] = 266 ; //
+	$kino_fields['group-comp-image'] = 267 ; //
+	$kino_fields['group-comp-postprod-image'] = 268 ; //
+	$kino_fields['group-comp-postprod-son'] = 269 ; //
+	$kino_fields['group-comp-prod-scenar'] = 270 ; //
+	$kino_fields['group-comp-da-hmc'] = 271 ; //
+	$kino_fields['group-comp-autres'] = 272 ; //
+	$kino_fields['group-comp-staff'] = 273 ; //
 	
 	// Groupes Compta
 	
-	$kino_fields['compta-paid-25'] = 116 ; //
-	$kino_fields['compta-paid-100'] = 117 ; //
-	$kino_fields['compta-repas-60'] = 118 ; //
-	$kino_fields['compta-repas-100'] = 119 ; //
+	$kino_fields['compta-paid-25'] = 274 ; //
+	$kino_fields['compta-paid-100'] = 275 ; //
+	$kino_fields['compta-repas-60'] = 276 ; //
+	$kino_fields['compta-repas-100'] = 277 ; //
 	
 	return $kino_fields;
 }
