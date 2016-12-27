@@ -105,22 +105,50 @@ add_action('init', function () {
 					// add to group
         			kino_add_to_usergroup( $id, 
         				$kino_fields['group-session-un'] );
+        			//remove from others groups
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-deux'] );
+					kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-trois'] );
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-superhuit'] );
 				}
         		
         		if ( ( $state == 'kabaret-session2' )  ) {
 					// add to group
         			kino_add_to_usergroup( $id, 
         				$kino_fields['group-session-deux'] );
+        			//remove from others groups
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-un'] );
+					kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-trois'] );
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-superhuit'] );
 				}
 				if ( ( $state == 'kabaret-session3' )  ) {
 					// add to group
         			kino_add_to_usergroup( $id, 
         				$kino_fields['group-session-trois'] );
+        			//remove from others groups
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-un'] );
+					kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-deux'] );
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-superhuit'] );
 				}
 				if ( ( $state == 'kabaret-sessions8' )  ) {
 					// add to group
         			kino_add_to_usergroup( $id, 
         				$kino_fields['group-session-superhuit'] );
+        			//remove from others groups
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-un'] );
+					kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-deux'] );
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-trois'] );
 				}
         		
         		if ( ( $state == 'kabaret-accept' ) ) {
@@ -161,11 +189,30 @@ add_action('init', function () {
         			// décocher le champ Réalisateur Kabaret!
         			kino_remove_real_kabaret_checkbox( $id, $kino_fields );
         			
+        			//remove from sessions groups
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-un'] );
+					kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-deux'] );
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-trois'] );
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-superhuit'] );
         				
         		} else if ( $state == 'kabaret-reject') {
         		
         			kino_add_to_usergroup( $id, 
         				$kino_fields['group-real-kabaret-rejected'] );
+        			
+        			//remove from sessions groups
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-un'] );
+					kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-deux'] );
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-trois'] );
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-session-superhuit'] );
         				
 //        			kino_add_to_mailpoet_list( $id, 
 //        				$kino_fields['mailpoet-real-kabaret-rejected'] );
