@@ -188,24 +188,22 @@ function sanitize_file_name_chars( $special_chars = array() ) {
 // http://wp.tutsplus.com/tutorials/customizing-wordpress-for-your-clients/
 // http://www.wpbeginner.com/wp-tutorials/how-to-remove-wordpress-dashboard-widgets/
 
-function lgm_remove_dashboard_widgets() {
+function kino_remove_dashboard_widgets() {
 	// Globalize the metaboxes array, this holds all the widgets for wp-admin
 	global $wp_meta_boxes;
-	
-//	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
-//	
+		
 	unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press'] );
 	
-	// find a way to remove: pmpro_db_widget
-	
-//
 //	unset( $wp_meta_boxes['dashboard']['normal']['core']['dashboard_activity'] );
 
 	// RSS feeds:
-	// unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_primary'] );
-
+	unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_primary'] );
+	
+	// Modern Tribe Newsfeed:
+	unset( $wp_meta_boxes['dashboard']['normal']['core']['tribe_dashboard_widget'] );
+	
 }
-add_action( 'wp_dashboard_setup', 'lgm_remove_dashboard_widgets' );
+add_action( 'wp_dashboard_setup', 'kino_remove_dashboard_widgets', 11 );
 
 /*
 
