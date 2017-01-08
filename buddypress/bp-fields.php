@@ -12,7 +12,7 @@ function kino_test_fields() {
 	// **************************
 	
 	$kino_fields['profile-role'] = 135; // Profil Kinoite Role
-	$kino_fields['profile-role-real'] = '1424_2'; // Profil Kinoite Role Plateforme
+	$kino_fields['profile-role-real'] = '2032_2'; // Profil Kinoite Role Plateforme
 	
 	$kino_fields['conditions-generales'] = 1070; // Profil Kinoite Role
 	
