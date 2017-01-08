@@ -92,3 +92,32 @@ function kino_set_notification_headers( $headers, $sender_name, $sender_id, $ud 
   
   return $headers;
 }
+
+// Ce code permet aux Réalisateurs de créer des Groupes:
+// Voir https://bitbucket.org/ms-studio/kinogeneva/issues/180/fiche-projet-gestion-des-droits
+// Note: this filter takes two parameters: $can_create, $restricted
+
+add_filter( 'bp_user_can_create_groups', 'kino_real_create_project', 10, 2 );
+
+function kino_real_create_project( $can_create, $restricted ){
+  
+  $user_ID = get_current_user_id();
+  
+  $kino_fields = kino_test_fields();
+  
+  $ids_of_kino_realisateurs = get_objects_in_term( 
+  		$kino_fields['group-real-kabaret'], 
+  		'user-group' 
+  	);
+  	
+  // test if current user belongs to group real-kabaret		
+  if ( in_array( $user_ID, $ids_of_kino_realisateurs )) {
+  	$can_create = true;
+  	$restricted = 0;
+  }	
+
+   return $can_create;
+   return $restricted;
+  
+}
+
