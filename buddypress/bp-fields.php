@@ -7,22 +7,23 @@ function kino_test_fields() {
 
 	$kino_fields = array();
 	
+	// onglet primaire
+	//******************
+	$kino_fields['conditions-generales'] = 1070; //accepter les CG
 	
-	// Groupe: Profil Kinoite
+	// Groupe: Profil Kinoite : OK 2018
 	// **************************
 	
 	$kino_fields['profile-role'] = 135; // Profil Kinoite Role
-	$kino_fields['profile-role-real'] = '2032_2'; // Profil Kinoite Role Plateforme
+	$kino_fields['profile-role-real'] = '1424_2'; // Profil Kinoite Role Plateforme
 	
-	$kino_fields['conditions-generales'] = 1070; // Profil Kinoite Role
+	//$kino_fields['kabaret'] = 1832; // Participe au cabaret 2017?
+	$kino_fields['kabaret'] = 2060; // Participe au cabaret 2018?
 	
-	$kino_fields['kabaret'] = 1832; // Participe au cabaret 2017?
-	
+	$kino_fields['benevole'] = 1313; // Aide Bénévole 
 		
 	// Groupe: Bénévole
 	// **************************
-	
-	$kino_fields['benevole'] = 1313; // Aide Bénévole (sur Profil Kinoite)
 	
 	$kino_fields['benevole-kabaret'] = 1320; // Pour quelles activités (fieldset)
 	
