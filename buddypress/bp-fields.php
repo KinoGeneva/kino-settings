@@ -225,8 +225,11 @@ function kino_test_fields() {
 
 	// Sessions
 	$kino_fields['mailpoet-session-un'] = 13 ;
+	$kino_fields['mailpoet-session-1'] = 13 ;
 	$kino_fields['mailpoet-session-deux'] = 14 ;
+	$kino_fields['mailpoet-session-2'] = 14 ;
 	$kino_fields['mailpoet-session-trois'] = 15 ;
+	$kino_fields['mailpoet-session-3'] = 15 ;
 	$kino_fields['mailpoet-session-superhuit'] = 16 ;
 
 	//participants
