@@ -57,3 +57,14 @@ function kino_remove_from_mailpoet_list( $user, $list ) {
 	 );
 
 }
+
+function kino_remove_from_mailpoet_list_array( $user, $list ) {
+	
+	$helper_user = WYSIJA::get('user','helper');
+	$helper_user->removeFromLists(
+	    $list,
+	    $user
+	 );
+
+}
+
