@@ -15,17 +15,18 @@ function kino_test_fields() {
 	// **************************
 	
 	$kino_fields['profile-role'] = 135; // Profil Kinoite Role
-	$kino_fields['profile-role-real'] = '1424_2'; // Profil Kinoite Role Plateforme
+	$kino_fields['profile-role-real'] = '2101_3'; // Réalisateur sous Profil Kinoite > Role Plateforme
+	$kino_fields['benevole'] = '2098_0'; // Aide Bénévole => sous Profil Kinoite > Role Plateforme
 	
 	//$kino_fields['kabaret'] = 1832; // Participe au cabaret 2017?
 	$kino_fields['kabaret'] = 2060; // Participe au cabaret 2018?
 	
-	$kino_fields['benevole'] = 1313; // Aide Bénévole 
-		
 	// Groupe: Bénévole
 	// **************************
 	
 	$kino_fields['benevole-kabaret'] = 1320; // Pour quelles activités (fieldset)
+	
+	$kino_fields['benevole-kabaret-yes'] = '1404_1'; //coche pour le kabaret sous Pour quelles activités (fieldset)
 	
 	$kino_fields['benevole-fonction'] = 1327; // Pour quelles charges (fieldset)
 	
@@ -93,6 +94,7 @@ function kino_test_fields() {
 	
 	$kino_fields['offre-logement'] = 1935; 
 	$kino_fields['offre-logement-remarque'] = 1936; // nombre et type de logement
+	$kino_fields['offre-logement-nb'] = 2189; // nombre de couchage
 	
 	$kino_fields['possible-tournage'] = 1937;
 	$kino_fields['possible-tournage-remarque'] = 1940;
