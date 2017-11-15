@@ -102,6 +102,8 @@ function kino_test_fields() {
 	$kino_fields['vehicule'] = 1941;
 	$kino_fields['vehicule-remarque'] = 1944;
 	
+	$kino_fields['permis'] = 2104;
+	
 	
 	// Compétence Tech
 	// **************************
