@@ -29,7 +29,7 @@ function kino_bp_guest_redirect() {
 	
 	global $bp;
 	
-	if ( bp_is_activity_component() || bp_is_members_component() || bp_is_forums_component()  ) {
+	if ( bp_is_activity_component() || bp_is_forums_component()  ) {
 		// enter the slug or component conditional here
 		
 		if ( !is_user_logged_in() ) { // not logged in user
