@@ -15,8 +15,8 @@ function kino_test_fields() {
 	// **************************
 	
 	$kino_fields['profile-role'] = 135; // Profil Kinoite Role
-	$kino_fields['profile-role-real'] = '2101_3'; // Réalisateur sous Profil Kinoite > Role Plateforme
-	$kino_fields['benevole'] = '2098_0'; // Aide Bénévole => sous Profil Kinoite > Role Plateforme
+	$kino_fields['profile-role-real'] = '2111_2'; // Réalisateur sous Profil Kinoite > Role Plateforme
+	$kino_fields['benevole'] = '2112_3'; // Aide Bénévole => sous Profil Kinoite > Role Plateforme
 	
 	//$kino_fields['kabaret'] = 1832; // Participe au cabaret 2017?
 	$kino_fields['kabaret'] = 2060; // Participe au cabaret 2018?
