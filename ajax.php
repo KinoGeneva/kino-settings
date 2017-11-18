@@ -199,6 +199,10 @@ add_action('init', function () {
         			kino_remove_from_usergroup( $id, 
         				$kino_fields['group-session-superhuit'] );
         				
+        			//remove from réal validés
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-real-kabaret'] );
+        				
         		} else if ( $state == 'kabaret-reject') {
         		
         			kino_add_to_usergroup( $id, 
@@ -213,6 +217,10 @@ add_action('init', function () {
         				$kino_fields['group-session-trois'] );
         			kino_remove_from_usergroup( $id, 
         				$kino_fields['group-session-superhuit'] );
+        				
+        			//remove from réal validés
+        			kino_remove_from_usergroup( $id, 
+        				$kino_fields['group-real-kabaret'] );	
         				
 //        			kino_add_to_mailpoet_list( $id, 
 //        				$kino_fields['mailpoet-real-kabaret-rejected'] );
