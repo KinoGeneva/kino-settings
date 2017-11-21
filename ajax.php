@@ -25,10 +25,39 @@ add_action('init', function () {
 
         $id = $_POST['id'];
         $state = $_POST['state'];
+        if(isset($_POST['value'])){
+			$value =  htmlspecialchars($_POST['value']);
+		}
+		else {
+			$value = '';
+		}
         $kino_fields = kino_test_fields();
         
         if ( !empty($state) ) {
-
+			
+				//note logement
+				if( $state == 'logement-add-info') {
+					
+					if(!empty( $old_value = get_user_meta( $id, 'kino-admin-gestion-logement-remarque', true ) ) ){
+						update_user_meta( $id, 'kino-admin-gestion-logement-remarque', $old_value . '<br/>' . $value );
+					}
+					else {
+						add_user_meta( $id, 'kino-admin-gestion-logement-remarque', $value, true );
+					}
+				}
+				//note bénévole
+				if( $state == 'benevole-add-info') {
+					
+					if(!empty( $old_value = get_user_meta( $id, 'kino-admin-gestion-benevole-remarque', true ) ) ){
+						update_user_meta( $id, 'kino-admin-gestion-benevole-remarque', $old_value . '<br/>' . $value );
+						
+					}
+					else {
+						add_user_meta( $id, 'kino-admin-gestion-benevole-remarque', $value, true );
+					}
+				}
+				
+				//réal
         		if ( ( $state == 'platform-accept' ) || ( $state == 'platform-reject') || ( $state == 'platform-cancel') ) {
         		
         			// remove from : platform pending
@@ -322,7 +351,7 @@ add_action('init', function () {
 
         wp_send_json_success(array(
             'action' => $_POST['action'],
-            'message' => 'State Was Set To ' . $state,
+            'message' => 'State Was Set To ' . $state,            
             'state' => $state,
             'ID' => $id
         )); // die
