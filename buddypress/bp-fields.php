@@ -111,7 +111,10 @@ function kino_test_fields() {
 	// **************************
 	
 	$kino_fields['comp-production'] = 173; // 
-	$kino_fields['comp-scenario'] = 385; // 
+	$kino_fields['comp-scenario'] = 385; //
+	$kino_fields['comp-scenario-scenariste'] = '865_0'; //
+	$kino_fields['comp-scenario-soumission'] = 2151; //
+	$kino_fields['comp-scenario-file'] = 2154; //
 	$kino_fields['comp-realisation'] = 392; // 
 	$kino_fields['comp-image'] = 170; // 
 	$kino_fields['comp-postprod-image'] = 413; // 
