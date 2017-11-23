@@ -148,8 +148,10 @@ function kino_test_fields() {
 	$kino_fields['talents'] = 82; // 
 	$kino_fields['talents-autre'] = 99; // 
 	
-		
-		
+	// Compétence Réalisateur
+	// **************************
+	$kino_fields['real-coaching'] = 2147; // 
+	$kino_fields['real-coaching-scenario'] = 2150; // 
 		
 	// Identifiants des Groupes
 	// *************************
