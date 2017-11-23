@@ -83,6 +83,8 @@ function kino_test_fields() {
 	$kino_fields['session-un'] = 1876;
 	$kino_fields['session-deux'] = 1881;
 	$kino_fields['session-trois'] = 1886;
+	//Genève je t'aime 2018
+	$kino_fields['session-geneve-je-taime'] = 2162;
 	
 	$kino_fields['session-attribuee'] = 1891; // Only visible for Admin 
 	
@@ -222,7 +224,7 @@ function kino_test_fields() {
 	$kino_fields['mailpoet-real-kabaret'] = 4 ; // Validés: Réalisateurs Kino Kabaret 2017
 	$kino_fields['mailpoet-real-platform'] = 9 ; // Acceptés
 
-	$kino_fields['mailpoet-real-platform-only'] = 17 ;
+	//$kino_fields['mailpoet-real-platform-only'] = 17 ;
 
 	$kino_fields['mailpoet-real-kabaret-rejected'] = 10 ; //Refusés: Réalisateurs Kino Kabaret 2017
 	$kino_fields['mailpoet-real-platform-rejected'] = 11 ; //Refusés: Réalisateurs Plateforme
