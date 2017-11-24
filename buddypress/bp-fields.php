@@ -100,6 +100,7 @@ function kino_test_fields() {
 	
 	$kino_fields['possible-tournage'] = 1937;
 	$kino_fields['possible-tournage-remarque'] = 1940;
+	$kino_fields['possible-tournage-photo'] = 2140;
 	
 	$kino_fields['vehicule'] = 1941;
 	$kino_fields['vehicule-remarque'] = 1944;
