@@ -96,7 +96,7 @@ function kino_test_fields() {
 	
 	$kino_fields['offre-logement'] = 1935; 
 	$kino_fields['offre-logement-remarque'] = 1936; // nombre et type de logement
-	$kino_fields['offre-logement-nb'] = 2189; // nombre de couchage
+	$kino_fields['offre-logement-nb'] = 2103; // nombre de couchage
 	
 	$kino_fields['possible-tournage'] = 1937;
 	$kino_fields['possible-tournage-remarque'] = 1940;
