@@ -27,18 +27,23 @@ add_action( 'bp_init', 'remove_xprofile_links', 20 );
 
 function kino_bp_guest_redirect() {
 	
-	global $bp;
-	
-	if ( bp_is_activity_component() || bp_is_forums_component()  ) {
-		// enter the slug or component conditional here
+	if ( function_exists('bp_is_activity_component') ) {
 		
-		if ( !is_user_logged_in() ) { // not logged in user
+		global $bp;
 		
-			wp_redirect( home_url( 'inscription-membre' ) );
+		if ( bp_is_activity_component() || bp_is_forums_component()  ) {
+			// enter the slug or component conditional here
+			
+			if ( !is_user_logged_in() ) { // not logged in user
+			
+				wp_redirect( home_url( 'inscription-membre' ) );
+			
+			} // user will be redirect to any link to want
 		
-		} // user will be redirect to any link to want
+		}
 	
 	}
+	
 }
 add_filter('get_header', 'kino_bp_guest_redirect' , 1 );
 
