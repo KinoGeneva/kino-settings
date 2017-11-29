@@ -15,8 +15,8 @@ function kino_test_fields() {
 	// **************************
 	
 	$kino_fields['profile-role'] = 135; // Profil Kinoite Role
-	$kino_fields['profile-role-real'] = '2111_2'; // Réalisateur sous Profil Kinoite > Role Plateforme
-	$kino_fields['benevole'] = '2112_3'; // Aide Bénévole => sous Profil Kinoite > Role Plateforme
+	$kino_fields['profile-role-real'] = '2184_2'; // Réalisateur sous Profil Kinoite > Role Plateforme
+	$kino_fields['benevole'] = '2185_3'; // Aide Bénévole => sous Profil Kinoite > Role Plateforme
 	
 	//$kino_fields['kabaret'] = 1832; // Participe au cabaret 2017?
 	$kino_fields['kabaret'] = 2060; // Participe au cabaret 2018?
@@ -74,10 +74,11 @@ function kino_test_fields() {
 	// Test des rôles pour le Kabaret 2017
 	$kino_fields['role-kabaret'] = 1872; 
 	
-	// Les trois options des rôles pour le Kabaret 2017:
-	$kino_fields['role-kabaret-comed'] = '1873_0';
-	$kino_fields['role-kabaret-tech'] = '1874_1';
-	$kino_fields['role-kabaret-real'] = '1875_2';
+	// Les trois options des rôles pour le Kabaret :
+	$kino_fields['role-kabaret-comed'] = '2170_0';
+	$kino_fields['role-kabaret-tech'] = '2171_1';
+	$kino_fields['role-kabaret-real'] = '2172_2';
+	$kino_fields['role-kabaret-bene'] = '2173_3';
 	
 	// Les champs Choix de Session pour le Kabaret 2017
 	$kino_fields['session-un'] = 1876;
