@@ -44,6 +44,8 @@ include_once (plugin_dir_path(__FILE__).'buddypress/bp-overrides.php');
 
 include_once (plugin_dir_path(__FILE__).'utilities.php');
 
+// Shortcodes
 
+include_once (plugin_dir_path(__FILE__).'shortcodes/photostream.php');
 
 // end file
