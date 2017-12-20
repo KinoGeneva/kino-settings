@@ -154,6 +154,7 @@ function kino_test_fields() {
 	// **************************
 	$kino_fields['real-coaching'] = 2147; // 
 	$kino_fields['real-coaching-scenario'] = 2150; // 
+	$kino_fields['real-scenar-other'] = 2144;
 		
 	// Identifiants des Groupes
 	// *************************

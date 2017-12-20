@@ -580,6 +580,9 @@ function kino_table_header( $validation, $id = null ) {
 						<th>Rôle Kabaret</th>
 				    <th>Réal Plateforme</th>
 				    <th>Réal Kabaret</th>
+				    <th>Session GE t’aime</th>
+				    <th>Scénario d’un autre</th>
+				    <th>Atelier écriture</th>
 				    <th>Profil</th>
 				    <th>Enregistrement</th>';
 		
