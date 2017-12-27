@@ -1,6 +1,8 @@
 <?php 
 
-// 
+// Disable XML-RPC
+
+add_filter('xmlrpc_enabled', '__return_false');
 
 function kino_process_niveau( $kino_niveau ) {
 		
