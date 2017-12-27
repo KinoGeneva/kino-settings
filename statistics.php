@@ -1,8 +1,37 @@
 <?php 
 
+/*
+ * Ajout du code Google Analytics
+*/
 
-// add snippet for Mixpanel user tracking
+function kino_google_analytics() { 
 
+		$host = $_SERVER['HTTP_HOST'];
+		
+		if ( $host == 'kinogeneva.ch' ) {
+		
+			// <!-- Global site tag (gtag.js) - Google Analytics -->
+		
+			?>
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57694141-1"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+			
+			  gtag('config', 'UA-57694141-1');
+			</script>
+			<?php
+		
+		}
+		
+}
+add_action( 'wp_head', 'kino_google_analytics', 10 );
+
+
+/*
+ * add snippet for Mixpanel user tracking
+*/
 
 function kino_mixpanel_id() {
 
