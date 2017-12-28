@@ -18,16 +18,24 @@
 //}
 //add_action('admin_head', 'custom_admin_logo');
 
-function remove_wp_logo( $wp_admin_bar ) {
+function kino_admin_bar_menu( $wp_admin_bar ) {
+
+	// Remove WordPress Logo
 	$wp_admin_bar->remove_node( 'wp-logo' );
+	// Remove WP Customizer Link
+	$wp_admin_bar->remove_node( 'customize' );
+	// Remove Kleo theme-options
+	$wp_admin_bar->remove_node( 'theme-options' );
+	// Remove Tribe events
+	$wp_admin_bar->remove_node( 'tribe-events' );
 }
-add_action( 'admin_bar_menu', 'remove_wp_logo', 999 );
+add_action( 'admin_bar_menu', 'kino_admin_bar_menu', 999 );
 
 
 /**
  * remove WordPress Howdy : http://www.redbridgenet.com/?p=653
  */
-function goodbye_howdy ( $wp_admin_bar ) {
+function kino_goodbye_howdy( $wp_admin_bar ) {
     $avatar = get_avatar( get_current_user_id(), 16 );
     if ( ! $wp_admin_bar->get_node( 'my-account' ) )
         return;
@@ -36,7 +44,7 @@ function goodbye_howdy ( $wp_admin_bar ) {
         'title' => sprintf( '%s', wp_get_current_user()->display_name ) . $avatar,
     ) );
 }
-add_action( 'admin_bar_menu', 'goodbye_howdy' );
+add_action( 'admin_bar_menu', 'kino_goodbye_howdy' );
 
 
 function modify_footer_admin ()
