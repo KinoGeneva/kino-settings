@@ -35,14 +35,24 @@ add_action('init', function () {
         
         if ( !empty($state) ) {
 			
-				//note logement
-				if( $state == 'logement-add-info') {
+				//note offre logement
+				if( $state == 'offre-logement-add-info') {
 					
-					if(!empty( $old_value = get_user_meta( $id, 'kino-admin-gestion-logement-remarque', true ) ) ){
-						update_user_meta( $id, 'kino-admin-gestion-logement-remarque', $old_value . '<br/>' . $value );
+					if(!empty( $old_value = get_user_meta( $id, 'kino-admin-offre-logement-remarque', true ) ) ){
+						update_user_meta( $id, 'kino-admin-offre-logement-remarque', $old_value . '<br/>' . $value );
 					}
 					else {
-						add_user_meta( $id, 'kino-admin-gestion-logement-remarque', $value, true );
+						add_user_meta( $id, 'kino-admin-offre-logement-remarque', $value, true );
+					}
+				}
+				//note cherche logement
+				if( $state == 'cherche-logement-add-info') {
+					
+					if(!empty( $old_value = get_user_meta( $id, 'kino-admin-cherche-logement-remarque', true ) ) ){
+						update_user_meta( $id, 'kino-admin-cherche-logement-remarque', $old_value . '<br/>' . $value );
+					}
+					else {
+						add_user_meta( $id, 'kino-admin-cherche-logement-remarque', $value, true );
 					}
 				}
 				//note bénévole
