@@ -408,12 +408,8 @@ add_action('init', function () {
         			$message_compta .= '<p>Paiement de 25.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
         			//nombre vendu par jour Ticket #291
-					if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		
         		if ( $state == 'payment-40' ) {
@@ -423,12 +419,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement de 40.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		
         		if ( $state == 'payment-100' ) {
@@ -438,12 +430,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement de 100.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		
         		if ( $state == 'payment-125' ) {
@@ -453,12 +441,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement de 125.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		
         		if ( $state == 'payment-reset' ) {
@@ -480,12 +464,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement pour Carte Repas de 60.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		
         		if ( $state == 'repas-100' ) {
@@ -495,12 +475,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement pour Carte Repas de 100.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		
         		if ( $state == 'repas-125' ) {
@@ -510,12 +486,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement pour Carte Repas de 125.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		
         		if ( $state == 'repas-reset' ) {
@@ -538,12 +510,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Offert entrée à 25.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		if ( $state == 'offert-entree-125' ) {
         			$current_term_id = $kino_fields['compta-paid-offert-125'];
@@ -552,12 +520,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Offert entrée à 125.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		if ( $state == 'offert-repas-60' ) {
         			$current_term_id = $kino_fields['compta-repas-offert-60'];
@@ -566,12 +530,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Offert carte repas à 60.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		if ( $state == 'offert-repas-125' ) {
         			$current_term_id = $kino_fields['compta-repas-offert-125'];
@@ -580,12 +540,8 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Offert carte repas à 125.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
-						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-					}
-					else {
-						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
-					}
+        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
+					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
         		}
         		if ( $state == 'offert-entree-reset' ) {
 					$meta_ids = array( $kino_fields['compta-paid-offert-25'], $kino_fields['compta-paid-offert-125'] );
