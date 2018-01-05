@@ -50,7 +50,7 @@ function kino_add_to_compta( $id, $group ) {
 }
 
 function kino_remove_from_compta( $id, $group ) {
-	wp_remove_object_terms( 
+	return wp_remove_object_terms( 
 			$id, // $object_id, 
 			$group, // $terms, 
 			'user-compta' // $taxonomy, 
