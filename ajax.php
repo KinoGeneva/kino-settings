@@ -400,49 +400,214 @@ add_action('init', function () {
         		// ACTIONS Payment
         		
         		if ( $state == 'payment-25' ) {
-        			kino_add_to_compta( $id, 
-        				$kino_fields['compta-paid-25'] );
+					$current_term_id = $kino_fields['compta-paid-25'];
+					
+        			kino_add_to_compta( $id, $current_term_id);
+        			
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement de 25.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			//nombre vendu par jour Ticket #291
+					if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
+        		}
+        		
+        		if ( $state == 'payment-40' ) {
+					$current_term_id = $kino_fields['compta-paid-40'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Paiement de 40.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
         		}
         		
         		if ( $state == 'payment-100' ) {
-        			kino_add_to_compta( $id, 
-        				$kino_fields['compta-paid-100'] );
+					$current_term_id = $kino_fields['compta-paid-100'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement de 100.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
+        		}
+        		
+        		if ( $state == 'payment-125' ) {
+					$current_term_id = $kino_fields['compta-paid-125'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Paiement de 125.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
         		}
         		
         		if ( $state == 'payment-reset' ) {
-        			kino_remove_from_compta( $id, 
-        				$kino_fields['compta-paid-25'] );
-        			kino_remove_from_compta( $id, 
-        				$kino_fields['compta-paid-100'] );
+					$meta_ids = array( $kino_fields['compta-paid-25'], $kino_fields['compta-paid-40'], $kino_fields['compta-paid-100'], $kino_fields['compta-paid-125'] );
+					foreach($meta_ids as $meta_id){
+						if( kino_remove_from_compta( $id, $meta_id ) ) {
+							$old_value = get_term_meta( $meta_id, date("d.m.Y"), true );
+							update_term_meta( $meta_id, date("d.m.Y"), ( $old_value - 1 ) );
+						}
+					}
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement annulé pour '.$userdata->user_login.' (id: '.$id.').</p>';
         		}
         		
         		if ( $state == 'repas-60' ) {
-        			kino_add_to_compta( $id, 
-        				$kino_fields['compta-repas-60'] );
+					$current_term_id = $kino_fields['compta-repas-60'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement pour Carte Repas de 60.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
         		}
         		
         		if ( $state == 'repas-100' ) {
-        			kino_add_to_compta( $id, 
-        				$kino_fields['compta-repas-100'] );
+					$current_term_id = $kino_fields['compta-repas-100'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement pour Carte Repas de 100.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
+        		}
+        		
+        		if ( $state == 'repas-125' ) {
+        			$current_term_id = $kino_fields['compta-repas-125'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Paiement pour Carte Repas de 125.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
         		}
         		
         		if ( $state == 'repas-reset' ) {
-        			kino_remove_from_compta( $id, 
-        				$kino_fields['compta-repas-60'] );
-        			kino_remove_from_compta( $id, 
-        				$kino_fields['compta-repas-100'] );
+					$meta_ids = array( $kino_fields['compta-repas-60'], $kino_fields['compta-repas-100'], $kino_fields['compta-repas-125'] );
+					foreach($meta_ids as $meta_id){
+						if( kino_remove_from_compta( $id, $meta_id ) === true ) {
+							$old_value = get_term_meta( $meta_id, date("d.m.Y"), true );
+							update_term_meta( $meta_id, date("d.m.Y"), ( $old_value - 1 ) );
+						}
+					}
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement de Carte Repas annulé pour '.$userdata->user_login.' (id: '.$id.').</p>';
+        		}
+        		
+        		//offert
+        		if ( $state == 'offert-entree-25' ) {
+					$current_term_id = $kino_fields['compta-paid-offert-25'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Offert entrée à 25.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
+        		}
+        		if ( $state == 'offert-entree-125' ) {
+        			$current_term_id = $kino_fields['compta-paid-offert-125'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Offert entrée à 125.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
+        		}
+        		if ( $state == 'offert-repas-60' ) {
+        			$current_term_id = $kino_fields['compta-repas-offert-60'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Offert carte repas à 60.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
+        		}
+        		if ( $state == 'offert-repas-125' ) {
+        			$current_term_id = $kino_fields['compta-repas-offert-125'];
+					
+        			kino_add_to_compta( $id, $current_term_id );
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Offert carte repas à 125.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
+        			
+        			if(!empty( $old_value = get_term_meta( $current_term_id, date("d.m.Y"), true ) ) ){
+						update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					}
+					else {
+						add_term_meta( $current_term_id, date("d.m.Y"), 1, true );
+					}
+        		}
+        		if ( $state == 'offert-entree-reset' ) {
+					$meta_ids = array( $kino_fields['compta-paid-offert-25'], $kino_fields['compta-paid-offert-125'] );
+					foreach($meta_ids as $meta_id){
+						if( kino_remove_from_compta( $id, $meta_id ) === true ) {
+							$old_value = get_term_meta( $meta_id, date("d.m.Y"), true );
+							update_term_meta( $meta_id, date("d.m.Y"), ( $old_value - 1 ) );
+						}
+					}
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Entrée offerte annulée pour '.$userdata->user_login.' (id: '.$id.').</p>';
+        		}
+        		if ( $state == 'offert-repas-reset' ) {
+					$meta_ids = array( $kino_fields['compta-repas-offert-60'], $kino_fields['compta-repas-offert-125'] );
+					foreach($meta_ids as $meta_id){
+						if( kino_remove_from_compta( $id, $meta_id ) === true ) {
+							$old_value = get_term_meta( $meta_id, date("d.m.Y"), true );
+							update_term_meta( $meta_id, date("d.m.Y"), ( $old_value - 1 ) );
+						}
+					}
+        			$userdata = get_userdata( $id );
+        			$message_compta .= '<p>Repas offert annulé pour '.$userdata->user_login.' (id: '.$id.').</p>';
         		}
         		
         		if (!empty($message_compta)) {
@@ -454,12 +619,12 @@ add_action('init', function () {
         			$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.ch>';
         			$subject = '[KinoGeneva] transaction pour '.$userdata->user_login.' ('.$id.')';
         			
-        				wp_mail( 
+        				/*wp_mail( 
         					$to,
         					$subject,
         					$message_compta, 
         					$headers 
-        				);
+        				);*/
         		
         		}
         		
