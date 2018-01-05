@@ -619,12 +619,12 @@ add_action('init', function () {
         			$headers[] = 'From: KinoGeneva <onvafairedesfilms@kinogeneva.ch>';
         			$subject = '[KinoGeneva] transaction pour '.$userdata->user_login.' ('.$id.')';
         			
-        				/*wp_mail( 
+        				wp_mail( 
         					$to,
         					$subject,
         					$message_compta, 
         					$headers 
-        				);*/
+        				);
         		
         		}
         		
