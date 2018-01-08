@@ -48,6 +48,9 @@ function kino_test_fields() {
 	$kino_fields['pays'] = 12;
 	$kino_fields['tel'] = 14;
 	$kino_fields['birthday'] = 8;
+	$kino_fields['sexe'] = 3;
+	$kino_fields['site-web'] = 15;
+	$kino_fields['autres-liens'] = 33;
 	
 	$kino_fields['id-presentation'] = 31; // is ID complete? champ: Présentation
 	$kino_fields['id-photo'] = 859; // champ: Photo
