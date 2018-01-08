@@ -66,8 +66,8 @@ function kino_set_new_group_status( $status ){
 }
 
 // Ce code masque le premier bloc des options de confidentialité.
-
-add_action( 'bp_before_group_settings_creation_step', 'kino_new_group_javascript', 10 );
+#demande 192: permettre la création de projet public
+//add_action( 'bp_before_group_settings_creation_step', 'kino_new_group_javascript', 10 );
 
 function kino_new_group_javascript() {
 
