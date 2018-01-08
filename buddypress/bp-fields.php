@@ -273,4 +273,29 @@ function kino_test_fields() {
 	return $kino_fields;
 }
 
+/*
+ * Kino Test Accounts
+ 
+ * Fonction qui retourne une liste d'ID utilisateur étant des comptes de test.
+ *
+ * Cela permettra de les filtrer afin de les exclure de l'affichage, des impressions de fiches, etc.
+*/
 
+function kino_test_accounts() {
+
+	$kino_test_accounts = array(
+		262,
+		475,
+		208,
+		919,
+		1050,
+		1068,
+		1044,
+		949,
+		921,
+		1070
+	);
+	
+	return $kino_test_accounts;
+	
+}
