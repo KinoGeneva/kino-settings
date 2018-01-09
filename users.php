@@ -44,8 +44,26 @@ function kino_subscriber_hide_groups() {
 }
 add_action( 'init', 'kino_subscriber_hide_groups', 0 );
 
+/*
+ * Kino Add Capps
+ * Donner plus de capacités aux editeurs
+ 
+ Note:
+ Ces réglages sont enregistrés en base de donnée,
+ il suffit donc de les exécuter une seule fois.
+ 
+ Voir https://codex.wordpress.org/Function_Reference/add_cap
+*/
+
+function kino_add_caps() {
+  $role = get_role( 'editor' );
+  $role->add_cap( 'list_users' ); 
+  $role->add_cap( 'edit_users' ); 
+}
+add_action( 'admin_init', 'kino_add_caps');
 
 /*
+ * Kino Admin View
  * Test if user is either:
  
  * a) Admin or Editor
@@ -70,36 +88,30 @@ function kino_admin_view() {
 			if ( bp_is_user_profile() ) {
 				
 				if ( bp_displayed_user_id() == bp_loggedin_user_id() ) {
-					
 					$admin_view = true;
-					
 				}
-			} // bp_is_user_profile()
-		
-		} // function_exists
-
-	} // is_user_logged_in
-	
+			}
+		}
+	}
 	return $admin_view;
-	
 }
 
 // remove Visual Composer Menu
 function kino_vc_admin_css() {
   if ( current_user_can( 'subscriber' ) ) {
-		  echo '<style>
-		 #toplevel_page_vc-welcome,
-		 tr.user-admin-bar-front-wrap,
-		 tr.user-url-wrap,
-		 tr.user-description-wrap,
-		 #profile-nav 
-		 {
-		 	display: none;
-		 }
-		 div#profile-page.wrap form#your-profile {
-		 	padding-top: 0px;
-		 }
-		  </style>';
+	  echo '<style>
+	  #toplevel_page_vc-welcome,
+	  tr.user-admin-bar-front-wrap,
+	  tr.user-url-wrap,
+	  tr.user-description-wrap,
+	  #profile-nav 
+	  {
+	 	 display: none;
+	  }
+	  div#profile-page.wrap form#your-profile {
+	 	padding-top: 0px;
+	  }
+	  </style>';
 	}
 }
 add_action('admin_head', 'kino_vc_admin_css');
