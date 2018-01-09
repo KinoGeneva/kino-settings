@@ -45,6 +45,45 @@ function kino_subscriber_hide_groups() {
 add_action( 'init', 'kino_subscriber_hide_groups', 0 );
 
 
+/*
+ * Test if user is either:
+ 
+ * a) Admin or Editor
+ * b) Owner of currently displayed page
+ 
+ * Returns true or false.
+ * Used on BP profile pages.
+ 
+*/
+function kino_admin_view() {
+
+	$admin_view = false;
+	
+	if ( is_user_logged_in() ) {
+	
+		if ( current_user_can( 'publish_pages' ) ) {
+			$admin_view = true;
+		}
+	
+		if ( function_exists( 'bp_is_user_profile' ) ) {
+			
+			if ( bp_is_user_profile() ) {
+				
+				if ( bp_displayed_user_id() == bp_loggedin_user_id() ) {
+					
+					$admin_view = true;
+					
+				}
+			} // bp_is_user_profile()
+		
+		} // function_exists
+
+	} // is_user_logged_in
+	
+	return $admin_view;
+	
+}
+
 // remove Visual Composer Menu
 function kino_vc_admin_css() {
   if ( current_user_can( 'subscriber' ) ) {
