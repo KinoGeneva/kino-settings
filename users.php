@@ -143,22 +143,40 @@ function kino_register_logement_taxonomy() {
 add_action( 'init', 'kino_register_logement_taxonomy', 20 );
 
 
+/*
+ * Kino Limit Group Access
+ **************************
+ 
+ Cette fonction a pour objectif d'empêcher les membres de modifier leur propre statut.
+ En effet, par défaut, les groupes sont accessibles sous 
+ https://kinogeneva.ch/wp-admin/profile.php
+ 
+ Voir:
+ https://wordpress.org/support/topic/how-to-hide-user-groups-from-subscribers/
+ 
+ Notes: 
+ 
+ On définit l'accès à ces réglages avec une capacité WP, 
+ cf https://codex.wordpress.org/Roles_and_Capabilities
+ 
+ Exemples:
+ 
+ list_users = administrateurs uniquement
+ edit_pages = administrateurs et éditeurs
+ 
+ La priorité ne doit pas être inférieure à celle de l'enregistrement des taxonomies (20), sinon ça n'aura aucun effet.
+ 
+*/
 
 function kino_limit_group_access() {
 
 	global $wp_taxonomies;
-//	$wp_taxonomies['user-group'] = new StdClass;
-//	$wp_taxonomies['user-logement'] = new StdClass;
-	$wp_taxonomies['user-group']->cap->assign_terms = 'list_users';
+	$wp_taxonomies['user-group']->cap->assign_terms =       'edit_pages';
+	$wp_taxonomies['user-logement']->cap->assign_terms =    'edit_pages';
+	$wp_taxonomies['user-competences']->cap->assign_terms = 'edit_pages';
+	$wp_taxonomies['user-compta']->cap->assign_terms =      'edit_pages';
 	
-	if (isset($wp_taxonomies['user-logement'])) {
-		$wp_taxonomies['user-logement']->cap->assign_terms = 'list_users';
-	}
-	
-	// Warning: Creating default object from empty value in /kinogeneva-settings/users.php on line 103
-	
-
 }
-// add_action('init','kino_limit_group_access', 11);
+add_action('init','kino_limit_group_access', 20);
 
 
