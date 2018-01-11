@@ -109,7 +109,7 @@ function kino_test_fields() {
 	
 	// Compétence Tech
 	// **************************
-	
+	$kino_fields['tech-niveau'] = 1075;
 	//$kino_fields['profil-tech-complete'] = 1075;// Profil Technicien complet? statut pro/amateur
 	$kino_fields['comp-production'] = 173; // 
 	$kino_fields['comp-scenario'] = 385; //
@@ -131,7 +131,7 @@ function kino_test_fields() {
 	
 	// Compétence Comédien
 	// **************************
-	
+	$kino_fields['comedien-niveau'] = 927;
 	////$kino_fields['profil-comed-complete'] = 927;// Profil Comédien complet? statut pro/amateur
 	$kino_fields['age-camera-min'] = 34; // 
 	$kino_fields['age-camera-max'] = 35; // 
@@ -154,7 +154,7 @@ function kino_test_fields() {
 	
 	// Compétence Réalisateur
 	// **************************
-	$kino_fields['real-statut'] = 1079;
+	$kino_fields['real-niveau'] = 1079;
 	//$kino_fields['profil-real-complete'] = 545; // Profil Realisateur complet? champ: motivation
 	$kino_fields['real-maj-motiv'] = 2159; // 
 	$kino_fields['real-scenar-other'] = 2144;
