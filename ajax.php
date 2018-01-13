@@ -408,9 +408,10 @@ add_action('init', function () {
         			$message_compta .= '<p>Paiement de 25.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
         			//nombre vendu par jour Ticket #291
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
-        		}
+        			//suite aux discussions avec la personne des inscriptions: comme plusieurs personnes feront les inscriptions depuis plusieurs ordinateurs, il semble plus raisonnable d'ajouter un meta par utilisateur plutôt que par term
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
+				}
+        		
         		
         		if ( $state == 'payment-40' ) {
 					$current_term_id = $kino_fields['compta-paid-40'];
@@ -419,8 +420,7 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement de 40.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		
         		if ( $state == 'payment-100' ) {
@@ -430,8 +430,7 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement de 100.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		
         		if ( $state == 'payment-125' ) {
@@ -441,16 +440,14 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement de 125.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		
         		if ( $state == 'payment-reset' ) {
 					$meta_ids = array( $kino_fields['compta-paid-25'], $kino_fields['compta-paid-40'], $kino_fields['compta-paid-100'], $kino_fields['compta-paid-125'] );
 					foreach($meta_ids as $meta_id){
 						if( kino_remove_from_compta( $id, $meta_id ) ) {
-							$old_value = get_term_meta( $meta_id, date("d.m.Y"), true );
-							update_term_meta( $meta_id, date("d.m.Y"), ( $old_value - 1 ) );
+							delete_user_meta($id, 'compta-'. $meta_id);
 						}
 					}
         			$userdata = get_userdata( $id );
@@ -464,8 +461,7 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement pour Carte Repas de 60.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		
         		if ( $state == 'repas-100' ) {
@@ -475,8 +471,7 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement pour Carte Repas de 100.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		
         		if ( $state == 'repas-125' ) {
@@ -486,16 +481,14 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Paiement pour Carte Repas de 125.- CHF reçu de '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		
         		if ( $state == 'repas-reset' ) {
 					$meta_ids = array( $kino_fields['compta-repas-60'], $kino_fields['compta-repas-100'], $kino_fields['compta-repas-125'] );
 					foreach($meta_ids as $meta_id){
 						if( kino_remove_from_compta( $id, $meta_id ) === true ) {
-							$old_value = get_term_meta( $meta_id, date("d.m.Y"), true );
-							update_term_meta( $meta_id, date("d.m.Y"), ( $old_value - 1 ) );
+							delete_user_meta($id, 'compta-'. $meta_id);
 						}
 					}
         			$userdata = get_userdata( $id );
@@ -510,8 +503,7 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Offert entrée à 25.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		if ( $state == 'offert-entree-125' ) {
         			$current_term_id = $kino_fields['compta-paid-offert-125'];
@@ -520,8 +512,7 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Offert entrée à 125.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		if ( $state == 'offert-repas-60' ) {
         			$current_term_id = $kino_fields['compta-repas-offert-60'];
@@ -530,8 +521,7 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Offert carte repas à 60.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		if ( $state == 'offert-repas-125' ) {
         			$current_term_id = $kino_fields['compta-repas-offert-125'];
@@ -540,15 +530,14 @@ add_action('init', function () {
         			$userdata = get_userdata( $id );
         			$message_compta .= '<p>Offert carte repas à 125.- CHF pour '.$userdata->user_login.' (id: '.$id.').</p>';
         			
-        			$old_value = get_term_meta( $current_term_id, date("d.m.Y"), true );
-					update_term_meta( $current_term_id, date("d.m.Y"), ( $old_value + 1 ) );
+					add_user_meta( $id, 'compta-'. $current_term_id, date("d.m.Y"), true );
         		}
         		if ( $state == 'offert-entree-reset' ) {
 					$meta_ids = array( $kino_fields['compta-paid-offert-25'], $kino_fields['compta-paid-offert-125'] );
 					foreach($meta_ids as $meta_id){
 						if( kino_remove_from_compta( $id, $meta_id ) === true ) {
-							$old_value = get_term_meta( $meta_id, date("d.m.Y"), true );
-							update_term_meta( $meta_id, date("d.m.Y"), ( $old_value - 1 ) );
+							delete_user_meta($id, 'compta-'. $meta_id);
+
 						}
 					}
         			$userdata = get_userdata( $id );
@@ -558,8 +547,7 @@ add_action('init', function () {
 					$meta_ids = array( $kino_fields['compta-repas-offert-60'], $kino_fields['compta-repas-offert-125'] );
 					foreach($meta_ids as $meta_id){
 						if( kino_remove_from_compta( $id, $meta_id ) === true ) {
-							$old_value = get_term_meta( $meta_id, date("d.m.Y"), true );
-							update_term_meta( $meta_id, date("d.m.Y"), ( $old_value - 1 ) );
+							delete_user_meta($id, 'compta-'. $meta_id);
 						}
 					}
         			$userdata = get_userdata( $id );
