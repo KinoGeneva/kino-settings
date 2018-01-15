@@ -65,7 +65,7 @@ add_action( 'admin_init', 'kino_add_caps');
 
 /* ajoute le droit d'upload pour les contributeurs */
 function kino_add_caps_2() {
-  $role = get_role( 'Contributor' );
+  $role = get_role( 'contributor' );
   $role->add_cap( 'upload_files' );
 }
 add_action( 'admin_init', 'kino_add_caps_2');
