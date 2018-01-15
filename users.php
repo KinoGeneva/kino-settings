@@ -58,9 +58,17 @@ add_action( 'init', 'kino_subscriber_hide_groups', 0 );
 function kino_add_caps() {
   $role = get_role( 'editor' );
   $role->add_cap( 'list_users' ); 
-  $role->add_cap( 'edit_users' ); 
+  $role->add_cap( 'edit_users' );
+
 }
 add_action( 'admin_init', 'kino_add_caps');
+
+/* ajoute le droit d'upload pour les contributeurs */
+function kino_add_caps_2() {
+  $role = get_role( 'Contributor' );
+  $role->add_cap( 'upload_files' );
+}
+add_action( 'admin_init', 'kino_add_caps_2');
 
 /*
  * Kino Admin View
