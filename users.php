@@ -4,7 +4,7 @@
 // source: http://wpbeg.in/Hg3djT
 
 function kino_remove_admin_bar() {
-	if ( current_user_can('subscriber') && !is_admin() ) {
+	if ( !current_user_can('edit_pages') ) { 
   	show_admin_bar(false);
 	}
 }
