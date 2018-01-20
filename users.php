@@ -91,13 +91,10 @@ function kino_admin_view() {
 			$admin_view = true;
 		}
 	
-		if ( function_exists( 'bp_is_user_profile' ) ) {
+		if ( function_exists( 'bp_is_my_profile' ) ) {
 			
-			if ( bp_is_user_profile() ) {
-				
-				if ( bp_displayed_user_id() == bp_loggedin_user_id() ) {
-					$admin_view = true;
-				}
+			if ( bp_is_my_profile() ) {
+				$admin_view = true;
 			}
 		}
 	}
